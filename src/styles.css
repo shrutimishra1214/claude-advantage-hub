@@ -63,25 +63,39 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  /* Cinematic black & gold — inspired by the book cover */
+  --background: oklch(0.13 0.012 60);
+  --foreground: oklch(0.96 0.012 80);
+  --card: oklch(0.18 0.014 60);
+  --card-foreground: oklch(0.96 0.012 80);
+  --popover: oklch(0.18 0.014 60);
+  --popover-foreground: oklch(0.96 0.012 80);
+  --primary: oklch(0.78 0.17 75);
+  --primary-foreground: oklch(0.13 0.012 60);
+  --secondary: oklch(0.22 0.014 60);
+  --secondary-foreground: oklch(0.96 0.012 80);
+  --muted: oklch(0.22 0.014 60);
+  --muted-foreground: oklch(0.7 0.02 80);
+  --accent: oklch(0.78 0.17 75);
+  --accent-foreground: oklch(0.13 0.012 60);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.3 0.015 70 / 60%);
+  --input: oklch(0.22 0.014 60);
+  --ring: oklch(0.78 0.17 75);
+
+  /* Brand-specific tokens */
+  --gold: oklch(0.78 0.17 75);
+  --gold-bright: oklch(0.86 0.16 85);
+  --gold-deep: oklch(0.6 0.15 65);
+  --ink: oklch(0.08 0.008 60);
+
+  --gradient-gold: linear-gradient(135deg, var(--gold-deep), var(--gold-bright));
+  --gradient-spotlight: radial-gradient(ellipse at 50% 0%, color-mix(in oklab, var(--gold) 25%, transparent), transparent 60%);
+  --gradient-page: linear-gradient(180deg, var(--ink), var(--background));
+
+  --shadow-gold: 0 20px 60px -20px color-mix(in oklab, var(--gold) 50%, transparent);
+  --shadow-cover: 0 40px 80px -20px oklch(0 0 0 / 0.6), 0 0 0 1px color-mix(in oklab, var(--gold) 20%, transparent);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +154,62 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Anton', 'Oswald', 'Impact', sans-serif;
+    letter-spacing: -0.01em;
+  }
+  .text-gold {
+    color: var(--gold);
+  }
+  .bg-gradient-gold {
+    background-image: var(--gradient-gold);
+  }
+  .text-gradient-gold {
+    background-image: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-cover {
+    box-shadow: var(--shadow-cover);
+  }
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+  .bg-page {
+    background-image: var(--gradient-page);
+  }
+  .bg-spotlight {
+    background-image: var(--gradient-spotlight);
+  }
+  .binary-bg {
+    background-image:
+      radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--gold) 8%, transparent) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-float {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .text-shimmer {
+    background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright), var(--gold-deep));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s linear infinite;
   }
 }
