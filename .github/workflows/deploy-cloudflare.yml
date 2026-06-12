@@ -66,4 +66,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --var SUPABASE_URL:${{ secrets.SUPABASE_URL }} --var SUPABASE_PUBLISHABLE_KEY:${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          command: deploy --config .output/server/wrangler.json --var SUPABASE_URL:${{ secrets.SUPABASE_URL }} --var SUPABASE_PUBLISHABLE_KEY:${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
