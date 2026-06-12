@@ -79,7 +79,7 @@ In the Cloudflare dashboard: **Workers & Pages** → your worker → **Settings*
 | Setting | Value |
 |--------|--------|
 | Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
+| Deploy command | `npx wrangler deploy --config .output/server/wrangler.json` |
 | Node version | 22 |
 
 Add the same environment variables as in the GitHub Action (build needs `VITE_*`; deploy/runtime needs `SUPABASE_*` and the service role secret).
