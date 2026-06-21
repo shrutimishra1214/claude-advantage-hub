@@ -72,11 +72,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "The Claude Advantage — Free Resources by Kaelis Voss" },
-      { name: "description", content: "Bought The Claude Advantage? Claim your free bonus resources: 60+ elite prompt templates, the 90-day roadmap, and companion guides." },
+      { title: "The Claude Advantage — Reader Bonus Pack by Kaelis Voss" },
+      {
+        name: "description",
+        content:
+          "Bought The Claude Advantage on Amazon? Claim your free reader bonus: 60+ prompt templates, the 90-day roadmap, role-specific playbooks, and companion guides.",
+      },
       { name: "author", content: "Kaelis Voss" },
-      { property: "og:title", content: "The Claude Advantage — Free Resources" },
-      { property: "og:description", content: "Unlock your free bonus pack: 60+ prompt templates, the 90-day roadmap, and companion resources." },
+      { property: "og:title", content: "The Claude Advantage — Reader Bonus Pack" },
+      {
+        property: "og:description",
+        content:
+          "Unlock the other 90%. Free bonus resources for readers: 60+ prompt templates, the 90-day roadmap, and companion guides.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
