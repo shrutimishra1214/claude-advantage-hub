@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TheClaudeAdvantageRouteImport } from './routes/the-claude-advantage'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TheClaudeAdvantageRoute = TheClaudeAdvantageRouteImport.update({
+  id: '/the-claude-advantage',
+  path: '/the-claude-advantage',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/the-claude-advantage': typeof TheClaudeAdvantageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/the-claude-advantage': typeof TheClaudeAdvantageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/the-claude-advantage': typeof TheClaudeAdvantageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/the-claude-advantage'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/the-claude-advantage'
+  id: '__root__' | '/' | '/the-claude-advantage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TheClaudeAdvantageRoute: typeof TheClaudeAdvantageRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/the-claude-advantage': {
+      id: '/the-claude-advantage'
+      path: '/the-claude-advantage'
+      fullPath: '/the-claude-advantage'
+      preLoaderRoute: typeof TheClaudeAdvantageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +70,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TheClaudeAdvantageRoute: TheClaudeAdvantageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
