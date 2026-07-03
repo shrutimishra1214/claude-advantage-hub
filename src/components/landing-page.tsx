@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast, Toaster } from "sonner";
-import { ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink, ClipboardList, Compass, Layers } from "lucide-react";
 import bookCover from "@/assets/book-cover.jpeg";
 
 const AMAZON_LISTING_URL = "https://www.amazon.com/dp/B0GZ5Z49D1";
@@ -17,10 +17,11 @@ const BOOK = {
 };
 
 const bonuses = [
-  { icon: Sparkles, title: "60+ Elite Prompt Templates", desc: "Copy-paste prompts for emails, reports, proposals, research and strategic thinking." },
-  { icon: Target, title: "The 90-Day Roadmap", desc: "Week-by-week actions to go from beginner to fluent Claude power user." },
-  { icon: Zap, title: "Role-Specific Playbooks", desc: "Sales, Operations, Marketing, Finance, HR and Consulting workflows." },
-  { icon: BookOpen, title: "Glossary & Companion Guides", desc: "The reference library that keeps compounding long after you finish the book." },
+  { icon: Target, title: "90-Day Roadmap", desc: "Week-by-week actions to go from beginner to fluent Claude power user." },
+  { icon: BookOpen, title: "Phase Wise Workbook", desc: "Structured exercises and worksheets for each phase of your AI journey." },
+  { icon: Compass, title: "7-Day Discovery Playbook", desc: "A fast-track guide to uncover your highest-leverage AI use cases in one week." },
+  { icon: Zap, title: "Master Prompt Vault", desc: "Copy-paste prompts for emails, reports, proposals, research and strategic thinking." },
+  { icon: Layers, title: "Chapter Framework Cards", desc: "Quick-reference cards that distill every chapter into actionable frameworks." },
 ];
 
 const testimonials = [
