@@ -84,15 +84,12 @@ export default function LandingPage() {
       return;
     }
     setLoading(false);
-    if (error?.code === "23505") {
-      if (error.code === "23505") {
-        toast.success("You're already on the list. Check your inbox!");
-        setDone(true);
-      }
-      return;
-    }
     setDone(true);
-    toast.success("You're in! Resources are on the way.");
+    if (error?.code === "23505") {
+      toast.success("You're already on the list. Check your inbox!");
+    } else {
+      toast.success("You're in! Resources are on the way.");
+    }
   }
 
   return (
