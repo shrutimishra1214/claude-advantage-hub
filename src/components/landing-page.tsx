@@ -137,7 +137,6 @@ export default function LandingPage() {
               {BOOK.hook} Bought the book? Drop your email below and I'll send the
               full resource library straight to your inbox. 500+ prompts,
               the 90-day roadmap, role-specific playbooks, and the companion glossary.
-              the 90-day roadmap, role-specific playbooks, and the companion glossary.
             </p>
 
             {/* Form / success */}
