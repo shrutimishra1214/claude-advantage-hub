@@ -68,7 +68,7 @@ export default function LandingPage() {
     setLoading(false);
     if (error) {
       if (error.code === "23505") {
-        toast.success("You're already on the list — check your inbox!");
+        toast.success("You're already on the list. Check your inbox!");
         setDone(true);
       } else {
         toast.error("Something went wrong. Please try again.");
