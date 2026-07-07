@@ -213,7 +213,7 @@ export default function LandingPage() {
               </div>
               <div className="hidden h-10 w-px shrink-0 bg-border sm:block" />
               <div className="shrink-0">
-                <div className="whitespace-nowrap font-display text-2xl text-foreground">60+</div>
+                <div className="whitespace-nowrap font-display text-2xl text-foreground">500+</div>
                 <div className="whitespace-nowrap text-xs uppercase tracking-wider">Prompts</div>
               </div>
             </div>
