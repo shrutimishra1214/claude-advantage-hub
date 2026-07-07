@@ -17,11 +17,13 @@ const BOOK = {
 };
 
 const bonuses = [
+  { icon: ClipboardList, title: "AI Policy and Governance Starter Toolkit", desc: "Templates & risk checklists to build safe, compliant AI usage policies for teams and clients." },
   { icon: Target, title: "90-Day Roadmap", desc: "Week-by-week actions to go from beginner to fluent Claude power user." },
   { icon: BookOpen, title: "Phase Wise Workbook", desc: "Structured exercises and worksheets for each phase of your AI journey." },
   { icon: Compass, title: "7-Day Discovery Playbook", desc: "A fast-track guide to uncover your highest-leverage AI use cases in one week." },
   { icon: Zap, title: "Master Prompt Vault", desc: "Copy-paste prompts for emails, reports, proposals, research and strategic thinking." },
   { icon: Layers, title: "Chapter Framework Cards", desc: "Quick-reference cards that distill every chapter into actionable frameworks." },
+  { icon: ShieldCheck, title: "AI Governance & Risk Toolkit", desc: "Policy templates, risk checklists and governance workflows to safely deploy AI in any team." },
 ];
 
 const testimonials = [
