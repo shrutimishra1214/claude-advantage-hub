@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { useServerFn } from "@tanstack/react-start";
 import { subscribeToBrevo } from "@/lib/brevo.functions";
 import { Button } from "@/components/ui/button";
@@ -67,14 +66,6 @@ export default function LandingPage() {
     setLoading(true);
     const cleanEmail = email.trim().toLowerCase();
     const cleanName = name.trim() || null;
-    const { error } = await supabase
-      .from("subscribers")
-      .insert({ email: cleanEmail, name: cleanName });
-    if (error && error.code !== "23505") {
-      setLoading(false);
-      toast.error("Something went wrong. Please try again.");
-      return;
-    }
     try {
       const result = await brevoSubscribe({ data: { email: cleanEmail, name: cleanName } });
       if (!result.ok) {
@@ -90,11 +81,7 @@ export default function LandingPage() {
     }
     setLoading(false);
     setDone(true);
-    if (error?.code === "23505") {
-      toast.success("You're already on the list. Check your inbox!");
-    } else {
-      toast.success("You're in! Resources are on the way.");
-    }
+    toast.success("You're in! Resources are on the way.");
   }
 
   return (
