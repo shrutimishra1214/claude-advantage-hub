@@ -147,7 +147,7 @@ export default function LandingPage() {
                   <div>
                     <p className="font-semibold text-foreground">You're on the list.</p>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      Check your inbox in the next few minutes — your resources are
+                      Check your inbox in the next few minutes. Your resources are
                       on the way. If you don't see anything, peek in spam or promotions.
                     </p>
                   </div>
