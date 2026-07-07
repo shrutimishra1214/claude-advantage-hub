@@ -231,7 +231,7 @@ export default function LandingPage() {
               >
                 <img
                   src={bookCover}
-                  alt={`${BOOK.title} by ${BOOK.author} — book cover`}
+                  alt={`${BOOK.title} by ${BOOK.author} - book cover`}
                   className="animate-float w-full max-w-md rounded-md shadow-cover"
                   loading="eager"
                 />
