@@ -9,12 +9,17 @@ const inputSchema = z.object({
 export const subscribeToBrevo = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => inputSchema.parse(input))
   .handler(async ({ data }) => {
-    const apiKey = process.env.BREVO_API_KEY?.trim();
+    const apiKey = process.env.BREVO_API_KEY?.trim().replace(/^['"]|['"]$/g, "");
     const brevoListId = 6;
 
     if (!apiKey) {
       console.error("[Brevo] BREVO_API_KEY is not configured");
       return { ok: false, status: 500, reason: "missing_api_key" } as const;
+    }
+
+    if (!apiKey.startsWith("xkeysib-")) {
+      console.error("[Brevo] BREVO_API_KEY does not look like a Brevo v3 API key");
+      return { ok: false, status: 401, reason: "invalid_api_key" } as const;
     }
 
     const res = await fetch("https://api.brevo.com/v3/contacts", {
