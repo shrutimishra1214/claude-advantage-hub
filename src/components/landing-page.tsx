@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { subscribeToBrevo } from "@/lib/brevo.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast, Toaster } from "sonner";
@@ -57,21 +59,35 @@ export default function LandingPage() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const brevoSubscribe = useServerFn(subscribeToBrevo);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanName = name.trim() || null;
     const { error } = await supabase
       .from("subscribers")
-      .insert({ email: email.trim().toLowerCase(), name: name.trim() || null });
+      .insert({ email: cleanEmail, name: cleanName });
+    if (error && error.code !== "23505") {
+      setLoading(false);
+      toast.error("Something went wrong. Please try again.");
+      return;
+    }
+    try {
+      await brevoSubscribe({ data: { email: cleanEmail, name: cleanName } });
+    } catch (err) {
+      console.error(err);
+      setLoading(false);
+      toast.error("Could not add you to the list. Please try again.");
+      return;
+    }
     setLoading(false);
-    if (error) {
+    if (error?.code === "23505") {
       if (error.code === "23505") {
         toast.success("You're already on the list. Check your inbox!");
         setDone(true);
-      } else {
-        toast.error("Something went wrong. Please try again.");
       }
       return;
     }
