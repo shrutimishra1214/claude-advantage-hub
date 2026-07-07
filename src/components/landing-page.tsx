@@ -76,7 +76,12 @@ export default function LandingPage() {
       return;
     }
     try {
-      await brevoSubscribe({ data: { email: cleanEmail, name: cleanName } });
+      const result = await brevoSubscribe({ data: { email: cleanEmail, name: cleanName } });
+      if (!result.ok) {
+        setLoading(false);
+        toast.error("Email signup is being fixed. Please try again shortly.");
+        return;
+      }
     } catch (err) {
       console.error(err);
       setLoading(false);
