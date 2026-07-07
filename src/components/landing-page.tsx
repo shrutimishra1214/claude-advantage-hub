@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast, Toaster } from "sonner";
-import { ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink, ClipboardList, Compass, Layers, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink, ClipboardList, Compass, Layers } from "lucide-react";
 import bookCover from "@/assets/book-cover.jpeg";
 
 const AMAZON_LISTING_URL = "https://www.amazon.com/dp/B0GZ5Z49D1";
