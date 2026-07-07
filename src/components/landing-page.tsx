@@ -135,7 +135,8 @@ export default function LandingPage() {
 
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
               {BOOK.hook} Bought the book? Drop your email below and I'll send the
-              full resource library straight to your inbox — 60+ prompt templates,
+              full resource library straight to your inbox. 500+ prompts,
+              the 90-day roadmap, role-specific playbooks, and the companion glossary.
               the 90-day roadmap, role-specific playbooks, and the companion glossary.
             </p>
 
