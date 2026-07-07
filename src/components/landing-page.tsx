@@ -311,7 +311,7 @@ export default function LandingPage() {
             Ready to claim your <span className="text-gradient-gold">edge</span>?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Scroll up, drop your email, and the entire library lands in your inbox — free
+            Scroll up, drop your email, and the entire library lands in your inbox, free
             for every reader of The Claude Advantage.
           </p>
           <a
