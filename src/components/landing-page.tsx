@@ -68,7 +68,7 @@ export default function LandingPage() {
     setLoading(false);
     if (error) {
       if (error.code === "23505") {
-        toast.success("You're already on the list — check your inbox!");
+        toast.success("You're already on the list. Check your inbox!");
         setDone(true);
       } else {
         toast.error("Something went wrong. Please try again.");
@@ -135,7 +135,7 @@ export default function LandingPage() {
 
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
               {BOOK.hook} Bought the book? Drop your email below and I'll send the
-              full resource library straight to your inbox — 60+ prompt templates,
+              full resource library straight to your inbox. 500+ prompts,
               the 90-day roadmap, role-specific playbooks, and the companion glossary.
             </p>
 
@@ -147,7 +147,7 @@ export default function LandingPage() {
                   <div>
                     <p className="font-semibold text-foreground">You're on the list.</p>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      Check your inbox in the next few minutes — your resources are
+                      Check your inbox in the next few minutes. Your resources are
                       on the way. If you don't see anything, peek in spam or promotions.
                     </p>
                   </div>
@@ -213,7 +213,7 @@ export default function LandingPage() {
               </div>
               <div className="hidden h-10 w-px shrink-0 bg-border sm:block" />
               <div className="shrink-0">
-                <div className="whitespace-nowrap font-display text-2xl text-foreground">60+</div>
+                <div className="whitespace-nowrap font-display text-2xl text-foreground">500+</div>
                 <div className="whitespace-nowrap text-xs uppercase tracking-wider">Prompts</div>
               </div>
             </div>
@@ -231,7 +231,7 @@ export default function LandingPage() {
               >
                 <img
                   src={bookCover}
-                  alt={`${BOOK.title} by ${BOOK.author} — book cover`}
+                  alt={`${BOOK.title} by ${BOOK.author} - book cover`}
                   className="animate-float w-full max-w-md rounded-md shadow-cover"
                   loading="eager"
                 />
@@ -311,7 +311,7 @@ export default function LandingPage() {
             Ready to claim your <span className="text-gradient-gold">edge</span>?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Scroll up, drop your email, and the entire library lands in your inbox — free
+            Scroll up, drop your email, and the entire library lands in your inbox, free
             for every reader of The Claude Advantage.
           </p>
           <a
