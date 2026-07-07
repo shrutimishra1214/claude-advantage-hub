@@ -23,7 +23,6 @@ const bonuses = [
   { icon: Compass, title: "7-Day Discovery Playbook", desc: "A fast-track guide to uncover your highest-leverage AI use cases in one week." },
   { icon: Zap, title: "Master Prompt Vault", desc: "Copy-paste prompts for emails, reports, proposals, research and strategic thinking." },
   { icon: Layers, title: "Chapter Framework Cards", desc: "Quick-reference cards that distill every chapter into actionable frameworks." },
-  { icon: ShieldCheck, title: "AI Governance & Risk Toolkit", desc: "Policy templates, risk checklists and governance workflows to safely deploy AI in any team." },
 ];
 
 const testimonials = [
