@@ -6,7 +6,17 @@
   "main": "src/server.ts",
   "observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "kaelisvoss.com/the-claude-advantage*",
+      "zone_name": "kaelisvoss.com"
+    },
+    {
+      "pattern": "www.kaelisvoss.com/the-claude-advantage*",
+      "zone_name": "kaelisvoss.com"
+    }
+  ]
   // Non-secret runtime vars (SSR). Set real values via Dashboard or:
   //   wrangler secret put SUPABASE_SERVICE_ROLE_KEY
   // Public Supabase URL/key can also be set with:
