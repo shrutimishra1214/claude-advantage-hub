@@ -15,7 +15,9 @@
     {
       "pattern": "www.kaelisvoss.com/the-claude-advantage*",
       "zone_name": "kaelisvoss.com"
-    }
+    },
+  { "pattern": "kaelisvoss.com/the-claude-advantage/assets/*", "not": true },
+  { "pattern": "www.kaelisvoss.com/the-claude-advantage/assets/*", "not": true }
   ],
   "assets": {
     "directory": ".output/public/the-claude-advantage",
