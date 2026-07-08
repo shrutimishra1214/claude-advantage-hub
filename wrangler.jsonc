@@ -18,7 +18,7 @@
     }
   ],
   "assets": {
-    "directory": ".output/public",
+    "directory": ".output/public/the-claude-advantage",
     "binding": "ASSETS"
   }
   // Non-secret runtime vars (SSR). Set real values via Dashboard or:
