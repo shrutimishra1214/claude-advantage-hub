@@ -71,7 +71,22 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const normalized = await normalizeCatastrophicSsrResponse(response);
+      // Prevent CDN/browser from caching HTML shells that reference hashed assets
+      // which may have been replaced by a newer build.
+      const contentType = normalized.headers.get("content-type") ?? "";
+      if (contentType.includes("text/html")) {
+        const headers = new Headers(normalized.headers);
+        headers.set("cache-control", "no-cache, no-store, must-revalidate");
+        headers.set("pragma", "no-cache");
+        headers.set("expires", "0");
+        return new Response(normalized.body, {
+          status: normalized.status,
+          statusText: normalized.statusText,
+          headers,
+        });
+      }
+      return normalized;
     } catch (error) {
       console.error(error);
       return brandedErrorResponse();
