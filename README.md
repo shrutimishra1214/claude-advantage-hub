@@ -97,18 +97,8 @@ Add the same environment variables as in the GitHub Action (build needs `VITE_*`
 
 ## Custom domains
 
-This app is served at **`/the-claude-advantage/`** (see `vite.config.ts`).
-
-Production URL: **https://kaelisvoss.com/the-claude-advantage**
-
-`wrangler.jsonc` includes routes so only that path on your zone is handled by this Worker:
-
-- `kaelisvoss.com/the-claude-advantage*`
-- `www.kaelisvoss.com/the-claude-advantage*`
-
-After deploy, confirm in Cloudflare: **Workers & Pages** → `claude-advantage-hub` → **Settings** → **Domains & Routes**. The `kaelisvoss.com` zone must be on the same Cloudflare account.
-
 ```bash
-npm run build
-npx wrangler deploy --config dist/server/wrangler.json
+npx wrangler domains add your-domain.com
 ```
+
+Or attach a route in the [Cloudflare dashboard](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/).
