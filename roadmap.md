@@ -8,3 +8,6 @@
 - [x] Match the Copilot signup confirmation to the Claude inbox message
 - [x] Repair the Copilot skip-to-files link
 - [x] Package the Copilot cover and six PDFs with the deployed site
+- [x] Refresh the main Book Hub with focused, reader-facing content
+- [x] Remove the unused email form, contact details, and social links from the main page
+- [x] Add Book Hub links to the Claude and Copilot reader pages
