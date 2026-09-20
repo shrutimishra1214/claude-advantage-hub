@@ -57,10 +57,7 @@ export default function CopilotLandingPage() {
     }
     setDone(true);
     setLoading(false);
-    toast.success("You're in! Your bonuses are below.");
-    setTimeout(() => {
-      document.getElementById("bonuses")?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
+    toast.success("You're in! Your resources are on the way.");
   };
 
   return (
@@ -103,18 +100,28 @@ export default function CopilotLandingPage() {
               pairs with the book.
             </p>
 
-            <form
-              id="claim"
-              onSubmit={onSubmit}
-              className="mt-8 rounded-2xl border border-border bg-card p-4 shadow-card-lift md:p-5"
-            >
+            <div id="claim" className="mt-8 scroll-mt-24">
+              {done ? (
+                <div className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5 shadow-card-lift">
+                  <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0" style={{ color: "var(--brand-green)" }} />
+                  <div>
+                    <p className="font-display font-semibold">You're on the list.</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      Check your inbox in the next few minutes. Your six PDF resources are on the way. If you don't see them, check spam or promotions.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+              <form
+                onSubmit={onSubmit}
+                className="rounded-2xl border border-border bg-card p-4 shadow-card-lift md:p-5"
+              >
               <div className="flex flex-col gap-3 md:flex-row">
                 <input
                   type="text"
                   placeholder="Your first name (optional)"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  disabled={done}
                   className="flex-1 rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30 disabled:opacity-60"
                 />
                 <input
@@ -123,29 +130,26 @@ export default function CopilotLandingPage() {
                   placeholder="you@work.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  disabled={done}
                   className="flex-1 rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30 disabled:opacity-60"
                 />
               </div>
               <button
                 type="submit"
-                disabled={loading || done}
+                disabled={loading}
                 className="mt-3 w-full rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 disabled:opacity-70"
                 style={{ backgroundImage: "var(--gradient-hero)" }}
               >
-                {done
-                  ? "✓ Bonuses unlocked — scroll down"
-                  : loading
-                    ? "Unlocking…"
-                    : "Send me the free bonuses →"}
+                {loading ? "Sending..." : "Send me the free bonuses →"}
               </button>
               <p className="mt-3 text-xs text-muted-foreground">
                 No spam. Unsubscribe anytime. We'll email you when new Copilot resources drop.{" "}
-                <Link to="/the-microsoft-copilot-advantage/resources" className="underline underline-offset-4 transition hover:text-foreground">
+                <a href="#bonuses" className="underline underline-offset-4 transition hover:text-foreground">
                   Or skip ahead to the files.
-                </Link>
+                </a>
               </p>
-            </form>
+              </form>
+              )}
+            </div>
 
             <div className="mt-6 flex flex-wrap gap-4 text-xs text-muted-foreground">
               {["Instant access", "Lifetime updates", "PDF + editable templates"].map((t) => (

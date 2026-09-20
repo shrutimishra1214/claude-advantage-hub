@@ -4,17 +4,17 @@ import { Toaster } from "@/components/ui/sonner";
 import { bonuses } from "@/lib/bonuses";
 import { downloadBonus } from "@/lib/download";
 
-export const Route = createFileRoute("/the-microsoft-copilot-advantage/resources")({
+export const Route = createFileRoute("/the-microsoft-copilot-advantage_/resources")({
   component: ResourcesPage,
   head: () => ({
     meta: [
-      { title: "Bonus Resources — The Microsoft Copilot Advantage" },
+      { title: "Bonus Resources | The Microsoft Copilot Advantage" },
       {
         name: "description",
         content:
           "Download every free companion resource for The Microsoft Copilot Advantage: prompt libraries, cheatsheets, playbooks and checklists.",
       },
-      { property: "og:title", content: "Bonus Resources — The Microsoft Copilot Advantage" },
+      { property: "og:title", content: "Bonus Resources | The Microsoft Copilot Advantage" },
       {
         property: "og:description",
         content:
@@ -45,7 +45,7 @@ function ResourcesPage() {
             </h1>
             <p className="mt-4 text-muted-foreground">
               Every companion resource for <em>The Microsoft Copilot Advantage</em>,
-              free to download — no sign-up needed.
+              free to download. No sign-up needed.
             </p>
           </div>
 
