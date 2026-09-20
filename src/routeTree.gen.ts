@@ -9,9 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TheMicrosoftCopilotAdvantageRouteImport } from './routes/the-microsoft-copilot-advantage'
 import { Route as TheClaudeAdvantageRouteImport } from './routes/the-claude-advantage'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TheMicrosoftCopilotAdvantageRoute =
+  TheMicrosoftCopilotAdvantageRouteImport.update({
+    id: '/the-microsoft-copilot-advantage',
+    path: '/the-microsoft-copilot-advantage',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TheClaudeAdvantageRoute = TheClaudeAdvantageRouteImport.update({
   id: '/the-claude-advantage',
   path: '/the-claude-advantage',
@@ -26,31 +33,46 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
+  '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
+  '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
+  '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/the-claude-advantage'
+  fullPaths: '/' | '/the-claude-advantage' | '/the-microsoft-copilot-advantage'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/the-claude-advantage'
-  id: '__root__' | '/' | '/the-claude-advantage'
+  to: '/' | '/the-claude-advantage' | '/the-microsoft-copilot-advantage'
+  id:
+    | '__root__'
+    | '/'
+    | '/the-claude-advantage'
+    | '/the-microsoft-copilot-advantage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TheClaudeAdvantageRoute: typeof TheClaudeAdvantageRoute
+  TheMicrosoftCopilotAdvantageRoute: typeof TheMicrosoftCopilotAdvantageRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/the-microsoft-copilot-advantage': {
+      id: '/the-microsoft-copilot-advantage'
+      path: '/the-microsoft-copilot-advantage'
+      fullPath: '/the-microsoft-copilot-advantage'
+      preLoaderRoute: typeof TheMicrosoftCopilotAdvantageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/the-claude-advantage': {
       id: '/the-claude-advantage'
       path: '/the-claude-advantage'
@@ -71,6 +93,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TheClaudeAdvantageRoute: TheClaudeAdvantageRoute,
+  TheMicrosoftCopilotAdvantageRoute: TheMicrosoftCopilotAdvantageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
