@@ -4,13 +4,14 @@ import { z } from "zod";
 const inputSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
   name: z.string().trim().max(100).optional().nullable(),
+  listId: z.union([z.literal(6), z.literal(7)]).optional(),
 });
 
 export const subscribeToBrevo = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => inputSchema.parse(input))
   .handler(async ({ data }) => {
     const apiKey = process.env.BREVO_API_KEY?.trim().replace(/^['"]|['"]$/g, "");
-    const brevoListId = 6;
+    const brevoListId = data.listId ?? 6;
 
     if (!apiKey) {
       console.error("[Brevo] BREVO_API_KEY is not configured");
