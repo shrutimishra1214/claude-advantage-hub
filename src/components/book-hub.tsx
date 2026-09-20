@@ -1,5 +1,6 @@
 import claudeCover from "@/assets/book-cover.jpeg";
 import copilotCover from "@/assets/copilot-cover.jpg.asset.json";
+import agenticCover from "@/assets/agentic-ai-cover.jpg";
 
 const books = [
   {
@@ -10,7 +11,7 @@ const books = [
       "Mastering the Constitutional AI framework. A deep dive into prompt engineering techniques and ethical alignment specifically for the Anthropic ecosystem.",
     cta: "View Book Hub",
     href: "/the-claude-advantage",
-    cover: claudeCover,
+    cover: agenticCover,
     badge: "bg-brand-claude/10 text-brand-claude",
     button:
       "bg-brand-claude text-brand-claude-foreground ring-brand-claude hover:brightness-110",
