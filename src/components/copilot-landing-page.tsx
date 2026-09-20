@@ -1,12 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { CheckCircle2, Download, Sparkles, Star } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Download, Sparkles, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { bonuses } from "@/lib/bonuses";
 import { downloadBonus } from "@/lib/download";
 import { subscribeToBrevo } from "@/lib/brevo.functions";
+import { Button } from "@/components/ui/button";
 
 export const AMAZON_URL = "https://www.amazon.com/dp/B0HJM9VP3G";
 
@@ -65,13 +66,12 @@ export default function CopilotLandingPage() {
       <main className="copilot-hub min-h-screen bg-hero-surface">
         {/* Nav */}
         <header className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-6">
-          <div className="flex items-center gap-2">
-            <div
-              className="h-8 w-8 rounded-lg"
-              style={{ backgroundImage: "var(--gradient-hero)" }}
-            />
-            <span className="font-display text-lg font-bold">Kaelis Voss</span>
-          </div>
+          <Button asChild variant="outline" size="sm" className="rounded-full bg-card">
+            <Link to="/">
+              <ArrowLeft />
+              Book Hub
+            </Link>
+          </Button>
           <div className="flex items-center gap-2 md:gap-3">
             <AmazonLink className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-sm transition hover:opacity-90" />
             <a

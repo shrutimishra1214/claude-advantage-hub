@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { subscribeToBrevo } from "@/lib/brevo.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast, Toaster } from "sonner";
-import { ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink, ClipboardList, Compass, Layers } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink, ClipboardList, Compass, Layers } from "lucide-react";
 import bookCover from "@/assets/book-cover.jpeg";
 
 const AMAZON_LISTING_URL = "https://www.amazon.com/dp/B0GZ5Z49D1";
@@ -95,12 +96,12 @@ export default function LandingPage() {
       <div className="relative">
         {/* Top bar */}
         <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-          <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-gradient-gold shadow-gold" />
-            <span className="text-sm font-semibold tracking-[0.2em] text-muted-foreground">
-              KAELIS VOSS
-            </span>
-          </div>
+          <Button asChild variant="outline" size="sm" className="rounded-full border-border bg-card/60 text-foreground/80 backdrop-blur hover:text-foreground">
+            <Link to="/">
+              <ArrowLeft />
+              Book Hub
+            </Link>
+          </Button>
           <div className="hidden items-center gap-3 sm:flex">
             <a
               href={AMAZON_LISTING_URL}
