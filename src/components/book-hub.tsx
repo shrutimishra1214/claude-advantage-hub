@@ -12,7 +12,8 @@ const books = [
       "A practical guide to prompting, AI systems, and high-performance workflows that give you a daily competitive edge.",
     cta: "Open reader hub",
     href: "/the-claude-advantage" as const,
-    amazonUrl: "https://www.amazon.com/dp/B0GZ5Z49D1",
+    amazonUrl:
+      "https://www.amazon.com/Claude-Advantage-Practical-High-Performance-Competitive/dp/B0H5XJDMJ5/ref=tmm_pap_swatch_0",
     cover: claudeCover,
     accent: "text-brand-claude",
     button: "bg-brand-claude text-brand-claude-foreground hover:brightness-110",
