@@ -11,7 +11,7 @@ const books = [
       "Mastering the Constitutional AI framework. A deep dive into prompt engineering techniques and ethical alignment specifically for the Anthropic ecosystem.",
     cta: "View Book Hub",
     href: "/the-claude-advantage",
-    cover: agenticCover,
+    cover: claudeCover,
     badge: "bg-brand-claude/10 text-brand-claude",
     button:
       "bg-brand-claude text-brand-claude-foreground ring-brand-claude hover:brightness-110",
@@ -39,7 +39,7 @@ const books = [
       "Architecting Autonomous Workflows. The definitive technical reference for multi-agent systems, memory management, and long-horizon reasoning.",
     cta: "Access Resources",
     href: "/agentic-ai-bible",
-    cover: claudeCover,
+    cover: agenticCover,
     badge: "bg-brand-bible/10 text-brand-bible",
     button:
       "bg-brand-bible text-brand-bible-foreground ring-brand-bible hover:brightness-110",
