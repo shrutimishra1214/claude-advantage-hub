@@ -66,11 +66,11 @@ export default function BookHub() {
             Books by Kaelis Voss
           </p>
           <h1 className="max-w-4xl text-balance font-serif text-5xl leading-[1.05] sm:text-7xl">
-            Practical guides for doing better work with AI.
+            Practical guides for working better with AI.
           </h1>
           <p className="mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Clear, useful books for professionals who want to turn AI into stronger
-            thinking, better systems, and work that gets results.
+            Clear, useful books for professionals who want to turn AI into stronger thinking, better systems, and work
+            that gets results.
           </p>
         </section>
 
@@ -78,9 +78,7 @@ export default function BookHub() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-10 flex items-end justify-between gap-6">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                  The collection
-                </p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">The collection</p>
                 <h2 className="mt-3 font-serif text-4xl">Choose your next guide.</h2>
               </div>
               <BookOpen className="hidden h-7 w-7 text-muted-foreground sm:block" />
@@ -115,12 +113,8 @@ export default function BookHub() {
                     </div>
                   )}
                   <div className="flex flex-1 flex-col pt-6">
-                    <p className={`text-xs font-semibold uppercase tracking-widest ${book.accent}`}>
-                      {book.label}
-                    </p>
-                    <h3 className="mt-3 text-balance font-serif text-3xl leading-tight">
-                      {book.title}
-                    </h3>
+                    <p className={`text-xs font-semibold uppercase tracking-widest ${book.accent}`}>{book.label}</p>
+                    <h3 className="mt-3 text-balance font-serif text-3xl leading-tight">{book.title}</h3>
                     <p className="mt-4 flex-1 text-pretty text-sm leading-relaxed text-muted-foreground">
                       {book.blurb}
                     </p>
@@ -146,14 +140,12 @@ export default function BookHub() {
 
         <section className="bg-ink py-16 text-ink-foreground sm:py-20">
           <div className="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-[1fr_2fr] md:gap-16">
-            <p className="text-xs font-semibold uppercase tracking-widest text-ink-muted">
-              About the author
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-ink-muted">About the author</p>
             <div>
               <h2 className="font-serif text-3xl">Kaelis Voss</h2>
               <p className="mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-ink-muted">
-                Kaelis Voss writes practical guides that help professionals understand AI,
-                use it with confidence, and apply it to real work.
+                Kaelis Voss writes practical guides that help professionals understand AI, use it with confidence, and
+                apply it to real work.
               </p>
             </div>
           </div>
