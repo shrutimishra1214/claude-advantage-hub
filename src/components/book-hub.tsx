@@ -12,6 +12,7 @@ const books = [
       "A practical guide to prompting, AI systems, and high-performance workflows that give you a daily competitive edge.",
     cta: "Open reader hub",
     href: "/the-claude-advantage" as const,
+    amazonUrl: "https://www.amazon.com/dp/B0GZ5Z49D1",
     cover: claudeCover,
     accent: "text-brand-claude",
     button: "bg-brand-claude text-brand-claude-foreground hover:brightness-110",
@@ -24,6 +25,7 @@ const books = [
       "A beginner-friendly guide to using Copilot across Word, Excel, Outlook, PowerPoint, Teams, and the wider Microsoft workspace.",
     cta: "Open reader hub",
     href: "/the-microsoft-copilot-advantage" as const,
+    amazonUrl: "https://www.amazon.com/dp/B0HJM9VP3G",
     cover: "/copilot-cover.jpg",
     accent: "text-brand-copilot",
     button: "bg-brand-copilot text-brand-copilot-foreground hover:brightness-110",
@@ -86,14 +88,31 @@ export default function BookHub() {
             <div className="grid gap-8 md:grid-cols-3">
               {books.map((book, index) => (
                 <article key={book.title} className="flex min-w-0 flex-col">
-                  <div className="aspect-[4/5] overflow-hidden rounded-[var(--radius-panel)] bg-surface ring-1 ring-hairline">
-                    <img
-                      src={book.cover}
-                      alt={`Cover of ${book.title} by Kaelis Voss`}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
+                  {book.amazonUrl ? (
+                    <a
+                      href={book.amazonUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${book.title} on Amazon (opens in a new tab)`}
+                      className="group block aspect-[4/5] overflow-hidden rounded-[var(--radius-panel)] bg-surface ring-1 ring-hairline transition-shadow hover:ring-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <img
+                        src={book.cover}
+                        alt={`Cover of ${book.title} by Kaelis Voss`}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none"
+                      />
+                    </a>
+                  ) : (
+                    <div className="aspect-[4/5] overflow-hidden rounded-[var(--radius-panel)] bg-surface ring-1 ring-hairline">
+                      <img
+                        src={book.cover}
+                        alt={`Cover of ${book.title} by Kaelis Voss`}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  )}
                   <div className="flex flex-1 flex-col pt-6">
                     <p className={`text-xs font-semibold uppercase tracking-widest ${book.accent}`}>
                       {book.label}
