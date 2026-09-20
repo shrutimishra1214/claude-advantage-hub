@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Clock3 } from "lucide-react";
 import claudeCover from "@/assets/book-cover.jpeg";
-import agenticCover from "@/assets/agentic-ai-cover.jpg";
+import agenticCover from "@/assets/agentic-ai-bible-cover.png.asset.json";
 import { Button } from "@/components/ui/button";
 
 const books = [
@@ -37,7 +37,7 @@ const books = [
     title: "Agentic AI Bible",
     blurb:
       "A practical reference for understanding and building capable AI agents, autonomous workflows, and multi-agent systems.",
-    cover: agenticCover,
+    cover: agenticCover.url,
     accent: "text-brand-bible",
     available: false,
   },
