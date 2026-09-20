@@ -7,3 +7,4 @@
 - [x] Replace generated Copilot downloads with the six supplied PDFs
 - [x] Match the Copilot signup confirmation to the Claude inbox message
 - [x] Repair the Copilot skip-to-files link
+- [x] Package the Copilot cover and six PDFs with the deployed site

@@ -4,7 +4,6 @@ import { useServerFn } from "@tanstack/react-start";
 import { CheckCircle2, Download, Sparkles, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
-import copilotCover from "@/assets/copilot-cover.jpg.asset.json";
 import { bonuses } from "@/lib/bonuses";
 import { downloadBonus } from "@/lib/download";
 import { subscribeToBrevo } from "@/lib/brevo.functions";
@@ -168,7 +167,7 @@ export default function CopilotLandingPage() {
                 style={{ backgroundImage: "var(--gradient-hero)" }}
               />
               <img
-                src={copilotCover.url}
+                src="/copilot-cover.jpg"
                 alt="The Microsoft Copilot Advantage book cover by Kaelis Voss"
                 className="w-full max-w-sm rotate-1 rounded-2xl shadow-glow ring-1 ring-black/5"
               />
