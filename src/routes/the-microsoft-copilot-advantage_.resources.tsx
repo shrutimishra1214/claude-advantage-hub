@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { bonuses } from "@/lib/bonuses";
 import { downloadBonus } from "@/lib/download";
 
-export const Route = createFileRoute("/the-microsoft-copilot-advantage/resources")({
+export const Route = createFileRoute("/the-microsoft-copilot-advantage_/resources")({
   component: ResourcesPage,
   head: () => ({
     meta: [
