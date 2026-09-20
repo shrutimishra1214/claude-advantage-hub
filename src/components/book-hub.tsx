@@ -1,5 +1,4 @@
 import claudeCover from "@/assets/book-cover.jpeg";
-import copilotCover from "@/assets/copilot-cover.jpg.asset.json";
 import agenticCover from "@/assets/agentic-ai-cover.jpg";
 
 const books = [
@@ -25,7 +24,7 @@ const books = [
       "Orchestrating the Office Graph. Strategies for enterprise-grade automation across the modern productivity stack using custom GPTs and Semantic Kernel.",
     cta: "Explore Hub",
     href: "/the-microsoft-copilot-advantage",
-    cover: copilotCover.url,
+    cover: "/copilot-cover.jpg",
     badge: "bg-brand-copilot/10 text-brand-copilot",
     button:
       "bg-brand-copilot text-brand-copilot-foreground ring-brand-copilot hover:brightness-110",
