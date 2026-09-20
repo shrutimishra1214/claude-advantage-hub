@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,6 +61,24 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --radius-panel: 24px;
+  --color-brand-claude: var(--brand-claude);
+  --color-brand-claude-foreground: var(--brand-claude-foreground);
+  --color-brand-copilot: var(--brand-copilot);
+  --color-brand-copilot-foreground: var(--brand-copilot-foreground);
+  --color-brand-bible: var(--brand-bible);
+  --color-brand-bible-foreground: var(--brand-bible-foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-hairline: var(--hairline);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-green: var(--brand-green);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-pink: var(--brand-pink);
 }
 
 :root {
@@ -110,6 +130,61 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
+
+.book-hub {
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.21 0.006 285.9);
+  --surface: oklch(0.967 0.001 286);
+  --surface-strong: oklch(0.94 0.002 286);
+  --hairline: oklch(0.21 0.006 285.9 / 8%);
+  --ink: oklch(0.21 0.006 285.9);
+  --ink-foreground: oklch(0.967 0.001 286);
+  --ink-muted: oklch(0.705 0.015 286);
+  --brand-claude: oklch(0.555 0.132 66);
+  --brand-claude-foreground: oklch(0.99 0.005 80);
+  --brand-copilot: oklch(0.393 0.079 168.4);
+  --brand-copilot-foreground: oklch(0.985 0.01 165);
+  --brand-bible: oklch(0.375 0.135 6.5);
+  --brand-bible-foreground: oklch(0.985 0.01 10);
+  --muted-foreground: oklch(0.442 0.017 285.8);
+  --ring: oklch(0.21 0.006 285.9);
+  font-family: var(--font-sans);
+}
+
+.copilot-hub {
+  --background: oklch(0.99 0.005 250);
+  --foreground: oklch(0.16 0.06 265);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.06 265);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --border: oklch(0.92 0.01 260);
+  --input: oklch(0.94 0.01 260);
+  --ring: oklch(0.55 0.2 280);
+  --brand-purple: oklch(0.55 0.24 300);
+  --brand-blue: oklch(0.6 0.22 255);
+  --brand-green: oklch(0.72 0.18 155);
+  --brand-orange: oklch(0.75 0.18 60);
+  --brand-pink: oklch(0.68 0.24 5);
+  --gradient-hero: linear-gradient(120deg, oklch(0.55 0.24 300), oklch(0.6 0.22 255) 30%, oklch(0.72 0.18 155) 55%, oklch(0.78 0.18 75) 78%, oklch(0.68 0.24 5));
+  --gradient-surface: radial-gradient(ellipse at top left, oklch(0.96 0.05 290 / 0.6), transparent 60%), radial-gradient(ellipse at bottom right, oklch(0.94 0.06 220 / 0.5), transparent 60%);
+  --shadow-glow: 0 30px 80px -20px oklch(0.55 0.24 300 / 0.35);
+  --shadow-card: 0 20px 50px -20px oklch(0.2 0.1 265 / 0.25);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.copilot-hub .font-display { font-family: "Sora", ui-sans-serif, system-ui, sans-serif; letter-spacing: 0; }
+
+@utility text-gradient-brand {
+  background-image: var(--gradient-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-hero-surface { background-image: var(--gradient-surface); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility shadow-card-lift { box-shadow: var(--shadow-card); }
 
 .dark {
   --background: oklch(0.129 0.042 264.695);
