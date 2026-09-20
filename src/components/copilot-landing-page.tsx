@@ -1,46 +1,29 @@
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { subscribeToBrevo } from "@/lib/brevo.functions";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { toast, Toaster } from "sonner";
-import { ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink, ClipboardList, Compass, Layers } from "lucide-react";
+import { CheckCircle2, Download, Sparkles, Star } from "lucide-react";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 import copilotCover from "@/assets/copilot-cover.jpg.asset.json";
+import { bonuses } from "@/lib/bonuses";
+import { downloadBonus } from "@/lib/download";
+import { subscribeToBrevo } from "@/lib/brevo.functions";
 
-const AMAZON_LISTING_URL =
-  "https://www.amazon.com/Microsoft-Copilot-Advantage-Professionals-PowerPoint/dp/B0HJM9VP3G";
+export const AMAZON_URL = "https://www.amazon.com/dp/B0HJM9VP3G";
 
-const BOOK = {
-  title: "The Microsoft Copilot Advantage",
-  subtitle:
-    "A Practical Guide for Beginners & Professionals to Master AI Across Word, Excel, Outlook, PowerPoint & Teams with Proven Frameworks to Save Hours & Automate Work",
-  author: "Kaelis Voss",
-  hook: "Most professionals use Copilot for a fraction of what it can do. This book shows you the rest.",
-};
-
-const bonuses = [
-  { icon: ClipboardList, title: "AI Policy and Governance Starter Toolkit", desc: "Templates and risk checklists to build safe, compliant AI usage policies for teams and clients." },
-  { icon: Target, title: "90-Day Roadmap", desc: "Week-by-week actions to go from beginner to fluent Copilot power user." },
-  { icon: BookOpen, title: "Phase Wise Workbook", desc: "Structured exercises and worksheets for each phase of your AI journey." },
-  { icon: Compass, title: "7-Day Discovery Playbook", desc: "A fast-track guide to uncover your highest-leverage Copilot use cases in one week." },
-  { icon: Zap, title: "Master Prompt Vault", desc: "Copy-paste prompts for Word, Excel, Outlook, PowerPoint and Teams." },
-  { icon: Layers, title: "Chapter Framework Cards", desc: "Quick-reference cards that distill every chapter into actionable frameworks." },
-];
-
-const testimonials = [
-  {
-    quote:
-      "A clear, practical path to using Copilot inside the apps I already work in every single day.",
-    name: "Verified Purchase",
-    role: "Amazon Review · ★★★★★",
-  },
-  {
-    quote:
-      "The workflows for Excel and Outlook alone saved me hours in my first week.",
-    name: "Verified Purchase",
-    role: "Amazon Review · ★★★★★",
-  },
-];
+function AmazonLink({ className }: { className: string }) {
+  return (
+    <a
+      href={AMAZON_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      <Star className="h-4 w-4" />
+      Review on Amazon
+    </a>
+  );
+}
 
 export default function CopilotLandingPage() {
   const [email, setEmail] = useState("");
@@ -49,266 +32,205 @@ export default function CopilotLandingPage() {
   const [done, setDone] = useState(false);
   const brevoSubscribe = useServerFn(subscribeToBrevo);
 
-  async function handleSubmit(e: React.FormEvent) {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
-    const cleanEmail = email.trim().toLowerCase();
-    const cleanName = name.trim() || null;
     try {
       const result = await brevoSubscribe({
-        data: { email: cleanEmail, name: cleanName, listId: 7 },
+        data: {
+          email: email.trim().toLowerCase(),
+          name: name.trim() || null,
+          listId: 7,
+        },
       });
       if (!result.ok) {
+        toast.error("Something went wrong. Please try again.");
         setLoading(false);
-        toast.error("Email signup is being fixed. Please try again shortly.");
         return;
       }
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong. Please try again.");
       setLoading(false);
-      toast.error("Could not add you to the list. Please try again.");
       return;
     }
-    setLoading(false);
     setDone(true);
-    toast.success("You're in! Resources are on the way.");
-  }
+    setLoading(false);
+    toast.success("You're in! Your bonuses are below.");
+    setTimeout(() => {
+      document.getElementById("bonuses")?.scrollIntoView({ behavior: "smooth" });
+    }, 200);
+  };
 
   return (
-    <div className="min-h-screen bg-page text-foreground">
-      <Toaster theme="dark" position="top-center" />
-
-      <div className="pointer-events-none fixed inset-0 binary-bg opacity-50" />
-      <div className="pointer-events-none fixed inset-0 bg-spotlight" />
-
-      <div className="relative">
-        <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-          <a href="/" className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-gradient-gold shadow-gold" />
-            <span className="text-sm font-semibold tracking-[0.2em] text-muted-foreground">
-              KAELIS VOSS
-            </span>
-          </a>
-          <div className="hidden items-center gap-3 sm:flex">
-            <a
-              href={AMAZON_LISTING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-foreground/80 backdrop-blur transition-colors hover:border-gold/50 hover:text-foreground"
-            >
-              View on Amazon <ExternalLink className="h-3 w-3" />
-            </a>
+    <>
+      <Toaster position="top-center" richColors />
+      <main className="copilot-hub min-h-screen bg-hero-surface">
+        {/* Nav */}
+        <header className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-6">
+          <div className="flex items-center gap-2">
+            <div
+              className="h-8 w-8 rounded-lg"
+              style={{ backgroundImage: "var(--gradient-hero)" }}
+            />
+            <span className="font-display text-lg font-bold">Kaelis Voss</span>
+          </div>
+          <div className="flex items-center gap-2 md:gap-3">
+            <AmazonLink className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-sm transition hover:opacity-90" />
             <a
               href="#claim"
-              className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-card/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-gold backdrop-blur transition-colors hover:border-gold/50"
+              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold shadow-sm transition hover:shadow-md"
             >
-              Claim bonus pack <ArrowRight className="h-3 w-3" />
+              Claim Bonuses
             </a>
           </div>
         </header>
 
-        <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+        {/* Hero */}
+        <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-8 md:grid-cols-2 md:items-center md:pt-16">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-gold backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5" /> For readers of the book
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--brand-purple)" }} />
+              Free companion toolkit for readers
             </div>
-
-            <h1 className="font-display text-5xl uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
-              Your free
-              <br />
-              <span className="text-gradient-gold">Copilot Advantage</span>
-              <br />
-              bonus pack
+            <h1 className="font-display text-4xl font-bold leading-[1.05] md:text-6xl">
+              Your <span className="text-gradient-brand">Copilot bonus vault</span> is ready.
             </h1>
-
-            <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
-              {BOOK.subtitle}
+            <p className="mt-5 max-w-lg text-lg text-muted-foreground">
+              Thanks for grabbing <em>The Microsoft Copilot Advantage</em>. Drop your email
+              to instantly unlock every checklist, prompt library, and template that
+              pairs with the book.
             </p>
 
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              {BOOK.hook} Bought the book? Drop your email below and I'll send the
-              full resource library straight to your inbox: prompts, the 90-day
-              roadmap, workbooks and framework cards.
-            </p>
-
-            <div id="claim" className="mt-8 max-w-xl scroll-mt-24">
-              {done ? (
-                <div className="flex items-start gap-3 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur">
-                  <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-gold" />
-                  <div>
-                    <p className="font-semibold text-foreground">You're on the list.</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Check your inbox in the next few minutes. If you don't see
-                      anything, peek in spam or promotions.
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-3">
-                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                    <Input
-                      type="text"
-                      placeholder="Your name (optional)"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="h-12 rounded-xl border-border bg-card/60 px-4 backdrop-blur placeholder:text-muted-foreground"
-                    />
-                    <Input
-                      type="email"
-                      required
-                      placeholder="you@email.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="h-12 rounded-xl border-border bg-card/60 px-4 backdrop-blur placeholder:text-muted-foreground"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    disabled={loading}
-                    className="group h-12 w-full rounded-xl bg-gradient-gold text-base font-semibold text-primary-foreground shadow-gold transition-transform hover:scale-[1.01] hover:opacity-95"
-                  >
-                    {loading ? "Sending…" : (
-                      <>
-                        Send me the free resources
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </>
-                    )}
-                  </Button>
-                  <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                    <Lock className="h-3 w-3" /> No spam. One email with your full bonus pack.
-                  </div>
-                </form>
-              )}
-            </div>
-
-            <div className="mt-10 flex flex-nowrap items-center gap-4 text-sm text-muted-foreground sm:gap-6">
-              <div className="shrink-0">
-                <div className="flex items-center gap-1 whitespace-nowrap text-gold">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <div className="whitespace-nowrap text-xs uppercase tracking-wider">Reader rating</div>
-              </div>
-              <div className="hidden h-10 w-px shrink-0 bg-border sm:block" />
-              <div className="shrink-0">
-                <div className="whitespace-nowrap font-display text-2xl text-foreground">9</div>
-                <div className="whitespace-nowrap text-xs uppercase tracking-wider">Microsoft apps</div>
-              </div>
-              <div className="hidden h-10 w-px shrink-0 bg-border sm:block" />
-              <div className="shrink-0">
-                <div className="whitespace-nowrap font-display text-2xl text-foreground">6</div>
-                <div className="whitespace-nowrap text-xs uppercase tracking-wider">Bonuses</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="absolute inset-0 -z-10 bg-gradient-gold opacity-20 blur-3xl" />
-            <div className="relative">
-              <a
-                href={AMAZON_LISTING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block transition-transform hover:scale-[1.01]"
-              >
-                <img
-                  src={copilotCover.url}
-                  alt={`${BOOK.title} by ${BOOK.author} - book cover`}
-                  className="animate-float w-full max-w-md rounded-md shadow-cover"
-                  loading="eager"
+            <form
+              id="claim"
+              onSubmit={onSubmit}
+              className="mt-8 rounded-2xl border border-border bg-card p-4 shadow-card-lift md:p-5"
+            >
+              <div className="flex flex-col gap-3 md:flex-row">
+                <input
+                  type="text"
+                  placeholder="Your first name (optional)"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  disabled={done}
+                  className="flex-1 rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30 disabled:opacity-60"
                 />
-              </a>
+                <input
+                  type="email"
+                  required
+                  placeholder="you@work.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={done}
+                  className="flex-1 rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30 disabled:opacity-60"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading || done}
+                className="mt-3 w-full rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 disabled:opacity-70"
+                style={{ backgroundImage: "var(--gradient-hero)" }}
+              >
+                {done
+                  ? "✓ Bonuses unlocked — scroll down"
+                  : loading
+                    ? "Unlocking…"
+                    : "Send me the free bonuses →"}
+              </button>
+              <p className="mt-3 text-xs text-muted-foreground">
+                No spam. Unsubscribe anytime. We'll email you when new Copilot resources drop.{" "}
+                <Link to="/the-microsoft-copilot-advantage/resources" className="underline underline-offset-4 transition hover:text-foreground">
+                  Or skip ahead to the files.
+                </Link>
+              </p>
+            </form>
+
+            <div className="mt-6 flex flex-wrap gap-4 text-xs text-muted-foreground">
+              {["Instant access", "Lifetime updates", "PDF + editable templates"].map((t) => (
+                <span key={t} className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="h-3.5 w-3.5" style={{ color: "var(--brand-green)" }} />
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
-        </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-16">
-          <div className="mb-10 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-              What's inside the bonus pack
-            </p>
-            <h2 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
-              Everything you need
-              <br />
-              to <span className="text-gradient-gold">automate your work</span>.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {bonuses.map((b) => (
+          <div className="flex flex-col items-center gap-5 md:items-end">
+            <div className="relative">
               <div
-                key={b.title}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 p-6 backdrop-blur transition-all hover:-translate-y-0.5 hover:border-gold/40"
+                className="absolute -inset-6 -z-10 rounded-[3rem] opacity-40 blur-3xl"
+                style={{ backgroundImage: "var(--gradient-hero)" }}
+              />
+              <img
+                src={copilotCover.url}
+                alt="The Microsoft Copilot Advantage book cover by Kaelis Voss"
+                className="w-full max-w-sm rotate-1 rounded-2xl shadow-glow ring-1 ring-black/5"
+              />
+            </div>
+            <AmazonLink className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold shadow-sm transition hover:shadow-md" />
+          </div>
+        </section>
+
+        {/* Bonuses */}
+        <section id="bonuses" className="mx-auto max-w-6xl px-6 pb-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-3xl font-bold md:text-4xl">
+              What's inside your <span className="text-gradient-brand">bonus vault</span>
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Six free companion resources that turn every chapter of the book into
+              real, applied results.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {bonuses.map((bonus) => {
+              const { icon: Icon, color, title, desc } = bonus;
+              return (
+              <div
+                key={title}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-card-lift"
               >
-                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-gold text-primary-foreground shadow-gold">
-                  <b.icon className="h-5 w-5" />
+                <div
+                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl text-white"
+                  style={{ backgroundColor: color }}
+                >
+                  <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground">{b.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{b.desc}</p>
+                <h3 className="font-display text-lg font-semibold">{title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+                <button
+                  onClick={() => downloadBonus(bonus)}
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition hover:opacity-70"
+                >
+                  <Download className="h-4 w-4" />
+                  Download
+                </button>
               </div>
-            ))}
+              );
+            })}
           </div>
+
+          <p className="mt-10 text-center text-sm text-muted-foreground">
+            <Link to="/the-microsoft-copilot-advantage/resources" className="underline underline-offset-4 transition hover:text-foreground">
+              Browse the full library
+            </Link>
+          </p>
         </section>
 
-        <section className="mx-auto max-w-6xl px-6 py-16">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-            What readers are saying
-          </p>
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {testimonials.map((t, i) => (
-              <figure
-                key={i}
-                className="relative rounded-2xl border border-border bg-card/40 p-8 backdrop-blur"
-              >
-                <Quote className="absolute -top-3 left-6 h-6 w-6 rounded-full bg-card p-1 text-gold" />
-                <blockquote className="text-lg leading-relaxed text-foreground/90">
-                  "{t.quote}"
-                </blockquote>
-                <figcaption className="mt-5 flex items-center gap-3 text-sm">
-                  <div className="h-8 w-8 rounded-full bg-gradient-gold shadow-gold" />
-                  <div>
-                    <div className="font-semibold text-foreground">{t.name}</div>
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground">{t.role}</div>
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
+        {/* Footer */}
+        <footer className="border-t border-border">
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-muted-foreground md:flex-row">
+            <p>© {new Date().getFullYear()} Kaelis Voss. AI that works. Results that matter.</p>
+            <div className="flex items-center gap-4">
+              <span>Companion resources for The Microsoft Copilot Advantage.</span>
+              <AmazonLink className="inline-flex items-center gap-1.5 font-semibold text-foreground transition hover:opacity-70" />
+            </div>
           </div>
-        </section>
-
-        <section className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <Mail className="mx-auto h-10 w-10 text-gold" />
-          <h2 className="mt-4 font-display text-4xl uppercase sm:text-5xl">
-            Ready to claim your <span className="text-gradient-gold">edge</span>?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Scroll up, drop your email, and the entire library lands in your inbox, free
-            for every reader of The Microsoft Copilot Advantage.
-          </p>
-          <a
-            href="#claim"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-card/60 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-foreground backdrop-blur transition-colors hover:border-gold hover:text-gold"
-          >
-            Take me to the form <ArrowRight className="h-4 w-4" />
-          </a>
-        </section>
-
-        <footer className="border-t border-border/60 py-8 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            © {new Date().getFullYear()} {BOOK.author} · {BOOK.title}
-          </p>
-          <a
-            href={AMAZON_LISTING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.2em] text-gold/80 transition-colors hover:text-gold"
-          >
-            Amazon listing <ExternalLink className="h-3 w-3" />
-          </a>
         </footer>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
