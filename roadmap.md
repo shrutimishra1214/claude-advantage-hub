@@ -16,3 +16,4 @@
 - [x] Offer the supplied Operator Toolkit as a full download and grouped companion downloads
 - [x] Match The Claude Operator reader page to the Copilot bonus-page layout and add a bonus library
 - [x] Link The Claude Operator book cover and reader-page Amazon button to the supplied Amazon listing
+- [x] Restore The Claude Operator's original editorial look while retaining the signup and toolkit downloads
