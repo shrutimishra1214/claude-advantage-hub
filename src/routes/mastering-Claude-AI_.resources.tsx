@@ -17,22 +17,27 @@ export const Route = createFileRoute("/mastering-Claude-AI_/resources")({
 
 function ResourcesPage() {
   return (
-    <main className="operator-page min-h-screen bg-hero-surface">
-      <header className="mx-auto flex max-w-6xl items-center px-6 py-6">
-        <Button asChild variant="outline" size="sm" className="rounded-full bg-card"><Link to="/mastering-Claude-AI"><ArrowLeft /> Back to book page</Link></Button>
-      </header>
-      <section className="mx-auto max-w-6xl px-6 pb-20 pt-4">
-        <div className="mx-auto max-w-2xl text-center">
-          <h1 className="font-display text-3xl font-bold md:text-5xl">The full <span className="text-gradient-brand">bonus library</span></h1>
-          <p className="mt-4 text-muted-foreground">Every companion resource for <em>The Claude Operator</em>, free to download. No sign-up needed.</p>
+    <main className="operator-page min-h-screen bg-background text-foreground">
+      <header className="border-b border-border">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+          <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground"><Link to="/mastering-Claude-AI"><ArrowLeft /> Back to book page</Link></Button>
+          <span className="font-serif text-xl">Kaelis Voss</span>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {operatorBonuses.map(({ icon: Icon, title: name, desc, url, file }) => (
-            <article key={name} className="flex flex-col rounded-lg border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-card-lift">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-md bg-brand-operator text-brand-operator-foreground"><Icon className="h-5 w-5" /></div>
-              <h2 className="font-display text-lg font-semibold">{name}</h2>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{desc}</p>
-              <Button asChild variant="link" className="mt-5 h-auto justify-start px-0 text-foreground hover:text-brand-operator"><a href={url} download={file}><Download /> Download</a></Button>
+      </header>
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <p className="text-xs font-semibold uppercase tracking-widest text-accent">Companion resources</p>
+        <h1 className="mt-4 font-serif text-5xl sm:text-6xl">The Operator toolkit.</h1>
+        <p className="mt-5 max-w-2xl text-muted-foreground">Every companion resource for <em>The Claude Operator</em>, free to download. No sign-up needed.</p>
+        <div className="mt-12 grid gap-x-10 sm:grid-cols-2">
+          {operatorBonuses.map(({ icon: Icon, title: name, desc, url, file }, index) => (
+            <article key={name} className="flex gap-5 border-t border-border py-6">
+              <span className="min-w-7 pt-1 text-xs font-semibold text-accent">{String(index + 1).padStart(2, "0")}</span>
+              <div className="min-w-0">
+                <Icon className="mb-3 h-5 w-5 text-accent" strokeWidth={1.6} />
+                <h2 className="font-serif text-xl">{name}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+                <Button asChild variant="link" className="mt-3 h-auto justify-start px-0 text-accent"><a href={url} download={file}><Download /> Download</a></Button>
+              </div>
             </article>
           ))}
         </div>
