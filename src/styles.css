@@ -68,6 +68,8 @@
   --color-brand-copilot-foreground: var(--brand-copilot-foreground);
   --color-brand-bible: var(--brand-bible);
   --color-brand-bible-foreground: var(--brand-bible-foreground);
+  --color-brand-operator: var(--brand-operator);
+  --color-brand-operator-foreground: var(--brand-operator-foreground);
   --color-surface: var(--surface);
   --color-surface-strong: var(--surface-strong);
   --color-hairline: var(--hairline);
@@ -146,8 +148,23 @@
   --brand-copilot-foreground: oklch(0.985 0.01 165);
   --brand-bible: oklch(0.375 0.135 6.5);
   --brand-bible-foreground: oklch(0.985 0.01 10);
+  --brand-operator: oklch(0.58 0.17 43);
+  --brand-operator-foreground: oklch(0.99 0.005 80);
   --muted-foreground: oklch(0.442 0.017 285.8);
   --ring: oklch(0.21 0.006 285.9);
+  font-family: var(--font-sans);
+}
+
+.operator-page {
+  --background: oklch(0.985 0.008 69);
+  --foreground: oklch(0.17 0.01 55);
+  --card: oklch(1 0 0);
+  --secondary: oklch(0.96 0.016 60);
+  --muted-foreground: oklch(0.43 0.015 55);
+  --border: oklch(0.86 0.016 55);
+  --accent: oklch(0.58 0.17 43);
+  --accent-foreground: oklch(1 0 0);
+  --ring: oklch(0.58 0.17 43);
   font-family: var(--font-sans);
 }
 

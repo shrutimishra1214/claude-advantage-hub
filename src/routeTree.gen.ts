@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TheMicrosoftCopilotAdvantageRouteImport } from './routes/the-microsoft-copilot-advantage'
 import { Route as TheClaudeAdvantageRouteImport } from './routes/the-claude-advantage'
+import { Route as MasteringClaudeAIRouteImport } from './routes/mastering-Claude-AI'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TheMicrosoftCopilotAdvantageResourcesRouteImport } from './routes/the-microsoft-copilot-advantage_.resources'
 
@@ -23,6 +24,11 @@ const TheMicrosoftCopilotAdvantageRoute =
 const TheClaudeAdvantageRoute = TheClaudeAdvantageRouteImport.update({
   id: '/the-claude-advantage',
   path: '/the-claude-advantage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MasteringClaudeAIRoute = MasteringClaudeAIRouteImport.update({
+  id: '/mastering-Claude-AI',
+  path: '/mastering-Claude-AI',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -39,12 +45,14 @@ const TheMicrosoftCopilotAdvantageResourcesRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mastering-Claude-AI': typeof MasteringClaudeAIRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
   '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
   '/the-microsoft-copilot-advantage/resources': typeof TheMicrosoftCopilotAdvantageResourcesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mastering-Claude-AI': typeof MasteringClaudeAIRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
   '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
   '/the-microsoft-copilot-advantage/resources': typeof TheMicrosoftCopilotAdvantageResourcesRoute
@@ -52,6 +60,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mastering-Claude-AI': typeof MasteringClaudeAIRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
   '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
   '/the-microsoft-copilot-advantage_/resources': typeof TheMicrosoftCopilotAdvantageResourcesRoute
@@ -60,18 +69,21 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/mastering-Claude-AI'
     | '/the-claude-advantage'
     | '/the-microsoft-copilot-advantage'
     | '/the-microsoft-copilot-advantage/resources'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/mastering-Claude-AI'
     | '/the-claude-advantage'
     | '/the-microsoft-copilot-advantage'
     | '/the-microsoft-copilot-advantage/resources'
   id:
     | '__root__'
     | '/'
+    | '/mastering-Claude-AI'
     | '/the-claude-advantage'
     | '/the-microsoft-copilot-advantage'
     | '/the-microsoft-copilot-advantage_/resources'
@@ -79,6 +91,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MasteringClaudeAIRoute: typeof MasteringClaudeAIRoute
   TheClaudeAdvantageRoute: typeof TheClaudeAdvantageRoute
   TheMicrosoftCopilotAdvantageRoute: typeof TheMicrosoftCopilotAdvantageRoute
   TheMicrosoftCopilotAdvantageResourcesRoute: typeof TheMicrosoftCopilotAdvantageResourcesRoute
@@ -100,6 +113,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TheClaudeAdvantageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mastering-Claude-AI': {
+      id: '/mastering-Claude-AI'
+      path: '/mastering-Claude-AI'
+      fullPath: '/mastering-Claude-AI'
+      preLoaderRoute: typeof MasteringClaudeAIRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -119,6 +139,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MasteringClaudeAIRoute: MasteringClaudeAIRoute,
   TheClaudeAdvantageRoute: TheClaudeAdvantageRoute,
   TheMicrosoftCopilotAdvantageRoute: TheMicrosoftCopilotAdvantageRoute,
   TheMicrosoftCopilotAdvantageResourcesRoute:

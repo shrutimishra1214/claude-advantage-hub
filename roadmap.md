@@ -11,3 +11,4 @@
 - [x] Refresh the main Book Hub with focused, reader-facing content
 - [x] Remove the unused email form, contact details, and social links from the main page
 - [x] Add Book Hub links to the Claude and Copilot reader pages
+- [x] Add The Claude Operator cover to the Book Hub and create its book page at /mastering-Claude-AI

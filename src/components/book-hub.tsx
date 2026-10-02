@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Clock3 } from "lucide-react";
 import claudeCover from "@/assets/book-cover.jpeg";
+import operatorCover from "@/assets/claude-operator-cover.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 const books = [
@@ -29,6 +30,18 @@ const books = [
     cover: "/copilot-cover.jpg",
     accent: "text-brand-copilot",
     button: "bg-brand-copilot text-brand-copilot-foreground hover:brightness-110",
+    available: true,
+  },
+  {
+    label: "New book",
+    title: "The Claude Operator",
+    blurb:
+      "Master Claude AI for advanced workflows across Claude Code, design, Cowork, Excel, PowerPoint, and more.",
+    cta: "Explore book",
+    href: "/mastering-Claude-AI" as const,
+    cover: operatorCover.url,
+    accent: "text-brand-operator",
+    button: "bg-brand-operator text-brand-operator-foreground hover:brightness-110",
     available: true,
   },
   {
@@ -83,7 +96,7 @@ export default function BookHub() {
               <BookOpen className="hidden h-7 w-7 text-muted-foreground sm:block" />
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {books.map((book, index) => (
                 <article key={book.title} className="flex min-w-0 flex-col">
                   {book.amazonUrl ? (
@@ -103,12 +116,13 @@ export default function BookHub() {
                     </a>
                   ) : (
                     <div className="aspect-[4/5] overflow-hidden rounded-[var(--radius-panel)] bg-surface ring-1 ring-hairline">
-                      <img
-                        src={book.cover}
-                        alt={`Cover of ${book.title} by Kaelis Voss`}
-                        loading={index === 0 ? "eager" : "lazy"}
-                        className="h-full w-full object-cover"
-                      />
+                      {book.href ? (
+                        <Link to={book.href} aria-label={`Explore ${book.title}`} className="block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                          <img src={book.cover} alt={`Cover of ${book.title} by Kaelis Voss`} loading="lazy" className="h-full w-full object-cover" />
+                        </Link>
+                      ) : (
+                        <img src={book.cover} alt={`Cover of ${book.title} by Kaelis Voss`} loading="lazy" className="h-full w-full object-cover" />
+                      )}
                     </div>
                   )}
                   <div className="flex flex-1 flex-col pt-6">
