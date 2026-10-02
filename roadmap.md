@@ -15,3 +15,4 @@
 - [x] Add The Claude Operator reader signup to Brevo list 8 with honest toolkit availability messaging
 - [x] Offer the supplied Operator Toolkit as a full download and grouped companion downloads
 - [x] Match The Claude Operator reader page to the Copilot bonus-page layout and add a bonus library
+- [ ] Link The Claude Operator book cover and reader-page Amazon button to the supplied Amazon listing
