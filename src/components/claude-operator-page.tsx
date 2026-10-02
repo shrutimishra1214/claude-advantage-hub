@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { subscribeToBrevo } from "@/lib/brevo.functions";
 import { operatorBonuses } from "@/lib/operator-bonuses";
-import cover from "@/assets/claude-operator-cover.jpg.asset.json";
 
 const amazonUrl = "https://www.amazon.com/dp/B0HLTJ9LZC";
 
@@ -103,7 +102,7 @@ export default function ClaudeOperatorPage() {
           </div>
 
           <div className="flex flex-col items-center gap-5 md:items-end">
-            <img src={cover.url} alt="The Claude Operator book cover by Kaelis Voss" className="w-full max-w-sm rounded-lg shadow-glow" loading="eager" />
+            <img src="/claude-operator-cover.jpg" alt="The Claude Operator book cover by Kaelis Voss" className="w-full max-w-sm rounded-lg shadow-glow" loading="eager" />
             <div className="flex flex-wrap justify-center gap-3">
               <Button asChild variant="outline" className="rounded-full bg-card"><a href={amazonUrl} target="_blank" rel="noopener noreferrer"><Star /> Review on Amazon</a></Button>
               <Button asChild variant="outline" className="rounded-full bg-card"><a href="/operator-toolkit/Operator-Toolkit.zip" download="Operator-Toolkit.zip"><Download /> Download full toolkit</a></Button>
