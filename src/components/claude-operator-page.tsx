@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BookOpen, Code2, Download, ExternalLink, Layers3, PenTool, Presentation, Table2, Users } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Code2, Layers3, PenTool, Presentation, Table2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import cover from "@/assets/claude-operator-cover.jpg.asset.json";
 
