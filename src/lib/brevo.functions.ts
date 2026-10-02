@@ -4,7 +4,7 @@ import { z } from "zod";
 const inputSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
   name: z.string().trim().max(100).optional().nullable(),
-  listId: z.union([z.literal(6), z.literal(7)]).optional(),
+  listId: z.union([z.literal(6), z.literal(7), z.literal(8)]).optional(),
 });
 
 export const subscribeToBrevo = createServerFn({ method: "POST" })
