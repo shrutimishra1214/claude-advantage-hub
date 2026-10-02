@@ -39,6 +39,7 @@ const books = [
       "Master Claude AI for advanced workflows across Claude Code, design, Cowork, Excel, PowerPoint, and more.",
     cta: "Explore book",
     href: "/mastering-Claude-AI" as const,
+    amazonUrl: "https://www.amazon.com/dp/B0HLTJ9LZC",
     cover: operatorCover.url,
     accent: "text-brand-operator",
     button: "bg-brand-operator text-brand-operator-foreground hover:brightness-110",

@@ -1,13 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, Download, Sparkles } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Download, Sparkles, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { subscribeToBrevo } from "@/lib/brevo.functions";
 import { operatorBonuses } from "@/lib/operator-bonuses";
 import cover from "@/assets/claude-operator-cover.jpg.asset.json";
+
+const amazonUrl = "https://www.amazon.com/dp/B0HLTJ9LZC";
 
 export default function ClaudeOperatorPage() {
   const [email, setEmail] = useState("");
@@ -44,9 +46,14 @@ export default function ClaudeOperatorPage() {
           <Button asChild variant="outline" size="sm" className="rounded-full bg-card">
             <Link to="/"><ArrowLeft /> Book Hub</Link>
           </Button>
-          <Button asChild variant="outline" size="sm" className="rounded-full bg-card">
-            <a href="#claim">Claim Bonuses</a>
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/90">
+              <a href={amazonUrl} target="_blank" rel="noopener noreferrer"><Star /> Review on Amazon</a>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="hidden rounded-full bg-card sm:inline-flex">
+              <a href="#claim">Claim Bonuses</a>
+            </Button>
+          </div>
         </header>
 
         <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-8 md:grid-cols-2 md:items-center md:pt-16">
@@ -97,9 +104,10 @@ export default function ClaudeOperatorPage() {
 
           <div className="flex flex-col items-center gap-5 md:items-end">
             <img src={cover.url} alt="The Claude Operator book cover by Kaelis Voss" className="w-full max-w-sm rounded-lg shadow-glow" loading="eager" />
-            <Button asChild variant="outline" className="rounded-full bg-card">
-              <a href="/operator-toolkit/Operator-Toolkit.zip" download="Operator-Toolkit.zip"><Download /> Download full toolkit</a>
-            </Button>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button asChild variant="outline" className="rounded-full bg-card"><a href={amazonUrl} target="_blank" rel="noopener noreferrer"><Star /> Review on Amazon</a></Button>
+              <Button asChild variant="outline" className="rounded-full bg-card"><a href="/operator-toolkit/Operator-Toolkit.zip" download="Operator-Toolkit.zip"><Download /> Download full toolkit</a></Button>
+            </div>
           </div>
         </section>
 
