@@ -1,33 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Code2, Layers3, PenTool, Presentation, Table2, Users } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, CheckCircle2, Download, Sparkles, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { subscribeToBrevo } from "@/lib/brevo.functions";
-import cover from "@/assets/claude-operator-cover.jpg.asset.json";
+import { operatorBonuses } from "@/lib/operator-bonuses";
 
-const topics = [
-  { icon: Users, title: "Cowork", description: "Think, plan, and execute together." },
-  { icon: Code2, title: "Claude Code", description: "Build and iterate faster." },
-  { icon: PenTool, title: "Design", description: "Create and visualise." },
-  { icon: Table2, title: "Excel", description: "Analyse and work with data." },
-  { icon: Presentation, title: "PowerPoint", description: "Create stunning presentations." },
-];
-
-const resources = [
-  { title: "Chief of Staff Skills Library", detail: "Skill Drops #1–#23, with tests, reference templates, and install-ready skill folders." },
-  { title: "Five Role Packs", detail: "Starter materials for consultants, marketing managers, founders, operations managers, and finance leads." },
-  { title: "50 Claude Workflows for Professionals", detail: "Ready-to-run workflows for research, marketing, operations, finance, and management." },
-  { title: "Working workbooks", detail: "Chief of Staff Ledger, Skill Test Sheet and Versioning Log, and Monthly Business Review workbook." },
-  { title: "Templates", detail: "Briefing Pack, Delegation Brief, Design Brief and Brand System, CLAUDE.md, and team AI-use policy." },
-  { title: "Practice files and answer key", detail: "Three fictional spreadsheets for auditing, forecasting, and monthly review, with a separate answer key." },
-  { title: "Printable posters", detail: "The Operator Loop and the Three Questions." },
-  { title: "30-Day Operator Plan", detail: "A one-page tracker for the four weeks and final two days." },
-  { title: "Update page", detail: "Current menu paths, installation commands, feature names, and a change log." },
-  { title: "Toolkit README", detail: "A guide to the resources, installing skills, and the chapters they accompany." },
-];
+const amazonUrl = "https://www.amazon.com/dp/B0HLTJ9LZC";
 
 export default function ClaudeOperatorPage() {
   const [email, setEmail] = useState("");
@@ -43,110 +24,120 @@ export default function ClaudeOperatorPage() {
     try {
       const result = await subscribe({ data: { email: email.trim().toLowerCase(), name: name.trim() || null, listId: 8 } });
       if (!result.ok) {
-        toast.error("We couldn't add you right now. Please try again.");
+        toast.error("Something went wrong. Please try again.");
         return;
       }
       setDone(true);
+      toast.success("You're on the reader list!");
     } catch (error) {
       console.error(error);
-      toast.error("We couldn't add you right now. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="operator-page min-h-screen bg-background text-foreground">
+    <>
       <Toaster position="top-center" richColors />
-      <header className="border-b border-border">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
-          <Button asChild variant="ghost" size="sm" className="gap-2 text-muted-foreground hover:text-foreground">
+      <main className="operator-page min-h-screen bg-hero-surface">
+        <header className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-6">
+          <Button asChild variant="outline" size="sm" className="rounded-full bg-card">
             <Link to="/"><ArrowLeft /> Book Hub</Link>
           </Button>
-          <span className="font-serif text-xl">Kaelis Voss</span>
-        </div>
-      </header>
-
-      <main>
-        <section className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-12 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:gap-16 md:pb-20 md:pt-16">
-          <div className="max-w-xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">New from Kaelis Voss</p>
-            <h1 className="mt-5 text-balance font-serif text-5xl leading-none sm:text-6xl lg:text-7xl">The Claude <span className="text-accent">Operator</span></h1>
-            <p className="mt-7 text-pretty text-xl font-medium leading-snug sm:text-2xl">Master Claude AI for advanced workflows.</p>
-            <p className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">A practical, step-by-step guide to working with Claude across Claude Code, design, Cowork, Excel, PowerPoint, and more.</p>
-            <Button asChild className="mt-8 h-11 bg-accent px-5 text-accent-foreground hover:bg-accent/90">
-              <a href="#inside">Explore what’s inside <ArrowRight /></a>
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/90">
+              <a href={amazonUrl} target="_blank" rel="noopener noreferrer"><Star /> Review on Amazon</a>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="hidden rounded-full bg-card sm:inline-flex">
+              <a href="#claim">Claim Bonuses</a>
             </Button>
           </div>
-          <div className="mx-auto w-full max-w-[390px] md:mr-0">
-            <img src={cover.url} alt="The Claude Operator book cover by Kaelis Voss" className="block h-auto w-full shadow-cover" loading="eager" />
-          </div>
-        </section>
+        </header>
 
-        <section id="inside" className="border-t border-border bg-card py-16 sm:py-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">Inside the book</p>
-            <h2 className="mt-4 max-w-2xl text-balance font-serif text-4xl sm:text-5xl">Make Claude part of your real work.</h2>
-            <p className="mt-5 max-w-2xl text-pretty leading-relaxed text-muted-foreground">Explore the tools and workflows featured in The Claude Operator.</p>
-            <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-              {topics.map(({ icon: Icon, title, description }) => (
-                <div key={title} className="min-h-44 bg-card p-6">
-                  <Icon className="h-6 w-6 text-accent" strokeWidth={1.6} />
-                  <h3 className="mt-6 font-serif text-2xl">{title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{description}</p>
-                </div>
-              ))}
-              <div className="flex min-h-44 flex-col justify-end bg-secondary p-6">
-                <Layers3 className="h-6 w-6 text-accent" strokeWidth={1.6} />
-                <h3 className="mt-6 font-serif text-2xl">And more</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Practical ways to get more from Claude.</p>
-              </div>
+        <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-8 md:grid-cols-2 md:items-center md:pt-16">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <Sparkles className="h-3.5 w-3.5 text-brand-operator" />
+              Free companion toolkit for readers
             </div>
-          </div>
-        </section>
+            <h1 className="font-display text-4xl font-bold leading-[1.05] md:text-6xl">
+              Your <span className="text-gradient-brand">Claude Operator toolkit</span> is ready.
+            </h1>
+            <p className="mt-5 max-w-lg text-lg text-muted-foreground">
+              Thanks for reading <em>The Claude Operator</em>. Get the skills library, workflows, workbooks, templates, and practice files that pair with the book.
+            </p>
 
-        <section id="resources" className="border-t border-border py-16 sm:py-20">
-          <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-accent"><BookOpen className="h-5 w-5" /><span className="text-xs font-semibold uppercase tracking-widest">Companion resources</span></div>
-              <h2 className="mt-4 font-serif text-3xl sm:text-4xl">Resources for readers</h2>
-              <p className="mt-3 max-w-xl text-muted-foreground">The companion toolkit is being prepared. Join the reader list for updates on availability.</p>
-            </div>
-          </div>
-          <div className="mx-auto mt-10 grid max-w-6xl gap-x-10 gap-y-0 px-6 sm:grid-cols-2">
-            {resources.map((resource, index) => (
-              <div key={resource.title} className="flex gap-5 border-t border-border py-5">
-                <span className="min-w-7 pt-1 text-xs font-semibold text-accent">{String(index + 1).padStart(2, "0")}</span>
-                <div><h3 className="font-serif text-xl">{resource.title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{resource.detail}</p></div>
-              </div>
-            ))}
-          </div>
-          <div className="mx-auto mt-12 max-w-6xl px-6">
-            <div className="max-w-xl border-t-2 border-accent pt-6">
+            <div id="claim" className="mt-8 scroll-mt-24">
               {done ? (
-                <div role="status" className="flex items-start gap-3">
-                  <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-accent" />
-                  <div><h3 className="font-serif text-2xl">You're on the reader list.</h3><p className="mt-2 text-sm text-muted-foreground">We'll keep you posted when The Claude Operator resources are available.</p></div>
+                <div role="status" className="flex items-start gap-3 rounded-lg border border-border bg-card p-5 shadow-card-lift">
+                  <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-brand-operator" />
+                  <div>
+                    <p className="font-display font-semibold">You're on the list.</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Your toolkit is ready to download below. We'll email you about future Claude Operator resources.</p>
+                  </div>
                 </div>
               ) : (
-                <form onSubmit={onSubmit}>
-                  <h3 className="font-serif text-2xl">Get toolkit updates</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Leave your email to hear when the companion resources are ready. No files are available to download yet.</p>
-                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                    <label className="text-sm font-medium">First name <span className="font-normal text-muted-foreground">(optional)</span><input type="text" autoComplete="given-name" maxLength={100} value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
-                    <label className="text-sm font-medium">Email address<input type="email" autoComplete="email" required maxLength={254} value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
+                <form onSubmit={onSubmit} className="rounded-lg border border-border bg-card p-4 shadow-card-lift md:p-5">
+                  <div className="flex flex-col gap-3 md:flex-row">
+                    <input aria-label="First name (optional)" type="text" autoComplete="given-name" maxLength={100} placeholder="Your first name (optional)" value={name} onChange={(event) => setName(event.target.value)} className="min-w-0 flex-1 rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30" />
+                    <input aria-label="Email address" type="email" autoComplete="email" maxLength={254} required placeholder="you@work.com" value={email} onChange={(event) => setEmail(event.target.value)} className="min-w-0 flex-1 rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30" />
                   </div>
-                  <Button type="submit" disabled={loading} className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90">{loading ? "Joining…" : "Join the reader list"} <ArrowRight /></Button>
-                  <p className="mt-3 text-xs text-muted-foreground">Updates about The Claude Operator. Unsubscribe anytime.</p>
+                  <Button type="submit" disabled={loading} className="mt-3 h-12 w-full rounded-md bg-brand-operator text-brand-operator-foreground shadow-glow hover:bg-brand-operator/90">
+                    {loading ? "Sending..." : "Send me the free bonuses →"}
+                  </Button>
+                  <p className="mt-3 text-xs text-muted-foreground">
+                    No spam. Unsubscribe anytime. We'll email you when new resources drop.{" "}
+                    <a href="#bonuses" className="underline underline-offset-4 transition hover:text-foreground">Or skip ahead to the files.</a>
+                  </p>
                 </form>
               )}
             </div>
+
+            <div className="mt-6 flex flex-wrap gap-4 text-xs text-muted-foreground">
+              {["Instant access", "Complete toolkit", "ZIP + PDF + editable files"].map((item) => (
+                <span key={item} className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-brand-operator" />{item}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-5 md:items-end">
+            <img src="/claude-operator-cover.jpg" alt="The Claude Operator book cover by Kaelis Voss" className="w-full max-w-sm rounded-lg shadow-glow" loading="eager" />
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button asChild variant="outline" className="rounded-full bg-card"><a href={amazonUrl} target="_blank" rel="noopener noreferrer"><Star /> Review on Amazon</a></Button>
+              <Button asChild variant="outline" className="rounded-full bg-card"><a href="/operator-toolkit/Operator-Toolkit.zip" download="Operator-Toolkit.zip"><Download /> Download full toolkit</a></Button>
+            </div>
           </div>
         </section>
+
+        <section id="bonuses" className="mx-auto max-w-6xl scroll-mt-8 px-6 pb-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-3xl font-bold md:text-4xl">What's inside your <span className="text-gradient-brand">bonus toolkit</span></h2>
+            <p className="mt-3 text-muted-foreground">The complete companion collection for putting the book into practice.</p>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {operatorBonuses.map(({ icon: Icon, title, desc, url, file }) => (
+              <article key={title} className="flex flex-col rounded-lg border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-card-lift">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-md bg-brand-operator text-brand-operator-foreground"><Icon className="h-5 w-5" /></div>
+                <h3 className="font-display text-lg font-semibold">{title}</h3>
+                <p className="mt-2 flex-1 text-sm text-muted-foreground">{desc}</p>
+                <Button asChild variant="link" className="mt-5 h-auto justify-start px-0 text-foreground hover:text-brand-operator">
+                  <a href={url} download={file}><Download /> Download</a>
+                </Button>
+              </article>
+            ))}
+          </div>
+          <p className="mt-10 text-center text-sm text-muted-foreground">
+            <Link to="/mastering-Claude-AI/resources" className="underline underline-offset-4 transition hover:text-foreground">Browse the full library</Link>
+          </p>
+        </section>
+        <footer className="border-t border-border">
+          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-muted-foreground md:flex-row">
+            <p>© {new Date().getFullYear()} Kaelis Voss. AI that works. Results that matter.</p>
+            <span>Companion resources for The Claude Operator.</span>
+          </div>
+        </footer>
       </main>
-      <footer className="border-t border-border py-8">
-        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-3 px-6 text-xs text-muted-foreground"><span>© {new Date().getFullYear()} Kaelis Voss</span><span>The Claude Operator</span></div>
-      </footer>
-    </div>
+    </>
   );
 }

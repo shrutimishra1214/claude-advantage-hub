@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Clock3 } from "lucide-react";
 import claudeCover from "@/assets/book-cover.jpeg";
-import operatorCover from "@/assets/claude-operator-cover.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 
 const books = [
@@ -39,7 +38,8 @@ const books = [
       "Master Claude AI for advanced workflows across Claude Code, design, Cowork, Excel, PowerPoint, and more.",
     cta: "Explore book",
     href: "/mastering-Claude-AI" as const,
-    cover: operatorCover.url,
+    amazonUrl: "https://www.amazon.com/dp/B0HLTJ9LZC",
+    cover: "/claude-operator-cover.jpg",
     accent: "text-brand-operator",
     button: "bg-brand-operator text-brand-operator-foreground hover:brightness-110",
     available: true,

@@ -13,4 +13,6 @@
 - [x] Add Book Hub links to the Claude and Copilot reader pages
 - [x] Add The Claude Operator cover to the Book Hub and create its book page at /mastering-Claude-AI
 - [x] Add The Claude Operator reader signup to Brevo list 8 with honest toolkit availability messaging
-- [ ] Create the book-exact companion toolkit and downloads (blocked: manuscript/Skill Drops and Operator Playbook trap inputs not supplied)
+- [x] Offer the supplied Operator Toolkit as a full download and grouped companion downloads
+- [x] Match The Claude Operator reader page to the Copilot bonus-page layout and add a bonus library
+- [x] Link The Claude Operator book cover and reader-page Amazon button to the supplied Amazon listing
