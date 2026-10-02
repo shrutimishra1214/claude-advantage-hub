@@ -14,6 +14,7 @@ import { Route as TheClaudeAdvantageRouteImport } from './routes/the-claude-adva
 import { Route as MasteringClaudeAIRouteImport } from './routes/mastering-Claude-AI'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TheMicrosoftCopilotAdvantageResourcesRouteImport } from './routes/the-microsoft-copilot-advantage_.resources'
+import { Route as MasteringClaudeAIResourcesRouteImport } from './routes/mastering-Claude-AI_.resources'
 
 const TheMicrosoftCopilotAdvantageRoute =
   TheMicrosoftCopilotAdvantageRouteImport.update({
@@ -42,12 +43,19 @@ const TheMicrosoftCopilotAdvantageResourcesRoute =
     path: '/the-microsoft-copilot-advantage/resources',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MasteringClaudeAIResourcesRoute =
+  MasteringClaudeAIResourcesRouteImport.update({
+    id: '/mastering-Claude-AI_/resources',
+    path: '/mastering-Claude-AI/resources',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/mastering-Claude-AI': typeof MasteringClaudeAIRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
   '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
+  '/mastering-Claude-AI/resources': typeof MasteringClaudeAIResourcesRoute
   '/the-microsoft-copilot-advantage/resources': typeof TheMicrosoftCopilotAdvantageResourcesRoute
 }
 export interface FileRoutesByTo {
@@ -55,6 +63,7 @@ export interface FileRoutesByTo {
   '/mastering-Claude-AI': typeof MasteringClaudeAIRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
   '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
+  '/mastering-Claude-AI/resources': typeof MasteringClaudeAIResourcesRoute
   '/the-microsoft-copilot-advantage/resources': typeof TheMicrosoftCopilotAdvantageResourcesRoute
 }
 export interface FileRoutesById {
@@ -63,6 +72,7 @@ export interface FileRoutesById {
   '/mastering-Claude-AI': typeof MasteringClaudeAIRoute
   '/the-claude-advantage': typeof TheClaudeAdvantageRoute
   '/the-microsoft-copilot-advantage': typeof TheMicrosoftCopilotAdvantageRoute
+  '/mastering-Claude-AI_/resources': typeof MasteringClaudeAIResourcesRoute
   '/the-microsoft-copilot-advantage_/resources': typeof TheMicrosoftCopilotAdvantageResourcesRoute
 }
 export interface FileRouteTypes {
@@ -72,6 +82,7 @@ export interface FileRouteTypes {
     | '/mastering-Claude-AI'
     | '/the-claude-advantage'
     | '/the-microsoft-copilot-advantage'
+    | '/mastering-Claude-AI/resources'
     | '/the-microsoft-copilot-advantage/resources'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -79,6 +90,7 @@ export interface FileRouteTypes {
     | '/mastering-Claude-AI'
     | '/the-claude-advantage'
     | '/the-microsoft-copilot-advantage'
+    | '/mastering-Claude-AI/resources'
     | '/the-microsoft-copilot-advantage/resources'
   id:
     | '__root__'
@@ -86,6 +98,7 @@ export interface FileRouteTypes {
     | '/mastering-Claude-AI'
     | '/the-claude-advantage'
     | '/the-microsoft-copilot-advantage'
+    | '/mastering-Claude-AI_/resources'
     | '/the-microsoft-copilot-advantage_/resources'
   fileRoutesById: FileRoutesById
 }
@@ -94,6 +107,7 @@ export interface RootRouteChildren {
   MasteringClaudeAIRoute: typeof MasteringClaudeAIRoute
   TheClaudeAdvantageRoute: typeof TheClaudeAdvantageRoute
   TheMicrosoftCopilotAdvantageRoute: typeof TheMicrosoftCopilotAdvantageRoute
+  MasteringClaudeAIResourcesRoute: typeof MasteringClaudeAIResourcesRoute
   TheMicrosoftCopilotAdvantageResourcesRoute: typeof TheMicrosoftCopilotAdvantageResourcesRoute
 }
 
@@ -134,6 +148,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TheMicrosoftCopilotAdvantageResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mastering-Claude-AI_/resources': {
+      id: '/mastering-Claude-AI_/resources'
+      path: '/mastering-Claude-AI/resources'
+      fullPath: '/mastering-Claude-AI/resources'
+      preLoaderRoute: typeof MasteringClaudeAIResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -142,6 +163,7 @@ const rootRouteChildren: RootRouteChildren = {
   MasteringClaudeAIRoute: MasteringClaudeAIRoute,
   TheClaudeAdvantageRoute: TheClaudeAdvantageRoute,
   TheMicrosoftCopilotAdvantageRoute: TheMicrosoftCopilotAdvantageRoute,
+  MasteringClaudeAIResourcesRoute: MasteringClaudeAIResourcesRoute,
   TheMicrosoftCopilotAdvantageResourcesRoute:
     TheMicrosoftCopilotAdvantageResourcesRoute,
 }
