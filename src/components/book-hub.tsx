@@ -19,19 +19,6 @@ const books = [
     available: true,
   },
   {
-    label: "Reader bonus hub",
-    title: "The Microsoft Copilot Advantage",
-    blurb:
-      "A beginner-friendly guide to using Copilot across Word, Excel, Outlook, PowerPoint, Teams, and the wider Microsoft workspace.",
-    cta: "Open reader hub",
-    href: "/the-microsoft-copilot-advantage" as const,
-    amazonUrl: "https://www.amazon.com/dp/B0HJM9VP3G",
-    cover: "/copilot-cover.jpg",
-    accent: "text-brand-copilot",
-    button: "bg-brand-copilot text-brand-copilot-foreground hover:brightness-110",
-    available: true,
-  },
-  {
     label: "New book",
     title: "The Claude Operator",
     blurb:
@@ -42,6 +29,19 @@ const books = [
     cover: "/claude-operator-cover.jpg",
     accent: "text-brand-operator",
     button: "bg-brand-operator text-brand-operator-foreground hover:brightness-110",
+    available: true,
+  },
+  {
+    label: "Reader bonus hub",
+    title: "The Microsoft Copilot Advantage",
+    blurb:
+      "A beginner-friendly guide to using Copilot across Word, Excel, Outlook, PowerPoint, Teams, and the wider Microsoft workspace.",
+    cta: "Open reader hub",
+    href: "/the-microsoft-copilot-advantage" as const,
+    amazonUrl: "https://www.amazon.com/dp/B0HJM9VP3G",
+    cover: "/copilot-cover.jpg",
+    accent: "text-brand-copilot",
+    button: "bg-brand-copilot text-brand-copilot-foreground hover:brightness-110",
     available: true,
   },
   {

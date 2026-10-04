@@ -17,3 +17,5 @@
 - [x] Match The Claude Operator reader page to the Copilot bonus-page layout and add a bonus library
 - [x] Link The Claude Operator book cover and reader-page Amazon button to the supplied Amazon listing
 - [x] Restore The Claude Operator's original editorial look while retaining the signup and toolkit downloads
+- [x] Place Claude Advantage and Claude Operator side by side, followed by Microsoft Copilot
+- [x] Keep the Operator signup and success flow aligned with Copilot while retaining its original design and separate reader list

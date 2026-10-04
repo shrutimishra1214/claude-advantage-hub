@@ -35,7 +35,7 @@ export default function ClaudeOperatorPage() {
         return;
       }
       setDone(true);
-      toast.success("You're on the reader list!");
+      toast.success("You're in! Your toolkit is ready below.");
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong. Please try again.");
@@ -110,7 +110,7 @@ export default function ClaudeOperatorPage() {
               {done ? (
                 <div role="status" className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-accent" />
-                  <div><h3 className="font-serif text-2xl">You're on the reader list.</h3><p className="mt-2 text-sm text-muted-foreground">Your toolkit is ready to download below. We'll email you about future Claude Operator resources.</p></div>
+                  <div><h3 className="font-serif text-2xl">You're on the list.</h3><p className="mt-2 text-sm text-muted-foreground">Your toolkit is ready to download below. Watch your inbox for future Claude Operator resources.</p></div>
                 </div>
               ) : (
                 <form onSubmit={onSubmit}>
