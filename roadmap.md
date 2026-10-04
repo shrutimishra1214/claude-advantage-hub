@@ -19,3 +19,4 @@
 - [x] Restore The Claude Operator's original editorial look while retaining the signup and toolkit downloads
 - [x] Place Claude Advantage and Claude Operator side by side, followed by Microsoft Copilot
 - [x] Keep the Operator signup and success flow aligned with Copilot while retaining its original design and separate reader list
+- [x] Make the Operator email form the primary companion-resource action, with the complete ZIP only in its separate library
