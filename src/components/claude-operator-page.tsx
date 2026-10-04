@@ -103,8 +103,7 @@ export default function ClaudeOperatorPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="flex items-center gap-2 text-accent"><BookOpen className="h-5 w-5" /><span className="text-xs font-semibold uppercase tracking-widest">Companion resources</span></div>
             <h2 className="mt-4 font-serif text-4xl sm:text-5xl">The Operator toolkit.</h2>
-            <p className="mt-4 max-w-2xl text-pretty text-muted-foreground">Everything you need to put the book into practice. Download the complete collection or choose individual resources below.</p>
-            <Button asChild variant="outline" className="mt-6 border-border"><a href="/operator-toolkit/Operator-Toolkit.zip" download="Operator-Toolkit.zip"><Download /> Download full toolkit</a></Button>
+            <p className="mt-4 max-w-2xl text-pretty text-muted-foreground">Practical resources to help you put the book to work. Join the reader list below to get started.</p>
 
             <div id="claim" className="mt-12 max-w-xl scroll-mt-24 border-t-2 border-accent pt-6">
               {done ? (
@@ -115,7 +114,7 @@ export default function ClaudeOperatorPage() {
               ) : (
                 <form onSubmit={onSubmit}>
                   <h3 className="font-serif text-2xl">Get the free bonuses</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Join the reader list for updates. The toolkit is also available to download here, without signing up.</p>
+                  <p className="mt-2 text-sm text-muted-foreground">Enter your email to join the reader list and explore the companion resources.</p>
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <label className="text-sm font-medium">First name <span className="font-normal text-muted-foreground">(optional)</span><input type="text" autoComplete="given-name" maxLength={100} value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
                     <label className="text-sm font-medium">Email address<input type="email" autoComplete="email" required maxLength={254} value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
@@ -127,7 +126,7 @@ export default function ClaudeOperatorPage() {
             </div>
 
             <div id="downloads" className="mt-14 scroll-mt-8 grid gap-x-10 sm:grid-cols-2">
-              {operatorBonuses.map(({ icon: Icon, title, desc, url, file }, index) => (
+              {operatorBonuses.filter((bonus) => bonus.file !== "Operator-Toolkit.zip").map(({ icon: Icon, title, desc, url, file }, index) => (
                 <div key={title} className="flex gap-5 border-t border-border py-6">
                   <span className="min-w-7 pt-1 text-xs font-semibold text-accent">{String(index + 1).padStart(2, "0")}</span>
                   <div className="min-w-0">
