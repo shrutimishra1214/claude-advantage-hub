@@ -69,7 +69,7 @@ export default async function EarlyReaders() {
         <section className="section pt-0">
           <div className="container">
             <VideoTestimonials items={testimonials} />
-            <div className="mt-14 text-center"><BuyButton label="Get the toolkit" /></div>
+            <div className="mt-14 text-center"><BuyButton tier="book" label="Get the book" /></div>
           </div>
         </section>
       ) : (
@@ -117,9 +117,9 @@ export default async function EarlyReaders() {
                     <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-ink text-white"><Icon.lock className="h-7 w-7" /></span>
                     <h2 className="mt-6 text-2xl font-medium md:text-3xl">All {TOTAL_SPOTS} spots are claimed</h2>
                     <p className="mx-auto mt-3 max-w-md leading-relaxed text-ink-muted">
-                      Applications are closed. You can still get the complete toolkit today, covered by our money-back guarantee.
+                      Applications are closed. You can still get the book today, covered by our money-back guarantee.
                     </p>
-                    <BuyButton label="Get the toolkit" className="mt-8" />
+                    <BuyButton tier="book" label="Get the book" className="mt-8" />
                   </div>
                 )}
               </div>

@@ -59,7 +59,11 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
                       <h2 className="text-lg font-medium">{p.name}</h2>
                       <p className="text-ink-muted">{p.short}</p>
                     </div>
-                    {p.delivery.kind === "file" ? (
+                    {id === "toolkit" ? (
+                      <a href={grant && t ? `/members/enter?t=${encodeURIComponent(t)}` : "/members"} className="btn-primary !py-3">
+                        Open the Copilot Advantage <Icon.arrow className="h-4 w-4" />
+                      </a>
+                    ) : p.delivery.kind === "file" ? (
                       <a href={`/api/download/${id}${query}`} className="btn-primary !py-3">
                         <Icon.download className="h-5 w-5" /> Download
                       </a>

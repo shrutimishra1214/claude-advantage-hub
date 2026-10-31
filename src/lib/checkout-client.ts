@@ -59,7 +59,7 @@ export async function checkout(orderBody: Record<string, unknown>): Promise<stri
       description: order.description,
       image: "/icon.svg",
       prefill: { name: order.customer.name, email: order.customer.email, contact: order.customer.contact },
-      theme: { color: "#7C3AED" },
+      theme: { color: "#2251CC" },
       handler: resolve,
       modal: { ondismiss: () => reject(new CheckoutDismissed()), confirm_close: true },
     });

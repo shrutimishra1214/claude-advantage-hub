@@ -1,21 +1,32 @@
 "use client";
 
-import { formatPrice } from "@/lib/products";
+import { formatPrice, type TierId } from "@/lib/products";
 import { useCheckout } from "./CheckoutProvider";
 import { Icon } from "./icons";
 
-export function BuyButton({ label = "Get the book", variant = "accent", showPrice = true, className = "" }: {
+/** Opens checkout on a tier. Until that tier is on sale it shows as "Coming soon". */
+export function BuyButton({ tier = "toolkit", label, variant = "primary", showPrice = true, arrow = true, className = "" }: {
+  tier?: TierId;
   label?: string;
-  variant?: "accent" | "primary";
+  variant?: "primary" | "dark" | "secondary";
   showPrice?: boolean;
+  arrow?: boolean;
   className?: string;
 }) {
-  const { open, currency, prices } = useCheckout();
+  const { open, currency, tier: get } = useCheckout();
+  const t = get(tier);
+  const cls = `btn-${variant} ${className}`;
+  if (!t.available)
+    return (
+      <button type="button" disabled className={cls}>
+        {t.label}: coming soon
+      </button>
+    );
   return (
-    <button type="button" onClick={open} className={`${variant === "accent" ? "btn-accent" : "btn-primary"} ${className}`}>
-      {label}
-      {showPrice && <span className="opacity-80">· {formatPrice(prices.book, currency)}</span>}
-      <Icon.arrow className="btn-arrow h-5 w-5" />
+    <button type="button" onClick={() => open(tier)} className={cls}>
+      {label ?? `Get the ${t.label}`}
+      {showPrice && <span>— {formatPrice(t.price, currency)}</span>}
+      {arrow && <Icon.arrow className="btn-arrow h-4 w-4" />}
     </button>
   );
 }

@@ -1,27 +1,22 @@
 import type { ReactNode } from "react";
 import { getCurrency } from "@/lib/currency";
-import { isOfferable, products } from "@/lib/products";
-import { CheckoutProvider } from "./CheckoutProvider";
+import { isTierOfferable, tiers, type TierId } from "@/lib/products";
+import { CheckoutProvider, type TierOption } from "./CheckoutProvider";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { ScrollProgress } from "./ScrollProgress";
 
 /** Page chrome plus the checkout sheet, priced in the visitor's currency. */
 export async function Shell({ children }: { children: ReactNode }) {
   const currency = await getCurrency();
-  const { book, vault } = products;
+  const options = (Object.keys(tiers) as TierId[]).map<TierOption>((id) => ({
+    id,
+    name: tiers[id].name,
+    label: tiers[id].label,
+    price: tiers[id].price[currency],
+    available: isTierOfferable(id),
+  }));
   return (
-    <CheckoutProvider
-      currency={currency}
-      bumpAvailable={isOfferable("vault")}
-      prices={{
-        book: book.price[currency],
-        bookCompare: book.compareAt![currency],
-        vault: vault.price[currency],
-        vaultCompare: vault.compareAt![currency],
-      }}
-    >
-      <ScrollProgress />
+    <CheckoutProvider currency={currency} tiers={options}>
       <Header />
       <main>{children}</main>
       <Footer />

@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { checkout, CheckoutDismissed } from "@/lib/checkout-client";
-import { formatPrice, type Currency } from "@/lib/products";
+import { formatPrice, type Currency, type TierId } from "@/lib/products";
 import { Icon } from "./icons";
 
-type Prices = { book: number; bookCompare: number; vault: number; vaultCompare: number };
-type Ctx = { open: () => void; currency: Currency; prices: Prices };
+export type TierOption = { id: TierId; name: string; label: string; price: number; available: boolean };
+type Ctx = { open: (tier?: TierId) => void; currency: Currency; tiers: TierOption[]; tier: (id: TierId) => TierOption };
 
 const CheckoutContext = createContext<Ctx | null>(null);
 
@@ -18,53 +18,56 @@ export function useCheckout() {
   return ctx;
 }
 
-export function CheckoutProvider({
-  currency,
-  prices,
-  bumpAvailable,
-  children,
-}: {
-  currency: Currency;
-  prices: Prices;
-  bumpAvailable: boolean;
-  children: ReactNode;
-}) {
+const blurb: Record<TierId, string> = {
+  book: "The complete guide · PDF",
+  toolkit: "Prompt Library, Workflow Vault, templates & 30-day path",
+  bundle: "The book and the complete Toolkit",
+};
+
+export function CheckoutProvider({ currency, tiers, children }: { currency: Currency; tiers: TierOption[]; children: ReactNode }) {
   const router = useRouter();
-  const [isOpen, setOpen] = useState(false);
+  const available = tiers.filter((t) => t.available);
+  const [selected, setSelected] = useState<TierId | null>(null);
   const [form, setForm] = useState({ name: "", email: "", contact: "" });
-  const [bump, setBump] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const firstField = useRef<HTMLInputElement>(null);
+  const tier = useCallback((id: TierId) => tiers.find((t) => t.id === id)!, [tiers]);
 
-  const open = useCallback(() => {
-    setError("");
-    setOpen(true);
-  }, []);
+  const open = useCallback(
+    (id: TierId = "toolkit") => {
+      const choice = tiers.find((t) => t.id === id && t.available) ?? tiers.find((t) => t.available);
+      if (!choice) return;
+      setError("");
+      setSelected(choice.id);
+    },
+    [tiers],
+  );
+  const close = useCallback(() => !busy && setSelected(null), [busy]);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!selected) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const t = setTimeout(() => firstField.current?.focus(), 50);
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && !busy && setOpen(false);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
       clearTimeout(t);
       window.removeEventListener("keydown", onKey);
     };
-  }, [isOpen, busy]);
+  }, [selected, close]);
 
-  const total = prices.book + (bump && bumpAvailable ? prices.vault : 0);
+  const chosen = selected ? tier(selected) : null;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!chosen) return;
     setBusy(true);
     setError("");
     try {
-      const next = await checkout({ customer: form, bump: bump && bumpAvailable });
-      router.push(next);
+      router.push(await checkout({ customer: form, tier: chosen.id }));
     } catch (err) {
       if (!(err instanceof CheckoutDismissed)) setError((err as Error).message);
       setBusy(false);
@@ -72,53 +75,44 @@ export function CheckoutProvider({
   }
 
   return (
-    <CheckoutContext.Provider value={{ open, currency, prices }}>
+    <CheckoutContext.Provider value={{ open, currency, tiers, tier }}>
       {children}
-      {isOpen && (
+      {chosen && (
         <div className="fixed inset-0 z-[60] flex items-end justify-center md:items-center" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
-          <button aria-label="Close checkout" className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={() => !busy && setOpen(false)} />
-          <form
-            onSubmit={onSubmit}
-            className="relative max-h-[92dvh] w-full overflow-y-auto rounded-t-3xl bg-white p-6 shadow-2xl md:max-w-lg md:rounded-3xl md:p-8"
-          >
+          <button aria-label="Close checkout" className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={close} />
+          <form onSubmit={onSubmit} className="relative max-h-[92dvh] w-full overflow-y-auto rounded-t-2xl bg-white p-6 shadow-2xl md:max-w-lg md:rounded-2xl md:p-8">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-violet">Secure checkout</p>
-                <h2 id="checkout-title" className="mt-1 text-2xl font-medium">Complete your order</h2>
+                <p className="eyebrow">Secure checkout</p>
+                <h2 id="checkout-title" className="mt-1 text-2xl">Complete your order</h2>
               </div>
-              <button type="button" onClick={() => !busy && setOpen(false)} className="rounded-full p-2 text-ink-muted hover:bg-ink/5" aria-label="Close">
-                <Icon.x />
-              </button>
+              <button type="button" onClick={close} className="rounded-lg p-2 text-ink-muted hover:bg-paper" aria-label="Close"><Icon.x /></button>
             </div>
 
-            <div className="mt-6 flex items-center gap-4 rounded-2xl bg-paper-tint p-4">
-              <Image src="/images/cover.jpg" alt="" width={56} height={71} className="rounded-md shadow-soft" />
-              <div className="min-w-0 flex-1">
-                <p className="font-semibold leading-snug">The Microsoft Copilot Advantage</p>
-                <p className="text-sm text-ink-muted">Ebook (PDF) · instant download</p>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold">{formatPrice(prices.book, currency)}</p>
-                <p className="text-xs text-ink-muted line-through">{formatPrice(prices.bookCompare, currency)}</p>
-              </div>
-            </div>
-
-            {bumpAvailable && (
-              <label className={`mt-4 block cursor-pointer rounded-2xl border-2 border-dashed p-4 transition ${bump ? "border-brand-orange bg-orange-50" : "border-brand-orange/50 hover:bg-orange-50/50"}`}>
-                <span className="flex items-start gap-3">
-                  <input type="checkbox" aria-label="Add the Copilot Prompt Vault" checked={bump} onChange={(e) => setBump(e.target.checked)} className="mt-1 h-5 w-5 shrink-0 accent-brand-orange" />
-                  <span>
-                    <span className="block font-semibold">
-                      Yes! Add the Copilot Prompt Vault for {formatPrice(prices.vault, currency)}{" "}
-                      <span className="font-normal text-ink-muted line-through">{formatPrice(prices.vaultCompare, currency)}</span>
+            <fieldset className="mt-6 grid gap-2">
+              <legend className="sr-only">Choose what to buy</legend>
+              {available.map((t) => (
+                <label
+                  key={t.id}
+                  className={`flex cursor-pointer items-center gap-4 rounded-xl border p-4 transition ${t.id === chosen.id ? "border-accent bg-accent-soft/60 ring-1 ring-accent" : "border-line hover:border-ink/30"}`}
+                >
+                  <input type="radio" name="tier" value={t.id} checked={t.id === chosen.id} onChange={() => setSelected(t.id)} className="h-4 w-4 shrink-0 accent-accent" />
+                  {t.id === "toolkit" ? (
+                    <span className="grid h-[52px] w-10 shrink-0 place-items-center rounded-md bg-ink text-white"><Icon.grid className="h-5 w-5" /></span>
+                  ) : (
+                    <Image src="/images/cover.jpg" alt="" width={40} height={51} className="shrink-0 rounded shadow-soft" />
+                  )}
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-center gap-2 font-semibold leading-snug">
+                      {t.label}
+                      {t.id === "bundle" && <span className="rounded bg-ink px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Everything</span>}
                     </span>
-                    <span className="mt-1 block text-sm text-ink-muted">
-                      300+ copy-and-paste prompts organised by app and job role. Only available with this order.
-                    </span>
+                    <span className="block text-sm text-ink-muted">{blurb[t.id]}</span>
                   </span>
-                </span>
-              </label>
-            )}
+                  <span className="font-semibold">{formatPrice(t.price, currency)}</span>
+                </label>
+              ))}
+            </fieldset>
 
             <div className="mt-6 grid gap-3">
               <label className="grid gap-1.5 text-sm font-medium">
@@ -126,7 +120,7 @@ export function CheckoutProvider({
                 <input ref={firstField} required autoComplete="name" className="input" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
               </label>
               <label className="grid gap-1.5 text-sm font-medium">
-                <span>Email <span className="font-normal text-ink-muted">(your download link is sent here)</span></span>
+                <span>Email <span className="font-normal text-ink-muted">(your access link is sent here)</span></span>
                 <input required type="email" autoComplete="email" className="input" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
               </label>
               <label className="grid gap-1.5 text-sm font-medium">
@@ -135,18 +129,17 @@ export function CheckoutProvider({
               </label>
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-ink/10 pt-5">
+            <div className="mt-6 flex items-center justify-between border-t border-line pt-5">
               <span className="text-ink-muted">Total</span>
-              <span className="text-2xl font-bold">{formatPrice(total, currency)}</span>
+              <span className="text-2xl font-semibold">{formatPrice(chosen.price, currency)}</span>
             </div>
 
-            {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
+            {error && <p role="alert" className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
 
-            <button type="submit" disabled={busy} className="btn-accent mt-5 w-full">
+            <button type="submit" disabled={busy} className="btn-primary mt-5 w-full !py-4">
               <Icon.lock className="h-5 w-5" />
-              {busy ? "Opening secure payment…" : `Pay ${formatPrice(total, currency)} securely`}
+              {busy ? "Opening secure payment…" : `Pay ${formatPrice(chosen.price, currency)} securely`}
             </button>
-
             <p className="mt-4 text-center text-xs text-ink-muted">
               Secured by Razorpay · {currency === "INR" ? "UPI, cards, net banking & wallets" : "All major cards"}
             </p>

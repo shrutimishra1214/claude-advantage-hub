@@ -1,30 +1,42 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Fraunces, Inter } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const display = Fraunces({ subsets: ["latin"], variable: "--font-display", axes: ["opsz"], style: ["normal", "italic"] });
+const display = Inter_Tight({ subsets: ["latin"], variable: "--font-display" });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", weight: ["500", "700"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.bookTitle} | ${site.name}`, template: `%s | ${site.name}` },
+  title: { default: site.seoTitle, template: `%s | ${site.productName}` },
   description: site.description,
+  keywords: [
+    "Microsoft Copilot",
+    "Microsoft Copilot guide",
+    "Microsoft Copilot prompts",
+    "Microsoft Copilot workflows",
+    "Microsoft 365 Copilot",
+    "Copilot prompts for work",
+    "Microsoft Copilot templates",
+    "Copilot productivity system",
+    "AI productivity for professionals",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: site.bookTitle,
+    title: site.seoTitle,
     description: site.description,
     type: "website",
-    images: [{ url: "/images/cover.jpg", width: 1100, height: 1392, alt: site.bookTitle }],
+    siteName: site.productName,
+    images: [{ url: "/images/cover.jpg", width: 1100, height: 1392, alt: site.productName }],
   },
-  twitter: { card: "summary_large_image", title: site.bookTitle, description: site.description },
+  twitter: { card: "summary_large_image", title: site.seoTitle, description: site.description },
 };
 
-export const viewport: Viewport = { themeColor: "#F6F3EE" };
+export const viewport: Viewport = { themeColor: "#FFFFFF" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${hand.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <body>{children}</body>
     </html>
   );

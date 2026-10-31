@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createOrder } from "@/lib/razorpay";
-import { isOfferable, products, type Currency, type ProductId } from "@/lib/products";
-import { isStepId, steps } from "@/lib/funnel";
+import { isOfferable, isTierId, isTierOfferable, products, tiers, type Currency, type ProductId } from "@/lib/products";
+import { isStepId, stepPrice, steps } from "@/lib/funnel";
 import { getSession, type Customer } from "@/lib/session";
 import { getCurrency } from "@/lib/currency";
 
@@ -24,6 +24,8 @@ export async function POST(req: Request) {
   let items: ProductId[];
   let customer: Customer | null;
   let currency: Currency;
+  let amount: number;
+  let description: string;
   let step = "";
 
   if (body.step !== undefined) {
@@ -38,18 +40,21 @@ export async function POST(req: Request) {
     items = [product];
     customer = session.customer;
     currency = session.currency;
+    amount = stepPrice(stepId, currency);
+    description = products[product].name;
     step = stepId;
   } else {
-    // Main checkout: the book, plus the Prompt Vault if the bump was ticked.
+    // Main checkout: the book, the toolkit or both, at that tier's price.
+    const tierId: unknown = body.tier;
+    if (!isTierId(tierId) || !isTierOfferable(tierId)) return NextResponse.json({ error: "This option isn't available yet" }, { status: 400 });
     customer = readCustomer(body.customer);
     if (!customer) return NextResponse.json({ error: "Please enter a valid name and email" }, { status: 400 });
     // Decided by the visitor's country on the server, never by the browser.
     currency = await getCurrency();
-    items = ["book"];
-    if (body.bump === true && isOfferable("vault")) items.push("vault");
+    items = tiers[tierId].items;
+    amount = tiers[tierId].price[currency];
+    description = tiers[tierId].name;
   }
-
-  const amount = items.reduce((sum, id) => sum + products[id].price[currency], 0);
 
   try {
     const order = await createOrder({
@@ -71,7 +76,7 @@ export async function POST(req: Request) {
       currency: order.currency,
       keyId: process.env.RAZORPAY_KEY_ID,
       customer,
-      description: items.map((id) => products[id].name).join(" + "),
+      description,
     });
   } catch (err) {
     console.error(err);

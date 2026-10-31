@@ -5,7 +5,7 @@ import { FunnelProgress } from "@/components/FunnelProgress";
 import { Icon } from "@/components/icons";
 import { OfferActions } from "@/components/OfferActions";
 import { offerCopy } from "@/lib/content";
-import { isStepId, resolveStep, stepUrl, steps } from "@/lib/funnel";
+import { isStepId, resolveStep, stepPrice, stepUrl, steps } from "@/lib/funnel";
 import { formatPrice, products } from "@/lib/products";
 import { getSession } from "@/lib/session";
 
@@ -23,8 +23,9 @@ export default async function OfferPage({ params }: { params: Promise<{ step: st
   const product = products[steps[step].product];
   const copy = offerCopy[step];
   const { currency } = session;
-  const price = product.price[currency];
-  const compare = product.compareAt?.[currency];
+  const price = stepPrice(step, currency);
+  const regular = product.price[currency];
+  const compare = product.compareAt?.[currency] ?? (regular > price ? regular : undefined);
   const declineHref = stepUrl(resolveStep(steps[step].onDecline, session.owned));
 
   return (

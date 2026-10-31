@@ -3,6 +3,7 @@ import { capturePayment, fetchOrder, fetchPayment, verifyPaymentSignature } from
 import { isProductId, type ProductId } from "@/lib/products";
 import { FIRST_STEP, isStepId, resolveStep, stepUrl, steps } from "@/lib/funnel";
 import { getSession, setSession } from "@/lib/session";
+import { ownsToolkit, setMember } from "@/lib/member";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
@@ -31,6 +32,7 @@ export async function POST(req: Request) {
     const carried = previous && previous.customer.email === customer.email ? previous.owned : [];
     const owned = Array.from(new Set([...carried, ...items]));
     await setSession({ customer, currency: notes.currency === "USD" ? "USD" : "INR", owned });
+    if (ownsToolkit(owned)) await setMember({ email: customer.email, name: customer.name });
 
     const next = isStepId(notes.step) ? resolveStep(steps[notes.step].onAccept, owned) : resolveStep(FIRST_STEP, owned);
     return NextResponse.json({ next: stepUrl(next) });

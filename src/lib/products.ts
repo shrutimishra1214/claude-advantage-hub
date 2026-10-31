@@ -2,7 +2,7 @@ export type Currency = "INR" | "USD";
 
 export type ProductId =
   | "book"
-  | "vault"
+  | "toolkit"
   | "masterclass"
   | "masterclass-essentials"
   | "agent-kit"
@@ -31,32 +31,36 @@ export const products: Record<ProductId, Product> = {
   book: {
     id: "book",
     name: "The Microsoft Copilot Advantage",
-    short: "The complete ebook (PDF)",
-    price: { INR: 49900, USD: 2700 },
-    compareAt: { INR: 99900, USD: 4900 },
+    short: "The complete guide (PDF)",
+    price: { INR: 49900, USD: 1999 },
     delivery: { kind: "file", file: "copilot-advantage.pdf", filename: "The-Microsoft-Copilot-Advantage.pdf" },
     ready: true,
     bullets: [
-      "The Copilot Playbook: 39 step-by-step chapters across all 9 apps",
-      "The Prompt Library, organised by the work you're doing",
-      "The Workflow & Loop Library for real business scenarios",
-      "The 90-Day Mastery Plan, one habit at a time",
-      "Agent building, safety & governance, and business-case guides",
-      "Companion templates, prompts and practice files",
+      "The complete guide: 39 chapters, 175+ pages",
+      "Copilot fundamentals",
+      "Microsoft 365 workflows",
+      "The G-C-S-E prompting framework",
+      "Practical, worked examples",
     ],
   },
-  vault: {
-    id: "vault",
-    name: "Copilot Prompt Vault",
-    short: "300+ ready-to-copy prompts",
-    price: { INR: 29900, USD: 1700 },
-    compareAt: { INR: 79900, USD: 3900 },
-    delivery: { kind: "file", file: "copilot-prompt-vault.pdf", filename: "Copilot-Prompt-Vault.pdf" },
+  toolkit: {
+    id: "toolkit",
+    name: "The Copilot Advantage Toolkit",
+    short: "Prompt Library, Workflow Vault, templates and the 30-day path",
+    price: { INR: 199900, USD: 7900 },
+    // Delivered as the member area at /members.
+    delivery: { kind: "access", note: "Open the member area: everything in the Toolkit, in one place." },
+    // TODO: set to true once the member area holds what the sales page promises
+    // (250+ recipes, 100 workflows, 30+ templates). See src/lib/toolkit/.
     ready: false,
     bullets: [
-      "300+ prompts organised by app and by job role",
-      "Copy, paste, and fill in the blanks",
-      "Prompts for email, reports, analysis, meetings and slides",
+      "250+ Prompt Recipes",
+      "100 Workflows",
+      "30+ Templates",
+      "30-Day Transformation",
+      "Prompt Builder",
+      "Cheat Sheets",
+      "Cross-App Workflow Library",
     ],
   },
   masterclass: {
@@ -116,6 +120,26 @@ export const products: Record<ProductId, Product> = {
     ],
   },
 };
+
+// What a visitor can choose on the sales page. A tier is a price for a set of products.
+export type TierId = "book" | "toolkit" | "bundle";
+
+export type Tier = { id: TierId; name: string; label: string; items: ProductId[]; price: Record<Currency, number> };
+
+export const tiers: Record<TierId, Tier> = {
+  book: { id: "book", name: "The Microsoft Copilot Advantage", label: "Book", items: ["book"], price: products.book.price },
+  toolkit: { id: "toolkit", name: "The Copilot Advantage Toolkit", label: "Toolkit", items: ["toolkit"], price: products.toolkit.price },
+  bundle: { id: "bundle", name: "Book + Toolkit", label: "Complete Bundle", items: ["book", "toolkit"], price: { INR: 249900, USD: 9900 } },
+};
+
+// Shown as "Coming soon" and never sold until it exists.
+export const proPrice: Record<Currency, number> = { INR: 399900, USD: 14900 };
+
+export const isTierId = (v: unknown): v is TierId => typeof v === "string" && v in tiers;
+
+export function isTierOfferable(id: TierId) {
+  return tiers[id].items.every(isOfferable);
+}
 
 export const isProductId = (v: unknown): v is ProductId =>
   typeof v === "string" && v in products;

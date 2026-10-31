@@ -19,7 +19,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ product:
     const file = await readFile(path.join(process.cwd(), "private-files", delivery.file));
     return new NextResponse(new Uint8Array(file), {
       headers: {
-        "Content-Type": "application/pdf",
+        "Content-Type": delivery.file.endsWith(".zip") ? "application/zip" : "application/pdf",
         "Content-Disposition": `attachment; filename="${delivery.filename}"`,
         "Cache-Control": "private, no-store",
       },
