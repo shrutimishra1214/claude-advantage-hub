@@ -38,7 +38,10 @@ Open http://localhost:3000.
 3. **Email**: create a Resend account, verify your domain, and set `RESEND_API_KEY` and `EMAIL_FROM`.
 4. **Files**: put the book PDF in `private-files/copilot-advantage.pdf` (see `private-files/README.md`). These files are never committed.
 5. **Content**: replace the TODOs in `src/lib/site.ts` (contact email, refund window) and the author bio in `src/app/page.tsx`. Have the policy pages reviewed.
-6. **Testimonials**: add real reader videos to `src/lib/content.ts`.
+6. **Early reader program** (`/early-readers`): in Vercel, open **Storage → Create → Upstash Redis** and connect it to the project
+   (this fills in `KV_REST_API_URL` and `KV_REST_API_TOKEN`). Set `ADMIN_PASSWORD`, then manage spots at `/admin/early-readers`.
+7. **Testimonials**: put reader videos in `public/testimonials/` and list them in `testimonials` in `src/lib/content.ts`.
+   Once there are 3, the site shows them instead of the early reader program.
 
 ## Editing copy
 
@@ -47,3 +50,4 @@ Open http://localhost:3000.
 | Sales page copy, FAQ, testimonials, upsell headlines | `src/lib/content.ts` |
 | Products and prices | `src/lib/products.ts` |
 | Site name, contact email, guarantee | `src/lib/site.ts` |
+| Number of early reader spots | `TOTAL_SPOTS` in `src/lib/early-readers.ts` |

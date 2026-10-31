@@ -65,15 +65,17 @@ export type Testimonial = {
   name: string;
   role: string;
   quote: string;
-  /** MP4 or HLS URL of the video (e.g. from Mux, Cloudflare Stream or your own storage). */
+  /** Video file, e.g. "/testimonials/priya.mp4" (in public/testimonials) or a hosted URL. */
   videoSrc: string;
-  /** Poster image shown before the video plays. */
-  poster: string;
+  /** Optional still image shown before playing. Without one, the video's first frame is used. */
+  poster?: string;
 };
 
+/** Once this many reader videos are added, the site shows them instead of the early reader program. */
+export const REQUIRED_TESTIMONIALS = 3;
+
 // Add real reader videos here as they come in. Only use reviews from real
-// readers who have agreed to be featured. When this list is empty, the page
-// shows an invitation to join the early reader program instead.
+// readers who have agreed to be featured.
 export const testimonials: Testimonial[] = [];
 
 export const faqs = [

@@ -8,7 +8,9 @@ import { Reveal } from "@/components/Reveal";
 import { Shell } from "@/components/Shell";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
 import { VideoTestimonials } from "@/components/VideoTestimonials";
-import { anatomy, apps, audience, faqs, pains, research, testimonials, toolkit } from "@/lib/content";
+import { anatomy, apps, audience, faqs, pains, REQUIRED_TESTIMONIALS, research, testimonials, toolkit } from "@/lib/content";
+import { countClaimed, TOTAL_SPOTS } from "@/lib/early-readers";
+import { SpotsMeter } from "@/components/SpotsMeter";
 import { allChapters, levelCounts, levelStyle, parts, samplePages, stats } from "@/lib/curriculum";
 import { getCurrency } from "@/lib/currency";
 import { formatPrice, products } from "@/lib/products";
@@ -20,6 +22,8 @@ export default async function Home() {
   const currency = await getCurrency();
   const book = products.book;
   const [playbook, prompts, workflows, plan, ...rest] = toolkit;
+  const showTestimonials = testimonials.length >= REQUIRED_TESTIMONIALS;
+  const claimed = showTestimonials ? TOTAL_SPOTS : await countClaimed();
 
   return (
     <Shell>
@@ -316,12 +320,39 @@ export default async function Home() {
       {/* ───────────── Testimonials ───────────── */}
       <section id="reviews" className="section scroll-mt-16">
         <div className="container">
-          <Reveal className="mx-auto mb-14 max-w-3xl text-center">
-            <span className="eyebrow">Reader stories</span>
-            <h2 className="section-title mt-5">Hear it from the people using it</h2>
-            <p className="section-lead">Real readers, real workdays, unscripted.</p>
-          </Reveal>
-          <Reveal><VideoTestimonials items={testimonials} /></Reveal>
+{showTestimonials ? (
+            <>
+              <Reveal className="mx-auto mb-14 max-w-3xl text-center">
+                <span className="eyebrow">Reader stories</span>
+                <h2 className="section-title mt-5">Hear it from the people using it</h2>
+                <p className="section-lead">Real readers, real workdays, unscripted.</p>
+              </Reveal>
+              <Reveal><VideoTestimonials items={testimonials} /></Reveal>
+            </>
+          ) : (
+            <Reveal>
+              <div className="card relative overflow-hidden p-8 md:p-12">
+                <div aria-hidden className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-spectrum opacity-20 blur-3xl" />
+                <div className="relative grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
+                  <div>
+                    <span className="eyebrow"><Icon.video className="h-4 w-4" /> Early reader program</span>
+                    <h2 className="mt-5 text-3xl font-bold md:text-4xl">
+                      {claimed < TOTAL_SPOTS ? "Read it free before launch" : "Our first readers are reading now"}
+                    </h2>
+                    <p className="mt-4 text-lg leading-relaxed text-ink-muted">
+                      {claimed < TOTAL_SPOTS
+                        ? `We're giving ${TOTAL_SPOTS} professionals the complete toolkit free, in exchange for an honest 60-second video review.`
+                        : `All ${TOTAL_SPOTS} early reader spots are claimed. Their honest video reviews will appear right here.`}
+                    </p>
+                    <a href="/early-readers" className="btn-primary mt-7">
+                      {claimed < TOTAL_SPOTS ? "Apply to be an early reader" : "See the program"} <Icon.arrow className="h-5 w-5" />
+                    </a>
+                  </div>
+                  <SpotsMeter claimed={claimed} total={TOTAL_SPOTS} compact />
+                </div>
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
 

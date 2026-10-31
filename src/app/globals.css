@@ -62,3 +62,4 @@
 .hero-in { animation: hero-in .8s cubic-bezier(.2,.7,.2,1) both; }
 @media (prefers-reduced-motion: reduce) { .hero-in { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .animate-marquee, .animate-marquee-reverse { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .animate-ping { animation: none; } }

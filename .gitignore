@@ -11,3 +11,6 @@ next-env.d.ts
 # Paid product files are never committed; upload them to the host separately.
 private-files/*
 !private-files/README.md
+
+# Local early reader data (development only)
+.data

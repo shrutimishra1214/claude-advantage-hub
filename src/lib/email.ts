@@ -38,6 +38,43 @@ export async function sendPurchaseEmail(opts: { to: string; name: string; items:
   if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
 }
 
+/** Tells the applicant their spot is reserved and notifies the owner. Skipped when Resend isn't configured. */
+export async function sendEarlyReaderEmails(a: { name: string; email: string; role: string; usage: string; linkedin: string; spot: number }) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.info(`[email] RESEND_API_KEY not set; early reader spot ${a.spot} claimed by ${a.email}`);
+    return;
+  }
+  const from = process.env.EMAIL_FROM ?? `${site.name} <${site.contactEmail}>`;
+  const send = (to: string, subject: string, html: string, id: string) =>
+    fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Idempotency-Key": id },
+      body: JSON.stringify({ from, to: [to], subject, html }),
+    }).then(async (res) => {
+      if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
+    });
+
+  await send(
+    a.email,
+    `Your early reader spot is reserved (#${a.spot})`,
+    `<div style="font-family:Inter,Arial,sans-serif;max-width:520px;margin:auto;color:#0B1030">
+      <h1 style="font-size:22px">You're in, ${escapeHtml(a.name.split(" ")[0])}!</h1>
+      <p>You've claimed early reader spot <strong>#${a.spot}</strong> for <em>${site.bookTitle}</em>.</p>
+      <p>We'll send your free copy within 2 business days. After reading, record an honest 60-second video about your experience and reply to that email with it.</p>
+    </div>`,
+    `early-reader-${a.email}`,
+  );
+  await send(
+    site.contactEmail,
+    `New early reader: ${a.name} (spot #${a.spot})`,
+    `<p><strong>${escapeHtml(a.name)}</strong> &lt;${escapeHtml(a.email)}&gt;</p>
+     <p>Role: ${escapeHtml(a.role)}<br>Uses Copilot: ${escapeHtml(a.usage)}<br>LinkedIn: ${escapeHtml(a.linkedin || "-")}</p>
+     <p>Send them the book from your library and manage spots at ${site.url}/admin/early-readers</p>`,
+    `early-reader-owner-${a.email}`,
+  );
+}
+
 function escapeHtml(s: string) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
