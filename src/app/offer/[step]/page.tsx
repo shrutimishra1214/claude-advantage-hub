@@ -68,7 +68,7 @@ export default async function OfferPage({ params }: { params: Promise<{ step: st
             <OfferActions step={step} cta={`${copy.cta} · ${formatPrice(price, currency)}`} decline={copy.decline} declineHref={declineHref} />
           </div>
           <p className="mt-6 text-center text-xs text-ink-muted">
-            Your details are already filled in. Just confirm with UPI, OTP or your card. Covered by the same money-back guarantee.
+            {currency === "INR" ? "Your details are already filled in. Just confirm with UPI, OTP or your card." : "Your email is already filled in. Just confirm your payment."} Covered by the same money-back guarantee.
           </p>
         </div>
       </main>

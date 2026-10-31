@@ -590,7 +590,7 @@ export default async function Home() {
 
           <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-ink-muted">
             <span className="flex items-center gap-2"><Icon.shield className="h-4 w-4 text-accent" /> {site.guaranteeDays}-day money-back guarantee</span>
-            <span className="flex items-center gap-2"><Icon.lock className="h-4 w-4 text-accent" /> Secure checkout by Razorpay</span>
+            <span className="flex items-center gap-2"><Icon.lock className="h-4 w-4 text-accent" /> Secure checkout by {currency === "INR" ? "Razorpay" : "Paddle"}</span>
             <span className="flex items-center gap-2"><Icon.download className="h-4 w-4 text-accent" /> Instant access after payment</span>
           </div>
 

@@ -4,6 +4,9 @@ import { isOfferable, isTierId, isTierOfferable, products, tiers, type Currency,
 import { isStepId, stepPrice, steps } from "@/lib/funnel";
 import { getSession, type Customer } from "@/lib/session";
 import { getCurrency } from "@/lib/currency";
+import { PADDLE_INTENT_TTL, type PaddleIntent } from "@/lib/fulfil";
+import { isPaddleConfigured, paddleEnvironment, paddlePriceId } from "@/lib/paddle";
+import { sign } from "@/lib/signing";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE = /^\+?[0-9 ()-]{8,18}$/;
@@ -27,6 +30,7 @@ export async function POST(req: Request) {
   let amount: number;
   let description: string;
   let step = "";
+  let priceId: string | null;
 
   if (body.step !== undefined) {
     // One-tap upsell or downsell after the main purchase.
@@ -43,6 +47,7 @@ export async function POST(req: Request) {
     amount = stepPrice(stepId, currency);
     description = products[product].name;
     step = stepId;
+    priceId = paddlePriceId({ step: stepId });
   } else {
     // Main checkout: the book, the toolkit or both, at that tier's price.
     const tierId: unknown = body.tier;
@@ -54,6 +59,24 @@ export async function POST(req: Request) {
     items = tiers[tierId].items;
     amount = tiers[tierId].price[currency];
     description = tiers[tierId].name;
+    priceId = paddlePriceId({ tier: tierId });
+  }
+
+  // Outside India, Paddle takes the payment at the price set in its dashboard.
+  if (currency === "USD") {
+    if (!isPaddleConfigured() || !priceId) {
+      console.error(`Paddle is not configured for ${step || "this tier"}: set PADDLE_API_KEY, PADDLE_CLIENT_TOKEN and the price ID`);
+      return NextResponse.json({ error: "Card payments aren't available right now. Please try again later." }, { status: 503 });
+    }
+    const intent: PaddleIntent = { items, priceId, step, name: customer.name, email: customer.email, contact: customer.contact };
+    return NextResponse.json({
+      provider: "paddle",
+      clientToken: process.env.PADDLE_CLIENT_TOKEN,
+      environment: paddleEnvironment(),
+      priceId,
+      intent: sign(intent, PADDLE_INTENT_TTL),
+      customer,
+    });
   }
 
   try {
@@ -71,6 +94,7 @@ export async function POST(req: Request) {
       },
     });
     return NextResponse.json({
+      provider: "razorpay",
       orderId: order.id,
       amount: order.amount,
       currency: order.currency,

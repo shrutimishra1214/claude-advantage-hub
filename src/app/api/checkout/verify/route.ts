@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { capturePayment, fetchOrder, fetchPayment, verifyPaymentSignature } from "@/lib/razorpay";
 import { isProductId, type ProductId } from "@/lib/products";
-import { FIRST_STEP, isStepId, resolveStep, stepUrl, steps } from "@/lib/funnel";
-import { getSession, setSession } from "@/lib/session";
-import { ownsToolkit, setMember } from "@/lib/member";
+import { completePurchase } from "@/lib/fulfil";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
@@ -28,14 +26,8 @@ export async function POST(req: Request) {
     const items = (notes.items ?? "").split(",").filter(isProductId) as ProductId[];
     const customer = { name: notes.name ?? "", email: notes.email ?? "", contact: notes.contact ?? "" };
 
-    const previous = await getSession();
-    const carried = previous && previous.customer.email === customer.email ? previous.owned : [];
-    const owned = Array.from(new Set([...carried, ...items]));
-    await setSession({ customer, currency: notes.currency === "USD" ? "USD" : "INR", owned });
-    if (ownsToolkit(owned)) await setMember({ email: customer.email, name: customer.name });
-
-    const next = isStepId(notes.step) ? resolveStep(steps[notes.step].onAccept, owned) : resolveStep(FIRST_STEP, owned);
-    return NextResponse.json({ next: stepUrl(next) });
+    const next = await completePurchase({ customer, currency: notes.currency === "USD" ? "USD" : "INR", items, step: notes.step ?? "" });
+    return NextResponse.json({ next });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: "Couldn't confirm your payment. If you were charged, email us and we'll sort it out." }, { status: 502 });

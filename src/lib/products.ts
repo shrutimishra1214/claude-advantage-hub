@@ -144,8 +144,14 @@ export function isTierOfferable(id: TierId) {
 export const isProductId = (v: unknown): v is ProductId =>
   typeof v === "string" && v in products;
 
+/**
+ * True until either provider takes real money. Every product is then shown so
+ * the whole funnel can be tried; once one provider is live, only ready products are.
+ */
 export function isTestMode() {
-  return (process.env.RAZORPAY_KEY_ID ?? "").startsWith("rzp_test_");
+  const razorpayLive = (process.env.RAZORPAY_KEY_ID ?? "").startsWith("rzp_live_");
+  const paddleLive = process.env.PADDLE_ENVIRONMENT === "production" && Boolean(process.env.PADDLE_API_KEY);
+  return !razorpayLive && !paddleLive;
 }
 
 export function isOfferable(id: ProductId) {

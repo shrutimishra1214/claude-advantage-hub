@@ -30,7 +30,7 @@ export async function sendPurchaseEmail(opts: { to: string; name: string; items:
     headers: {
       Authorization: `Bearer ${key}`,
       "Content-Type": "application/json",
-      // Razorpay may deliver the same webhook more than once.
+      // Payment providers may deliver the same webhook more than once.
       "Idempotency-Key": `purchase-${opts.paymentId}`,
     },
     body: JSON.stringify({

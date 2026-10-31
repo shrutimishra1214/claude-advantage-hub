@@ -123,10 +123,12 @@ export function CheckoutProvider({ currency, tiers, children }: { currency: Curr
                 <span>Email <span className="font-normal text-ink-muted">(your access link is sent here)</span></span>
                 <input required type="email" autoComplete="email" className="input" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
               </label>
-              <label className="grid gap-1.5 text-sm font-medium">
-                <span>Phone <span className="font-normal text-ink-muted">(optional, speeds up UPI)</span></span>
-                <input type="tel" autoComplete="tel" className="input" value={form.contact} onChange={(e) => setForm({ ...form, contact: e.target.value })} />
-              </label>
+              {currency === "INR" && (
+                <label className="grid gap-1.5 text-sm font-medium">
+                  <span>Phone <span className="font-normal text-ink-muted">(optional, speeds up UPI)</span></span>
+                  <input type="tel" autoComplete="tel" className="input" value={form.contact} onChange={(e) => setForm({ ...form, contact: e.target.value })} />
+                </label>
+              )}
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-line pt-5">
@@ -138,10 +140,10 @@ export function CheckoutProvider({ currency, tiers, children }: { currency: Curr
 
             <button type="submit" disabled={busy} className="btn-primary mt-5 w-full !py-4">
               <Icon.lock className="h-5 w-5" />
-              {busy ? "Opening secure payment…" : `Pay ${formatPrice(chosen.price, currency)} securely`}
+              {busy ? "Opening secure payment…" : currency === "INR" ? `Pay ${formatPrice(chosen.price, currency)} securely` : "Continue to secure payment"}
             </button>
             <p className="mt-4 text-center text-xs text-ink-muted">
-              Secured by Razorpay · {currency === "INR" ? "UPI, cards, net banking & wallets" : "All major cards"}
+              {currency === "INR" ? "Secured by Razorpay · UPI, cards, net banking & wallets" : "Secured by Paddle, our reseller · Sales tax or VAT added at checkout where it applies"}
             </p>
           </form>
         </div>
