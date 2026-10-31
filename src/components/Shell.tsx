@@ -4,6 +4,7 @@ import { isOfferable, products } from "@/lib/products";
 import { CheckoutProvider } from "./CheckoutProvider";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { ScrollProgress } from "./ScrollProgress";
 
 /** Page chrome plus the checkout sheet, priced in the visitor's currency. */
 export async function Shell({ children }: { children: ReactNode }) {
@@ -20,6 +21,7 @@ export async function Shell({ children }: { children: ReactNode }) {
         vaultCompare: vault.compareAt![currency],
       }}
     >
+      <ScrollProgress />
       <Header />
       <main>{children}</main>
       <Footer />

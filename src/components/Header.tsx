@@ -6,8 +6,8 @@ import { BuyButton } from "./BuyButton";
 
 export function Logo() {
   return (
-    <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight" aria-label="Kaelis Voss home">
-      <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-xl bg-spectrum text-sm text-white shadow-lift">KV</span>
+    <Link href="/" className="group flex items-center gap-2.5 font-display text-xl font-medium tracking-tight" aria-label="Kaelis Voss home">
+      <span className="grid h-9 w-9 place-items-center rounded-full bg-ink font-display text-[15px] italic text-paper transition-transform duration-500 group-hover:-rotate-12">kv</span>
       Kaelis Voss
     </Link>
   );
@@ -23,8 +23,8 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-ink/5 bg-white/75 backdrop-blur-xl" : "bg-transparent"}`}>
-      <div className="container flex h-16 items-center justify-between md:h-20">
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-line bg-paper/80 backdrop-blur-xl" : "bg-transparent"}`}>
+      <div className={`container flex items-center justify-between transition-all duration-300 ${scrolled ? "h-14 md:h-16" : "h-16 md:h-20"}`}>
         <Logo />
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
           <a href="/#toolkit" className="btn-ghost">Toolkit</a>

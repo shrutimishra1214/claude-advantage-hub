@@ -41,7 +41,7 @@ export function EarlyReaderForm() {
     return (
       <div className="text-center" role="status">
         <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-500 text-white shadow-lift"><Icon.check className="h-8 w-8" /></span>
-        <h3 className="mt-6 text-2xl font-bold md:text-3xl">Spot #{spot} is yours!</h3>
+        <h3 className="mt-6 text-2xl font-medium md:text-3xl">Spot #{spot} is yours!</h3>
         <p className="mx-auto mt-3 max-w-md text-lg leading-relaxed text-ink-muted">
           We&apos;ve reserved your place. Your free copy arrives by email within 2 business days. Keep an eye on <strong className="text-ink">{form.email}</strong>.
         </p>
@@ -89,7 +89,7 @@ export function EarlyReaderForm() {
 
       {error && <p role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
 
-      <button type="submit" disabled={busy} className="btn-spectrum mt-1 w-full">
+      <button type="submit" disabled={busy} className="btn-accent mt-1 w-full">
         {busy ? "Reserving your spot…" : "Claim my free spot"} {!busy && <Icon.arrow className="h-5 w-5" />}
       </button>
       <p className="text-center text-xs text-ink-muted">No payment needed. We only use your details to send the book and arrange your review.</p>

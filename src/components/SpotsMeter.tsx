@@ -6,12 +6,12 @@ export function SpotsMeter({ claimed, total, compact = false }: { claimed: numbe
   return (
     <div>
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <p className={`font-display font-extrabold leading-none ${compact ? "text-2xl" : "text-3xl md:text-4xl"}`}>
+        <p className={`font-display font-medium leading-none ${compact ? "text-2xl" : "text-3xl md:text-4xl"}`}>
           {left === 0 ? (
             <>All spots claimed</>
           ) : (
             <>
-              <span className="text-spectrum">{left}</span> of {total} {left === 1 ? "spot" : "spots"} left
+              <span className="accent-em">{left}</span> of {total} {left === 1 ? "spot" : "spots"} left
             </>
           )}
         </p>

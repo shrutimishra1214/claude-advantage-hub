@@ -32,7 +32,7 @@ export function StickyBuyBar() {
             <span className="line-through">{formatPrice(prices.bookCompare, currency)}</span> · instant PDF
           </p>
         </div>
-        <button type="button" onClick={open} tabIndex={show ? 0 : -1} className="btn-spectrum !px-5 !py-3 !text-sm">Get it now</button>
+        <button type="button" onClick={open} tabIndex={show ? 0 : -1} className="btn-accent !px-5 !py-3 !text-sm">Get it now</button>
       </div>
     </div>
   );

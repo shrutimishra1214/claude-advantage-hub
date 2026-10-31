@@ -31,9 +31,13 @@ export function LookInside({ pages }: { pages: Page[] }) {
     <>
       <ul className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 lg:grid-cols-6 lg:gap-4">
         {pages.map((p, i) => (
-          <li key={p.src} className="w-[62%] shrink-0 snap-center sm:w-[40%] md:w-auto">
+          <li
+            key={p.src}
+            // Fanned slightly, like pages laid out on a desk; they straighten on hover.
+            className={`w-[62%] shrink-0 snap-center sm:w-[40%] md:w-auto ${["md:-rotate-2", "md:rotate-1", "md:-rotate-1", "md:rotate-2", "md:-rotate-1", "md:rotate-1"][i % 6]} transition-transform duration-500 md:hover:rotate-0`}
+          >
             <button type="button" onClick={() => setIndex(i)} className="group block w-full text-left" aria-label={`Enlarge page: ${p.caption}`}>
-              <span className="relative block overflow-hidden rounded-xl bg-white shadow-soft ring-1 ring-ink/10 transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-lift">
+              <span className="relative block overflow-hidden rounded-xl bg-white shadow-soft ring-1 ring-ink/10 transition duration-300 group-hover:-translate-y-2 group-hover:scale-[1.03] group-hover:shadow-lift">
                 <Image src={p.src} alt={p.caption} width={849} height={1100} sizes="(min-width:1024px) 190px, (min-width:768px) 30vw, 62vw" className="h-auto w-full" />
                 <span className="absolute inset-0 grid place-items-center bg-ink/0 opacity-0 transition group-hover:bg-ink/25 group-hover:opacity-100">
                   <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-ink shadow-soft">Enlarge</span>

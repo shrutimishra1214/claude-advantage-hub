@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Caveat, Fraunces, Inter } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const display = Sora({ subsets: ["latin"], variable: "--font-display", weight: ["500", "600", "700", "800"] });
+const display = Fraunces({ subsets: ["latin"], variable: "--font-display", axes: ["opsz"], style: ["normal", "italic"] });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", weight: ["500", "700"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -19,11 +20,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: site.bookTitle, description: site.description },
 };
 
-export const viewport: Viewport = { themeColor: "#FBFAFF" };
+export const viewport: Viewport = { themeColor: "#F6F3EE" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${hand.variable}`}>
       <body>{children}</body>
     </html>
   );

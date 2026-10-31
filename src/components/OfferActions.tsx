@@ -25,7 +25,7 @@ export function OfferActions({ step, cta, decline, declineHref }: { step: StepId
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <button type="button" onClick={accept} disabled={busy} className="btn-spectrum w-full max-w-md !py-5 !text-lg">
+      <button type="button" onClick={accept} disabled={busy} className="btn-accent w-full max-w-md !py-5 !text-lg">
         {busy ? "Opening secure payment…" : cta}
         {!busy && <Icon.arrow className="h-5 w-5" />}
       </button>

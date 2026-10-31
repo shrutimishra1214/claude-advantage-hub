@@ -4,10 +4,10 @@
 export type Level = "Beginner" | "Intermediate" | "Advanced" | "Power User" | "All levels";
 
 export const levelStyle: Record<Level, string> = {
-  Beginner: "bg-emerald-50 text-emerald-700 ring-emerald-600/15",
-  Intermediate: "bg-sky-50 text-sky-700 ring-sky-600/15",
-  Advanced: "bg-violet-50 text-violet-700 ring-violet-600/15",
-  "Power User": "bg-orange-50 text-orange-700 ring-orange-600/15",
+  Beginner: "bg-emerald-50 text-emerald-800 ring-emerald-700/15",
+  Intermediate: "bg-accent-soft text-accent-deep ring-accent/15",
+  Advanced: "bg-amber-50 text-amber-800 ring-amber-700/15",
+  "Power User": "bg-ink text-paper ring-ink",
   "All levels": "bg-ink/5 text-ink-soft ring-ink/10",
 };
 

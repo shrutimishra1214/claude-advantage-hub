@@ -28,21 +28,18 @@ export default async function EarlyReaders() {
   return (
     <Shell>
       <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-40">
-        <div aria-hidden className="absolute inset-0 -z-10">
-          <div className="absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-brand-blue/20 blur-[120px]" />
-          <div className="absolute -right-32 top-24 h-[480px] w-[480px] rounded-full bg-brand-pink/20 blur-[120px]" />
-        </div>
+        <div aria-hidden className="dot-grid absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_70%_40%,black_20%,transparent_70%)]" />
 
         <div className="container grid items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
           <div>
-            <span className="eyebrow"><Icon.video className="h-4 w-4 text-brand-violet" /> Early reader program</span>
-            <h1 className="mt-6 text-[2.4rem] font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">
+            <span className="eyebrow">Early reader program</span>
+            <h1 className="mt-6 text-[2.4rem] font-medium leading-[1.05] sm:text-5xl lg:text-6xl">
               {programOver ? (
-                <>The early reader program has <span className="text-spectrum">wrapped up</span>.</>
+                <>The early reader program has <span className="accent-em">wrapped up</span>.</>
               ) : left === 0 ? (
-                <>Our early readers are <span className="text-spectrum">reading now</span>.</>
+                <>Our early readers are <span className="accent-em">reading now</span>.</>
               ) : (
-                <>Read it <span className="text-spectrum">free</span>. Tell us what you really think.</>
+                <>Read it <span className="accent-em">free</span>. Tell us what you really think.</>
               )}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl">
@@ -85,9 +82,9 @@ export default async function EarlyReaders() {
                   const StepIcon = Icon[s.icon];
                   return (
                     <li key={s.title} className="relative rounded-3xl bg-paper-tint p-7">
-                      <span className="absolute right-6 top-6 font-display text-5xl font-extrabold text-ink/[0.06]">{i + 1}</span>
-                      <span className="grid h-12 w-12 place-items-center rounded-2xl bg-spectrum text-white"><StepIcon className="h-6 w-6" /></span>
-                      <h3 className="mt-5 text-lg font-bold">{s.title}</h3>
+                      <span className="absolute right-6 top-6 font-display text-5xl font-medium text-ink/[0.06]">{i + 1}</span>
+                      <span className="icon-tile h-12 w-12 bg-white"><StepIcon className="h-6 w-6" /></span>
+                      <h3 className="mt-5 text-lg font-medium">{s.title}</h3>
                       <p className="mt-2 leading-relaxed text-ink-muted">{s.body}</p>
                     </li>
                   );
@@ -100,7 +97,7 @@ export default async function EarlyReaders() {
             <div className="container grid max-w-5xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
               <div className="text-center lg:text-left">
                 <BookMockup className="mx-auto max-w-[220px] lg:mx-0" />
-                <h2 className="mt-10 text-2xl font-bold md:text-3xl">What you get</h2>
+                <h2 className="mt-10 text-2xl font-medium md:text-3xl">What you get</h2>
                 <ul className="mt-4 grid gap-2.5 text-left">
                   {["The complete ebook: 39 chapters, all 9 apps", "The Prompt Library, Workflow Library and 90-Day Plan", "Your review featured on this site (with your permission)"].map((t) => (
                     <li key={t} className="flex gap-3"><Icon.check className="mt-0.5 h-5 w-5 shrink-0 text-brand-violet" /> {t}</li>
@@ -111,14 +108,14 @@ export default async function EarlyReaders() {
               <div className="card p-6 md:p-10">
                 {left > 0 ? (
                   <>
-                    <h2 className="text-2xl font-bold md:text-3xl">Claim your spot</h2>
+                    <h2 className="text-2xl font-medium md:text-3xl">Claim your spot</h2>
                     <p className="mt-2 text-ink-muted">{left === 1 ? "Only 1 spot left." : `${left} spots left.`} First come, first served.</p>
                     <div className="mt-8"><EarlyReaderForm /></div>
                   </>
                 ) : (
                   <div className="text-center">
                     <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-ink text-white"><Icon.lock className="h-7 w-7" /></span>
-                    <h2 className="mt-6 text-2xl font-bold md:text-3xl">All {TOTAL_SPOTS} spots are claimed</h2>
+                    <h2 className="mt-6 text-2xl font-medium md:text-3xl">All {TOTAL_SPOTS} spots are claimed</h2>
                     <p className="mx-auto mt-3 max-w-md leading-relaxed text-ink-muted">
                       Applications are closed. You can still get the complete toolkit today, covered by our money-back guarantee.
                     </p>

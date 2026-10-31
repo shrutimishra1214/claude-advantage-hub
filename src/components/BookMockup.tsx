@@ -4,7 +4,7 @@ import Image from "next/image";
 export function BookMockup({ className = "", priority = false }: { className?: string; priority?: boolean }) {
   return (
     <div className={`relative [perspective:1600px] ${className}`}>
-      <div aria-hidden className="absolute -inset-10 -z-10 rounded-full bg-spectrum opacity-30 blur-3xl" />
+      <div aria-hidden className="absolute inset-x-[8%] -bottom-6 -z-10 h-10 rounded-[50%] bg-ink/25 blur-2xl" />
       {/* Float and tilt live on separate elements so the animation doesn't override the 3D rotation. */}
       <div className="animate-float [transform-style:preserve-3d]">
       <div className="relative mx-auto w-full transition-transform duration-700 [transform-style:preserve-3d] [transform:rotateY(-22deg)_rotateX(4deg)] hover:[transform:rotateY(-8deg)_rotateX(2deg)]">
@@ -17,7 +17,7 @@ export function BookMockup({ className = "", priority = false }: { className?: s
           height={1392}
           priority={priority}
           sizes="(min-width: 1024px) 420px, 70vw"
-          className="relative rounded-r-md rounded-l-sm shadow-[20px_30px_60px_-15px_rgba(11,16,48,.45),0_0_0_1px_rgba(11,16,48,.06)]"
+          className="relative rounded-r-md rounded-l-sm shadow-book"
         />
         {/* spine shading */}
         <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 w-[6%] rounded-l-sm bg-gradient-to-r from-black/25 via-white/20 to-transparent" />

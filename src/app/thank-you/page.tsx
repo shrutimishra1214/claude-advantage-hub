@@ -27,7 +27,7 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
       <main className="container max-w-3xl pb-24 pt-6">
         {owned.length === 0 ? (
           <div className="card mt-10 p-10 text-center">
-            <h1 className="text-3xl font-bold">Your library</h1>
+            <h1 className="text-3xl font-medium">Your library</h1>
             <p className="mt-4 text-lg text-ink-muted">
               Open the link in your purchase email to see your downloads on this device. Can&apos;t find it? Email{" "}
               <a className="font-semibold text-brand-violet" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> and we&apos;ll resend it.
@@ -39,7 +39,7 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
             {session && !grant && <FunnelProgress current={3} />}
             <div className="mt-12 text-center">
               <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-500 text-white shadow-lift"><Icon.check className="h-8 w-8" /></span>
-              <h1 className="mt-6 text-4xl font-extrabold md:text-5xl">{name ? `You're all set, ${name}!` : "Your library"}</h1>
+              <h1 className="mt-6 text-4xl font-medium md:text-5xl">{name ? `You're all set, ${name}!` : "Your library"}</h1>
               {email && <p className="mt-4 text-lg text-ink-muted">We also email your download link to <strong className="text-ink">{email}</strong>.</p>}
             </div>
 
@@ -51,12 +51,12 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
                     {id === "book" ? (
                       <Image src="/images/cover.jpg" alt="" width={64} height={81} className="rounded-md shadow-soft" />
                     ) : (
-                      <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-spectrum text-white">
+                      <span className="icon-tile h-16 w-16 shrink-0">
                         {p.delivery.kind === "file" ? <Icon.doc className="h-7 w-7" /> : <Icon.video className="h-7 w-7" />}
                       </span>
                     )}
                     <div className="flex-1">
-                      <h2 className="text-lg font-bold">{p.name}</h2>
+                      <h2 className="text-lg font-medium">{p.name}</h2>
                       <p className="text-ink-muted">{p.short}</p>
                     </div>
                     {p.delivery.kind === "file" ? (

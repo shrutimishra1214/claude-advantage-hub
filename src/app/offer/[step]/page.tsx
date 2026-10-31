@@ -41,7 +41,7 @@ export default async function OfferPage({ params }: { params: Promise<{ step: st
 
         <div className="mt-12 text-center">
           <span className="eyebrow">{copy.eyebrow}</span>
-          <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] md:text-5xl">{copy.headline}</h1>
+          <h1 className="mt-6 text-4xl font-medium leading-[1.08] md:text-5xl">{copy.headline}</h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted md:text-xl">{copy.lead}</p>
         </div>
 
@@ -49,11 +49,11 @@ export default async function OfferPage({ params }: { params: Promise<{ step: st
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-violet">{product.short}</p>
-              <h2 className="mt-1 text-2xl font-bold">{product.name}</h2>
+              <h2 className="mt-1 text-2xl font-medium">{product.name}</h2>
             </div>
             <div className="text-right">
               {compare && <p className="text-ink-muted line-through">{formatPrice(compare, currency)}</p>}
-              <p className="font-display text-4xl font-extrabold">{formatPrice(price, currency)}</p>
+              <p className="font-display text-4xl font-medium">{formatPrice(price, currency)}</p>
             </div>
           </div>
           <ul className="mt-8 grid gap-3 border-t border-ink/10 pt-8">

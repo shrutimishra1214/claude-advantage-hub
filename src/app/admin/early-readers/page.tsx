@@ -18,7 +18,7 @@ export default async function Admin() {
   return (
     <Frame wide>
       <SpotsMeter claimed={apps.length} total={TOTAL_SPOTS} compact />
-      <h2 className="mt-10 text-xl font-bold">Applicants</h2>
+      <h2 className="mt-10 text-xl font-medium">Applicants</h2>
       {apps.length === 0 ? (
         <p className="mt-3 text-ink-muted">No applications yet.</p>
       ) : (
@@ -51,7 +51,7 @@ function Frame({ children, wide = false }: { children: React.ReactNode; wide?: b
     <main className={`container py-16 ${wide ? "max-w-3xl" : "max-w-md"}`}>
       <div className="flex justify-center"><Logo /></div>
       <div className="card mt-10 p-6 md:p-8">
-        <h1 className="mb-6 text-2xl font-bold">Early reader spots</h1>
+        <h1 className="mb-6 text-2xl font-medium">Early reader spots</h1>
         {children}
       </div>
     </main>

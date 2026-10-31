@@ -84,7 +84,7 @@ export function CheckoutProvider({
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-violet">Secure checkout</p>
-                <h2 id="checkout-title" className="mt-1 text-2xl font-bold">Complete your order</h2>
+                <h2 id="checkout-title" className="mt-1 text-2xl font-medium">Complete your order</h2>
               </div>
               <button type="button" onClick={() => !busy && setOpen(false)} className="rounded-full p-2 text-ink-muted hover:bg-ink/5" aria-label="Close">
                 <Icon.x />
@@ -142,7 +142,7 @@ export function CheckoutProvider({
 
             {error && <p role="alert" className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
 
-            <button type="submit" disabled={busy} className="btn-spectrum mt-5 w-full">
+            <button type="submit" disabled={busy} className="btn-accent mt-5 w-full">
               <Icon.lock className="h-5 w-5" />
               {busy ? "Opening secure payment…" : `Pay ${formatPrice(total, currency)} securely`}
             </button>

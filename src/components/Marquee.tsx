@@ -5,9 +5,9 @@ export function Marquee({ items }: { items: string[] }) {
   return (
     <div aria-hidden className="relative grid gap-3 overflow-hidden py-2 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
       {rows.map((row, r) => (
-        <div key={r} className={`flex w-max gap-3 ${r === 0 ? "animate-marquee" : "animate-marquee-reverse"} hover:[animation-play-state:paused]`}>
+        <div key={r} className={`flex w-max gap-6 ${r === 0 ? "animate-marquee" : "animate-marquee-reverse"} hover:[animation-play-state:paused]`}>
           {[...row, ...row].map((t, i) => (
-            <span key={i} className="whitespace-nowrap rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-medium text-ink-soft shadow-soft">
+            <span key={i} className="whitespace-nowrap font-display text-lg italic text-ink-muted/80 after:ml-6 after:text-ink/20 after:content-['✦']">
               {t}
             </span>
           ))}
