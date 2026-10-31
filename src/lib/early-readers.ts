@@ -1,5 +1,6 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { redis, redisConfig } from "./kv";
 
 // The early reader program: the first few applicants each claim a spot,
 // get the book free, and record an honest video review in return.
@@ -27,26 +28,6 @@ return redis.call('HLEN', KEYS[1])
 `;
 
 // ── Storage: Upstash Redis (Vercel KV) in production, a JSON file locally ──
-
-function redisConfig() {
-  const url = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN;
-  return url && token ? { url, token } : null;
-}
-
-async function redis<T>(command: (string | number)[]): Promise<T> {
-  const cfg = redisConfig()!;
-  const res = await fetch(cfg.url, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${cfg.token}`, "Content-Type": "application/json" },
-    body: JSON.stringify(command),
-    cache: "no-store",
-  });
-  const data = await res.json();
-  if (!res.ok || data.error) throw new Error(`Redis ${command[0]} failed: ${data.error ?? res.status}`);
-  return data.result as T;
-}
-
 const FILE = path.join(process.cwd(), ".data", "early-readers.json");
 
 async function readFileStore(): Promise<Record<string, Application>> {

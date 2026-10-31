@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Prompt Library" };
 export default function Prompts() {
   return (
     <>
-      <PageHead eyebrow="Prompt Recipe Library" title="Prompts organized around real work" lead="Find a recipe, give Copilot what it asks for, and use the follow-up to refine." />
+      <PageHead eyebrow="Prompt Recipe Library" title="Prompts organized around real work" lead="Find a recipe, make it yours with Customize, or add the prompts that already work for you. Everything you change is kept in My prompts." />
       <div className="mt-8"><RecipeBrowser recipes={recipes} /></div>
     </>
   );

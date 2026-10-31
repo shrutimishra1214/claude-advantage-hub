@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHead } from "@/components/members/PageHead";
-import { PromptBlock } from "@/components/members/PromptBlock";
+import { EditablePrompt } from "@/components/members/EditablePrompt";
 import { bookPrompts } from "@/lib/toolkit/method";
 
 export const metadata: Metadata = { title: "The Book's Prompt Library" };
@@ -29,7 +29,7 @@ export default function Library() {
                 <div key={p.name} className="rounded-xl border border-line p-5">
                   <h3 className="text-lg">{p.name}</h3>
                   <p className="mt-1 leading-relaxed text-ink-soft">{p.for}</p>
-                  <div className="mt-4"><PromptBlock text={p.template} /></div>
+                  <div className="mt-4"><EditablePrompt id={`book:${slug(p.name)}`} prompt={p.template} /></div>
                   <p className="mt-3 text-sm text-ink-muted"><strong className="text-ink">Expert upgrade:</strong> {p.upgrade}</p>
                 </div>
               ))}

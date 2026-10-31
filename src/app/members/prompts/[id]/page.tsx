@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHead } from "@/components/members/PageHead";
+import { EditablePrompt } from "@/components/members/EditablePrompt";
 import { PromptBlock } from "@/components/members/PromptBlock";
 import { SaveButton } from "@/components/members/RecipeBrowser";
 import { AppChip } from "@/components/product/AppChip";
@@ -31,15 +32,16 @@ export default async function RecipePage({ params }: Props) {
           <div><dt className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">What to provide Copilot</dt><dd className="mt-1 leading-relaxed">{r.provide}</dd></div>
         </dl>
 
-        <PromptBlock text={r.prompt} />
-        <p className="-mt-4 text-sm text-ink-muted">Replace anything in [brackets] before sending.</p>
+        <div>
+          <EditablePrompt id={r.id} prompt={r.prompt} followUp={r.followUp} />
+          <p className="mt-2 text-sm text-ink-muted">Replace anything in [brackets] before sending, or press Customize to save your own version.</p>
+        </div>
 
         <dl className="grid gap-6 md:grid-cols-2">
           <div className="rounded-xl border border-line p-5"><dt className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">Expected output</dt><dd className="mt-1.5 leading-relaxed">{r.expected}</dd></div>
           <div className="rounded-xl border border-line p-5"><dt className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">Example</dt><dd className="mt-1.5 leading-relaxed">{r.example}</dd></div>
         </dl>
 
-        <PromptBlock label="Follow-up prompt" text={r.followUp} dark={false} />
         <PromptBlock label="Advanced version: add this" text={r.advanced} dark={false} />
 
         {related.length > 0 && (
