@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { testimonials } from "@/lib/content";
 import { site } from "@/lib/site";
 import { Logo } from "./Header";
 
@@ -19,9 +20,8 @@ export function Footer() {
             <li><a href="/#toolkit" className="hover:text-ink">The toolkit</a></li>
             <li><a href="/#curriculum" className="hover:text-ink">Curriculum</a></li>
             <li><a href="/#look-inside" className="hover:text-ink">Look inside</a></li>
-            <li><a href="/#reviews" className="hover:text-ink">Reader stories</a></li>
+            {testimonials.length > 0 && <li><a href="/#reviews" className="hover:text-ink">Reader stories</a></li>}
             <li><a href="/#faq" className="hover:text-ink">FAQ</a></li>
-            <li><Link href="/early-readers" className="hover:text-ink">Early reader program</Link></li>
             <li><Link href="/thank-you" className="hover:text-ink">My library</Link></li>
           </ul>
         </div>
