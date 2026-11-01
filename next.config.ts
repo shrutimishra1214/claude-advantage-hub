@@ -12,10 +12,11 @@ const nextConfig: NextConfig = {
     return [
       { source: "/members", destination: "/copilot-advantage/members", permanent: true },
       { source: "/members/:path((?!enter$).*)", destination: "/copilot-advantage/members/:path", permanent: true },
-      // The Copilot book points readers to its companion page at the old address.
-      { source: "/the-microsoft-copilot-advantage", destination: "/copilot-advantage/companion", permanent: true },
     ];
   },
+  // The site has two root layouts (the main site and the book reader pages),
+  // so unmatched URLs need a 404 page of their own.
+  experimental: { globalNotFound: true },
   images: {
     formats: ["image/avif", "image/webp"],
   },

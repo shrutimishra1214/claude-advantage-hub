@@ -8,8 +8,27 @@ Visitors in India pay in INR through **Razorpay**; everyone else pays in USD thr
 
 | Line | Sales page | Member area | Book companion (printed in the book) |
 |---|---|---|---|
-| The Microsoft Copilot Advantage | `/copilot-advantage` | `/copilot-advantage/members` | `/copilot-advantage/companion` (the printed `/the-microsoft-copilot-advantage` redirects here) |
-| The Claude Advantage (+ The Claude Operator, advanced) | `/claude-advantage` | `/claude-advantage/members` | `/claude-advantage/companion`, `/mastering-Claude-AI` |
+| The Microsoft Copilot Advantage | `/copilot-advantage` | `/copilot-advantage/members` | `/copilot-advantage/companion` |
+| The Claude Advantage (+ The Claude Operator, advanced) | `/claude-advantage` | `/claude-advantage/members` | `/claude-advantage/companion`, `/claude-advantage/operator-toolkit` |
+
+### Book reader pages (from claude-advantage-hub)
+
+The addresses printed in the books are reader sign-up pages merged in from the `claude-advantage-hub` project. They keep
+their own design and live in `src/app/(hub)`, with their components in `src/hub`:
+
+| Page | Brevo list |
+|---|---|
+| `/the-claude-advantage` | 6 |
+| `/the-microsoft-copilot-advantage` (+ `/resources`, the six bonus PDFs in `public/copilot-bonuses`) | 7 |
+| `/mastering-Claude-AI` (+ `/resources`, the Operator toolkit in `public/operator-toolkit`) | 8 |
+
+Sign-ups go through `/api/subscribe` and need `BREVO_API_KEY`. These pages use Tailwind v4, built separately from the main
+site's Tailwind 3 so neither design leaks into the other: after changing their classes, rebuild `public/hub/hub.css` with
+Node 20+:
+
+```bash
+npm --prefix tools/hub-css install && npm --prefix tools/hub-css run build
+```
 
 Each line's name, theme, navigation and tiers live in `src/lib/lines.ts`; Claude content lives in `src/lib/claude/`
 (chapter, prompt and skill data were extracted from the two Claude books). Put `claude-advantage.pdf` and

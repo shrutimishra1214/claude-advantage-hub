@@ -11,7 +11,7 @@ import { nextMove, operatorCheck, operatorLoop, operatorPlan, operatorScale, opS
 export const metadata: Metadata = {
   title: { absolute: "The Claude Operator Toolkit | Kaelis Voss" },
   description: "The companion toolkit for The Claude Operator: the Skills Library, 25 ready-to-run workflows, the Operator Scale and the 30-Day Operator Plan.",
-  alternates: { canonical: "/mastering-Claude-AI" },
+  alternates: { canonical: "/claude-advantage/operator-toolkit" },
 };
 
 const sections = [
