@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/icons";
 import { DashboardBook, DashboardProgress } from "@/components/members/Dashboard";
@@ -8,6 +9,8 @@ import { templates } from "@/lib/toolkit/templates";
 import { workflows } from "@/lib/toolkit/workflows";
 import { chapters } from "@/lib/toolkit/book";
 import { bookPrompts } from "@/lib/toolkit/method";
+
+export const metadata: Metadata = { title: { absolute: "Member area · The Microsoft Copilot Advantage" } };
 
 const tools = [
   { href: "/members/book", icon: "pages", title: "The Book", meta: `${chapters.length} chapters, every exercise` },

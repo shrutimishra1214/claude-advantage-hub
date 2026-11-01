@@ -5,7 +5,7 @@ import { useCheckout } from "./CheckoutProvider";
 import { Icon } from "./icons";
 
 /** Opens checkout on a tier. Until that tier is on sale it shows as "Coming soon". */
-export function BuyButton({ tier = "toolkit", label, variant = "primary", showPrice = true, arrow = true, className = "" }: {
+export function BuyButton({ tier: tierProp, label, variant = "primary", showPrice = true, arrow = true, className = "" }: {
   tier?: TierId;
   label?: string;
   variant?: "primary" | "dark" | "secondary";
@@ -13,7 +13,8 @@ export function BuyButton({ tier = "toolkit", label, variant = "primary", showPr
   arrow?: boolean;
   className?: string;
 }) {
-  const { open, currency, tier: get } = useCheckout();
+  const { open, currency, tier: get, primaryTier } = useCheckout();
+  const tier = tierProp ?? primaryTier;
   const t = get(tier);
   const cls = `btn-${variant} ${className}`;
   if (!t.available)

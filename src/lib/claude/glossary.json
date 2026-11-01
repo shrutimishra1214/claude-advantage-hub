@@ -1,0 +1,102 @@
+[
+ [
+  "API (Application Programming Interface)",
+  "A connection that allows software systems to communicate with each other. For Claude, the API allows developers to integrate Claude's capabilities directly into their own applications and workflows, bypassing the standard web interface."
+ ],
+ [
+  "Attention mechanism",
+  "The component of a transformer neural network that allows the model to consider the relationship between different parts of the input text when generating a response. In practical terms, it is what allows Claude to maintain coherent context across a long conversation."
+ ],
+ [
+  "Chain-of-thought prompting",
+  "A prompting technique in which you instruct Claude to reason through a problem step by step before giving a final answer. Effective for complex analytical, mathematical, or multi-step reasoning tasks."
+ ],
+ [
+  "Claude",
+  "Anthropic's AI assistant, built on large language model technology. Claude is designed with a particular focus on helpfulness, harmlessness, and honesty. Available via web interface, API, mobile app, and enterprise plans."
+ ],
+ [
+  "Context window",
+  "The amount of text Claude can process in a single conversation both your input and its output. Claude's context window is large enough to accommodate long documents, extended conversations, and complex multi-step tasks. When a conversation exceeds the context window, earlier content may be dropped."
+ ],
+ [
+  "Fine-tuning",
+  "A process in which a pre-trained AI model is further trained on a specific dataset to improve its performance on particular tasks or in particular domains. Distinct from prompting: fine-tuning changes the model itself, while prompting changes the instructions given to the model."
+ ],
+ [
+  "Foundation model",
+  "A large AI model trained on broad data that can be applied to a wide range of tasks, as distinct from narrow models trained for a single specific task. Claude is a foundation model. The term acknowledges that these models form the foundation on which many specific applications are built."
+ ],
+ [
+  "Hallucination",
+  "The production of factually incorrect output by a language model, presented with the same fluency and apparent confidence as correct output. Claude can hallucinate specific facts, citations, statistics, and details, particularly for narrow factual queries, recent events, and technical specifics. Verification of critical claims is essential."
+ ],
+ [
+  "Inference",
+  "The process of running an AI model to generate output from a given input. When you send a message to Claude and it generates a response, that process is called inference."
+ ],
+ [
+  "Knowledge cutoff",
+  "The date after which a language model has no training data about world events. Claude's knowledge cutoff means it cannot reliably answer questions about events that occurred after that date. The specific cutoff date for your version of Claude can be found in Anthropic's documentation."
+ ],
+ [
+  "Large language model (LLM)",
+  "A type of AI model trained on large amounts of text data, capable of generating, summarising, translating, and reasoning about text. Claude is a large language model. The 'large' refers to the scale of both the training data and the model's parameters."
+ ],
+ [
+  "Model",
+  "In AI contexts, the trained system that processes input and generates output. Different Claude models (different versions) have different capabilities, context windows, speeds, and cost profiles."
+ ],
+ [
+  "Multimodal",
+  "The ability of an AI model to process multiple types of input beyond text, such as images, audio, or documents. Claude can process images in addition to text, which enables tasks such as describing images, extracting text from documents, and analysing visual content."
+ ],
+ [
+  "Parameters",
+  "The numerical values within an AI model that are adjusted during training to improve performance. The number of parameters in a model is a rough indicator of its capacity, though the relationship between parameter count and capability is complex."
+ ],
+ [
+  "Persona",
+  "A prompting technique in which you instruct Claude to adopt a specific role, perspective, or communication style. Effective for producing output with a particular expertise level, tone, or point of view."
+ ],
+ [
+  "Prompt",
+  "The instruction or input you provide to Claude. The quality of the prompt is the primary determinant of the quality of the output, hence the emphasis on prompt design throughout this book."
+ ],
+ [
+  "Prompt engineering",
+  "The practice of designing, testing, and refining prompts to get better output from AI models. Not a technical skill, effective prompt engineering is primarily about clear communication, specificity, and understanding the model's strengths and limitations."
+ ],
+ [
+  "Prompt injection",
+  "A security concern in which malicious instructions are embedded in content that Claude is asked to process, with the aim of causing Claude to ignore its original instructions and follow the injected ones instead. Relevant for deployments where Claude processes external content at scale."
+ ],
+ [
+  "RAG (Retrieval-Augmented Generation)",
+  "A technique in which an AI model retrieves relevant information from an external knowledge base before generating a response. This allows the model to draw on current or specialised information not in its training data. Used in enterprise Claude deployments."
+ ],
+ [
+  "System prompt",
+  "Instructions provided to Claude at the start of a conversation that set parameters for the entire interaction: tone, persona, task scope, output format, constraints. Distinct from user prompts, which are sent during the conversation. Available in API deployments and some enterprise products."
+ ],
+ [
+  "Temperature",
+  "A parameter that controls the randomness of an AI model's output. Higher temperature produces more varied, creative output; lower temperature produces more predictable, consistent output. In Claude's standard interface, temperature is managed automatically; it becomes configurable in API deployments."
+ ],
+ [
+  "Token",
+  "The unit of text that language models process. Tokens are roughly four characters or three-quarters of a word in English. Claude's context window and pricing are measured in tokens. Understanding tokens helps you estimate how much content Claude can process in a single conversation."
+ ],
+ [
+  "Training data",
+  "The text corpus on which a language model is trained. Claude's training data includes large amounts of text from the internet, books, and other sources, up to its knowledge cutoff date. The composition of training data influences the model's knowledge, assumptions, and biases."
+ ],
+ [
+  "Transformer",
+  "The neural network architecture that underlies most modern large language models, including Claude. Transformers use attention mechanisms to process the relationships between words and concepts in text."
+ ],
+ [
+  "Zero-shot prompting",
+  "Asking Claude to perform a task without providing examples of the desired output. Contrasted with few-shot prompting, which includes one or more examples. Many tasks can be handled zero-shot with a well-written prompt; others benefit from examples."
+ ]
+]

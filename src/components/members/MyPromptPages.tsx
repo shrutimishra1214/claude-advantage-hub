@@ -7,15 +7,19 @@ import { recipeCategories } from "@/lib/system";
 import type { CustomPrompt } from "@/lib/toolkit/my-prompts-types";
 import { Icon } from "../icons";
 import { CopyButton } from "../product/CopyButton";
-import { myPrompts, useMyPrompts } from "./myPrompts";
+import { useMemberLine } from "./MemberLine";
+import { useMyPrompts } from "./myPrompts";
 import { SaveStatus } from "./SaveStatus";
 
-const apps = ["", "Copilot", "Word", "Excel", "PowerPoint", "Outlook", "Teams", "OneNote"];
+const copilotApps = ["", "Copilot", "Word", "Excel", "PowerPoint", "Outlook", "Teams", "OneNote"];
+const claudeApps = ["", "Claude chat", "Projects", "Claude Code", "Cowork", "Design", "Research"];
 type Draft = Pick<CustomPrompt, "title" | "category" | "app" | "prompt" | "followUp" | "notes">;
-const blank: Draft = { title: "", category: "Write", app: "", prompt: "", followUp: "", notes: "" };
+const blank = (category: string): Draft => ({ title: "", category, app: "", prompt: "", followUp: "", notes: "" });
 
-function PromptForm({ initial, submitLabel, onSubmit, onCancel }: { initial: Draft; submitLabel: string; onSubmit: (d: Draft) => void; onCancel: () => void }) {
+function PromptForm({ initial, categories = [...recipeCategories], submitLabel, onSubmit, onCancel }: { initial: Draft; categories?: string[]; submitLabel: string; onSubmit: (d: Draft) => void; onCancel: () => void }) {
   const [d, setD] = useState(initial);
+  const { line } = useMemberLine();
+  const apps = line === "claude" ? claudeApps : copilotApps;
   const set = (k: keyof Draft) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setD({ ...d, [k]: e.target.value });
   return (
     <form
@@ -33,7 +37,7 @@ function PromptForm({ initial, submitLabel, onSubmit, onCancel }: { initial: Dra
         <label className="grid gap-1.5 text-sm font-semibold">
           Category
           <select className="input" value={d.category} onChange={set("category")}>
-            {[...recipeCategories, "Other"].map((c) => <option key={c}>{c}</option>)}
+            {[...categories, "Other"].map((c) => <option key={c}>{c}</option>)}
           </select>
         </label>
         <label className="grid gap-1.5 text-sm font-semibold">
@@ -63,23 +67,26 @@ function PromptForm({ initial, submitLabel, onSubmit, onCancel }: { initial: Dra
   );
 }
 
-export function NewPrompt() {
+export function NewPrompt({ categories }: { categories?: string[] }) {
   const router = useRouter();
-  const { status } = useMyPrompts();
+  const { base } = useMemberLine();
+  const { status, actions } = useMyPrompts();
   if (status === "loading") return <p className="text-ink-muted">Loading your prompts…</p>;
   return (
     <PromptForm
-      initial={blank}
+      initial={blank(categories?.[0] ?? "Write")}
       submitLabel="Save prompt"
-      onCancel={() => router.push("/members/prompts")}
-      onSubmit={(d) => router.push(`/members/prompts/my/${myPrompts.addCustom(d)}`)}
+      categories={categories}
+      onCancel={() => router.push(`${base}/prompts`)}
+      onSubmit={(d) => router.push(`${base}/prompts/my/${actions.addCustom(d)}`)}
     />
   );
 }
 
-export function MyPrompt({ id }: { id: string }) {
+export function MyPrompt({ id, categories }: { id: string; categories?: string[] }) {
   const router = useRouter();
-  const { doc, status } = useMyPrompts();
+  const { base } = useMemberLine();
+  const { doc, status, actions } = useMyPrompts();
   const [editing, setEditing] = useState(false);
   const p = doc.custom.find((c) => c.id === id);
 
@@ -88,13 +95,13 @@ export function MyPrompt({ id }: { id: string }) {
     return (
       <div className="rounded-xl border border-dashed border-line-strong p-8 text-center">
         <p className="font-semibold">This prompt isn&apos;t in your library.</p>
-        <Link href="/members/prompts" className="link-arrow mt-3 text-sm">Back to the Prompt Library</Link>
+        <Link href={`${base}/prompts`} className="link-arrow mt-3 text-sm">Back to the Prompt Library</Link>
       </div>
     );
 
   return (
     <article>
-      <Link href="/members/prompts" className="text-sm font-medium text-ink-muted hover:text-ink">← Prompt Library</Link>
+      <Link href={`${base}/prompts`} className="text-sm font-medium text-ink-muted hover:text-ink">← Prompt Library</Link>
       <div className="mt-4 flex flex-col gap-4 border-b border-line pb-7 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="eyebrow">My prompts · {p.category}{p.app && ` · ${p.app}`}</p>
@@ -107,10 +114,11 @@ export function MyPrompt({ id }: { id: string }) {
         <div className="mt-8">
           <PromptForm
             initial={p}
+            categories={categories}
             submitLabel="Save changes"
             onCancel={() => setEditing(false)}
             onSubmit={(d) => {
-              myPrompts.updateCustom(p.id, d);
+              actions.updateCustom(p.id, d);
               setEditing(false);
             }}
           />
@@ -140,8 +148,8 @@ export function MyPrompt({ id }: { id: string }) {
               type="button"
               onClick={() => {
                 if (!confirm(`Delete “${p.title}”? This can't be undone.`)) return;
-                myPrompts.deleteCustom(p.id);
-                router.push("/members/prompts");
+                actions.deleteCustom(p.id);
+                router.push(`${base}/prompts`);
               }}
               className="btn-secondary !px-4 !py-2.5 !text-sm hover:!border-red-300 hover:!text-red-700"
             >

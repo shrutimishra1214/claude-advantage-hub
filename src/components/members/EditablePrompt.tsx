@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { Icon } from "../icons";
 import { CopyButton } from "../product/CopyButton";
-import { myPrompts, useMyPrompts } from "./myPrompts";
+import { useMyPrompts } from "./myPrompts";
 
 /**
  * A built-in prompt the member can rewrite for their own work. Their version
  * replaces the original everywhere it's shown, until they reset it.
  */
 export function EditablePrompt({ id, prompt, followUp, label = "The prompt" }: { id: string; prompt: string; followUp?: string; label?: string }) {
-  const { doc, status } = useMyPrompts();
+  const { doc, status, actions } = useMyPrompts();
   const mine = doc.edits[id];
   const [editing, setEditing] = useState(false);
   const [showOriginal, setShowOriginal] = useState(false);
@@ -26,7 +26,7 @@ export function EditablePrompt({ id, prompt, followUp, label = "The prompt" }: {
 
   function save() {
     const unchanged = draft.prompt.trim() === prompt && draft.followUp.trim() === (followUp ?? "") && !draft.notes.trim();
-    myPrompts.setEdit(id, unchanged ? null : { prompt: draft.prompt.trim(), followUp: draft.followUp.trim(), notes: draft.notes.trim() });
+    actions.setEdit(id, unchanged ? null : { prompt: draft.prompt.trim(), followUp: draft.followUp.trim(), notes: draft.notes.trim() });
     setEditing(false);
   }
 
@@ -94,7 +94,7 @@ export function EditablePrompt({ id, prompt, followUp, label = "The prompt" }: {
           <button type="button" onClick={() => setShowOriginal(!showOriginal)} className="font-semibold hover:text-ink">{showOriginal ? "Show my version" : "Show original"}</button>
           <button
             type="button"
-            onClick={() => confirm("Reset this prompt to the original? Your version will be deleted.") && myPrompts.setEdit(id, null)}
+            onClick={() => confirm("Reset this prompt to the original? Your version will be deleted.") && actions.setEdit(id, null)}
             className="font-semibold hover:text-red-700"
           >
             Reset to original

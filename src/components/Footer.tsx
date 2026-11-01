@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { lines, type LineId } from "@/lib/lines";
 import { site } from "@/lib/site";
 import { Logo } from "./Header";
 
-const product = [
+const copilotLinks = [
   { href: "/#overview", label: "Overview" },
   { href: "/#whats-inside", label: "What's Inside" },
   { href: "/#workflows", label: "Workflows" },
@@ -18,14 +19,25 @@ const company = [
   { href: "/shipping-policy", label: "Delivery policy" },
 ];
 
-export function Footer() {
+const claudeLinks = [
+  { href: "/claude-advantage#overview", label: "Overview" },
+  { href: "/claude-advantage#system", label: "The System" },
+  { href: "/claude-advantage#workflows", label: "Workflows" },
+  { href: "/claude-advantage#pricing", label: "Pricing" },
+  { href: "/claude-advantage#faq", label: "FAQ" },
+  { href: "/thank-you", label: "My library" },
+];
+
+export function Footer({ line = "copilot" }: { line?: LineId }) {
+  const L = lines[line];
+  const product = line === "claude" ? claudeLinks : copilotLinks;
   return (
     <footer className="border-t border-line bg-paper">
       <div className="container grid gap-10 py-14 md:grid-cols-[1.6fr_1fr_1fr]">
         <div>
-          <Logo />
+          <Logo line={line} />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">
-            The Microsoft Copilot Advantage™ · {site.descriptor}. Created by {site.name}.
+            {L.name}™ · {L.descriptor}. Created by {site.name}.
           </p>
           <p className="mt-3 text-sm">
             <a className="font-medium text-accent hover:underline" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
@@ -47,7 +59,7 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="container flex flex-col gap-3 py-6 text-xs leading-relaxed text-ink-muted md:flex-row md:justify-between md:gap-10">
           <p className="shrink-0">© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
-          <p className="max-w-3xl md:text-right">{site.disclaimer}</p>
+          <p className="max-w-3xl md:text-right">{L.disclaimer}</p>
         </div>
       </div>
     </footer>

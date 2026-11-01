@@ -2,19 +2,22 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { redis, redisConfig } from "./kv";
+import type { LineId } from "./lines";
 import { emptyMyPrompts, LIMITS, type CustomPrompt, type MyPrompts, type PromptEdit } from "./toolkit/my-prompts-types";
 
 // Stored per member, keyed by a hash of their email, so it follows them to any device.
 
-const keyFor = (email: string) => `prompts:${createHash("sha256").update(email.toLowerCase() || "preview").digest("hex").slice(0, 32)}`;
-const fileFor = (email: string) => path.join(process.cwd(), ".data", `${keyFor(email).replace(":", "-")}.json`);
+// The Copilot library keeps its original key; other lines get their own.
+const keyFor = (email: string, line: LineId) =>
+  `prompts:${line === "copilot" ? "" : `${line}:`}${createHash("sha256").update(email.toLowerCase() || "preview").digest("hex").slice(0, 32)}`;
+const fileFor = (email: string, line: LineId) => path.join(process.cwd(), ".data", `${keyFor(email, line).replace(/:/g, "-")}.json`);
 
 /** False on a live site with no database: the browser keeps prompts instead. */
 export const isPromptStoreAvailable = () => Boolean(redisConfig()) || process.env.NODE_ENV !== "production";
 
-export async function loadMyPrompts(email: string): Promise<MyPrompts> {
+export async function loadMyPrompts(email: string, line: LineId): Promise<MyPrompts> {
   try {
-    const raw = redisConfig() ? await redis<string | null>(["GET", keyFor(email)]) : await readFile(fileFor(email), "utf8");
+    const raw = redisConfig() ? await redis<string | null>(["GET", keyFor(email, line)]) : await readFile(fileFor(email, line), "utf8");
     return raw ? sanitize(JSON.parse(raw)) : emptyMyPrompts;
   } catch (err) {
     if ((err as NodeJS.ErrnoException).code === "ENOENT") return emptyMyPrompts;
@@ -22,11 +25,11 @@ export async function loadMyPrompts(email: string): Promise<MyPrompts> {
   }
 }
 
-export async function saveMyPrompts(email: string, doc: MyPrompts) {
+export async function saveMyPrompts(email: string, line: LineId, doc: MyPrompts) {
   const json = JSON.stringify(doc);
-  if (redisConfig()) return void (await redis(["SET", keyFor(email), json]));
-  await mkdir(path.dirname(fileFor(email)), { recursive: true });
-  await writeFile(fileFor(email), json);
+  if (redisConfig()) return void (await redis(["SET", keyFor(email, line), json]));
+  await mkdir(path.dirname(fileFor(email, line)), { recursive: true });
+  await writeFile(fileFor(email, line), json);
 }
 
 // ── Validation: only well-formed, size-limited data is ever stored ──

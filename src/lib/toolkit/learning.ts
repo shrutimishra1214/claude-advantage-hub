@@ -79,12 +79,12 @@ export const quickstart: Lesson[] = [
 
 export type Day = { day: number; week: 1 | 2 | 3 | 4; title: string; task: string; prompt?: string; link?: string };
 
-export const weekTitles = {
+export const weekTitles: Record<1 | 2 | 3 | 4, string> = {
   1: "Become a Copilot User",
   2: "Master Microsoft 365",
   3: "Become a Power User",
   4: "Build Your Personal AI Work System",
-} as const;
+};
 
 export const days: Day[] = [
   { day: 1, week: 1, title: "Your first real prompt", task: "Ask Copilot to explain how it can help in your role, then try one suggestion.", prompt: "Give me 5 specific ways you can save me time in my job as a [role] this week.", link: "/members/quickstart" },

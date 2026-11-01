@@ -4,6 +4,17 @@ Sales website, checkout funnel and member area for *The Microsoft Copilot Advant
 Visitors in India pay in INR through **Razorpay**; everyone else pays in USD through **Paddle**, which acts as merchant of record
 (it collects sales tax and VAT and pays out to you).
 
+## Product lines
+
+| Line | Sales page | Member area | Book companion (printed in the book) |
+|---|---|---|---|
+| The Microsoft Copilot Advantage | `/` | `/members` | `/the-microsoft-copilot-advantage` |
+| The Claude Advantage (+ The Claude Operator, advanced) | `/claude-advantage` | `/claude-advantage/members` | `/claude-advantage/companion`, `/mastering-Claude-AI` |
+
+Each line's name, theme, navigation and tiers live in `src/lib/lines.ts`; Claude content lives in `src/lib/claude/`
+(chapter, prompt and skill data were extracted from the two Claude books). Put `claude-advantage.pdf` and
+`claude-operator.pdf` in `private-files/` before selling the books.
+
 ## Funnel
 
 ```

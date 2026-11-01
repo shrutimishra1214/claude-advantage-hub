@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
+import { Inter, Inter_Tight, Source_Serif_4 } from "next/font/google";
 import { site } from "@/lib/site";
 import "./globals.css";
 
 const display = Inter_Tight({ subsets: ["latin"], variable: "--font-display" });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+// Headlines on The Claude Advantage pages.
+const serif = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif", style: ["normal", "italic"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -36,7 +38,7 @@ export const viewport: Viewport = { themeColor: "#FFFFFF" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${serif.variable}`}>
       <body>{children}</body>
     </html>
   );

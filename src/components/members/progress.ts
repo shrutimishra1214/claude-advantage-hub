@@ -1,18 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useMemberLine } from "./MemberLine";
 
 // Progress is kept in this browser. Members who switch devices start the
 // checklist again, but keep access to everything.
 type Progress = { days: number[]; lessons: string[]; steps: Record<string, number[]>; saved: string[]; chapters: number[]; turns: string[]; weeks: number[]; wins: number[] };
 
-const KEY = "kv-progress";
 const EVENT = "kv-progress";
 const empty: Progress = { days: [], lessons: [], steps: {}, saved: [], chapters: [], turns: [], weeks: [], wins: [] };
 
-function read(): Progress {
+function read(key: string): Progress {
   try {
-    return { ...empty, ...JSON.parse(localStorage.getItem(KEY) ?? "{}") };
+    return { ...empty, ...JSON.parse(localStorage.getItem(key) ?? "{}") };
   } catch {
     return empty;
   }
@@ -21,11 +21,13 @@ function read(): Progress {
 const toggle = <T,>(list: T[], v: T) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 
 export function useProgress() {
+  const { line } = useMemberLine();
+  const KEY = line === "copilot" ? "kv-progress" : `kv-progress-${line}`;
   const [p, setP] = useState<Progress>(empty);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const sync = () => setP(read());
+    const sync = () => setP(read(KEY));
     sync();
     setReady(true);
     window.addEventListener(EVENT, sync);
@@ -34,10 +36,10 @@ export function useProgress() {
       window.removeEventListener(EVENT, sync);
       window.removeEventListener("storage", sync);
     };
-  }, []);
+  }, [KEY]);
 
   const update = useCallback((fn: (p: Progress) => Progress) => {
-    const next = fn(read());
+    const next = fn(read(KEY));
     try {
       localStorage.setItem(KEY, JSON.stringify(next));
     } catch {
@@ -45,7 +47,7 @@ export function useProgress() {
     }
     setP(next);
     window.dispatchEvent(new Event(EVENT));
-  }, []);
+  }, [KEY]);
 
   return {
     ...p,

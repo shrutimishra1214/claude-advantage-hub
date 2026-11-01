@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { days, weekTitles } from "@/lib/toolkit/learning";
+import { days as copilotDays, weekTitles as copilotWeekTitles, type Day } from "@/lib/toolkit/learning";
 import { Icon } from "../icons";
 import { PromptBlockClient } from "./PromptBlockClient";
 import { useProgress } from "./progress";
 
-export function Challenge() {
+/** The 30-day path. Defaults to the Copilot plan; other lines pass their own days. */
+export function Challenge({ days = copilotDays, weekTitles = copilotWeekTitles }: { days?: Day[]; weekTitles?: Record<1 | 2 | 3 | 4, string> }) {
   const p = useProgress();
   const weeks = [1, 2, 3, 4] as const;
 

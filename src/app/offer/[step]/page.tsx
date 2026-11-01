@@ -6,6 +6,7 @@ import { Icon } from "@/components/icons";
 import { OfferActions } from "@/components/OfferActions";
 import { offerCopy } from "@/lib/content";
 import { isStepId, resolveStep, stepPrice, stepUrl, steps } from "@/lib/funnel";
+import { lineOfProduct, lines } from "@/lib/lines";
 import { formatPrice, products } from "@/lib/products";
 import { getSession } from "@/lib/session";
 
@@ -29,9 +30,9 @@ export default async function OfferPage({ params }: { params: Promise<{ step: st
   const declineHref = stepUrl(resolveStep(steps[step].onDecline, session.owned));
 
   return (
-    <div className="relative min-h-dvh overflow-hidden">
+    <div className={`${lines[lineOfProduct(product.id)].themeClass} relative min-h-dvh overflow-hidden bg-canvas text-ink`}>
       <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[600px] bg-[radial-gradient(ellipse_at_top,rgba(124,58,237,.18),transparent_65%)]" />
-      <header className="container flex h-20 items-center justify-center"><Logo /></header>
+      <header className="container flex h-20 items-center justify-center"><Logo line={lineOfProduct(product.id)} /></header>
 
       <main className="container max-w-3xl pb-24 pt-6">
         <FunnelProgress current={2} />

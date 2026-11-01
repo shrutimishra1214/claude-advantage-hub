@@ -3,13 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  /* The Microsoft Copilot Advantage: cool neutrals and one deep blue. */
+  :root {
+    --ink: 14 23 38; --ink-soft: 52 64 84; --ink-muted: 91 101 119;
+    --paper: 246 247 249; --paper-tint: 238 241 245; --canvas: 255 255 255;
+    --line: 227 231 237; --line-strong: 205 211 220;
+    --accent: 34 81 204; --accent-soft: 234 240 253; --accent-deep: 23 59 153;
+    --font-heading: var(--font-display);
+  }
+  /* The Claude Advantage: warm cream, charcoal and a restrained terracotta, with serif headlines. */
+  .line-claude {
+    --ink: 31 29 26; --ink-soft: 69 64 58; --ink-muted: 111 104 95;
+    --paper: 241 236 227; --paper-tint: 233 226 214; --canvas: 250 248 244;
+    --line: 226 218 205; --line-strong: 207 197 181;
+    --accent: 193 95 60; --accent-soft: 247 230 221; --accent-deep: 154 69 39;
+    --font-heading: var(--font-serif);
+  }
+  .line-claude h1, .line-claude h2, .line-claude h3, .line-claude h4 { font-weight: 500; letter-spacing: -0.02em; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { @apply bg-white text-ink font-sans antialiased; text-rendering: optimizeLegibility; }
+  body { @apply bg-canvas text-ink font-sans antialiased; text-rendering: optimizeLegibility; }
   h1, h2, h3, h4 { @apply font-display text-balance font-semibold; letter-spacing: -0.025em; }
   h3, h4 { letter-spacing: -0.015em; }
   p { text-wrap: pretty; }
-  ::selection { background: #2251CC; color: white; }
-  :focus-visible { outline: 2px solid #2251CC; outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: rgb(var(--accent)); color: white; }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 6px; }
 }
 
 @layer components {

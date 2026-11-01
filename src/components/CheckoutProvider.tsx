@@ -7,8 +7,9 @@ import { checkout, CheckoutDismissed } from "@/lib/checkout-client";
 import { formatPrice, type Currency, type TierId } from "@/lib/products";
 import { Icon } from "./icons";
 
-export type TierOption = { id: TierId; name: string; label: string; price: number; available: boolean };
-type Ctx = { open: (tier?: TierId) => void; currency: Currency; tiers: TierOption[]; tier: (id: TierId) => TierOption };
+// `cover` is the book image shown next to tiers that include a book; tiers without one show a tile.
+export type TierOption = { id: TierId; name: string; label: string; price: number; available: boolean; cover?: string };
+type Ctx = { open: (tier?: TierId) => void; currency: Currency; tiers: TierOption[]; tier: (id: TierId) => TierOption; primaryTier: TierId };
 
 const CheckoutContext = createContext<Ctx | null>(null);
 
@@ -22,9 +23,13 @@ const blurb: Record<TierId, string> = {
   book: "The complete guide · PDF",
   toolkit: "Prompt Library, Workflow Vault, templates & 30-day path",
   bundle: "The book and the complete Toolkit",
+  "claude-book": "The complete guide · PDF",
+  "claude-system": "Prompt system, workflow vault, playbooks & 30-day path",
+  "claude-bundle": "The book and the complete System",
+  "claude-operator": "Everything, plus The Claude Operator advanced level",
 };
 
-export function CheckoutProvider({ currency, tiers, children }: { currency: Currency; tiers: TierOption[]; children: ReactNode }) {
+export function CheckoutProvider({ currency, tiers, primaryTier, children }: { currency: Currency; tiers: TierOption[]; primaryTier: TierId; children: ReactNode }) {
   const router = useRouter();
   const available = tiers.filter((t) => t.available);
   const [selected, setSelected] = useState<TierId | null>(null);
@@ -35,13 +40,13 @@ export function CheckoutProvider({ currency, tiers, children }: { currency: Curr
   const tier = useCallback((id: TierId) => tiers.find((t) => t.id === id)!, [tiers]);
 
   const open = useCallback(
-    (id: TierId = "toolkit") => {
+    (id: TierId = primaryTier) => {
       const choice = tiers.find((t) => t.id === id && t.available) ?? tiers.find((t) => t.available);
       if (!choice) return;
       setError("");
       setSelected(choice.id);
     },
-    [tiers],
+    [tiers, primaryTier],
   );
   const close = useCallback(() => !busy && setSelected(null), [busy]);
 
@@ -75,7 +80,7 @@ export function CheckoutProvider({ currency, tiers, children }: { currency: Curr
   }
 
   return (
-    <CheckoutContext.Provider value={{ open, currency, tiers, tier }}>
+    <CheckoutContext.Provider value={{ open, currency, tiers, tier, primaryTier }}>
       {children}
       {chosen && (
         <div className="fixed inset-0 z-[60] flex items-end justify-center md:items-center" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
@@ -97,15 +102,15 @@ export function CheckoutProvider({ currency, tiers, children }: { currency: Curr
                   className={`flex cursor-pointer items-center gap-4 rounded-xl border p-4 transition ${t.id === chosen.id ? "border-accent bg-accent-soft/60 ring-1 ring-accent" : "border-line hover:border-ink/30"}`}
                 >
                   <input type="radio" name="tier" value={t.id} checked={t.id === chosen.id} onChange={() => setSelected(t.id)} className="h-4 w-4 shrink-0 accent-accent" />
-                  {t.id === "toolkit" ? (
+                  {!t.cover ? (
                     <span className="grid h-[52px] w-10 shrink-0 place-items-center rounded-md bg-ink text-white"><Icon.grid className="h-5 w-5" /></span>
                   ) : (
-                    <Image src="/images/cover.jpg" alt="" width={40} height={51} className="shrink-0 rounded shadow-soft" />
+                    <Image src={t.cover} alt="" width={40} height={51} className="shrink-0 rounded shadow-soft" />
                   )}
                   <span className="min-w-0 flex-1">
                     <span className="flex flex-wrap items-center gap-2 font-semibold leading-snug">
                       {t.label}
-                      {t.id === "bundle" && <span className="rounded bg-ink px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Everything</span>}
+                      {t.id.endsWith("bundle") && <span className="rounded bg-ink px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Everything</span>}
                     </span>
                     <span className="block text-sm text-ink-muted">{blurb[t.id]}</span>
                   </span>

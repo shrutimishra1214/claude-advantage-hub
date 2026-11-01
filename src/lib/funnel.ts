@@ -2,7 +2,7 @@ import { isOfferable, products, type Currency, type ProductId } from "./products
 
 // After the main purchase the buyer walks through these offers in order.
 // Accepting or declining an offer moves them to the next step.
-export type StepId = "toolkit-upgrade" | "masterclass" | "masterclass-essentials" | "agent-kit" | "agent-blueprints";
+export type StepId = "toolkit-upgrade" | "claude-system-upgrade" | "claude-operator-upgrade" | "masterclass" | "masterclass-essentials" | "agent-kit" | "agent-blueprints";
 
 type Step = {
   product: ProductId;
@@ -15,6 +15,9 @@ type Step = {
 
 export const steps: Record<StepId, Step> = {
   // Book buyers can add the Toolkit for less than buying it on its own.
+  "claude-system-upgrade": { product: "claude-system", kind: "upsell", onAccept: "claude-operator-upgrade", onDecline: "claude-operator-upgrade", price: { INR: 149900, USD: 5900 } },
+  // The advanced level, offered once after any Claude purchase.
+  "claude-operator-upgrade": { product: "claude-operator", kind: "upsell", onAccept: "done", onDecline: "done" },
   "toolkit-upgrade": { product: "toolkit", kind: "upsell", onAccept: "masterclass", onDecline: "masterclass", price: { INR: 149900, USD: 5900 } },
   masterclass: { product: "masterclass", kind: "upsell", onAccept: "agent-kit", onDecline: "masterclass-essentials" },
   "masterclass-essentials": { product: "masterclass-essentials", kind: "downsell", onAccept: "agent-kit", onDecline: "agent-kit" },
@@ -23,6 +26,10 @@ export const steps: Record<StepId, Step> = {
 };
 
 export const FIRST_STEP: StepId = "toolkit-upgrade";
+
+/** The first offer after a purchase, in the line the buyer bought from. */
+export const firstStepFor = (items: ProductId[]): StepId =>
+  items.some((i) => i.startsWith("claude-")) ? "claude-system-upgrade" : FIRST_STEP;
 
 export const isStepId = (v: unknown): v is StepId => typeof v === "string" && v in steps;
 

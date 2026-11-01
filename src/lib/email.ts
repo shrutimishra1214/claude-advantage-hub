@@ -6,8 +6,9 @@ import { site } from "./site";
 export async function sendPurchaseEmail(opts: { to: string; name: string; items: ProductId[]; paymentId: string }) {
   const token = libraryToken({ email: opts.to, owned: opts.items });
   const link = `${site.url}/thank-you?t=${token}`;
-  const member = opts.items.includes("toolkit")
-    ? `<p><a href="${site.url}/members/enter?t=${token}" style="display:inline-block;background:#2251CC;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">Open the Copilot Advantage</a></p>`
+  const memberLine = opts.items.some((i) => i.startsWith("claude-")) ? "Open the Claude Advantage" : "Open the Copilot Advantage";
+  const member = opts.items.some((i) => ["toolkit", "claude-system", "claude-operator"].includes(i))
+    ? `<p><a href="${site.url}/members/enter?t=${token}" style="display:inline-block;background:#1F1D1A;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">${memberLine}</a></p>`
     : "";
   const list = opts.items.map((id) => `<li style="margin:0 0 6px">${products[id].name}</li>`).join("");
   const html = `
@@ -36,7 +37,7 @@ export async function sendPurchaseEmail(opts: { to: string; name: string; items:
     body: JSON.stringify({
       from: process.env.EMAIL_FROM ?? `${site.name} <${site.contactEmail}>`,
       to: [opts.to],
-      subject: `Your ${site.bookTitle} purchase`,
+      subject: `Your purchase from ${site.name}`,
       html,
     }),
   });

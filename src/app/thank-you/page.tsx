@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Logo } from "@/components/Header";
 import { FunnelProgress } from "@/components/FunnelProgress";
 import { Icon } from "@/components/icons";
+import { lineOfProduct, lines } from "@/lib/lines";
+import { memberProducts } from "@/lib/member";
 import { products } from "@/lib/products";
 import { getSession, readLibraryToken } from "@/lib/session";
 import { site } from "@/lib/site";
@@ -18,11 +20,12 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
   const name = session?.customer.name.split(" ")[0];
   const email = grant?.email ?? session?.customer.email;
   const query = grant && t ? `?t=${encodeURIComponent(t)}` : "";
+  const line = owned.some((p) => p.startsWith("claude-")) ? "claude" : "copilot";
 
   return (
-    <div className="relative min-h-dvh overflow-hidden">
+    <div className={`${lines[line].themeClass} relative min-h-dvh overflow-hidden bg-canvas text-ink`}>
       <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[600px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,.16),transparent_65%)]" />
-      <header className="container flex h-20 items-center justify-center"><Logo /></header>
+      <header className="container flex h-20 items-center justify-center"><Logo line={line} /></header>
 
       <main className="container max-w-3xl pb-24 pt-6">
         {owned.length === 0 ? (
@@ -59,10 +62,15 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
                       <h2 className="text-lg font-medium">{p.name}</h2>
                       <p className="text-ink-muted">{p.short}</p>
                     </div>
-                    {id === "toolkit" ? (
-                      <a href={grant && t ? `/members/enter?t=${encodeURIComponent(t)}` : "/members"} className="btn-primary !py-3">
-                        Open the Copilot Advantage <Icon.arrow className="h-4 w-4" />
+                    {memberProducts.includes(id) && p.delivery.kind === "access" ? (
+                      <a href={grant && t ? `/members/enter?t=${encodeURIComponent(t)}` : lines[lineOfProduct(id)].members} className="btn-primary !py-3">
+                        Open {lines[lineOfProduct(id)].name.replace(/^The /, "the ")} <Icon.arrow className="h-4 w-4" />
                       </a>
+                    ) : id === "claude-operator" ? (
+                      <span className="flex flex-col gap-2 sm:items-end">
+                        <a href={`/api/download/${id}${query}`} className="btn-primary !py-3"><Icon.download className="h-5 w-5" /> Download</a>
+                        <a href={grant && t ? `/members/enter?t=${encodeURIComponent(t)}` : "/claude-advantage/members/operator"} className="text-sm font-semibold text-accent">Open the Operator track →</a>
+                      </span>
                     ) : p.delivery.kind === "file" ? (
                       <a href={`/api/download/${id}${query}`} className="btn-primary !py-3">
                         <Icon.download className="h-5 w-5" /> Download

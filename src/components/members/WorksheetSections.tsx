@@ -10,14 +10,15 @@ const worksheets: { id: string; ch: string; title: string; lead: string; body: R
 ];
 
 /** The book's worksheets, shared by the member area and the public book companion. */
-export function WorksheetSections() {
+export function WorksheetSections({ only }: { only?: string[] } = {}) {
+  const list = only ? worksheets.filter((w) => only.includes(w.id)) : worksheets;
   return (
     <>
       <nav aria-label="Worksheets" className="mt-6 flex flex-wrap gap-2">
-        {worksheets.map((w) => <a key={w.id} href={`#${w.id}`} className="chip">{w.title}</a>)}
+        {list.map((w) => <a key={w.id} href={`#${w.id}`} className="chip">{w.title}</a>)}
       </nav>
       <div className="mt-10 grid gap-12">
-        {worksheets.map((w) => (
+        {list.map((w) => (
           <section key={w.id} id={w.id} className="min-w-0 scroll-mt-32 rounded-xl border border-line p-5 md:p-8">
             <p className="font-mono text-xs text-accent">{w.ch}</p>
             <h2 className="mt-1 text-2xl">{w.title}</h2>

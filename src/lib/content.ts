@@ -22,6 +22,20 @@ export const testimonials: Testimonial[] = [];
 type OfferCopy = { eyebrow: string; headline: string; lead: string; cta: string; decline: string };
 
 export const offerCopy: Record<StepId, OfferCopy> = {
+  "claude-operator-upgrade": {
+    eyebrow: "The advanced level",
+    headline: "Ready to go from Claude user to Claude Operator?",
+    lead: "The Claude Operator shows you how to build an AI Chief of Staff: delegate whole jobs, package them as tested skills, and run them on a schedule. You get the book plus the Operator track in your member area: every Skill Drop, 25 workflows and the 30-day plan.",
+    cta: "Yes, add The Claude Operator",
+    decline: "No thanks, take me to my purchase",
+  },
+  "claude-system-upgrade": {
+    eyebrow: "One-time offer for book buyers",
+    headline: "You have the book. Want the system that puts Claude to work?",
+    lead: "The Claude Advantage System gives you the prompt system, the workflow vault, the Code, Cowork and Design playbooks and the 30-day transformation, ready to use. Add it now for less than its regular price.",
+    cta: "Yes, add the System",
+    decline: "No thanks, just the book",
+  },
   "toolkit-upgrade": {
     eyebrow: "One-time offer for book buyers",
     headline: "You have the book. Want the system that puts it to work?",

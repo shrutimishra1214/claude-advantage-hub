@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const v = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
+
 // Cool neutrals, one deep blue, and quiet per-app hues used only as small
 // markers. The product previews carry the page, not decoration.
 export default {
@@ -8,10 +10,12 @@ export default {
     container: { center: true, padding: { DEFAULT: "1.25rem", md: "2rem" }, screens: { "2xl": "1200px" } },
     extend: {
       colors: {
-        ink: { DEFAULT: "#0E1726", soft: "#344054", muted: "#5B6577" },
-        paper: { DEFAULT: "#F6F7F9", tint: "#EEF1F5" },
-        line: { DEFAULT: "#E3E7ED", strong: "#CDD3DC" },
-        accent: { DEFAULT: "#2251CC", soft: "#EAF0FD", deep: "#173B99" },
+        // Themed per product line through CSS variables (see globals.css).
+        ink: { DEFAULT: v("ink"), soft: v("ink-soft"), muted: v("ink-muted") },
+        paper: { DEFAULT: v("paper"), tint: v("paper-tint") },
+        canvas: v("canvas"),
+        line: { DEFAULT: v("line"), strong: v("line-strong") },
+        accent: { DEFAULT: v("accent"), soft: v("accent-soft"), deep: v("accent-deep") },
         app: {
           word: "#3767C8",
           excel: "#1E8A5A",
@@ -21,10 +25,10 @@ export default {
           onenote: "#7A3FB0",
           copilot: "#0E1726",
         },
-        brand: { blue: "#2251CC", violet: "#2251CC", orange: "#C8551F" },
+        brand: { blue: v("accent"), violet: v("accent"), orange: "#C8551F" },
       },
       fontFamily: {
-        display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-heading)", "var(--font-sans)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },

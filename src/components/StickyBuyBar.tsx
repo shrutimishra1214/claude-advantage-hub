@@ -6,10 +6,10 @@ import { useCheckout } from "./CheckoutProvider";
 
 /** Phone-only purchase bar that appears once the hero's buttons scroll away. */
 export function StickyBuyBar() {
-  const { open, currency, tier } = useCheckout();
+  const { open, currency, tier, tiers, primaryTier } = useCheckout();
   const [show, setShow] = useState(false);
-  const toolkit = tier("toolkit");
-  const offer = toolkit.available ? toolkit : tier("book");
+  const main = tier(primaryTier);
+  const offer = main.available ? main : tiers.find((t) => t.available) ?? main;
 
   useEffect(() => {
     const onScroll = () => {
