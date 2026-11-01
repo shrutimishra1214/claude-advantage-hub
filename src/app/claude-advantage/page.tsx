@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { BuyButton } from "@/components/BuyButton";
-import { BookCover } from "@/components/claude/BookCover";
 import { Icon } from "@/components/icons";
+import { ProductScene } from "@/components/Mockups";
 import { BriefBuilder } from "@/components/members/BriefBuilder";
 import { Reveal } from "@/components/Reveal";
 import { Shell } from "@/components/Shell";
@@ -309,12 +309,12 @@ export default async function ClaudeAdvantage() {
       <section className="section">
         <div className="container">
           <Head eyebrow="What you get" title="Much more than a book or a prompt list" lead="A complete ecosystem: the books for the method, the member area for the work." />
-          <div className="mt-14 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <Reveal className="flex items-end justify-center gap-6 pb-6">
-              <BookCover book="advantage" className="w-40 text-[10px] sm:w-48 sm:text-[12px]" />
-              <BookCover book="operator" className="w-32 text-[8px] opacity-95 sm:w-40 sm:text-[10px]" />
-            </Reveal>
-            <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+          <Reveal className="mx-auto mt-14 max-w-5xl">
+            <ProductScene line="claude" extraBook="operator" />
+            <p className="mt-4 text-center text-sm text-ink-muted">Ebooks · Member system · Mobile access · Printable worksheets</p>
+          </Reveal>
+          <div className="mt-14">
+            <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
               {ecosystem.map(([k, v]) => (
                 <li key={k} className="bg-white p-5">
                   <p className="font-semibold">{k}</p>

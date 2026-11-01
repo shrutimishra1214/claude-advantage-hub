@@ -6,8 +6,14 @@ import { CheckoutProvider, type TierOption } from "./CheckoutProvider";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
-// Only the Copilot book has a cover image so far; other books show a tile.
-const covers: Partial<Record<string, string>> = { book: "/images/cover.jpg", bundle: "/images/cover.jpg" };
+// Book covers shown next to tiers that include a book; other tiers show a tile.
+const covers: Partial<Record<string, string>> = {
+  book: "/images/cover.jpg",
+  bundle: "/images/cover.jpg",
+  "claude-book": "/images/claude-cover.jpg",
+  "claude-bundle": "/images/claude-cover.jpg",
+  "claude-operator": "/images/claude-cover.jpg",
+};
 
 /** Page chrome and the checkout sheet for one product line, priced in the visitor's currency. */
 export async function Shell({ line = "copilot", children }: { line?: LineId; children: ReactNode }) {

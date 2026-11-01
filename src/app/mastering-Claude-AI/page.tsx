@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BuyButton } from "@/components/BuyButton";
-import { BookCover } from "@/components/claude/BookCover";
+import { Ebook } from "@/components/Mockups";
 import { Checklist, OperatorScaleQuiz, SkillActions } from "@/components/members/ClaudeMembers";
 import { MemberLineProvider } from "@/components/members/MemberLine";
 import { Shell } from "@/components/Shell";
@@ -40,7 +40,7 @@ export default function OperatorToolkit() {
                 {sections.map(([id, l]) => <a key={id} href={`#${id}`} className="chip">{l}</a>)}
               </nav>
             </div>
-            <BookCover book="operator" className="hidden w-40 text-[10px] md:block" />
+            <Ebook book="operator" className="hidden w-40 md:block" />
           </div>
         </section>
 

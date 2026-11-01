@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BuyButton } from "@/components/BuyButton";
-import { BookCover } from "@/components/claude/BookCover";
+import { Ebook } from "@/components/Mockups";
 import { Checklist } from "@/components/members/ClaudeMembers";
 import { MemberLineProvider } from "@/components/members/MemberLine";
 import { PromptBlock } from "@/components/members/PromptBlock";
@@ -30,7 +30,7 @@ export default function ClaudeCompanion() {
                 {[["prompts", "Master Prompt Library"], ["templates", "Templates"], ["roadmap", "90-Day Roadmap"]].map(([id, l]) => <a key={id} href={`#${id}`} className="chip">{l}</a>)}
               </nav>
             </div>
-            <BookCover book="advantage" className="hidden w-40 text-[10px] md:block" />
+            <Ebook book="claude" className="hidden w-40 md:block" sizes="160px" />
           </div>
         </section>
         <div className="container max-w-5xl py-14">

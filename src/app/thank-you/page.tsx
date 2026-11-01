@@ -51,8 +51,8 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
                 const p = products[id];
                 return (
                   <li key={id} className="card flex flex-col gap-5 p-6 sm:flex-row sm:items-center">
-                    {id === "book" ? (
-                      <Image src="/images/cover.jpg" alt="" width={64} height={81} className="rounded-md shadow-soft" />
+                    {id === "book" || id === "claude-book" ? (
+                      <Image src={id === "book" ? "/images/cover.jpg" : "/images/claude-cover.jpg"} alt="" width={64} height={84} className="rounded-md shadow-soft" />
                     ) : (
                       <span className="icon-tile h-16 w-16 shrink-0">
                         {p.delivery.kind === "file" ? <Icon.doc className="h-7 w-7" /> : <Icon.video className="h-7 w-7" />}

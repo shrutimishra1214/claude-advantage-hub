@@ -7,6 +7,7 @@ import { AppTile } from "@/components/product/AppChip";
 import { CheatSheets } from "@/components/product/CheatSheets";
 import { DashboardPreview } from "@/components/product/DashboardPreview";
 import { HeroVisual } from "@/components/product/HeroVisual";
+import { Ebook, ProductScene } from "@/components/Mockups";
 import { PromptBuilder } from "@/components/product/PromptBuilder";
 import { PromptLibrary } from "@/components/product/PromptLibrary";
 import { SavingsCalculator } from "@/components/product/SavingsCalculator";
@@ -221,6 +222,10 @@ export default async function Home() {
       <section id="whats-inside" className="section scroll-mt-16">
         <div className="container">
           <SectionHead eyebrow="What's inside" title="Everything You Need to Make Copilot Actually Useful" lead="One system. Seven powerful tools." />
+          <Reveal className="mx-auto mt-14 max-w-5xl">
+            <ProductScene line="copilot" />
+            <p className="mt-4 text-center text-sm text-ink-muted">Ebook · Member toolkit · Mobile access · Printable cheat sheets</p>
+          </Reveal>
           <Reveal className="mt-14">
             <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
               {tools.map((t, i) => {
@@ -549,7 +554,7 @@ export default async function Home() {
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Book</p>
                   <h3 className="mt-2 text-xl">The Microsoft Copilot Advantage</h3>
                 </div>
-                <Image src="/images/cover.jpg" alt="The Microsoft Copilot Advantage book cover" width={52} height={66} className="shrink-0 rounded shadow-book" />
+                <Ebook book="copilot" className="w-[58px] shrink-0" sizes="60px" />
               </div>
               <p className="mt-6 font-display text-5xl font-semibold tracking-tight">{price("book")}</p>
               <ul className="mb-9 mt-7 grid gap-3 text-[15px]">
@@ -577,7 +582,7 @@ export default async function Home() {
                   <h3 className="mt-2 text-xl">Book + Toolkit</h3>
                 </div>
                 <span className="flex shrink-0 items-end">
-                  <Image src="/images/cover.jpg" alt="" width={44} height={56} className="rounded shadow-book" />
+                  <Ebook book="copilot" className="w-[50px]" sizes="50px" />
                   <span className="-ml-3 grid h-[52px] w-10 place-items-center rounded bg-accent shadow-book"><Icon.grid className="h-5 w-5" /></span>
                 </span>
               </div>

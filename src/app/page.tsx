@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Ebook } from "@/components/Mockups";
 import Link from "next/link";
-import { BookCover } from "@/components/claude/BookCover";
 import { Icon } from "@/components/icons";
 import { getCurrency } from "@/lib/currency";
 import { lines } from "@/lib/lines";
@@ -53,8 +53,8 @@ export default async function Home() {
 
         <section className="container grid gap-6 pb-20 md:grid-cols-2 md:pb-28">
           <Link href={copilot.base} className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-line bg-paper transition hover:border-ink/20 hover:shadow-lift">
-            <div className="grid h-72 place-items-center bg-app-word/5 px-8 pt-8">
-              <Image src="/images/cover.jpg" alt="The Microsoft Copilot Advantage book" width={1100} height={1392} className="h-60 w-auto rounded-sm shadow-book" priority />
+            <div className="flex h-72 items-center justify-center bg-app-word/5 px-8">
+              <Ebook book="copilot" className="w-44" sizes="180px" priority />
             </div>
             <div className="flex flex-1 flex-col p-7">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">For Microsoft 365</p>
@@ -68,9 +68,9 @@ export default async function Home() {
           </Link>
 
           <Link href={claude.base} className="line-claude group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-line bg-paper text-ink transition hover:border-ink/20 hover:shadow-lift">
-            <div className="flex h-72 items-end justify-center gap-5 bg-canvas px-8 pt-8">
-              <BookCover book="advantage" className="w-40 text-[7px]" />
-              <BookCover book="operator" className="hidden w-32 text-[5.6px] sm:block" />
+            <div className="flex h-72 items-center justify-center gap-4 bg-canvas px-8">
+              <Ebook book="claude" className="w-44" sizes="180px" priority />
+              <Ebook book="operator" className="hidden w-32 sm:block" />
             </div>
             <div className="flex flex-1 flex-col p-7">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">For Claude</p>
