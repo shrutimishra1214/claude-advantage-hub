@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/members", destination: "/copilot-advantage/members", permanent: true },
       { source: "/members/:path((?!enter$).*)", destination: "/copilot-advantage/members/:path", permanent: true },
+      // The Copilot book points readers to its companion page at the old address.
+      { source: "/the-microsoft-copilot-advantage", destination: "/copilot-advantage/companion", permanent: true },
     ];
   },
   images: {

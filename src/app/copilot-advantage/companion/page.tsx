@@ -13,7 +13,7 @@ import { bookPrompts, shapes } from "@/lib/toolkit/method";
 export const metadata: Metadata = {
   title: "Book Companion Toolkit",
   description: "The companion toolkit for The Microsoft Copilot Advantage: worksheets, prompt templates and the 90-Day Tracker.",
-  alternates: { canonical: "/the-microsoft-copilot-advantage" },
+  alternates: { canonical: "/copilot-advantage/companion" },
 };
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");

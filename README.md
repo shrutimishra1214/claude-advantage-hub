@@ -8,7 +8,7 @@ Visitors in India pay in INR through **Razorpay**; everyone else pays in USD thr
 
 | Line | Sales page | Member area | Book companion (printed in the book) |
 |---|---|---|---|
-| The Microsoft Copilot Advantage | `/` | `/members` | `/the-microsoft-copilot-advantage` |
+| The Microsoft Copilot Advantage | `/copilot-advantage` | `/copilot-advantage/members` | `/copilot-advantage/companion` (the printed `/the-microsoft-copilot-advantage` redirects here) |
 | The Claude Advantage (+ The Claude Operator, advanced) | `/claude-advantage` | `/claude-advantage/members` | `/claude-advantage/companion`, `/mastering-Claude-AI` |
 
 Each line's name, theme, navigation and tiers live in `src/lib/lines.ts`; Claude content lives in `src/lib/claude/`
