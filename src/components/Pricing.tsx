@@ -3,6 +3,7 @@ import { BuyButton } from "./BuyButton";
 import { Icon } from "./icons";
 import { Ebook } from "./Mockups";
 import { Reveal } from "./Reveal";
+import { TierPrice } from "./TierPrice";
 import { getCurrency } from "@/lib/currency";
 import type { LineId } from "@/lib/lines";
 import { bundleCopy, tierCopy, type TierCopy } from "@/lib/offer";
@@ -79,7 +80,7 @@ export async function PricingTiers({ line }: { line: LineId }) {
             ))}
         </div>
         <h3 className="mt-4 text-xl">{copy.tagline}</h3>
-        <p className="mt-5 font-display text-5xl font-semibold tracking-tight">{formatPrice(t.price[currency], currency)}</p>
+        <p className="mt-5 font-display text-5xl font-semibold tracking-tight"><TierPrice tier={id} fallback={formatPrice(t.price[currency], currency)} /></p>
         <p className="mt-1 text-sm text-ink-muted">{open ? "One-time payment" : "Coming soon"}</p>
         <Bullets copy={copy} />
         <div className="mt-auto pt-8">
@@ -119,7 +120,7 @@ export async function Bundles() {
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">{b.label}</p>
               <p className="text-sm font-semibold text-ink-soft">{b.formula}</p>
             </div>
-            <p className="mt-4 font-display text-4xl font-semibold tracking-tight">{formatPrice(tiers[b.id].price[currency], currency)}</p>
+            <p className="mt-4 font-display text-4xl font-semibold tracking-tight"><TierPrice tier={b.id} fallback={formatPrice(tiers[b.id].price[currency], currency)} /></p>
             <p className="mt-1 text-sm text-ink-muted">{open ? "One-time payment" : "Coming soon"}</p>
             <p className="mt-4 leading-relaxed text-ink-muted">{b.body}</p>
             <div className="mt-auto pt-7">

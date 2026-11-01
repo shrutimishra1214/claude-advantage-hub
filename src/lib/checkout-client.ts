@@ -1,5 +1,7 @@
 "use client";
 
+import { getPaddle, onPaddleEvent } from "./paddle-client";
+
 type RazorpayOrder = {
   provider: "razorpay";
   orderId: string;
@@ -21,18 +23,10 @@ type PaddleOrder = {
 
 type OrderResponse = RazorpayOrder | PaddleOrder;
 
-type PaddleEvent = { name: string; data?: { transaction_id?: string } };
-type PaddleJs = {
-  Environment: { set: (env: string) => void };
-  Initialize: (opts: { token: string; eventCallback: (e: PaddleEvent) => void }) => void;
-  Checkout: { open: (opts: Record<string, unknown>) => void; close: () => void };
-};
-
 type RazorpayResult = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
 
 declare global {
   interface Window {
-    Paddle?: PaddleJs;
     Razorpay?: new (options: Record<string, unknown>) => { open: () => void; on: (e: string, cb: (r: unknown) => void) => void };
   }
 }
@@ -53,62 +47,32 @@ export function loadRazorpay() {
   return scriptPromise;
 }
 
-// Paddle.js can only be initialized once, with one event callback, so the
-// checkout that is currently open registers its handlers here.
-let paddleReady: Promise<PaddleJs> | null = null;
-let paddleHandlers: { done: (txn: string) => void; closed: () => void; failed: () => void } | null = null;
-
-function loadPaddle(token: string, environment: string) {
-  paddleReady ??= new Promise<PaddleJs>((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
-    s.onload = () => {
-      const P = window.Paddle!;
-      if (environment === "sandbox") P.Environment.set("sandbox");
-      P.Initialize({
-        token,
-        eventCallback: (e) => {
-          if (e.name === "checkout.completed" && e.data?.transaction_id) paddleHandlers?.done(e.data.transaction_id);
-          if (e.name === "checkout.closed") paddleHandlers?.closed();
-          if (e.name === "checkout.error") paddleHandlers?.failed();
-        },
-      });
-      resolve(P);
-    };
-    s.onerror = () => {
-      paddleReady = null;
-      reject(new Error("Couldn't load the payment window. Check your connection and try again."));
-    };
-    document.body.appendChild(s);
-  });
-  return paddleReady;
-}
-
 export class CheckoutDismissed extends Error {}
 
 async function payWithPaddle(order: PaddleOrder): Promise<string> {
-  const P = await loadPaddle(order.clientToken, order.environment);
+  const P = await getPaddle({ token: order.clientToken, environment: order.environment });
   const transactionId = await new Promise<string>((resolve, reject) => {
     let completed = false;
-    paddleHandlers = {
-      done: (txn) => {
+    onPaddleEvent((e) => {
+      if (e.name === "checkout.completed" && e.data?.transaction_id) {
         completed = true;
-        resolve(txn);
-      },
-      closed: () => !completed && reject(new CheckoutDismissed()),
-      failed: () => {
+        resolve(e.data.transaction_id);
+      }
+      if (e.name === "checkout.closed" && !completed) reject(new CheckoutDismissed());
+      if (e.name === "checkout.error") {
         P.Checkout.close();
         reject(new Error("The payment window couldn't load. Please try again in a moment."));
-      },
-    };
+      }
+    });
+    // The exact price the buyer chose, with the email they entered prefilled.
     P.Checkout.open({
       items: [{ priceId: order.priceId, quantity: 1 }],
       customer: { email: order.customer.email },
       customData: { kv: order.intent },
-      settings: { displayMode: "overlay", theme: "light", showAddDiscounts: false },
+      settings: { displayMode: "overlay", variant: "one-page", theme: "light", showAddDiscounts: false },
     });
   });
-  paddleHandlers = null;
+  onPaddleEvent(null);
   P.Checkout.close();
   const { next } = await postJson<{ next: string }>("/api/checkout/paddle", { transactionId });
   return next;

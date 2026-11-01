@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { getCurrency } from "@/lib/currency";
+import { getCountry, getCurrency } from "@/lib/currency";
 import { lines, type LineId } from "@/lib/lines";
+import { paddleClientConfig, paddlePriceId } from "@/lib/paddle";
 import { isTierOfferable, tiers } from "@/lib/products";
 import { CheckoutProvider, type TierOption } from "./CheckoutProvider";
 import { Footer } from "./Footer";
@@ -27,10 +28,11 @@ export async function Shell({ line = "copilot", children }: { line?: LineId; chi
     price: tiers[id].price[currency],
     available: isTierOfferable(id),
     cover: covers[id],
+    priceId: paddlePriceId({ tier: id }) ?? undefined,
   }));
   return (
     <div className={`${L.themeClass} min-h-dvh bg-canvas text-ink`}>
-      <CheckoutProvider currency={currency} tiers={options} primaryTier={L.primaryTier}>
+      <CheckoutProvider currency={currency} tiers={options} primaryTier={L.primaryTier} paddle={paddleClientConfig()} country={await getCountry()}>
         <Header line={line} />
         <main>{children}</main>
         <Footer line={line} />

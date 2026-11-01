@@ -73,7 +73,8 @@ export async function POST(req: Request) {
     return NextResponse.json({
       provider: "paddle",
       clientToken: process.env.PADDLE_CLIENT_TOKEN,
-      environment: paddleEnvironment(),
+      // isPaddleConfigured() above guarantees it's set.
+      environment: paddleEnvironment()!,
       priceId,
       intent: sign(intent, PADDLE_INTENT_TTL),
       customer,

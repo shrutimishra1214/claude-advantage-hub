@@ -6,7 +6,7 @@ import { useCheckout } from "./CheckoutProvider";
 
 /** Phone-only purchase bar that appears once the hero's buttons scroll away. */
 export function StickyBuyBar() {
-  const { open, currency, tier, tiers, primaryTier } = useCheckout();
+  const { open, currency, tier, tiers, primaryTier, paddlePrice } = useCheckout();
   const [show, setShow] = useState(false);
   const main = tier(primaryTier);
   const offer = main.available ? main : tiers.find((t) => t.available) ?? main;
@@ -30,7 +30,7 @@ export function StickyBuyBar() {
       <div className="flex items-center gap-3 rounded-xl border border-line bg-white/95 p-2.5 pl-4 shadow-lift backdrop-blur-xl">
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold">{offer.name}</p>
-          <p className="text-xs text-ink-muted"><span className="font-semibold text-ink">{formatPrice(offer.price, currency)}</span> · instant access</p>
+          <p className="text-xs text-ink-muted"><span className="font-semibold text-ink">{paddlePrice(offer.id) ?? formatPrice(offer.price, currency)}</span> · instant access</p>
         </div>
         <button type="button" onClick={() => open(offer.id)} tabIndex={show ? 0 : -1} className="btn-primary whitespace-nowrap !px-4 !py-2.5 !text-sm">Get the {offer.label}</button>
       </div>

@@ -7,9 +7,10 @@ import { Icon } from "@/components/icons";
 import { Ebook } from "@/components/Mockups";
 import { Bundles } from "@/components/Pricing";
 import { Reveal } from "@/components/Reveal";
-import { getCurrency } from "@/lib/currency";
+import { getCountry, getCurrency } from "@/lib/currency";
 import { lines } from "@/lib/lines";
 import { bundleCopy, sharedFaqs } from "@/lib/offer";
+import { paddleClientConfig, paddlePriceId } from "@/lib/paddle";
 import { formatPrice, isTierOfferable, tiers, type TierId } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -88,10 +89,11 @@ export default async function Home() {
     label: tiers[id].label,
     price: tiers[id].price[currency],
     available: isTierOfferable(id),
+    priceId: paddlePriceId({ tier: id }) ?? undefined,
   }));
 
   return (
-    <CheckoutProvider currency={currency} tiers={bundleOptions} primaryTier="both-complete">
+    <CheckoutProvider currency={currency} tiers={bundleOptions} primaryTier="both-complete" paddle={paddleClientConfig()} country={await getCountry()}>
       <div className="min-h-dvh bg-canvas text-ink">
         <header className="container flex h-16 items-center justify-between gap-4">
           <Link href="/" className="font-sans text-[13px] font-bold uppercase tracking-[0.14em]">{site.name}</Link>

@@ -4,12 +4,22 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { checkout, CheckoutDismissed } from "@/lib/checkout-client";
+import { getPaddle, type PaddleConfig } from "@/lib/paddle-client";
 import { formatPrice, type Currency, type TierId } from "@/lib/products";
 import { Icon } from "./icons";
 
 // `cover` is the book image shown next to tiers that include a book; tiers without one show a tile.
-export type TierOption = { id: TierId; name: string; label: string; price: number; available: boolean; cover?: string };
-type Ctx = { open: (tier?: TierId) => void; currency: Currency; tiers: TierOption[]; tier: (id: TierId) => TierOption; primaryTier: TierId };
+// `priceId` is the tier's Paddle price, when one is set up.
+export type TierOption = { id: TierId; name: string; label: string; price: number; available: boolean; cover?: string; priceId?: string };
+type Ctx = {
+  open: (tier?: TierId) => void;
+  currency: Currency;
+  tiers: TierOption[];
+  tier: (id: TierId) => TierOption;
+  primaryTier: TierId;
+  /** The price Paddle quotes for this tier in the visitor's country, exactly as Paddle formats it, once it has answered. */
+  paddlePrice: (id: TierId) => string | undefined;
+};
 
 const CheckoutContext = createContext<Ctx | null>(null);
 
@@ -30,7 +40,16 @@ const blurb: Record<TierId, string> = {
   "both-pro": "Both Pro systems: Copilot and Claude",
 };
 
-export function CheckoutProvider({ currency, tiers, primaryTier, children }: { currency: Currency; tiers: TierOption[]; primaryTier: TierId; children: ReactNode }) {
+export function CheckoutProvider({ currency, tiers, primaryTier, paddle, country, children }: {
+  currency: Currency;
+  tiers: TierOption[];
+  primaryTier: TierId;
+  /** Paddle's public client-side token and environment, when Paddle is set up. */
+  paddle?: PaddleConfig | null;
+  /** The visitor's country from the server, only when known. Without it Paddle works the country out from the visitor's IP. */
+  country?: string | null;
+  children: ReactNode;
+}) {
   const router = useRouter();
   const available = tiers.filter((t) => t.available);
   const [selected, setSelected] = useState<TierId | null>(null);
@@ -39,6 +58,34 @@ export function CheckoutProvider({ currency, tiers, primaryTier, children }: { c
   const [error, setError] = useState("");
   const firstField = useRef<HTMLInputElement>(null);
   const tier = useCallback((id: TierId) => tiers.find((t) => t.id === id)!, [tiers]);
+
+  // Ask Paddle once for the localized total of every tier that has a Paddle price.
+  const [quotes, setQuotes] = useState<Record<string, string>>({});
+  const priceIds = Array.from(new Set(tiers.map((t) => t.priceId).filter((id): id is string => Boolean(id))));
+  const priceKey = priceIds.join(",");
+  useEffect(() => {
+    if (!paddle || !priceKey) return;
+    let cancelled = false;
+    getPaddle(paddle)
+      .then((P) =>
+        P.PricePreview({
+          items: priceKey.split(",").map((priceId) => ({ priceId, quantity: 1 })),
+          ...(country ? { address: { countryCode: country } } : {}),
+        }),
+      )
+      .then((res) => {
+        if (cancelled) return;
+        setQuotes(Object.fromEntries(res.data.details.lineItems.map((li) => [li.price.id, li.formattedTotals.total])));
+      })
+      .catch((err) => console.warn("Paddle price preview failed; showing the site's own prices.", err));
+    return () => {
+      cancelled = true;
+    };
+  }, [paddle?.token, paddle?.environment, priceKey, country]); // eslint-disable-line react-hooks/exhaustive-deps
+  const paddlePrice = useCallback((id: TierId) => {
+    const priceId = tiers.find((t) => t.id === id)?.priceId;
+    return priceId ? quotes[priceId] : undefined;
+  }, [tiers, quotes]);
 
   const open = useCallback(
     (id: TierId = primaryTier) => {
@@ -81,7 +128,7 @@ export function CheckoutProvider({ currency, tiers, primaryTier, children }: { c
   }
 
   return (
-    <CheckoutContext.Provider value={{ open, currency, tiers, tier, primaryTier }}>
+    <CheckoutContext.Provider value={{ open, currency, tiers, tier, primaryTier, paddlePrice }}>
       {children}
       {chosen && (
         <div className="fixed inset-0 z-[60] flex items-end justify-center md:items-center" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
@@ -115,7 +162,7 @@ export function CheckoutProvider({ currency, tiers, primaryTier, children }: { c
                     </span>
                     <span className="block text-sm text-ink-muted">{blurb[t.id]}</span>
                   </span>
-                  <span className="font-semibold">{formatPrice(t.price, currency)}</span>
+                  <span className="font-semibold">{paddlePrice(t.id) ?? formatPrice(t.price, currency)}</span>
                 </label>
               ))}
             </fieldset>
@@ -139,7 +186,7 @@ export function CheckoutProvider({ currency, tiers, primaryTier, children }: { c
 
             <div className="mt-6 flex items-center justify-between border-t border-line pt-5">
               <span className="text-ink-muted">Total</span>
-              <span className="text-2xl font-semibold">{formatPrice(chosen.price, currency)}</span>
+              <span className="text-2xl font-semibold">{paddlePrice(chosen.id) ?? formatPrice(chosen.price, currency)}</span>
             </div>
 
             {error && <p role="alert" className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}

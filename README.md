@@ -59,7 +59,7 @@ products together. US visitors pay in USD and UK visitors in GBP:
 | The Claude Advantage (Book = The Claude Advantage + The Claude Operator) | $24.99 / £19.99 | $119 / £89 | $179 / £139 |
 | Both systems | | $169 / £129 | $249 / £199 |
 
-Tiers, prices and which products are ready live in `src/lib/products.ts`; the words on every pricing card come from
+Pricing cards show the total Paddle quotes for the visitor's country (Paddle.js `PricePreview`) for every tier with a Paddle price ID, and the site's own price until it answers. Tiers, prices and which products are ready live in `src/lib/products.ts`; the words on every pricing card come from
 `src/lib/offer.ts`. A tier is sold only once every product in it has `ready: true`; until then it shows as "Coming soon".
 The prices shown must match Paddle's, because Paddle charges its own: give each price a GBP override for the UK.
 
@@ -110,7 +110,7 @@ Settings → Variables and Secrets**), using **Secret** for keys and passwords. 
    - **Developer tools → Authentication**: create an API key and a client-side token (`PADDLE_API_KEY`, `PADDLE_CLIENT_TOKEN`).
    - **Developer tools → Notifications**: add a destination for `https://YOUR-DOMAIN/api/webhooks/paddle` with the
      `transaction.completed` event, and set `PADDLE_WEBHOOK_SECRET`.
-   - **Checkout → Checkout settings**: set your website as the default payment link and approve your domain.
+   - **Checkout → Checkout settings**: set the default payment link to `https://YOUR-DOMAIN/checkout` and approve your domain.
    - Set `PADDLE_ENVIRONMENT=production` when you switch to live keys.
    Paddle requires your terms to name it as reseller; `src/app/terms/page.tsx` already does.
 3. **Email**: create a Resend account, verify your domain, and set `RESEND_API_KEY` and `EMAIL_FROM`.

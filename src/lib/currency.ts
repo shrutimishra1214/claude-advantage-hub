@@ -6,10 +6,11 @@ import { site } from "./site";
  * The visitor's country from the host's geo-IP header (Vercel or Cloudflare).
  * In development, DEV_COUNTRY can stand in for it, since localhost has no geo data.
  */
-async function getCountry(): Promise<string | null> {
+export async function getCountry(): Promise<string | null> {
   const h = await headers();
-  const country = h.get("x-vercel-ip-country") ?? h.get("cf-ipcountry");
-  if (country) return country.toUpperCase();
+  const country = (h.get("x-vercel-ip-country") ?? h.get("cf-ipcountry"))?.toUpperCase();
+  // Cloudflare sends XX when it doesn't know the country and T1 for Tor.
+  if (country && /^[A-Z]{2}$/.test(country) && country !== "XX" && country !== "T1") return country;
   if (process.env.NODE_ENV !== "production" && process.env.DEV_COUNTRY) return process.env.DEV_COUNTRY.toUpperCase();
   return null;
 }

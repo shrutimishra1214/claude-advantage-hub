@@ -13,7 +13,7 @@ export function BuyButton({ tier: tierProp, label, variant = "primary", showPric
   arrow?: boolean;
   className?: string;
 }) {
-  const { open, currency, tier: get, primaryTier } = useCheckout();
+  const { open, currency, tier: get, primaryTier, paddlePrice } = useCheckout();
   const tier = tierProp ?? primaryTier;
   const t = get(tier);
   const cls = `btn-${variant} ${className}`;
@@ -26,7 +26,7 @@ export function BuyButton({ tier: tierProp, label, variant = "primary", showPric
   return (
     <button type="button" onClick={() => open(tier)} className={cls}>
       {label ?? `Get the ${t.label}`}
-      {showPrice && <span>· {formatPrice(t.price, currency)}</span>}
+      {showPrice && <span>· {paddlePrice(tier) ?? formatPrice(t.price, currency)}</span>}
       {arrow && <Icon.arrow className="btn-arrow h-4 w-4" />}
     </button>
   );
