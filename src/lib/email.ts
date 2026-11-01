@@ -44,6 +44,33 @@ export async function sendPurchaseEmail(opts: { to: string; name: string; items:
   if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
 }
 
+/** Emails a member a short-lived sign-in link from /login. Logged instead when Resend isn't configured. */
+export async function sendLoginEmail(opts: { to: string; name: string; link: string; product: string }) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.info(`[email] RESEND_API_KEY not set; sign-in link for ${opts.to}: ${opts.link}`);
+    return;
+  }
+  const html = `
+  <div style="font-family:Inter,Arial,sans-serif;max-width:520px;margin:auto;color:#0B1030">
+    <h1 style="font-size:22px">Sign in, ${escapeHtml(opts.name.split(" ")[0] || "there")}</h1>
+    <p>Here's your link to ${escapeHtml(opts.product)}. It works for the next 15 minutes and keeps you signed in on that device for a year.</p>
+    <p><a href="${opts.link}" style="display:inline-block;background:#1F1D1A;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">Open my member area</a></p>
+    <p style="color:#5B6083;font-size:13px">Didn't ask for this? You can ignore this email; nobody can sign in without the link.</p>
+  </div>`;
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: process.env.EMAIL_FROM ?? `${site.name} <${site.contactEmail}>`,
+      to: [opts.to],
+      subject: `Your sign-in link for ${opts.product}`,
+      html,
+    }),
+  });
+  if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
+}
+
 /** Tells the applicant their spot is reserved and notifies the owner. Skipped when Resend isn't configured. */
 export async function sendEarlyReaderEmails(a: { name: string; email: string; role: string; usage: string; linkedin: string; spot: number }) {
   const key = process.env.RESEND_API_KEY;

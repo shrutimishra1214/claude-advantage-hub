@@ -9,6 +9,9 @@ export const site = {
   contactEmail: "hello@kaelisvoss.com",
   // TODO: confirm the refund window you want to offer.
   guaranteeDays: 14,
+  // Everyone pays in USD through Paddle. Set to true to charge visitors in India
+  // in INR through Razorpay instead (needs the RAZORPAY_* keys).
+  inrForIndia: false,
   seoTitle: "Microsoft Copilot Prompts, Workflows & Templates | The Microsoft Copilot Advantage",
   description:
     "The complete Microsoft 365 Copilot productivity system for professionals: 250+ prompt recipes, 100 repeatable workflows, 30+ templates and a 30-day path across Word, Excel, PowerPoint, Outlook and Teams.",

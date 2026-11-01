@@ -10,6 +10,7 @@ const copilotLinks = [
   { href: "/copilot-advantage#templates", label: "Templates" },
   { href: "/copilot-advantage#faq", label: "FAQ" },
   { href: "/thank-you", label: "My library" },
+  { href: "/login?line=copilot", label: "Member login" },
 ];
 const company = [
   { href: "/contact", label: "Contact" },
@@ -26,6 +27,7 @@ const claudeLinks = [
   { href: "/claude-advantage#pricing", label: "Pricing" },
   { href: "/claude-advantage#faq", label: "FAQ" },
   { href: "/thank-you", label: "My library" },
+  { href: "/login?line=claude", label: "Member login" },
 ];
 
 export function Footer({ line = "copilot" }: { line?: LineId }) {

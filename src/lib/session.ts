@@ -31,3 +31,6 @@ export type LibraryGrant = { email: string; owned: ProductId[] };
 export const LIBRARY_TTL = 60 * 60 * 24 * 365;
 export const libraryToken = (grant: LibraryGrant) => sign(grant, LIBRARY_TTL);
 export const readLibraryToken = (token: string | undefined | null) => verify<LibraryGrant>(token);
+// Links sent from /login sign the buyer in through the same route, but only work briefly.
+export const LOGIN_TTL = 60 * 15;
+export const loginToken = (grant: LibraryGrant) => sign(grant, LOGIN_TTL);

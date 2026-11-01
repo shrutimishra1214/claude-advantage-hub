@@ -1,8 +1,8 @@
 # Kaelis Voss — The Microsoft Copilot Advantage
 
 Sales website, checkout funnel and member area for *The Microsoft Copilot Advantage*, built with Next.js 15 and Tailwind CSS.
-Visitors in India pay in INR through **Razorpay**; everyone else pays in USD through **Paddle**, which acts as merchant of record
-(it collects sales tax and VAT and pays out to you).
+Everyone pays in USD through **Paddle**, which acts as merchant of record (it collects sales tax and VAT and pays out to you).
+Charging visitors in India in INR through **Razorpay** is built in but switched off: set `inrForIndia` in `src/lib/site.ts`.
 
 ## Product lines
 
@@ -33,6 +33,19 @@ npm --prefix tools/hub-css install && npm --prefix tools/hub-css run build
 Each line's name, theme, navigation and tiers live in `src/lib/lines.ts`; Claude content lives in `src/lib/claude/`
 (chapter, prompt and skill data were extracted from the two Claude books). Put `claude-advantage.pdf` and
 `claude-operator.pdf` in `private-files/` before selling the books.
+
+## Member access
+
+The member areas (`/copilot-advantage/members`, `/claude-advantage/members`) open only for buyers of a member product.
+`src/middleware.ts` checks the signed member cookie before any member page is built, so nothing from those pages reaches
+anyone else; they're sent to `/login`. Buyers get in three ways:
+
+- **At checkout**: paying signs them in on that device for a year.
+- **From the purchase email**: its member-area link works for a year, on any device.
+- **From `/login`**: they enter the email they paid with and get a sign-in link valid for 15 minutes. Every confirmed
+  purchase is saved to the buyer list in Upstash (`src/lib/buyers.ts`), so this needs `KV_REST_API_*` and `RESEND_API_KEY`.
+
+Until live payment keys are set, the member areas stay open to everyone in "Preview mode" for testing.
 
 ## Funnel
 
@@ -86,7 +99,7 @@ Settings → Variables and Secrets**), using **Secret** for keys and passwords. 
 
 ## Before going live
 
-1. **Razorpay (India)**: complete KYC and put your live keys in the Cloudflare dashboard (see Deploying). Add a webhook to
+1. **Razorpay (India, only if you turn on `inrForIndia`)**: complete KYC and put your live keys in the Cloudflare dashboard (see Deploying). Add a webhook to
    `https://YOUR-DOMAIN/api/webhooks/razorpay` for the `payment.captured` event and set `RAZORPAY_WEBHOOK_SECRET`.
 2. **Paddle (everywhere else)**: apply for a Paddle account and get the website approved (Paddle reviews every seller; confirm
    your products fit its policy). Then, in sandbox first and again in production:
