@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Same Worker as the old claude-advantage-hub site, so kaelisvoss.com stays attached.
+  "name": "claude-advantage-hub",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "observability": { "enabled": true },
+  // Variables and secrets set in the Cloudflare dashboard (Razorpay, Paddle,
+  // APP_SECRET, KV_REST_API_*, ADMIN_PASSWORD, ...) survive each deploy.
+  "keep_vars": true
+  // Paid book files. Create the bucket, upload the PDFs from private-files/
+  // with the same names, then uncomment:
+  //   npx wrangler r2 bucket create kaelis-voss-files
+  //   npx wrangler r2 object put kaelis-voss-files/copilot-advantage.pdf --file private-files/copilot-advantage.pdf --remote
+  // , "r2_buckets": [{ "binding": "PRODUCT_FILES", "bucket_name": "kaelis-voss-files" }]
+}

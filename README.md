@@ -56,17 +56,29 @@ until either provider uses live keys, every product is shown so the whole funnel
 
 ## Run locally
 
+Use Node 20 or newer (`.nvmrc` says 22).
+
 ```bash
 npm install
 cp .env.example .env.local   # then fill in the values
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3000. `npm run preview` builds the site as a Cloudflare Worker and runs it locally on port 8787.
+
+## Deploying
+
+The site runs on **Cloudflare Workers** (the `claude-advantage-hub` Worker, which serves kaelisvoss.com), built with
+[OpenNext](https://opennext.js.org/cloudflare). Every push to `main` deploys it through
+`.github/workflows/deploy-cloudflare.yml`, which needs the `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and
+`BREVO_API_KEY` repository secrets. `npm run deploy` deploys from your machine instead.
+
+Every other setting from `.env.example` goes in the Cloudflare dashboard (**Workers & Pages → claude-advantage-hub →
+Settings → Variables and Secrets**), using **Secret** for keys and passwords. They are kept between deploys.
 
 ## Before going live
 
-1. **Razorpay (India)**: complete KYC and put your live keys in the host's environment variables. Add a webhook to
+1. **Razorpay (India)**: complete KYC and put your live keys in the Cloudflare dashboard (see Deploying). Add a webhook to
    `https://YOUR-DOMAIN/api/webhooks/razorpay` for the `payment.captured` event and set `RAZORPAY_WEBHOOK_SECRET`.
 2. **Paddle (everywhere else)**: apply for a Paddle account and get the website approved (Paddle reviews every seller; confirm
    your products fit its policy). Then, in sandbox first and again in production:
@@ -79,10 +91,11 @@ Open http://localhost:3000.
    - Set `PADDLE_ENVIRONMENT=production` when you switch to live keys.
    Paddle requires your terms to name it as reseller; `src/app/terms/page.tsx` already does.
 3. **Email**: create a Resend account, verify your domain, and set `RESEND_API_KEY` and `EMAIL_FROM`.
-4. **Files**: put the book PDF in `private-files/copilot-advantage.pdf` (see `private-files/README.md`). These files are never committed.
+4. **Files**: put the book PDFs in `private-files/` (see `private-files/README.md`); they are never committed. For the live
+   site, upload the same files to the `kaelis-voss-files` R2 bucket and turn on the `PRODUCT_FILES` binding in `wrangler.jsonc`.
 5. **Content**: replace the TODOs in `src/lib/site.ts` (contact email, refund window) and the author bio in `src/app/page.tsx`. Have the policy pages reviewed.
-6. **Early reader program** (`/early-readers`): in Vercel, open **Storage → Create → Upstash Redis** and connect it to the project
-   (this fills in `KV_REST_API_URL` and `KV_REST_API_TOKEN`). Set `ADMIN_PASSWORD`, then manage spots at `/admin/early-readers`.
+6. **Storage** (early reader program and members' saved prompts): create a free Redis database at
+   [Upstash](https://upstash.com) and set its REST URL and token as `KV_REST_API_URL` and `KV_REST_API_TOKEN`. Set `ADMIN_PASSWORD`, then manage spots at `/admin/early-readers`.
 7. **Testimonials**: put reader videos in `public/testimonials/` and list them in `testimonials` in `src/lib/content.ts`.
    Once there are 3, the site shows them instead of the early reader program.
 

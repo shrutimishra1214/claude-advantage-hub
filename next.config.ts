@@ -1,11 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Product files live outside /public so they can only be fetched through
-  // the signed /api/download route. Make sure Vercel bundles them.
-  outputFileTracingIncludes: {
-    "/api/download/[product]": ["./private-files/**/*"],
-  },
   // The Copilot pages moved from the site root to /copilot-advantage. Keep old
   // links working; /members/enter stays put because purchase emails use it.
   async redirects() {
@@ -17,9 +12,8 @@ const nextConfig: NextConfig = {
   // The site has two root layouts (the main site and the book reader pages),
   // so unmatched URLs need a 404 page of their own.
   experimental: { globalNotFound: true },
-  images: {
-    formats: ["image/avif", "image/webp"],
-  },
+  // Served as-is: on Cloudflare Workers, resizing would need a paid Images binding.
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

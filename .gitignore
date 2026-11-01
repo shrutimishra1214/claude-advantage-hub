@@ -14,3 +14,8 @@ private-files/*
 
 # Local early reader data (development only)
 .data
+
+# Cloudflare Workers build output and local secrets
+.open-next
+.wrangler
+.dev.vars
