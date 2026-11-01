@@ -1,26 +1,27 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { BuyButton } from "@/components/BuyButton";
 import { Icon } from "@/components/icons";
 import { ProductScene } from "@/components/Mockups";
+import { Bundles, PricingTiers } from "@/components/Pricing";
 import { BriefBuilder } from "@/components/members/BriefBuilder";
 import { Reveal } from "@/components/Reveal";
 import { Shell } from "@/components/Shell";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
-import { getCurrency } from "@/lib/currency";
 import { lines } from "@/lib/lines";
-import { formatPrice, products, tiers, type TierId } from "@/lib/products";
+import { bundleCopy, sharedFaqs } from "@/lib/offer";
+import { isTierOfferable, tiers } from "@/lib/products";
 import { site } from "@/lib/site";
 import { claudeDays, claudeWeekTitles } from "@/lib/claude/transformation";
 
 const L = lines.claude;
-const title = "Claude Prompts, Workflows & Systems | The Claude Advantage";
+const title = "The Claude Advantage™ | Advanced Claude AI Workflow System";
 const description =
-  "The complete Claude AI workflow system for professionals: advanced prompts, workflows for research, writing, analysis, Projects, Claude Code, Cowork and Design, and a 30-day transformation.";
+  "Claude workflows for professionals: advanced prompts and AI work systems for research, writing, analysis, projects, documents, Claude Code workflows and design, with a 30-day transformation.";
 
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
+  keywords: ["Claude workflows", "Claude AI productivity", "Claude Code workflows", "AI workflow systems", "AI work systems", "AI productivity for professionals"],
   alternates: { canonical: "/claude-advantage" },
   openGraph: { title, description, type: "website", siteName: L.name },
   twitter: { card: "summary_large_image", title, description },
@@ -35,7 +36,7 @@ const modules = [
   { k: "Prompt System", v: "250+ advanced prompt recipes", icon: "book" },
   { k: "Research System", v: "Research → Analyze → Synthesize", icon: "search" },
   { k: "Claude Code", v: "Build with Claude", icon: "grid" },
-  { k: "Claude Cowork", v: "Delegate real work", icon: "briefcase" },
+  { k: "Document System", v: "Reports, proposals and decision documents", icon: "doc" },
   { k: "Claude Design", v: "Create & iterate", icon: "wand" },
   { k: "Project System", v: "Turn conversations into ongoing work", icon: "layers" },
   { k: "AI Work System", v: "30-day Claude transformation", icon: "calendar" },
@@ -47,7 +48,7 @@ const areas = [
   { k: "Analysis", v: "Analyze documents, data and information to uncover what matters." },
   { k: "Projects", v: "Build persistent workspaces around ongoing work, so every session starts briefed." },
   { k: "Code", v: "Use Claude for software, scripts, debugging and technical workflows, safely." },
-  { k: "Cowork", v: "Delegate complex multi-step work and review it in minutes." },
+  { k: "Automation", v: "Hand off multi-step work with agentic workflows, and review it in minutes." },
   { k: "Design", v: "Turn ideas into polished visual and product concepts." },
   { k: "Business", v: "Create strategies, reports, proposals and decision documents." },
 ];
@@ -58,22 +59,22 @@ const ecosystem = [
   ["Workflow Vault", "Prompt chains and blueprints that turn one prompt into a finished job."],
   ["Context Kit", "Professional Brief, Company Brain, Style Guide and Project instructions."],
   ["Claude Code Workflows", "A safe first build, from spec to tested script."],
-  ["Cowork Workflows", "Delegation briefs and the five-minute review."],
+  ["Agentic Workflows", "Delegation briefs and the five-minute review."],
   ["Design Workflows", "Three directions, the real thing, then a critique."],
   ["Research Systems", "Frame, research, synthesize, deliver: with sources."],
   ["30-Day Transformation", "One task a day, from user to power user."],
-  ["Advanced AI Playbooks", "The Claude Operator: skills, 25 workflows and your AI Chief of Staff."],
+  ["Advanced AI Playbooks", "In Pro: The Claude Operator, with skills, workflows and your AI Chief of Staff."],
 ];
 
 const audience = ["Professionals", "Executives", "Consultants", "Entrepreneurs", "Creators", "Researchers", "Analysts", "Developers", "Knowledge workers"];
 
+// Claude-specific questions, shown after the shared ones in src/lib/offer.ts.
 const faqs = [
+  ...sharedFaqs,
   { q: "I already use Claude. Is this for me?", a: "Yes. It's built for people who use Claude but sense they're getting a fraction of its value. The system moves you from asking questions to running repeatable workflows." },
-  { q: "Do I need to be technical?", a: "No. Everything outside the Claude Code workflows is plain-language work: research, writing, analysis, planning and delegation. The coding workflows start from a safe, step-by-step first build." },
-  { q: "Which Claude plan do I need?", a: "Most of the system works on any Claude plan. Some features, such as Projects, Research, Claude Code, Cowork and Design, depend on your plan and region, and change over time. Each workflow says what it needs." },
-  { q: "What's the difference between The Claude Advantage and The Claude Operator?", a: "The Claude Advantage is the core system: the mental model, prompting, context and workflows. The Claude Operator is the advanced level: building an AI Chief of Staff with delegated jobs, tested skills and scheduled workflows." },
-  { q: "What happens when Claude changes?", a: "The system teaches durable methods rather than button locations. Interface-specific details are updated in the member area as Claude evolves." },
-  { q: "Is this affiliated with Anthropic?", a: "No. The Claude Advantage is an independently created educational product. Claude is a product of Anthropic, PBC." },
+  { q: "Which Claude plan do I need?", a: "Most of the system works on any Claude plan. Some features, such as Projects, research tools, Claude Code, design and agentic features, depend on your plan and region, and change over time. Each workflow says what it needs." },
+  { q: "Where does The Claude Operator fit?", a: "The Claude Operator is the advanced companion book. It's part of Pro, alongside the advanced research, project and agentic workflow systems." },
+  { q: "What happens when Claude changes?", a: "The system teaches durable methods rather than button locations. Claude's features and their names change over time, so interface-specific details are updated in the member area as Claude evolves." },
 ];
 
 function Head({ eyebrow, title, lead, center = true }: { eyebrow: string; title: ReactNode; lead?: ReactNode; center?: boolean }) {
@@ -84,10 +85,6 @@ function Head({ eyebrow, title, lead, center = true }: { eyebrow: string; title:
       {lead && <p className="section-lead">{lead}</p>}
     </Reveal>
   );
-}
-
-function Check({ children }: { children: ReactNode }) {
-  return <li className="flex gap-2.5 leading-snug"><Icon.check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.4} /><span>{children}</span></li>;
 }
 
 const stagger = (i: number) => ({ ["--i" as string]: i });
@@ -148,10 +145,7 @@ function Workspace() {
   );
 }
 
-export default async function ClaudeAdvantage() {
-  const currency = await getCurrency();
-  const price = (id: TierId) => formatPrice(tiers[id].price[currency], currency);
-
+export default function ClaudeAdvantage() {
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -159,7 +153,8 @@ export default async function ClaudeAdvantage() {
       name: L.name,
       description,
       brand: { "@type": "Brand", name: site.name },
-      offers: L.tiers.map((id) => ({
+      // Only tiers that can be bought today.
+      offers: (["claude-book", "claude-complete", "claude-pro"] as const).filter(isTierOfferable).map((id) => ({
         "@type": "Offer",
         name: tiers[id].name,
         price: (tiers[id].price.USD / 100).toFixed(2),
@@ -184,12 +179,11 @@ export default async function ClaudeAdvantage() {
               <span className="mt-1 block italic text-accent">Start working with Claude.</span>
             </h1>
             <p className="hero-in mt-6 max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl" style={{ animationDelay: "120ms" }}>
-              The complete system for turning Claude into a serious AI work partner.
+              Build advanced Claude workflows for research, writing, analysis, projects, documents, coding, design, and serious professional work.
             </p>
-            <p className="hero-in mt-3 font-display text-xl italic text-ink-soft" style={{ animationDelay: "160ms" }}>Research. Create. Analyze. Code. Design. Work.</p>
             <div className="hero-in mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "200ms" }}>
-              <BuyButton label="Get the Claude Advantage" className="!py-4" />
-              <a href="#system" className="btn-secondary !py-4">See the system <span aria-hidden>↓</span></a>
+              <a href="#pricing" className="btn-primary !py-4">Get the Complete System <Icon.arrow className="btn-arrow h-4 w-4" /></a>
+              <a href="#book" className="btn-secondary !py-4">Explore the Book</a>
             </div>
             <p className="hero-in mt-6 text-sm text-ink-muted" style={{ animationDelay: "260ms" }}>
               250+ prompts • 100+ workflows • Advanced Claude systems • 30-day transformation
@@ -279,21 +273,21 @@ export default async function ClaudeAdvantage() {
         </div>
       </section>
 
-      {/* ───────────── Code, Cowork & Design ───────────── */}
+      {/* ───────────── Beyond chat ───────────── */}
       <section id="claude-code" className="section scroll-mt-16 bg-ink text-white">
         <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <Reveal>
             <p className="eyebrow !text-[#E7B437]">Beyond chat</p>
-            <h2 className="section-title mt-4 !text-white">Code. Cowork. Design.</h2>
+            <h2 className="section-title mt-4 !text-white">Advanced Claude workflows</h2>
             <p className="mt-5 text-lg leading-relaxed text-white/75">
-              Claude now does real work beyond the chat window. The system shows you how to use it safely: brief the job, give only the access it needs, review the result in
-              minutes, and keep the decisions that matter.
+              Claude is a serious professional work environment, not just a chatbot. The system shows you how to use it for coding, agentic work and design safely: brief the
+              job, give only the access it needs, review the result in minutes, and keep the decisions that matter.
             </p>
           </Reveal>
           <div className="grid gap-4">
             {[
               ["Claude Code", "A safe first build: spec, plan, small steps, tests and a README. Work on copies; save points before every change."],
-              ["Cowork", "Hand off a half-day job with a delegation brief and a review page, then check it in five minutes."],
+              ["Agentic workflows", "Hand off a half-day job with a delegation brief and a review page, then check it in five minutes."],
               ["Design", "Three directions first, then the real, editable piece, then a critique from your audience's point of view."],
             ].map(([k, v], i) => (
               <Reveal key={k} delay={i * 80} className="rounded-xl border border-white/10 bg-white/[0.04] p-6">
@@ -370,47 +364,16 @@ export default async function ClaudeAdvantage() {
       {/* ───────────── Pricing ───────────── */}
       <section id="pricing" className="section scroll-mt-16">
         <div className="container">
-          <Head eyebrow="Pricing" title="Choose your level" lead="One-time payment. Instant access. Yours to keep." />
-          <div className="mt-16 grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4">
-            <Reveal className="card flex h-full flex-col p-7">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Book</p>
-              <h3 className="mt-2 text-xl">The Claude Advantage</h3>
-              <p className="mt-6 font-display text-5xl">{price("claude-book")}</p>
-              <ul className="mb-9 mt-7 grid gap-3 text-[15px]">{products["claude-book"].bullets.map((b) => <Check key={b}>{b}</Check>)}</ul>
-              <BuyButton tier="claude-book" label="Get the Book" showPrice={false} variant="secondary" className="mt-auto w-full" />
-            </Reveal>
-            <Reveal delay={60} className="relative flex h-full flex-col rounded-xl border-2 border-accent bg-white p-7 shadow-lift">
-              <span className="absolute -top-3 left-7 rounded bg-accent px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white">Most popular</span>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">Complete digital system</p>
-              <h3 className="mt-2 text-xl">The Claude Advantage System</h3>
-              <p className="mt-6 font-display text-5xl">{price("claude-system")}</p>
-              <ul className="mb-9 mt-7 grid gap-3 text-[15px]">{products["claude-system"].bullets.map((b) => <Check key={b}>{b}</Check>)}</ul>
-              <BuyButton tier="claude-system" label="Get the System" showPrice={false} className="mt-auto w-full" />
-            </Reveal>
-            <Reveal delay={120} className="card flex h-full flex-col p-7">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Complete Bundle</p>
-              <h3 className="mt-2 text-xl">Book + System</h3>
-              <p className="mt-6 font-display text-5xl">{price("claude-bundle")}</p>
-              <ul className="mb-9 mt-7 grid gap-3 text-[15px]"><Check>Everything in the Book</Check><Check>Everything in the System</Check></ul>
-              <BuyButton tier="claude-bundle" label="Get the Bundle" showPrice={false} variant="secondary" className="mt-auto w-full" />
-            </Reveal>
-            <Reveal delay={180} className="relative flex h-full flex-col rounded-xl bg-ink p-7 text-white shadow-window">
-              <span className="absolute -top-3 left-7 rounded bg-[#E7B437] px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-ink">Advanced level</span>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/60">Operator Edition</p>
-              <h3 className="mt-2 text-xl">Everything + The Claude Operator</h3>
-              <p className="mt-6 font-display text-5xl">{price("claude-operator")}</p>
-              <ul className="mb-9 mt-7 grid gap-3 text-[15px]">
-                <Check>The Book and the complete System</Check>
-                {products["claude-operator"].bullets.map((b) => <Check key={b}>{b}</Check>)}
-              </ul>
-              <BuyButton tier="claude-operator" label="Become an Operator" showPrice={false} className="mt-auto w-full !bg-white !text-ink hover:!bg-paper" />
-            </Reveal>
-          </div>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-ink-muted">
-            <span className="flex items-center gap-2"><Icon.shield className="h-4 w-4 text-accent" /> {site.guaranteeDays}-day money-back guarantee</span>
-            <span className="flex items-center gap-2"><Icon.lock className="h-4 w-4 text-accent" /> Secure checkout by {currency === "INR" ? "Razorpay" : "Paddle"}</span>
-            <span className="flex items-center gap-2"><Icon.download className="h-4 w-4 text-accent" /> Instant access after payment</span>
-          </div>
+          <Head eyebrow="Pricing" title="Choose how far you want to go" lead="Book, Complete or Pro. One-time payment. Yours to keep." />
+          <PricingTiers line="claude" />
+        </div>
+      </section>
+
+      {/* ───────────── Bundles ───────────── */}
+      <section id="bundles" className="section scroll-mt-16 border-t border-line bg-paper">
+        <div className="container max-w-5xl">
+          <Head eyebrow="Both systems" title={bundleCopy.title} lead={bundleCopy.lead} />
+          <Reveal className="mt-12"><Bundles /></Reveal>
         </div>
       </section>
 
@@ -445,12 +408,12 @@ export default async function ClaudeAdvantage() {
             Stop chatting with Claude.
             <span className="mt-1 block italic text-[#E7B437]">Start working with Claude.</span>
           </h2>
-          <p className="mx-auto mt-7 max-w-xl text-lg text-white/75">Master Claude. Build better workflows. Do more with AI.</p>
+          <p className="mx-auto mt-7 max-w-xl text-lg text-white/75">Build a repeatable workflow. Turn Claude into part of how you work.</p>
           <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <BuyButton label="Get the Claude Advantage" className="!py-4" />
-            <BuyButton tier="claude-operator" label="Go advanced: Operator Edition" variant="secondary" className="!border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10" />
+            <a href="#pricing" className="btn-primary !py-4">Get the Complete System <Icon.arrow className="btn-arrow h-4 w-4" /></a>
+            <a href="#book" className="btn-secondary !border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10">Explore the Book</a>
           </div>
-          <p className="mt-6 text-sm text-white/50">Complete Digital System · {site.guaranteeDays}-day money-back guarantee</p>
+          <p className="mt-6 text-sm text-white/50">{site.guaranteeDays}-day money-back guarantee · Instant access</p>
         </Reveal>
       </section>
 

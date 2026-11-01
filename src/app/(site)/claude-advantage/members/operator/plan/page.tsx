@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "30-Day Operator Plan" };
 
 export default async function OperatorPlan() {
   const { operator } = await claudeAccess();
-  if (!operator) return <Locked what="The 30-Day Operator Plan" body="It's part of The Claude Operator advanced level." href="/claude-advantage#pricing" />;
+  if (!operator) return <Locked what="The 30-Day Operator Plan" body="It's part of The Claude Advantage™ Pro." href="/claude-advantage#pricing" />;
   return (
     <>
       <PageHead eyebrow="Chapter 23 · Your 30-Day Operator Plan" title="Thirty days, one stage a week" lead="Five working days of 30–45 minutes, and a Friday check. Missed a day? Move the plan back a day rather than doubling up. Days 29 and 30 are Capstone 5.">

@@ -12,13 +12,13 @@ const COOKIE = "kv_member";
 const TTL = 60 * 60 * 24 * 365;
 
 /** Products that unlock a member area. */
-export const memberProducts: ProductId[] = ["toolkit", "claude-system", "claude-operator"];
+export const memberProducts: ProductId[] = ["toolkit", "copilot-pro", "claude-system", "claude-operator"];
 export const ownsMemberProduct = (owned: ProductId[]) => owned.some((p) => memberProducts.includes(p));
 /** @deprecated kept for older call sites */
 export const ownsToolkit = ownsMemberProduct;
 
 const linesUnlockedBy: Record<LineId, ProductId[]> = {
-  copilot: ["toolkit"],
+  copilot: ["toolkit", "copilot-pro"],
   claude: ["claude-system", "claude-operator"],
 };
 

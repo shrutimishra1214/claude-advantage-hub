@@ -153,7 +153,7 @@
     "prompt": "Act as an experienced people manager. I need to write performance feedback for [name, role, seniority]. The review period: [date range]. Strengths I have observed: [describe specific examples]. Areas for development: [describe specific situations where performance did not meet expectations]. My overall assessment: [meets expectations / exceeds / below]. Tone required: [e.g., encouraging, frank, balanced]. Write feedback that: is specific and example-based rather than general, leads with genuine strengths before addressing development areas, frames development feedback constructively with clear expectations, and is appropriate for a formal review document."
    },
    {
-    "title": "Team Communication — Difficult Announcement",
+    "title": "Team Communication: Difficult Announcement",
     "prompt": "You are a communications specialist helping a manager communicate a difficult message to their team. The announcement: [describe what needs to be communicated: restructure, policy change, difficult news]. What the team is likely to be feeling: [describe anticipated reaction]. What I can say: [what information can be shared]. What I cannot say yet: [what is restricted]. What I want the team to feel at the end of the communication: [e.g., informed, supported, clear on next steps]. Write the announcement and a list of the five questions most likely to be asked, with suggested responses to each."
    },
    {

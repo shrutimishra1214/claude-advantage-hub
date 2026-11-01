@@ -47,7 +47,7 @@ export default async function EarlyReaders() {
                 ? "Thank you to our first readers. Here's what they had to say."
                 : left === 0
                   ? `All ${TOTAL_SPOTS} spots have been claimed. Their honest video reviews will be published here soon.`
-                  : `We're giving ${TOTAL_SPOTS} professionals the complete Copilot toolkit before launch, in exchange for an honest 60-second video review.`}
+                  : `We're giving ${TOTAL_SPOTS} professionals the Complete Copilot system before launch, in exchange for an honest 60-second video review.`}
             </p>
             {!programOver && left > 0 && (
               <a href="#apply" className="btn-primary mt-8">Claim a spot <Icon.arrow className="h-5 w-5" /></a>

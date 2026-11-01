@@ -47,25 +47,27 @@ anyone else; they're sent to `/login`. Buyers get in three ways:
 
 Until live payment keys are set, the member areas stay open to everyone in "Preview mode" for testing.
 
-## Funnel
+## Tiers and prices
+
+Each product has three tiers: **Book** (learn), **Complete** (learn + implement: the Book plus the implementation system)
+and **Pro** (build + systemize: Complete plus the advanced work systems). There is no standalone Toolkit. Two bundles sell both
+products together. US visitors pay in USD and UK visitors in GBP:
+
+| | Book | Complete | Pro |
+|---|---|---|---|
+| The Microsoft Copilot Advantage | $24.99 / £19.99 | $99 / £79 | $149 / £119 |
+| The Claude Advantage | $24.99 / £19.99 | $119 / £89 | $179 / £139 |
+| Both systems | | $169 / £129 | $249 / £199 |
+
+Tiers, prices and which products are ready live in `src/lib/products.ts`; the words on every pricing card come from
+`src/lib/offer.ts`. A tier is sold only once every product in it has `ready: true`; until then it shows as "Coming soon".
+The prices shown must match Paddle's, because Paddle charges its own: give each price a GBP override for the UK.
+
+After a purchase the buyer is offered the next tier up once, at the difference (`src/lib/funnel.ts`):
 
 ```
-Sales page ──► Checkout (book + optional Prompt Vault order bump)
-                 │
-                 ▼
-        Upsell 1: Masterclass ──no──► Downsell 1: Masterclass Essentials
-                 │ yes                        │
-                 ▼                            ▼
-        Upsell 2: Agent Kit ──────no──► Downsell 2: Agent Blueprints
-                 │ yes                        │
-                 ▼                            ▼
-                         Thank-you / library
+Book ──► Upgrade to Complete ──► Upgrade to Pro ──► Thank-you / library
 ```
-
-Products, prices and which products are ready to sell live in `src/lib/products.ts`. USD prices shown on the site must match
-the prices you create in Paddle, because Paddle charges its own price.
-The order of offers lives in `src/lib/funnel.ts`. Only products with `ready: true` are sold on the live site;
-until either provider uses live keys, every product is shown so the whole funnel can be tried.
 
 ## Run locally
 
@@ -103,8 +105,8 @@ Settings → Variables and Secrets**), using **Secret** for keys and passwords. 
    `https://YOUR-DOMAIN/api/webhooks/razorpay` for the `payment.captured` event and set `RAZORPAY_WEBHOOK_SECRET`.
 2. **Paddle (everywhere else)**: apply for a Paddle account and get the website approved (Paddle reviews every seller; confirm
    your products fit its policy). Then, in sandbox first and again in production:
-   - **Catalog → Products**: create the Book ($19.99), Toolkit ($79), Complete Bundle ($99) and Toolkit upgrade ($59) as one-time
-     prices, and put each price ID in `PADDLE_PRICE_*`.
+   - **Catalog → Products**: create a one-time price for every tier, bundle and upgrade listed in `.env.example`, with a GBP
+     override for the United Kingdom, and put each price ID in its `PADDLE_PRICE_*` setting.
    - **Developer tools → Authentication**: create an API key and a client-side token (`PADDLE_API_KEY`, `PADDLE_CLIENT_TOKEN`).
    - **Developer tools → Notifications**: add a destination for `https://YOUR-DOMAIN/api/webhooks/paddle` with the
      `transaction.completed` event, and set `PADDLE_WEBHOOK_SECRET`.

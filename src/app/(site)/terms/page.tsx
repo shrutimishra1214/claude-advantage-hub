@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
+import { lines } from "@/lib/lines";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Terms & conditions" };
@@ -22,7 +23,8 @@ export default function Terms() {
       <h2>Refunds</h2>
       <p>See our <a href="/refund-policy">refund policy</a>.</p>
       <h2>No affiliation</h2>
-      <p>{site.disclaimer}</p>
+      <p>{lines.copilot.disclaimer}</p>
+      <p>{lines.claude.disclaimer}</p>
       <h2>Liability</h2>
       <p>The content is for educational purposes. Software features change over time, and results depend on your Microsoft 365 plan and how you use it. To the extent permitted by law, our liability is limited to the amount you paid.</p>
       <h2>Contact</h2>

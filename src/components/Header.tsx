@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BuyButton } from "./BuyButton";
 import { lines, type LineId } from "@/lib/lines";
 import { Icon } from "./icons";
 
@@ -54,7 +53,7 @@ export function Header({ line = "copilot" }: { line?: LineId }) {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <BuyButton label={line === "claude" ? "Get the Claude Advantage" : "Get the Copilot Advantage"} showPrice={false} arrow={false} className="!hidden whitespace-nowrap !px-4 !py-2.5 !text-sm sm:!inline-flex" />
+          <a href={`${L.base}#pricing`} className="btn-primary !hidden whitespace-nowrap !px-4 !py-2.5 !text-sm sm:!inline-flex">Get the Complete System</a>
           <button
             type="button"
             onClick={() => setMenu((m) => !m)}
@@ -80,7 +79,7 @@ export function Header({ line = "copilot" }: { line?: LineId }) {
             ))}
           </ul>
           <div className="container pb-8" onClick={() => setMenu(false)}>
-            <BuyButton label={line === "claude" ? "Get the Claude Advantage" : "Get the Copilot Advantage"} className="w-full !py-4" />
+            <a href={`${L.base}#pricing`} className="btn-primary w-full !py-4">Get the Complete System</a>
           </div>
         </nav>
       )}

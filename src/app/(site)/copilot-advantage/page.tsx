@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { BuyButton } from "@/components/BuyButton";
 import { Icon } from "@/components/icons";
 import { AppTile } from "@/components/product/AppChip";
 import { CheatSheets } from "@/components/product/CheatSheets";
 import { DashboardPreview } from "@/components/product/DashboardPreview";
 import { HeroVisual } from "@/components/product/HeroVisual";
-import { Ebook, ProductScene } from "@/components/Mockups";
+import { ProductScene } from "@/components/Mockups";
+import { Bundles, PricingTiers } from "@/components/Pricing";
 import { PromptBuilder } from "@/components/product/PromptBuilder";
 import { PromptLibrary } from "@/components/product/PromptLibrary";
 import { SavingsCalculator } from "@/components/product/SavingsCalculator";
@@ -17,8 +17,8 @@ import { Shell } from "@/components/Shell";
 import { StickyBuyBar } from "@/components/StickyBuyBar";
 import { VideoTestimonials } from "@/components/VideoTestimonials";
 import { testimonials } from "@/lib/content";
-import { getCurrency } from "@/lib/currency";
-import { formatPrice, products, proPrice, tiers, type TierId } from "@/lib/products";
+import { bundleCopy, sharedFaqs } from "@/lib/offer";
+import { isTierOfferable, tiers } from "@/lib/products";
 import { site } from "@/lib/site";
 import {
   advantageWay,
@@ -42,8 +42,14 @@ import {
 
 export const metadata: Metadata = {
   title: { absolute: site.seoTitle },
+  description: site.description,
+  keywords: ["Microsoft Copilot productivity", "Microsoft 365 AI", "Copilot workflows", "Copilot prompts", "AI productivity system", "AI productivity for professionals"],
   alternates: { canonical: "/copilot-advantage" },
+  openGraph: { title: site.seoTitle, description: site.description, type: "website", siteName: site.name, images: [{ url: "/images/cover.jpg", width: 1100, height: 1392, alt: site.productName }] },
+  twitter: { card: "summary_large_image", title: site.seoTitle, description: site.description },
 };
+
+const faqList = [...sharedFaqs, ...faqs];
 
 function SectionHead({ eyebrow, title, lead, center = true }: { eyebrow?: string; title: ReactNode; lead?: ReactNode; center?: boolean }) {
   return (
@@ -55,43 +61,32 @@ function SectionHead({ eyebrow, title, lead, center = true }: { eyebrow?: string
   );
 }
 
-function Check({ children }: { children: ReactNode }) {
-  return (
-    <li className="flex gap-2.5 leading-snug">
-      <Icon.check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2.4} />
-      <span>{children}</span>
-    </li>
-  );
-}
-
 // Lets a flow step's entrance be staggered by its position.
 const stagger = (i: number) => ({ ["--i" as string]: i });
 
-export default async function Home() {
-  const currency = await getCurrency();
-  const price = (id: TierId) => formatPrice(tiers[id].price[currency], currency);
-
+export default function CopilotAdvantage() {
   const jsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      name: site.productName,
+      name: "The Microsoft Copilot Advantage™",
       description: site.description,
       image: `${site.url}/images/cover.jpg`,
       brand: { "@type": "Brand", name: site.name },
-      offers: (["book", "toolkit", "bundle"] as const).map((id) => ({
+      // Only tiers that can be bought today.
+      offers: (["book", "complete", "pro"] as const).filter(isTierOfferable).map((id) => ({
         "@type": "Offer",
         name: tiers[id].name,
         price: (tiers[id].price.USD / 100).toFixed(2),
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
-        url: `${site.url}/#pricing`,
+        url: `${site.url}/copilot-advantage#pricing`,
       })),
     },
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+      mainEntity: faqList.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
     },
   ];
 
@@ -104,19 +99,16 @@ export default async function Home() {
         <div aria-hidden className="grid-bg absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
         <div className="container grid items-center gap-16 lg:grid-cols-[1fr_1.05fr]">
           <div>
-            <p className="hero-in eyebrow">The Complete Microsoft 365 AI Productivity System</p>
+            <p className="hero-in eyebrow">The Microsoft Copilot Advantage™ · The Complete Microsoft 365 AI Productivity System</p>
             <h1 className="hero-in mt-5 text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.1rem]" style={{ animationDelay: "60ms" }}>
-              Turn Microsoft Copilot Into Your <span className="text-accent">AI Work Assistant</span>
+              Stop using Copilot randomly. <span className="text-accent">Start using it as a system.</span>
             </h1>
             <p className="hero-in mt-6 max-w-xl text-lg leading-relaxed text-ink-muted md:text-xl" style={{ animationDelay: "120ms" }}>
-              Stop asking random questions and start using Copilot through repeatable workflows that help you write, analyze, research, communicate, plan, and get
-              more done across Microsoft 365.
+              Turn Microsoft 365 Copilot into a repeatable productivity system for writing, research, meetings, analysis, presentations, planning, and everyday work.
             </p>
             <div className="hero-in mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "180ms" }}>
-              <BuyButton label="Get the Copilot Advantage" className="!py-4" />
-              <a href="#whats-inside" className="btn-secondary !py-4">
-                See What&apos;s Inside <span aria-hidden>↓</span>
-              </a>
+              <a href="#pricing" className="btn-primary !py-4">Get the Complete System <Icon.arrow className="btn-arrow h-4 w-4" /></a>
+              <a href="#book" className="btn-secondary !py-4">Explore the Book</a>
             </div>
             <ul className="hero-in mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-ink-soft" style={{ animationDelay: "240ms" }}>
               {proofPoints.map((p, i) => (
@@ -224,7 +216,7 @@ export default async function Home() {
           <SectionHead eyebrow="What's inside" title="Everything You Need to Make Copilot Actually Useful" lead="One system. Seven powerful tools." />
           <Reveal className="mx-auto mt-14 max-w-5xl">
             <ProductScene line="copilot" />
-            <p className="mt-4 text-center text-sm text-ink-muted">Ebook · Member toolkit · Mobile access · Printable cheat sheets</p>
+            <p className="mt-4 text-center text-sm text-ink-muted">Ebook · Members area · Mobile access · Printable cheat sheets</p>
           </Reveal>
           <Reveal className="mt-14">
             <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
@@ -258,7 +250,7 @@ export default async function Home() {
         <div className="container">
           <Reveal className="card grid gap-10 p-6 md:grid-cols-2 md:p-12">
             <div>
-              <p className="font-mono text-sm text-accent">01 — Copilot Quickstart</p>
+              <p className="font-mono text-sm text-accent">01 · Copilot Quickstart</p>
               <h3 className="mt-3 text-3xl md:text-4xl">Start Using Copilot With Confidence</h3>
               <p className="mt-4 text-lg leading-relaxed text-ink-muted">A guided introduction that takes you from your first prompt to your first useful workflow.</p>
               <a href="#pricing" className="link-arrow mt-6">Explore Quickstart <Icon.arrow className="btn-arrow h-4 w-4" /></a>
@@ -283,9 +275,9 @@ export default async function Home() {
       <section id="prompt-library" className="section scroll-mt-16 border-t border-line bg-paper">
         <div className="container">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
-            <SectionHead center={false} eyebrow="02 — Prompt Recipe Library" title="250+ Ready-to-Use Prompt Recipes" lead={<>Don&apos;t just collect prompts. Learn prompts organized around real work.</>} />
+            <SectionHead center={false} eyebrow="02 · Prompt Recipe Library" title="250+ Prompt Recipes, Organized by the Job You're Doing" lead={<>Don&apos;t collect prompts. Build a workflow. Every recipe starts from a real task: write, analyze, research, email, meet, create, plan, decide, present, communicate.</>} />
             <Reveal className="lg:pb-1">
-              <p className="text-sm font-semibold">10 categories</p>
+              <p className="text-sm font-semibold">10 jobs to be done</p>
               <ul className="mt-3 flex flex-wrap gap-1.5">
                 {recipeCategories.map((c) => <li key={c} className="rounded-md border border-line bg-white px-2.5 py-1 text-sm text-ink-soft">{c}</li>)}
               </ul>
@@ -303,9 +295,9 @@ export default async function Home() {
       <section id="workflows" className="section scroll-mt-16 bg-ink text-white">
         <div className="container grid gap-14 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <Reveal>
-            <p className="eyebrow !text-white/60">03 — Copilot Workflow Vault</p>
+            <p className="eyebrow !text-white/60">03 · Copilot Workflow Vault</p>
             <h2 className="section-title mt-4">100 Repeatable Workflows</h2>
-            <p className="mt-4 text-white/70">This is the centerpiece of the product.</p>
+            <p className="mt-4 text-lg text-white/80">Stop asking Copilot random questions. Start using it as a repeatable AI work system.</p>
             <div className="mt-8 grid gap-1 border-l-2 border-accent pl-5 text-2xl font-semibold leading-snug md:text-3xl">
               <p className="text-white/55">A prompt helps you do one thing.</p>
               <p>A workflow helps you get the whole job done.</p>
@@ -346,7 +338,7 @@ export default async function Home() {
           <SectionHead
             eyebrow="Cross-app workflows"
             title="Where Copilot Gets Really Powerful"
-            lead="The real advantage comes from connecting workflows across Microsoft 365, so the output of one app becomes the input to the next."
+            lead="The product teaches you to connect AI across Microsoft 365, not to generate isolated prompts. The output of one app becomes the input to the next."
           />
           <div className="mt-14 grid gap-5">
             {crossAppFlows.map((f, fi) => (
@@ -420,7 +412,7 @@ export default async function Home() {
         <div className="container">
           <SectionHead eyebrow="Prompt Builder · try it" title="Build the Right Copilot Prompt in Seconds" lead={<>Don&apos;t know what to ask? Build your prompt step by step.</>} />
           <Reveal className="mt-12"><PromptBuilder /></Reveal>
-          <p className="mt-8 text-center text-sm text-ink-muted">This builder works right here. It&apos;s also part of the Toolkit, next to the recipes and workflows it feeds.</p>
+          <p className="mt-8 text-center text-sm text-ink-muted">This builder works right here. It&apos;s also part of Complete, next to the recipes and workflows it feeds.</p>
         </div>
       </section>
 
@@ -455,7 +447,7 @@ export default async function Home() {
             })}
           </ol>
           <div className="mt-10 text-center">
-            <BuyButton label="Start the 30-Day Transformation" showPrice={false} variant="dark" />
+            <a href="#pricing" className="btn-dark">Get the Complete System <Icon.arrow className="btn-arrow h-4 w-4" /></a>
           </div>
         </div>
       </section>
@@ -479,7 +471,7 @@ export default async function Home() {
       {/* ───────────── Who it's for ───────────── */}
       <section className="section border-t border-line bg-paper">
         <div className="container">
-          <SectionHead eyebrow="Who it's for" title="Built for People Who Have Work to Do" />
+          <SectionHead eyebrow="Who it's for" title="Built for People Who Actually Have Work to Do" />
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {audiences.map((a, i) => {
               const I = Icon[a.icon];
@@ -545,80 +537,16 @@ export default async function Home() {
       {/* ───────────── Pricing ───────────── */}
       <section id="pricing" className="section scroll-mt-16">
         <div className="container">
-          <SectionHead eyebrow="Pricing" title="Start Building Your Copilot Advantage" lead="One-time payment. Instant access. Yours to keep." />
+          <SectionHead eyebrow="Pricing" title="Choose How Far You Want to Go" lead="Book, Complete or Pro. One-time payment. Yours to keep." />
+          <PricingTiers line="copilot" />
+        </div>
+      </section>
 
-          <div className="mt-16 grid items-stretch gap-5 lg:grid-cols-3">
-            <Reveal className="card flex h-full flex-col p-7">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Book</p>
-                  <h3 className="mt-2 text-xl">The Microsoft Copilot Advantage</h3>
-                </div>
-                <Ebook book="copilot" className="w-[58px] shrink-0" sizes="60px" />
-              </div>
-              <p className="mt-6 font-display text-5xl font-semibold tracking-tight">{price("book")}</p>
-              <ul className="mb-9 mt-7 grid gap-3 text-[15px]">
-                {products.book.bullets.map((b) => <Check key={b}>{b}</Check>)}
-              </ul>
-              <BuyButton tier="book" label="Get the Book" showPrice={false} variant="secondary" className="mt-auto w-full" />
-            </Reveal>
-
-            <Reveal delay={80} className="relative flex h-full flex-col rounded-xl border-2 border-accent bg-white p-7 shadow-lift">
-              <span className="absolute -top-3 left-7 rounded bg-accent px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white">Most popular</span>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">Toolkit</p>
-              <h3 className="mt-2 text-xl">The Copilot Advantage Toolkit</h3>
-              <p className="mt-6 font-display text-5xl font-semibold tracking-tight">{price("toolkit")}</p>
-              <ul className="mb-9 mt-7 grid gap-3 text-[15px]">
-                {products.toolkit.bullets.map((b) => <Check key={b}>{b}</Check>)}
-              </ul>
-              <BuyButton tier="toolkit" label="Get the Toolkit" showPrice={false} className="mt-auto w-full" />
-            </Reveal>
-
-            <Reveal delay={160} className="relative flex h-full flex-col rounded-xl bg-ink p-7 text-white shadow-window lg:-my-5 lg:py-12">
-              <span className="absolute -top-3 left-7 rounded bg-white px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-ink ring-1 ring-ink">Everything included</span>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/60">Complete Bundle</p>
-                  <h3 className="mt-2 text-xl">Book + Toolkit</h3>
-                </div>
-                <span className="flex shrink-0 items-end">
-                  <Ebook book="copilot" className="w-[50px]" sizes="50px" />
-                  <span className="-ml-3 grid h-[52px] w-10 place-items-center rounded bg-accent shadow-book"><Icon.grid className="h-5 w-5" /></span>
-                </span>
-              </div>
-              <p className="mt-6 font-display text-5xl font-semibold tracking-tight">{price("bundle")}</p>
-              <p className="mt-2 text-sm text-white/70">The complete system: read the method, then run it.</p>
-              <ul className="mb-9 mt-7 grid gap-3 text-[15px]">
-                <Check>Everything in the Book</Check>
-                <Check>Everything in the Toolkit</Check>
-                {["250+ recipes, 100 workflows, 30+ templates", "30-Day Transformation & Prompt Builder", "Cheat sheets & cross-app workflow library"].map((b) => (
-                  <li key={b} className="pl-6 text-white/65">{b}</li>
-                ))}
-              </ul>
-              <BuyButton tier="bundle" label="Get the Complete Bundle" showPrice={false} className="mt-auto w-full !bg-white !text-ink hover:!bg-paper" />
-            </Reveal>
-          </div>
-
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-ink-muted">
-            <span className="flex items-center gap-2"><Icon.shield className="h-4 w-4 text-accent" /> {site.guaranteeDays}-day money-back guarantee</span>
-            <span className="flex items-center gap-2"><Icon.lock className="h-4 w-4 text-accent" /> Secure checkout by {currency === "INR" ? "Razorpay" : "Paddle"}</span>
-            <span className="flex items-center gap-2"><Icon.download className="h-4 w-4 text-accent" /> Instant access after payment</span>
-          </div>
-
-          {/* Pro: listed, never sold until it exists. */}
-          <Reveal className="mt-14 flex flex-col gap-6 rounded-xl border border-dashed border-line-strong bg-paper p-6 md:flex-row md:items-center md:p-8">
-            <div className="md:w-64 md:shrink-0">
-              <span className="rounded bg-white px-2 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-muted ring-1 ring-line">Coming soon</span>
-              <h3 className="mt-3 text-xl">Copilot Advantage Pro</h3>
-              <p className="mt-1 font-display text-2xl font-semibold text-ink-muted">{formatPrice(proPrice[currency], currency)}</p>
-            </div>
-            <div className="flex-1">
-              <p className="text-sm font-semibold">Everything in the Complete Bundle, plus:</p>
-              <ul className="mt-3 grid gap-x-6 gap-y-2 text-[15px] text-ink-soft sm:grid-cols-2">
-                {["Advanced Executive Workflows", "Advanced Prompt Builder", "Workflow Builder", "Industry-specific workflow packs", "Future product updates"].map((b) => <Check key={b}>{b}</Check>)}
-              </ul>
-            </div>
-          </Reveal>
+      {/* ───────────── Bundles ───────────── */}
+      <section id="bundles" className="section scroll-mt-16 border-t border-line bg-paper">
+        <div className="container max-w-5xl">
+          <SectionHead eyebrow="Both systems" title={bundleCopy.title} lead={bundleCopy.lead} />
+          <Reveal className="mt-12"><Bundles /></Reveal>
         </div>
       </section>
 
@@ -641,7 +569,7 @@ export default async function Home() {
             </div>
           </Reveal>
           <div className="border-t border-line">
-            {faqs.map((f) => (
+            {faqList.map((f) => (
               <details key={f.q} className="group border-b border-line">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-semibold transition-colors hover:text-accent [&::-webkit-details-marker]:hidden">
                   {f.q}
@@ -669,8 +597,8 @@ export default async function Home() {
               You don&apos;t need to become an AI expert. You need a system that helps you use Copilot effectively when the work actually matters.
             </p>
             <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-              <BuyButton label="Get the Copilot Advantage" className="!py-4" />
-              <BuyButton tier="bundle" label="Get the Book + Toolkit" variant="secondary" className="!border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10" />
+              <a href="#pricing" className="btn-primary !py-4">Get the Complete System <Icon.arrow className="btn-arrow h-4 w-4" /></a>
+              <a href="#book" className="btn-secondary !border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10">Explore the Book</a>
             </div>
             <p className="mt-6 text-sm text-white/50">{site.guaranteeDays}-day money-back guarantee · Instant access</p>
           </Reveal>

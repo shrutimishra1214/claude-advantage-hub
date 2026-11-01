@@ -1,52 +1,39 @@
 import { isOfferable, products, type Currency, type ProductId } from "./products";
 
-// After the main purchase the buyer walks through these offers in order.
-// Accepting or declining an offer moves them to the next step.
-export type StepId = "toolkit-upgrade" | "claude-system-upgrade" | "claude-operator-upgrade" | "masterclass" | "masterclass-essentials" | "agent-kit" | "agent-blueprints";
+// After a purchase the buyer is offered the next tier up, once: Book buyers
+// are offered Complete, Complete buyers are offered Pro.
+export type StepId = "complete-upgrade" | "pro-upgrade" | "claude-complete-upgrade" | "claude-pro-upgrade";
 
 type Step = {
   product: ProductId;
-  kind: "upsell" | "downsell";
+  kind: "upsell";
   onAccept: StepId | "done";
   onDecline: StepId | "done";
-  // A one-time price for this offer, instead of the product's normal price.
-  price?: Record<Currency, number>;
+  // Only offered to buyers who own this (Pro builds on Complete).
+  requires?: ProductId;
 };
 
 export const steps: Record<StepId, Step> = {
-  // Book buyers can add the Toolkit for less than buying it on its own.
-  "claude-system-upgrade": { product: "claude-system", kind: "upsell", onAccept: "claude-operator-upgrade", onDecline: "claude-operator-upgrade", price: { INR: 149900, USD: 5900 } },
-  // The advanced level, offered once after any Claude purchase.
-  "claude-operator-upgrade": { product: "claude-operator", kind: "upsell", onAccept: "done", onDecline: "done" },
-  "toolkit-upgrade": { product: "toolkit", kind: "upsell", onAccept: "masterclass", onDecline: "masterclass", price: { INR: 149900, USD: 5900 } },
-  masterclass: { product: "masterclass", kind: "upsell", onAccept: "agent-kit", onDecline: "masterclass-essentials" },
-  "masterclass-essentials": { product: "masterclass-essentials", kind: "downsell", onAccept: "agent-kit", onDecline: "agent-kit" },
-  "agent-kit": { product: "agent-kit", kind: "upsell", onAccept: "done", onDecline: "agent-blueprints" },
-  "agent-blueprints": { product: "agent-blueprints", kind: "downsell", onAccept: "done", onDecline: "done" },
+  "complete-upgrade": { product: "toolkit", kind: "upsell", onAccept: "pro-upgrade", onDecline: "done" },
+  "pro-upgrade": { product: "copilot-pro", kind: "upsell", onAccept: "done", onDecline: "done", requires: "toolkit" },
+  "claude-complete-upgrade": { product: "claude-system", kind: "upsell", onAccept: "claude-pro-upgrade", onDecline: "done" },
+  "claude-pro-upgrade": { product: "claude-operator", kind: "upsell", onAccept: "done", onDecline: "done", requires: "claude-system" },
 };
-
-export const FIRST_STEP: StepId = "toolkit-upgrade";
 
 /** The first offer after a purchase, in the line the buyer bought from. */
 export const firstStepFor = (items: ProductId[]): StepId =>
-  items.some((i) => i.startsWith("claude-")) ? "claude-system-upgrade" : FIRST_STEP;
+  items.some((i) => i.startsWith("claude-")) ? "claude-complete-upgrade" : "complete-upgrade";
 
 export const isStepId = (v: unknown): v is StepId => typeof v === "string" && v in steps;
 
-// Owning the full version of an offer makes its cheaper version pointless.
-const coveredBy: Partial<Record<ProductId, ProductId>> = {
-  "masterclass-essentials": "masterclass",
-  "agent-blueprints": "agent-kit",
-};
-
 function shouldShow(step: StepId, owned: ProductId[]) {
-  const product = steps[step].product;
-  const cover = coveredBy[product];
-  return isOfferable(product) && !owned.includes(product) && !(cover && owned.includes(cover));
+  const { product, requires } = steps[step];
+  return isOfferable(product) && !owned.includes(product) && (!requires || owned.includes(requires));
 }
 
+/** An upgrade costs the difference between the tier the buyer has and the one above it. */
 export function stepPrice(step: StepId, currency: Currency) {
-  return (steps[step].price ?? products[steps[step].product].price)[currency];
+  return products[steps[step].product].price[currency];
 }
 
 /** Walks forward from `start` to the first offer worth showing, or "done". */
@@ -54,7 +41,8 @@ export function resolveStep(start: StepId | "done", owned: ProductId[]): StepId 
   let current = start;
   for (let i = 0; i < 10 && current !== "done"; i++) {
     if (shouldShow(current, owned)) return current;
-    current = steps[current].onDecline;
+    // Already owning an upgrade means the next one up may still apply.
+    current = owned.includes(steps[current].product) ? steps[current].onAccept : steps[current].onDecline;
   }
   return "done";
 }

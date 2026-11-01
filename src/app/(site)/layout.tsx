@@ -10,28 +10,20 @@ const serif = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif", sty
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: site.seoTitle, template: `%s | ${site.productName}` },
-  description: site.description,
+  title: { default: site.brandTitle, template: `%s | ${site.name}` },
+  description: site.brandDescription,
   keywords: [
-    "Microsoft Copilot",
-    "Microsoft Copilot guide",
-    "Microsoft Copilot prompts",
-    "Microsoft Copilot workflows",
-    "Microsoft 365 Copilot",
-    "Copilot prompts for work",
-    "Microsoft Copilot templates",
-    "Copilot productivity system",
+    "AI productivity system",
+    "AI work systems",
+    "AI workflow systems",
     "AI productivity for professionals",
+    "Microsoft Copilot productivity",
+    "Copilot workflows",
+    "Claude workflows",
+    "Claude AI productivity",
   ],
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: site.seoTitle,
-    description: site.description,
-    type: "website",
-    siteName: site.productName,
-    images: [{ url: "/images/cover.jpg", width: 1100, height: 1392, alt: site.productName }],
-  },
-  twitter: { card: "summary_large_image", title: site.seoTitle, description: site.description },
+  openGraph: { title: site.brandTitle, description: site.brandDescription, type: "website", siteName: site.name },
+  twitter: { card: "summary_large_image", title: site.brandTitle, description: site.brandDescription },
 };
 
 export const viewport: Viewport = { themeColor: "#FFFFFF" };

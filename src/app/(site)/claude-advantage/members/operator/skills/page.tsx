@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Skills Library" };
 
 export default async function SkillsLibrary() {
   const { operator } = await claudeAccess();
-  if (!operator) return <Locked what="The Skills Library" body="Every Skill Drop from The Claude Operator, ready to install, is part of the advanced level." href="/claude-advantage#pricing" />;
+  if (!operator) return <Locked what="The Skills Library" body="Every Skill Drop from The Claude Operator, ready to install, is part of The Claude Advantage™ Pro." href="/claude-advantage#pricing" />;
   return (
     <>
       <PageHead eyebrow="The Claude Operator · Skills Library" title="Your AI workforce, ready to install" lead="Every Skill Drop from the book. Download a SKILL.md, put it in its own folder, zip the folder and upload it in Claude's Skills settings. Test each one before you rely on it." />

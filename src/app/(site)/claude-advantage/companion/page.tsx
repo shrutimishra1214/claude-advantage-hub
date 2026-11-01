@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BuyButton } from "@/components/BuyButton";
+import Link from "next/link";
 import { Ebook } from "@/components/Mockups";
 import { Checklist } from "@/components/members/ClaudeMembers";
 import { MemberLineProvider } from "@/components/members/MemberLine";
@@ -82,8 +82,8 @@ export default function ClaudeCompanion() {
           </section>
           <section className="mt-20 rounded-xl bg-ink p-8 text-white md:p-12">
             <h2 className="text-3xl !text-white md:text-4xl">Turn the book into a working system</h2>
-            <p className="mt-4 max-w-2xl leading-relaxed text-white/75">The Claude Advantage System adds the member area: a library you can customize and save, the Workflow Vault, the Context Kit and the 30-Day Transformation.</p>
-            <div className="mt-8"><BuyButton label="Get the System" className="!py-4" /></div>
+            <p className="mt-4 max-w-2xl leading-relaxed text-white/75">Complete adds the member area: a library you can customize and save, the Workflow Vault, the Context Kit and the 30-Day Transformation.</p>
+            <div className="mt-8"><Link href="/claude-advantage#pricing" className="btn-primary !py-4">Get the Complete System</Link></div>
           </section>
         </div>
       </MemberLineProvider>

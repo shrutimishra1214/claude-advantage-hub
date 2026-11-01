@@ -26,7 +26,7 @@ export function BuyButton({ tier: tierProp, label, variant = "primary", showPric
   return (
     <button type="button" onClick={() => open(tier)} className={cls}>
       {label ?? `Get the ${t.label}`}
-      {showPrice && <span>— {formatPrice(t.price, currency)}</span>}
+      {showPrice && <span>· {formatPrice(t.price, currency)}</span>}
       {arrow && <Icon.arrow className="btn-arrow h-4 w-4" />}
     </button>
   );

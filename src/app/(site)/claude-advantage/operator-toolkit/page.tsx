@@ -131,9 +131,9 @@ export default function OperatorToolkit() {
           <section className="mt-20 rounded-xl bg-ink p-8 text-white md:p-12">
             <p className="text-sm font-semibold text-[#E7B437]">Go further</p>
             <h2 className="mt-2 text-3xl !text-white md:text-4xl">Work through the book in the Operator track</h2>
-            <p className="mt-4 max-w-2xl leading-relaxed text-white/75">The Operator Edition adds the member area: every chapter&apos;s action steps, failure modes and takeaways with progress tracking, plus the complete Claude Advantage System.</p>
+            <p className="mt-4 max-w-2xl leading-relaxed text-white/75">The Claude Advantage™ Pro adds the member area: every chapter&apos;s action steps, failure modes and takeaways with progress tracking, plus the complete implementation system.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <BuyButton tier="claude-operator" label="Get the Operator Edition" className="!py-4" />
+              <BuyButton tier="claude-pro" label="Build Your AI Work System" className="!py-4" />
               <Link href="/claude-advantage" className="btn-secondary !border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10">See The Claude Advantage</Link>
             </div>
           </section>

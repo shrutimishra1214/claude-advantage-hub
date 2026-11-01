@@ -21,7 +21,7 @@ function Card({ c }: { c: Chain }) {
 
 export default async function ClaudeWorkflows() {
   const { system } = await claudeAccess();
-  if (!system) return <Locked what="The Workflow Vault" body="It's part of The Claude Advantage System." href="/claude-advantage#pricing" />;
+  if (!system) return <Locked what="The Workflow Vault" body="It's part of The Claude Advantage™ Complete." href="/claude-advantage#pricing" />;
   return (
     <>
       <PageHead eyebrow="Workflow Vault" title="Chains that turn one prompt into a finished job" lead="Each workflow passes one step's output into the next. Run it on real work, then adapt the prompts to your context." />

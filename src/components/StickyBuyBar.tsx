@@ -32,7 +32,7 @@ export function StickyBuyBar() {
           <p className="truncate text-sm font-semibold">{offer.name}</p>
           <p className="text-xs text-ink-muted"><span className="font-semibold text-ink">{formatPrice(offer.price, currency)}</span> · instant access</p>
         </div>
-        <button type="button" onClick={() => open(offer.id)} tabIndex={show ? 0 : -1} className="btn-primary !px-4 !py-2.5 !text-sm">Get it</button>
+        <button type="button" onClick={() => open(offer.id)} tabIndex={show ? 0 : -1} className="btn-primary whitespace-nowrap !px-4 !py-2.5 !text-sm">Get the {offer.label}</button>
       </div>
     </div>
   );

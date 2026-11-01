@@ -7,7 +7,7 @@ export async function sendPurchaseEmail(opts: { to: string; name: string; items:
   const token = libraryToken({ email: opts.to, owned: opts.items });
   const link = `${site.url}/thank-you?t=${token}`;
   const memberLine = opts.items.some((i) => i.startsWith("claude-")) ? "Open the Claude Advantage" : "Open the Copilot Advantage";
-  const member = opts.items.some((i) => ["toolkit", "claude-system", "claude-operator"].includes(i))
+  const member = opts.items.some((i) => ["toolkit", "copilot-pro", "claude-system", "claude-operator"].includes(i))
     ? `<p><a href="${site.url}/members/enter?t=${token}" style="display:inline-block;background:#1F1D1A;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">${memberLine}</a></p>`
     : "";
   const list = opts.items.map((id) => `<li style="margin:0 0 6px">${products[id].name}</li>`).join("");

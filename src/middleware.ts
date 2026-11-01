@@ -7,7 +7,7 @@ import { NextResponse, type NextRequest } from "next/server";
 // Cloudflare Workers.
 
 const areas = [
-  { line: "copilot", prefix: "/copilot-advantage/members", unlocks: ["toolkit"] },
+  { line: "copilot", prefix: "/copilot-advantage/members", unlocks: ["toolkit", "copilot-pro"] },
   { line: "claude", prefix: "/claude-advantage/members", unlocks: ["claude-system", "claude-operator"] },
 ] as const;
 

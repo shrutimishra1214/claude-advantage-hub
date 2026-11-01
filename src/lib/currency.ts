@@ -14,8 +14,13 @@ async function getCountry(): Promise<string | null> {
   return null;
 }
 
-/** USD, or INR for visitors in India when site.inrForIndia is on. */
+// The UK and the Crown Dependencies pay in pounds.
+const GBP_COUNTRIES = new Set(["GB", "IM", "JE", "GG"]);
+
+/** GBP in the UK, INR in India when site.inrForIndia is on, USD everywhere else (including when the country is unknown). */
 export async function getCurrency(): Promise<Currency> {
-  if (!site.inrForIndia) return "USD";
-  return (await getCountry()) === "IN" ? "INR" : "USD";
+  const country = await getCountry();
+  if (country && GBP_COUNTRIES.has(country)) return "GBP";
+  if (site.inrForIndia && country === "IN") return "INR";
+  return "USD";
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { BuyButton } from "@/components/BuyButton";
 import { BriefBuilder } from "@/components/members/BriefBuilder";
 import { PromptBlock } from "@/components/members/PromptBlock";
 import { NinetyDayPlan } from "@/components/members/Trackers";
@@ -11,7 +10,7 @@ import { bookPrompts, shapes } from "@/lib/toolkit/method";
 
 // The address printed in the book. Readers get every tool the book promises, free.
 export const metadata: Metadata = {
-  title: "Book Companion Toolkit",
+  title: "Book Companion Resources",
   description: "The companion toolkit for The Microsoft Copilot Advantage: worksheets, prompt templates and the 90-Day Tracker.",
   alternates: { canonical: "/copilot-advantage/companion" },
 };
@@ -25,7 +24,7 @@ export default function Companion() {
         <div className="container grid items-center gap-10 md:grid-cols-[1fr_auto]">
           <div>
             <p className="eyebrow">For readers of the book</p>
-            <h1 className="mt-4 text-4xl leading-tight md:text-5xl">Your Companion Toolkit</h1>
+            <h1 className="mt-4 text-4xl leading-tight md:text-5xl">Your Companion Resources</h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">
               Every hands-on tool in the book, ready to use: the worksheets you fill in, the prompt templates you copy, and the tracker you run the 90-day plan on.
               Kept current as Copilot changes.
@@ -87,10 +86,10 @@ export default function Companion() {
           <p className="text-sm font-semibold text-white/60">Go further</p>
           <h2 className="mt-2 text-3xl md:text-4xl">Turn the book into a daily system</h2>
           <p className="mt-4 max-w-2xl leading-relaxed text-white/75">
-            The Toolkit adds the member area: a chapter-by-chapter companion with every exercise, the Prompt Recipe Library, the Workflow Vault, templates, the 30-Day Challenge and printable cheat sheets.
+            Complete adds the member area: a chapter-by-chapter companion with every exercise, the Prompt Recipe Library, the Workflow Vault, templates, the 30-Day Transformation and printable cheat sheets.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <BuyButton label="Get the Toolkit" className="!py-4" />
+            <Link href="/copilot-advantage#pricing" className="btn-primary !py-4">Get the Complete System</Link>
             <Link href="/copilot-advantage#whats-inside" className="btn-secondary !border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10">See what&apos;s inside</Link>
           </div>
         </section>

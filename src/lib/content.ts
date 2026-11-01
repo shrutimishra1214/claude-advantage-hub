@@ -22,53 +22,32 @@ export const testimonials: Testimonial[] = [];
 type OfferCopy = { eyebrow: string; headline: string; lead: string; cta: string; decline: string };
 
 export const offerCopy: Record<StepId, OfferCopy> = {
-  "claude-operator-upgrade": {
-    eyebrow: "The advanced level",
-    headline: "Ready to go from Claude user to Claude Operator?",
-    lead: "The Claude Operator shows you how to build an AI Chief of Staff: delegate whole jobs, package them as tested skills, and run them on a schedule. You get the book plus the Operator track in your member area: every Skill Drop, 25 workflows and the 30-day plan.",
-    cta: "Yes, add The Claude Operator",
-    decline: "No thanks, take me to my purchase",
+  "complete-upgrade": {
+    eyebrow: "Upgrade to Complete",
+    headline: "You have the Book. Now put it into practice.",
+    lead: "Complete adds the full implementation system to the Book: 250+ prompt recipes, 100 repeatable Copilot workflows, the template vault, the Prompt Builder and the 30-Day Copilot Transformation. You pay only the difference.",
+    cta: "Yes, upgrade to Complete",
+    decline: "No thanks, just the Book",
   },
-  "claude-system-upgrade": {
-    eyebrow: "One-time offer for book buyers",
-    headline: "You have the book. Want the system that puts Claude to work?",
-    lead: "The Claude Advantage System gives you the prompt system, the workflow vault, the Code, Cowork and Design playbooks and the 30-day transformation, ready to use. Add it now for less than its regular price.",
-    cta: "Yes, add the System",
-    decline: "No thanks, just the book",
+  "pro-upgrade": {
+    eyebrow: "Upgrade to Pro",
+    headline: "Build your personal Microsoft 365 AI work system.",
+    lead: "Pro adds the advanced workflow architecture: email, meeting, research, document, Excel and presentation systems, role-specific systems and the advanced workflow builder. You pay only the difference.",
+    cta: "Yes, upgrade to Pro",
+    decline: "No thanks, Complete is enough",
   },
-  "toolkit-upgrade": {
-    eyebrow: "One-time offer for book buyers",
-    headline: "You have the book. Want the system that puts it to work?",
-    lead: "The Toolkit gives you the 250+ prompt recipes, 100 workflows, templates and 30-day path, ready to use. Add it now for less than its regular price.",
-    cta: "Yes, add the Toolkit",
-    decline: "No thanks, just the book",
+  "claude-complete-upgrade": {
+    eyebrow: "Upgrade to Complete",
+    headline: "You have the Book. Now put Claude to work.",
+    lead: "Complete adds the full implementation system to the Book: 250+ advanced prompt recipes, 100+ workflows, the Research, Writing and Analysis systems, the Prompt Builder and the 30-Day Transformation. You pay only the difference.",
+    cta: "Yes, upgrade to Complete",
+    decline: "No thanks, just the Book",
   },
-  masterclass: {
-    eyebrow: "One-time offer for new readers",
-    headline: "Your book is ready. Want to watch every workflow done live?",
-    lead: "The Masterclass turns each chapter into short screen-recorded lessons, so you can watch Copilot work in real time and copy it step by step.",
-    cta: "Yes, add the Masterclass",
-    decline: "No thanks, I'll learn from the book alone",
-  },
-  "masterclass-essentials": {
-    eyebrow: "Wait: a lighter option",
-    headline: "Just want the apps you use every day?",
-    lead: "Masterclass Essentials covers the three apps people use most at work: Outlook, Excel and Teams. Same lessons and practice files, at half the price.",
-    cta: "Yes, add Masterclass Essentials",
-    decline: "No thanks, continue",
-  },
-  "agent-kit": {
-    eyebrow: "Last offer before your download",
-    headline: "Build your own AI assistants in Copilot Studio",
-    lead: "Ten ready-to-build agents for real business tasks, each with a step-by-step build video. Set them up once and let them handle the repeat work.",
-    cta: "Yes, add the Agent Kit",
-    decline: "No thanks, take me to my book",
-  },
-  "agent-blueprints": {
-    eyebrow: "Before you go",
-    headline: "Get the 10 agent templates, without the videos",
-    lead: "Agent Blueprints gives you all ten templates from the Agent Kit as a PDF with written build steps, for a fraction of the price.",
-    cta: "Yes, add Agent Blueprints",
-    decline: "No thanks, take me to my book",
+  "claude-pro-upgrade": {
+    eyebrow: "Upgrade to Pro",
+    headline: "Build your personal AI operating system.",
+    lead: "Pro adds advanced research and project systems, the Claude Code workflow library, agentic workflow architecture and professional role systems, with The Claude Operator. You pay only the difference.",
+    cta: "Yes, upgrade to Pro",
+    decline: "No thanks, Complete is enough",
   },
 };

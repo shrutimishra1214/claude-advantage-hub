@@ -75,7 +75,7 @@ const copy: Record<LineId, {
 }> = {
   copilot: {
     ebook: "copilot",
-    app: "Copilot Advantage · Toolkit",
+    app: "Copilot Advantage · Complete",
     nav: ["Home", "Prompt Library", "Workflow Vault", "Templates", "Prompt Builder", "30-Day Challenge", "Cheat Sheets"],
     title: "Meeting → Action Plan",
     steps: ["Open the meeting recap", "List decisions and actions", "Add owners and deadlines", "Send the follow-up"],

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function OperatorChapter({ params }: Props) {
   const { operator } = await claudeAccess();
-  if (!operator) return <Locked what="The Claude Operator" body="This chapter is part of the advanced level." href="/claude-advantage#pricing" />;
+  if (!operator) return <Locked what="The Claude Operator" body="This chapter is part of The Claude Advantage™ Pro." href="/claude-advantage#pricing" />;
   const c = opChapterByN(Number((await params).n));
   if (!c) notFound();
   const part = opParts.find((p) => p.chapters.includes(c.n))!;

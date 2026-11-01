@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Operator Workflows" };
 
 export default async function OperatorWorkflows() {
   const { operator } = await claudeAccess();
-  if (!operator) return <Locked what="The Operator workflows" body="The 25 ready-to-run workflows are part of the advanced level." href="/claude-advantage#pricing" />;
+  if (!operator) return <Locked what="The Operator workflows" body="The 25 ready-to-run workflows are part of The Claude Advantage™ Pro." href="/claude-advantage#pricing" />;
   const groups = Array.from(new Set(opWorkflows.map((w) => w.group)));
   return (
     <>

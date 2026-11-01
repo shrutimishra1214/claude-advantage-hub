@@ -12,7 +12,7 @@ export const appColor: Record<App, string> = {
   Copilot: "bg-app-copilot",
 };
 
-export const proofPoints = ["250+ Prompt Recipes", "100+ Workflows", "30+ Templates", "30-Day Transformation"];
+export const proofPoints = ["250+ Prompt Recipes", "100 Repeatable Workflows", "Microsoft 365 Template Vault", "30-Day Transformation"];
 
 export const usualWay = ["Ask", "Get an answer", "Copy", "Paste", "Move on"];
 export const advantageWay = ["Goal", "Context", "Source", "Prompt", "Refine", "Workflow", "Repeat"];
@@ -35,7 +35,7 @@ export const tools = [
   { n: "01", icon: "compass", title: "Copilot Quickstart", body: "From your first prompt to your first useful workflow.", href: "#quickstart" },
   { n: "02", icon: "book", title: "Prompt Recipe Library", body: "250+ recipes organized around real work.", href: "#prompt-library" },
   { n: "03", icon: "flow", title: "Copilot Workflow Vault", body: "100 repeatable workflows. The centerpiece.", href: "#workflows" },
-  { n: "04", icon: "doc", title: "Template Vault", body: "30+ Word, Excel, PowerPoint, Outlook and Teams templates.", href: "#templates" },
+  { n: "04", icon: "doc", title: "Template Vault", body: "Word, Excel, PowerPoint, Outlook and Teams templates.", href: "#templates" },
   { n: "05", icon: "wand", title: "Prompt Builder", body: "Build the right prompt step by step.", href: "#prompt-builder" },
   { n: "06", icon: "calendar", title: "30-Day Transformation", body: "A guided path that builds the habit.", href: "#challenge" },
   { n: "07", icon: "printer", title: "Cheat Sheets", body: "Printable references for every app.", href: "#cheat-sheets" },
@@ -212,7 +212,7 @@ export const weeks = [
 ];
 
 export const cheatSheets = [
-  { title: "Ultimate Copilot Cheat Sheet", tag: "Essentials" },
+  { title: "Copilot Essentials Cheat Sheet", tag: "Essentials" },
   { title: "25 Best Copilot Prompts", tag: "Prompts" },
   { title: "Word Cheat Sheet", tag: "Word", app: "Word" as App },
   { title: "Excel Cheat Sheet", tag: "Excel", app: "Excel" as App },
@@ -254,8 +254,8 @@ export const outcomes = [
   { title: "Know exactly what to ask", body: "Use the G-C-S-E formula and Prompt Builder instead of guessing." },
 ];
 
+// Copilot-specific questions, shown after the shared ones in src/lib/offer.ts.
 export const faqs = [
-  { q: "Do I need to be good at AI?", a: "No. The product is designed for professionals who want practical results rather than technical AI knowledge." },
   { q: "Which Microsoft apps does this cover?", a: "Word, Excel, PowerPoint, Outlook, Teams, OneNote / Loop and relevant Microsoft 365 Copilot experiences." },
   { q: "Is this just a collection of prompts?", a: "No. The core of the product is the Workflow Vault. Prompts are components of repeatable workflows." },
   {
@@ -266,8 +266,7 @@ export const faqs = [
     q: "Will this work if Microsoft changes Copilot?",
     a: "The product focuses on durable workflows and prompting principles. Interface-specific instructions may be updated as Microsoft changes its products.",
   },
-  { q: "Is this affiliated with Microsoft?", a: "No. This is an independently created educational and productivity resource." },
-  { q: "Is there a book?", a: "Yes. The Microsoft Copilot Advantage book can be purchased separately or as part of the Complete Bundle." },
+  { q: "Can I buy just the Book?", a: "Yes. The Book is available on its own. Complete includes the Book plus the full implementation system, and Pro adds the advanced work systems." },
 ];
 
 export const builder = {

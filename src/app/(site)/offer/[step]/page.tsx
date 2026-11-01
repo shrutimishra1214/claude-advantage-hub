@@ -5,6 +5,7 @@ import { FunnelProgress } from "@/components/FunnelProgress";
 import { Icon } from "@/components/icons";
 import { OfferActions } from "@/components/OfferActions";
 import { offerCopy } from "@/lib/content";
+import { tierCopy, upgradeTier } from "@/lib/offer";
 import { isStepId, resolveStep, stepPrice, stepUrl, steps } from "@/lib/funnel";
 import { lineOfProduct, lines } from "@/lib/lines";
 import { formatPrice, products } from "@/lib/products";
@@ -25,8 +26,6 @@ export default async function OfferPage({ params }: { params: Promise<{ step: st
   const copy = offerCopy[step];
   const { currency } = session;
   const price = stepPrice(step, currency);
-  const regular = product.price[currency];
-  const compare = product.compareAt?.[currency] ?? (regular > price ? regular : undefined);
   const declineHref = stepUrl(resolveStep(steps[step].onDecline, session.owned));
 
   return (
@@ -54,12 +53,11 @@ export default async function OfferPage({ params }: { params: Promise<{ step: st
               <h2 className="mt-1 text-2xl font-medium">{product.name}</h2>
             </div>
             <div className="text-right">
-              {compare && <p className="text-ink-muted line-through">{formatPrice(compare, currency)}</p>}
               <p className="font-display text-4xl font-medium">{formatPrice(price, currency)}</p>
             </div>
           </div>
           <ul className="mt-8 grid gap-3 border-t border-ink/10 pt-8">
-            {product.bullets.map((b) => (
+            {tierCopy[upgradeTier[step]].bullets.map((b) => (
               <li key={b} className="flex gap-3 leading-relaxed">
                 <Icon.check className="mt-0.5 h-5 w-5 shrink-0 text-brand-violet" /> {b}
               </li>

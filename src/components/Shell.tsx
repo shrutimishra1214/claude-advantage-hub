@@ -9,10 +9,11 @@ import { Header } from "./Header";
 // Book covers shown next to tiers that include a book; other tiers show a tile.
 const covers: Partial<Record<string, string>> = {
   book: "/images/cover.jpg",
-  bundle: "/images/cover.jpg",
+  complete: "/images/cover.jpg",
+  pro: "/images/cover.jpg",
   "claude-book": "/images/claude-cover.jpg",
-  "claude-bundle": "/images/claude-cover.jpg",
-  "claude-operator": "/images/claude-cover.jpg",
+  "claude-complete": "/images/claude-cover.jpg",
+  "claude-pro": "/images/claude-cover.jpg",
 };
 
 /** Page chrome and the checkout sheet for one product line, priced in the visitor's currency. */

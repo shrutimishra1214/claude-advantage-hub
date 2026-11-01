@@ -124,7 +124,7 @@ export type CheatSheet = { id: string; title: string; sections: { heading: strin
 export const cheatSheets: CheatSheet[] = [
   {
     id: "ultimate",
-    title: "Ultimate Copilot Cheat Sheet",
+    title: "Copilot Essentials Cheat Sheet",
     sections: [
       { heading: "The formula", items: ["Goal: what to do", "Context: why, and for whom", "Source: what to use", "Expectations: format, length, tone"] },
       { heading: "Always", items: ["Point Copilot at the source", "Say who the output is for", "Ask for a format (bullets, table, email)", "Check facts, numbers and names", "Refine with follow-ups"] },

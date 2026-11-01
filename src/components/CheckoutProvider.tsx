@@ -20,13 +20,14 @@ export function useCheckout() {
 }
 
 const blurb: Record<TierId, string> = {
-  book: "The complete guide · PDF",
-  toolkit: "Prompt Library, Workflow Vault, templates & 30-day path",
-  bundle: "The book and the complete Toolkit",
-  "claude-book": "The complete guide · PDF",
-  "claude-system": "Prompt system, workflow vault, playbooks & 30-day path",
-  "claude-bundle": "The book and the complete System",
-  "claude-operator": "Everything, plus The Claude Operator advanced level",
+  book: "Learn · the complete guide (PDF)",
+  complete: "Learn + Implement · the Book and the full implementation system",
+  pro: "Build + Systemize · Complete, plus the advanced work systems",
+  "claude-book": "Learn · the complete guide (PDF)",
+  "claude-complete": "Learn + Implement · the Book and the full implementation system",
+  "claude-pro": "Build + Systemize · Complete, plus the advanced work systems",
+  "both-complete": "Both Complete systems: Copilot and Claude",
+  "both-pro": "Both Pro systems: Copilot and Claude",
 };
 
 export function CheckoutProvider({ currency, tiers, primaryTier, children }: { currency: Currency; tiers: TierOption[]; primaryTier: TierId; children: ReactNode }) {
@@ -110,7 +111,7 @@ export function CheckoutProvider({ currency, tiers, primaryTier, children }: { c
                   <span className="min-w-0 flex-1">
                     <span className="flex flex-wrap items-center gap-2 font-semibold leading-snug">
                       {t.label}
-                      {t.id.endsWith("bundle") && <span className="rounded bg-ink px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Everything</span>}
+                      {(t.id === "complete" || t.id === "claude-complete") && <span className="rounded bg-ink px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Recommended</span>}
                     </span>
                     <span className="block text-sm text-ink-muted">{blurb[t.id]}</span>
                   </span>
