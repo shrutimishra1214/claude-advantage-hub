@@ -34,6 +34,19 @@ Each line's name, theme, navigation and tiers live in `src/lib/lines.ts`; Claude
 (chapter, prompt and skill data were extracted from the two Claude books). Put `claude-advantage.pdf` and
 `claude-operator.pdf` in `private-files/` before selling the books.
 
+## Member access
+
+The member areas (`/copilot-advantage/members`, `/claude-advantage/members`) open only for buyers of a member product.
+`src/middleware.ts` checks the signed member cookie before any member page is built, so nothing from those pages reaches
+anyone else; they're sent to `/login`. Buyers get in three ways:
+
+- **At checkout**: paying signs them in on that device for a year.
+- **From the purchase email**: its member-area link works for a year, on any device.
+- **From `/login`**: they enter the email they paid with and get a sign-in link valid for 15 minutes. Every confirmed
+  purchase is saved to the buyer list in Upstash (`src/lib/buyers.ts`), so this needs `KV_REST_API_*` and `RESEND_API_KEY`.
+
+Until live payment keys are set, the member areas stay open to everyone in "Preview mode" for testing.
+
 ## Funnel
 
 ```

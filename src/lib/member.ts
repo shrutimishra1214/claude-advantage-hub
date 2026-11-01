@@ -54,3 +54,10 @@ export async function getMember(line: LineId = "copilot"): Promise<Member | null
 }
 
 export const memberHome = (line: LineId) => lines[line].members;
+
+/** Where a member goes after signing in: `next` when it's inside an area they own, else the first area they own. */
+export function memberLanding(owned: ProductId[], next?: string | null): string {
+  const open = (Object.keys(linesUnlockedBy) as LineId[]).filter((line) => owned.some((p) => linesUnlockedBy[line].includes(p)));
+  const target = next && open.find((line) => next === lines[line].members || next.startsWith(`${lines[line].members}/`));
+  return target ? next! : lines[open[0] ?? "copilot"].members;
+}

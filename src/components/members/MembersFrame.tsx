@@ -19,6 +19,7 @@ export function MembersFrame({ line, groups, member, children }: { line: LineId;
             {member?.preview && <span className="rounded bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-900">Preview mode</span>}
             {member?.email && <span className="hidden text-ink-muted sm:inline">{member.email}</span>}
             <Link href={L.base || "/"} className="btn-ghost">Website</Link>
+            {member && !member.preview && <a href={`/logout?line=${line}`} className="btn-ghost">Sign out</a>}
           </div>
         </div>
       </header>
@@ -37,12 +38,15 @@ export function MembersFrame({ line, groups, member, children }: { line: LineId;
         <main className="mx-auto max-w-lg px-4 pt-32 text-center">
           <h1 className="text-3xl">Open your member area</h1>
           <p className="mt-4 leading-relaxed text-ink-muted">
-            Use the <strong className="text-ink">Open {L.name.replace(/^The /, "the ")}</strong> link in your purchase email. It signs you in on this device for a year.
+            Sign in with the email you used to pay, and we&apos;ll email you a link that opens it on this device.
           </p>
-          <p className="mt-4 text-sm text-ink-muted">
-            Can&apos;t find the email? Write to <a className="font-semibold text-accent" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> and we&apos;ll resend it.
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <Link href={`/login?line=${line}`} className="btn-primary">Member login</Link>
+            <Link href={`${L.base}#pricing`} className="btn-secondary">Not a member yet? See what&apos;s included</Link>
+          </div>
+          <p className="mt-6 text-sm text-ink-muted">
+            Trouble signing in? Write to <a className="font-semibold text-accent" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
           </p>
-          <Link href={`${L.base}/#pricing`} className="btn-secondary mt-8">Not a member yet? See what&apos;s included</Link>
         </main>
       )}
     </div>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { fetchOrder, verifyWebhookSignature } from "@/lib/razorpay";
 import { isProductId, type ProductId } from "@/lib/products";
+import { recordPurchase } from "@/lib/buyers";
 import { sendPurchaseEmail } from "@/lib/email";
 
 // Razorpay calls this for every captured payment, even if the buyer closed the
@@ -19,6 +20,7 @@ export async function POST(req: Request) {
   const order = await fetchOrder(payment.order_id);
   const items = (order.notes.items ?? "").split(",").filter(isProductId) as ProductId[];
   if (items.length && order.notes.email) {
+    await recordPurchase({ email: order.notes.email, name: order.notes.name ?? "", items });
     await sendPurchaseEmail({ to: order.notes.email, name: order.notes.name ?? "", items, paymentId: payment.id });
   }
   return NextResponse.json({ ok: true });

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { recordPurchase } from "@/lib/buyers";
 import { sendPurchaseEmail } from "@/lib/email";
 import type { PaddleIntent } from "@/lib/fulfil";
 import { fetchCustomer, verifyPaddleWebhook, type PaddleTransaction } from "@/lib/paddle";
@@ -22,6 +23,7 @@ export async function POST(req: Request) {
   }
 
   const email = txn.customer_id ? (await fetchCustomer(txn.customer_id)).email : intent.email;
+  await recordPurchase({ email, name: intent.name, items: intent.items });
   await sendPurchaseEmail({ to: email, name: intent.name, items: intent.items, paymentId: txn.id });
   return NextResponse.json({ ok: true });
 }
