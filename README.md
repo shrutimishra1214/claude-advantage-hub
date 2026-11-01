@@ -69,9 +69,17 @@ Open http://localhost:3000. `npm run preview` builds the site as a Cloudflare Wo
 ## Deploying
 
 The site runs on **Cloudflare Workers** (the `claude-advantage-hub` Worker, which serves kaelisvoss.com), built with
-[OpenNext](https://opennext.js.org/cloudflare). Every push to `main` deploys it through
-`.github/workflows/deploy-cloudflare.yml`, which needs the `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` and
-`BREVO_API_KEY` repository secrets. `npm run deploy` deploys from your machine instead.
+[OpenNext](https://opennext.js.org/cloudflare). Cloudflare **Workers Builds** is connected to this repository and deploys
+every push to `main`; other branches get preview versions. Its settings (**Workers & Pages → claude-advantage-hub →
+Settings → Build**) must be:
+
+| Setting | Value |
+|---|---|
+| Build command | `npx opennextjs-cloudflare build` |
+| Deploy command | `npx wrangler deploy` |
+| Non-production branch deploy command | `npx wrangler versions upload` |
+
+`npm run deploy` deploys from your machine instead. The production site URL is set in `.env.production`.
 
 Every other setting from `.env.example` goes in the Cloudflare dashboard (**Workers & Pages → claude-advantage-hub →
 Settings → Variables and Secrets**), using **Secret** for keys and passwords. They are kept between deploys.
