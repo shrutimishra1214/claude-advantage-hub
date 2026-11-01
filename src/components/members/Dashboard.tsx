@@ -31,10 +31,10 @@ export function DashboardProgress() {
         <p className="mt-1.5 text-xl font-semibold">{today.title}</p>
         <p className="mt-1 text-ink-muted">{today.task}</p>
         <div className="mt-5 flex flex-wrap gap-2">
-          <Link href="/members/challenge" className="btn-primary !px-4 !py-2.5 !text-sm">
+          <Link href="/copilot-advantage/members/challenge" className="btn-primary !px-4 !py-2.5 !text-sm">
             <Icon.play className="h-3.5 w-3.5" /> {started ? "Continue" : "Start Day 1"}
           </Link>
-          {!started && <Link href="/members/quickstart" className="btn-secondary !px-4 !py-2.5 !text-sm">Read the Quickstart first</Link>}
+          {!started && <Link href="/copilot-advantage/members/quickstart" className="btn-secondary !px-4 !py-2.5 !text-sm">Read the Quickstart first</Link>}
         </div>
       </div>
 
@@ -55,7 +55,7 @@ function TodayWorkflow({ day }: { day: number }) {
       <p className="mt-1.5 text-xl font-semibold">{wf.title}</p>
       <p className="mt-1 text-ink-soft">{wf.outcome}</p>
       <p className="mt-3 text-sm text-ink-muted">{wf.steps.length} steps · about {wf.minutes} min</p>
-      <Link href={`/members/workflows/${wf.id}`} className="link-arrow mt-5 text-sm">
+      <Link href={`/copilot-advantage/members/workflows/${wf.id}`} className="link-arrow mt-5 text-sm">
         Run this workflow <Icon.arrow className="btn-arrow h-4 w-4" />
       </Link>
     </>
@@ -71,11 +71,11 @@ export function DashboardBook() {
   const nextWin = quickWins.findIndex((_, i) => !p.wins.includes(i));
 
   const cards = [
-    { label: `The Book · ${p.chapters.length} of ${chapters.length} chapters`, title: `Ch ${next.n}: ${next.title}`, body: next.keyIdea, href: `/members/book/${next.n}`, cta: "Do this chapter" },
-    { label: `90-Day Plan · week ${week.w} of ${allWeeks.length}`, title: week.title, body: week.body, href: "/members/plan", cta: "Open the plan" },
+    { label: `The Book · ${p.chapters.length} of ${chapters.length} chapters`, title: `Ch ${next.n}: ${next.title}`, body: next.keyIdea, href: `/copilot-advantage/members/book/${next.n}`, cta: "Do this chapter" },
+    { label: `90-Day Plan · week ${week.w} of ${allWeeks.length}`, title: week.title, body: week.body, href: "/copilot-advantage/members/plan", cta: "Open the plan" },
     nextWin >= 0
-      ? { label: `Quick wins · ${p.wins.length} of 12 tried`, title: quickWins[nextWin].title, body: quickWins[nextWin].body, href: "/members/quick-wins", cta: "Try it tomorrow" }
-      : { label: "Quick wins · all 12 tried", title: "Every quick win done", body: "Now turn them into habits with the 90-Day Plan.", href: "/members/plan", cta: "Open the plan" },
+      ? { label: `Quick wins · ${p.wins.length} of 12 tried`, title: quickWins[nextWin].title, body: quickWins[nextWin].body, href: "/copilot-advantage/members/quick-wins", cta: "Try it tomorrow" }
+      : { label: "Quick wins · all 12 tried", title: "Every quick win done", body: "Now turn them into habits with the 90-Day Plan.", href: "/copilot-advantage/members/plan", cta: "Open the plan" },
   ];
 
   return (

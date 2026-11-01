@@ -15,7 +15,7 @@ export default async function WorkflowPage({ params }: Props) {
   if (!wf) notFound();
   return (
     <article>
-      <PageHead back={{ href: "/members/workflows", label: "Workflow Vault" }} eyebrow={`${wf.category} · about ${wf.minutes} min`} title={wf.title} lead={wf.outcome} />
+      <PageHead back={{ href: "/copilot-advantage/members/workflows", label: "Workflow Vault" }} eyebrow={`${wf.category} · about ${wf.minutes} min`} title={wf.title} lead={wf.outcome} />
       <p className="mt-6 rounded-lg border border-line bg-paper px-4 py-3 text-sm text-ink-soft"><strong className="text-ink">What you need:</strong> {wf.requires}</p>
       <div className="mt-8"><WorkflowSteps wf={wf} /></div>
     </article>

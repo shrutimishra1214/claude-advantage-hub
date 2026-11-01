@@ -12,7 +12,7 @@ import { useProgress } from "./progress";
 import { SaveStatus } from "./SaveStatus";
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-const bookList = bookPrompts.flatMap((c) => c.prompts.map((p) => ({ ...p, category: c.category, id: `book:${slug(p.name)}`, href: `/members/library#${slug(c.category)}` })));
+const bookList = bookPrompts.flatMap((c) => c.prompts.map((p) => ({ ...p, category: c.category, id: `book:${slug(p.name)}`, href: `/copilot-advantage/members/library#${slug(c.category)}` })));
 
 export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
   const { saved } = useProgress();
@@ -53,7 +53,7 @@ export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
           <Icon.search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-muted" />
           <input className="input !pl-11" placeholder="Search: email, meeting, Excel, summarize…" value={q} onChange={(e) => setQ(e.target.value)} />
         </label>
-        <Link href="/members/prompts/new" className="btn-primary shrink-0 !py-3">+ New prompt</Link>
+        <Link href="/copilot-advantage/members/prompts/new" className="btn-primary shrink-0 !py-3">+ New prompt</Link>
       </div>
       <div className="mt-4 flex flex-wrap gap-1.5" role="group" aria-label="Filter prompts">
         {filters.map((c) => (
@@ -72,7 +72,7 @@ export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
       <ul className="mt-3 grid gap-3 md:grid-cols-2">
         {own.map((c) => (
           <li key={c.id}>
-            <Link href={`/members/prompts/my/${c.id}`} className="flex h-full flex-col rounded-xl border border-accent/40 bg-accent-soft/30 p-5 transition hover:border-accent hover:shadow-lift">
+            <Link href={`/copilot-advantage/members/prompts/my/${c.id}`} className="flex h-full flex-col rounded-xl border border-accent/40 bg-accent-soft/30 p-5 transition hover:border-accent hover:shadow-lift">
               <span className="flex items-center justify-between gap-2">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-accent">{c.category}</span>
                 <span className="rounded bg-accent px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">My prompt</span>
@@ -94,7 +94,7 @@ export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
         ))}
         {shown.map((r) => (
           <li key={r.id}>
-            <Link href={`/members/prompts/${r.id}`} className="flex h-full flex-col rounded-xl border border-line p-5 transition hover:border-ink/20 hover:shadow-lift">
+            <Link href={`/copilot-advantage/members/prompts/${r.id}`} className="flex h-full flex-col rounded-xl border border-line p-5 transition hover:border-ink/20 hover:shadow-lift">
               <span className="flex items-center justify-between gap-2">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-accent">{r.category}</span>
                 <AppChip app={r.app} size="xs" />
@@ -116,7 +116,7 @@ export function RecipeBrowser({ recipes }: { recipes: Recipe[] }) {
           ) : cat === "My prompts" ? (
             <>
               <p>Your prompts live here: the ones you write, and any built-in prompt you customize.</p>
-              <Link href="/members/prompts/new" className="btn-primary mt-4 !py-2.5 !text-sm">+ Add your first prompt</Link>
+              <Link href="/copilot-advantage/members/prompts/new" className="btn-primary mt-4 !py-2.5 !text-sm">+ Add your first prompt</Link>
             </>
           ) : (
             "No prompts match. Try another word, or the Prompt Builder."

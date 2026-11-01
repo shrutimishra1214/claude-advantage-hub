@@ -21,7 +21,7 @@ export default async function RecipePage({ params }: Props) {
 
   return (
     <article>
-      <PageHead back={{ href: "/members/prompts", label: "Prompt Library" }} eyebrow={r.category} title={r.title} lead={r.goal}>
+      <PageHead back={{ href: "/copilot-advantage/members/prompts", label: "Prompt Library" }} eyebrow={r.category} title={r.title} lead={r.goal}>
         <SaveButton id={r.id} />
       </PageHead>
 
@@ -50,7 +50,7 @@ export default async function RecipePage({ params }: Props) {
             <ul className="mt-4 grid gap-3 md:grid-cols-3">
               {related.map((x) => (
                 <li key={x.id}>
-                  <Link href={`/members/prompts/${x.id}`} className="block h-full rounded-xl border border-line p-4 transition hover:border-ink/20 hover:shadow-lift">
+                  <Link href={`/copilot-advantage/members/prompts/${x.id}`} className="block h-full rounded-xl border border-line p-4 transition hover:border-ink/20 hover:shadow-lift">
                     <span className="font-semibold">{x.title}</span>
                     <span className="mt-1 block text-sm text-ink-muted">{x.goal}</span>
                   </Link>

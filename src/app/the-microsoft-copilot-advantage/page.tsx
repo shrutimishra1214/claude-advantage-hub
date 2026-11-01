@@ -91,7 +91,7 @@ export default function Companion() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <BuyButton label="Get the Toolkit" className="!py-4" />
-            <Link href="/#whats-inside" className="btn-secondary !border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10">See what&apos;s inside</Link>
+            <Link href="/copilot-advantage#whats-inside" className="btn-secondary !border-white/25 !bg-transparent !py-4 !text-white hover:!bg-white/10">See what&apos;s inside</Link>
           </div>
         </section>
       </div>

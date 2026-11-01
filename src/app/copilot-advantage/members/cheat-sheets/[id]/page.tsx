@@ -32,7 +32,7 @@ export default async function Sheet({ params }: Props) {
   return (
     <article>
       <div className="no-print mb-6 flex items-center justify-between gap-4">
-        <Link href="/members/cheat-sheets" className="text-sm font-medium text-ink-muted hover:text-ink">← Cheat Sheets</Link>
+        <Link href="/copilot-advantage/members/cheat-sheets" className="text-sm font-medium text-ink-muted hover:text-ink">← Cheat Sheets</Link>
         <PrintButton />
       </div>
       <div className="print-sheet mx-auto max-w-[800px] rounded-lg border border-line bg-white p-8 shadow-soft md:p-12">

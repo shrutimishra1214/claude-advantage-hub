@@ -9,27 +9,27 @@ type Props = { params: Promise<{ n: string }> };
 
 // Where to go in the member area to practise each chapter.
 const tools: Record<number, { href: string; label: string }[]> = {
-  1: [{ href: "/members/worksheets#time-audit", label: "Time Audit worksheet" }],
-  3: [{ href: "/members/method#anchors", label: "The three anchors, with prompts" }],
-  5: [{ href: "/members/worksheets#business-case", label: "Business Case calculator" }],
-  7: [{ href: "/members/method#five-parts", label: "The five-part brief" }, { href: "/members/builder", label: "Prompt Builder" }],
-  8: [{ href: "/members/method#shapes", label: "The six shapes, as templates" }],
-  9: [{ href: "/members/method#fix", label: "Fix a bad answer" }],
-  10: [{ href: "/members/workflows/notes-to-brief", label: "Notes → Executive Brief workflow" }],
-  11: [{ href: "/members/prompts/summarize-report", label: "Summarize a long report" }],
-  12: [{ href: "/members/workflows/data-to-decision", label: "Data → Decision workflow" }],
-  13: [{ href: "/members/library#analysis-data", label: "Analysis prompts from the book" }],
-  14: [{ href: "/members/workflows/doc-to-deck", label: "Document → Presentation workflow" }],
-  16: [{ href: "/members/method#triage", label: "The five-way triage" }, { href: "/members/workflows/inbox-zero-hour", label: "Inbox Reset workflow" }],
-  17: [{ href: "/members/workflows/meeting-prep-pack", label: "Meeting Prep Pack workflow" }],
-  18: [{ href: "/members/worksheets#meeting-to-action", label: "Meeting-to-Action checklist" }, { href: "/members/workflows/meeting-action-plan", label: "Meeting → Action Plan workflow" }],
-  19: [{ href: "/members/library#meetings-communication", label: "The Decision Hunt prompt" }],
-  32: [{ href: "/members/method#safe-use", label: "The five safe-use decisions" }],
-  34: [{ href: "/members/worksheets#verification", label: "Verification checklist" }, { href: "/members/method#verify", label: "The verification ladder" }],
-  35: [{ href: "/members/library", label: "The book's Prompt Library, ready to use" }],
-  36: [{ href: "/members/workflows", label: "Workflow Vault" }],
-  38: [{ href: "/members/plan", label: "90-Day Plan tracker" }],
-  39: [{ href: "/members/troubleshooting", label: "Troubleshooting" }, { href: "/members/glossary", label: "Glossary" }],
+  1: [{ href: "/copilot-advantage/members/worksheets#time-audit", label: "Time Audit worksheet" }],
+  3: [{ href: "/copilot-advantage/members/method#anchors", label: "The three anchors, with prompts" }],
+  5: [{ href: "/copilot-advantage/members/worksheets#business-case", label: "Business Case calculator" }],
+  7: [{ href: "/copilot-advantage/members/method#five-parts", label: "The five-part brief" }, { href: "/copilot-advantage/members/builder", label: "Prompt Builder" }],
+  8: [{ href: "/copilot-advantage/members/method#shapes", label: "The six shapes, as templates" }],
+  9: [{ href: "/copilot-advantage/members/method#fix", label: "Fix a bad answer" }],
+  10: [{ href: "/copilot-advantage/members/workflows/notes-to-brief", label: "Notes → Executive Brief workflow" }],
+  11: [{ href: "/copilot-advantage/members/prompts/summarize-report", label: "Summarize a long report" }],
+  12: [{ href: "/copilot-advantage/members/workflows/data-to-decision", label: "Data → Decision workflow" }],
+  13: [{ href: "/copilot-advantage/members/library#analysis-data", label: "Analysis prompts from the book" }],
+  14: [{ href: "/copilot-advantage/members/workflows/doc-to-deck", label: "Document → Presentation workflow" }],
+  16: [{ href: "/copilot-advantage/members/method#triage", label: "The five-way triage" }, { href: "/copilot-advantage/members/workflows/inbox-zero-hour", label: "Inbox Reset workflow" }],
+  17: [{ href: "/copilot-advantage/members/workflows/meeting-prep-pack", label: "Meeting Prep Pack workflow" }],
+  18: [{ href: "/copilot-advantage/members/worksheets#meeting-to-action", label: "Meeting-to-Action checklist" }, { href: "/copilot-advantage/members/workflows/meeting-action-plan", label: "Meeting → Action Plan workflow" }],
+  19: [{ href: "/copilot-advantage/members/library#meetings-communication", label: "The Decision Hunt prompt" }],
+  32: [{ href: "/copilot-advantage/members/method#safe-use", label: "The five safe-use decisions" }],
+  34: [{ href: "/copilot-advantage/members/worksheets#verification", label: "Verification checklist" }, { href: "/copilot-advantage/members/method#verify", label: "The verification ladder" }],
+  35: [{ href: "/copilot-advantage/members/library", label: "The book's Prompt Library, ready to use" }],
+  36: [{ href: "/copilot-advantage/members/workflows", label: "Workflow Vault" }],
+  38: [{ href: "/copilot-advantage/members/plan", label: "90-Day Plan tracker" }],
+  39: [{ href: "/copilot-advantage/members/troubleshooting", label: "Troubleshooting" }, { href: "/copilot-advantage/members/glossary", label: "Glossary" }],
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -63,7 +63,7 @@ export default async function ChapterPage({ params }: Props) {
 
   return (
     <article>
-      <Link href="/members/book" className="text-sm font-medium text-ink-muted hover:text-ink">← The Book</Link>
+      <Link href="/copilot-advantage/members/book" className="text-sm font-medium text-ink-muted hover:text-ink">← The Book</Link>
       <p className="eyebrow mt-4">Part {c.part} · {c.partTitle}</p>
       <div className="mt-2 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <h1 className="text-3xl md:text-4xl"><span className="text-ink-muted">{c.n}.</span> {c.title}</h1>
@@ -108,8 +108,8 @@ export default async function ChapterPage({ params }: Props) {
       </div>
 
       <nav className="mt-12 grid gap-3 border-t border-line pt-6 sm:grid-cols-2" aria-label="Chapters">
-        {prev ? <Link href={`/members/book/${prev.n}`} className="rounded-xl border border-line p-4 hover:border-ink/20"><span className="text-xs text-ink-muted">← Chapter {prev.n}</span><span className="block font-semibold">{prev.title}</span></Link> : <span />}
-        {next && <Link href={`/members/book/${next.n}`} className="rounded-xl border border-line p-4 text-right hover:border-ink/20"><span className="text-xs text-ink-muted">Chapter {next.n} →</span><span className="block font-semibold">{next.title}</span></Link>}
+        {prev ? <Link href={`/copilot-advantage/members/book/${prev.n}`} className="rounded-xl border border-line p-4 hover:border-ink/20"><span className="text-xs text-ink-muted">← Chapter {prev.n}</span><span className="block font-semibold">{prev.title}</span></Link> : <span />}
+        {next && <Link href={`/copilot-advantage/members/book/${next.n}`} className="rounded-xl border border-line p-4 text-right hover:border-ink/20"><span className="text-xs text-ink-muted">Chapter {next.n} →</span><span className="block font-semibold">{next.title}</span></Link>}
       </nav>
     </article>
   );

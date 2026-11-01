@@ -119,7 +119,7 @@ export default function Method() {
               </li>
             ))}
           </ol>
-          <Link href="/members/worksheets#verification" className="link-arrow mt-5 text-sm">Open the Verification checklist →</Link>
+          <Link href="/copilot-advantage/members/worksheets#verification" className="link-arrow mt-5 text-sm">Open the Verification checklist →</Link>
         </Section>
 
         <Section id="anchors" ch="Chapter 3" title="The three anchors" lead="If you build only three habits from the whole book, build these. Each one's output becomes the next one's input.">

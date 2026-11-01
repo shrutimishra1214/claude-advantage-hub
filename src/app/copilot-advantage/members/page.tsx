@@ -13,16 +13,16 @@ import { bookPrompts } from "@/lib/toolkit/method";
 export const metadata: Metadata = { title: { absolute: "Member area · The Microsoft Copilot Advantage" } };
 
 const tools = [
-  { href: "/members/book", icon: "pages", title: "The Book", meta: `${chapters.length} chapters, every exercise` },
-  { href: "/members/method", icon: "target", title: "The Method", meta: "Brief, shapes, fixes, verification" },
-  { href: "/members/library", icon: "chat", title: "Book Prompts", meta: `${bookPrompts.reduce((n, c) => n + c.prompts.length, 0)} named prompts` },
-  { href: "/members/worksheets", icon: "grid", title: "Worksheets", meta: "Time audit, business case, checklists" },
-  { href: "/members/prompts", icon: "book", title: "Prompt Library", meta: `${recipes.length} recipes` },
-  { href: "/members/workflows", icon: "flow", title: "Workflow Vault", meta: `${workflows.length} workflows` },
-  { href: "/members/templates", icon: "doc", title: "Templates", meta: `${templates.length} templates` },
-  { href: "/members/builder", icon: "wand", title: "Prompt Builder", meta: "4 steps to a better prompt" },
-  { href: "/members/cheat-sheets", icon: "printer", title: "Cheat Sheets", meta: `${cheatSheets.length} printables` },
-  { href: "/members/quickstart", icon: "compass", title: "Quickstart", meta: `${quickstart.length} short lessons` },
+  { href: "/copilot-advantage/members/book", icon: "pages", title: "The Book", meta: `${chapters.length} chapters, every exercise` },
+  { href: "/copilot-advantage/members/method", icon: "target", title: "The Method", meta: "Brief, shapes, fixes, verification" },
+  { href: "/copilot-advantage/members/library", icon: "chat", title: "Book Prompts", meta: `${bookPrompts.reduce((n, c) => n + c.prompts.length, 0)} named prompts` },
+  { href: "/copilot-advantage/members/worksheets", icon: "grid", title: "Worksheets", meta: "Time audit, business case, checklists" },
+  { href: "/copilot-advantage/members/prompts", icon: "book", title: "Prompt Library", meta: `${recipes.length} recipes` },
+  { href: "/copilot-advantage/members/workflows", icon: "flow", title: "Workflow Vault", meta: `${workflows.length} workflows` },
+  { href: "/copilot-advantage/members/templates", icon: "doc", title: "Templates", meta: `${templates.length} templates` },
+  { href: "/copilot-advantage/members/builder", icon: "wand", title: "Prompt Builder", meta: "4 steps to a better prompt" },
+  { href: "/copilot-advantage/members/cheat-sheets", icon: "printer", title: "Cheat Sheets", meta: `${cheatSheets.length} printables` },
+  { href: "/copilot-advantage/members/quickstart", icon: "compass", title: "Quickstart", meta: `${quickstart.length} short lessons` },
 ] as const;
 
 export default async function Dashboard() {

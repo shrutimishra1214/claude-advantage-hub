@@ -28,7 +28,7 @@ export default function Quickstart() {
             </div>
             {l.tryThis && <div className="mt-5"><PromptBlock label="Try this now" text={l.tryThis} /></div>}
             {l.id === "first-workflow" && (
-              <Link href="/members/workflows/email-to-action" className="btn-primary mt-5 !py-3">Open Email → Action <Icon.arrow className="btn-arrow h-4 w-4" /></Link>
+              <Link href="/copilot-advantage/members/workflows/email-to-action" className="btn-primary mt-5 !py-3">Open Email → Action <Icon.arrow className="btn-arrow h-4 w-4" /></Link>
             )}
           </li>
         ))}

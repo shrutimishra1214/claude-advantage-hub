@@ -4,28 +4,28 @@ import type { NavGroup } from "@/components/members/MemberNav";
 
 export const copilotGroups: NavGroup[] = [
   { label: "Start", links: [
-    { href: "/members", icon: "home", label: "Home" },
-    { href: "/members/quick-wins", icon: "sparkle", label: "12 Quick Wins" },
-    { href: "/members/quickstart", icon: "compass", label: "Quickstart" },
+    { href: "/copilot-advantage/members", icon: "home", label: "Home" },
+    { href: "/copilot-advantage/members/quick-wins", icon: "sparkle", label: "12 Quick Wins" },
+    { href: "/copilot-advantage/members/quickstart", icon: "compass", label: "Quickstart" },
   ] },
   { label: "Learn", links: [
-    { href: "/members/book", icon: "pages", label: "The Book" },
-    { href: "/members/method", icon: "target", label: "The Method" },
-    { href: "/members/plan", icon: "clock", label: "90-Day Plan" },
-    { href: "/members/challenge", icon: "calendar", label: "30-Day Challenge" },
+    { href: "/copilot-advantage/members/book", icon: "pages", label: "The Book" },
+    { href: "/copilot-advantage/members/method", icon: "target", label: "The Method" },
+    { href: "/copilot-advantage/members/plan", icon: "clock", label: "90-Day Plan" },
+    { href: "/copilot-advantage/members/challenge", icon: "calendar", label: "30-Day Challenge" },
   ] },
   { label: "Use", links: [
-    { href: "/members/prompts", icon: "book", label: "Prompt Library" },
-    { href: "/members/library", icon: "chat", label: "Book Prompts" },
-    { href: "/members/workflows", icon: "flow", label: "Workflow Vault" },
-    { href: "/members/templates", icon: "doc", label: "Templates" },
-    { href: "/members/builder", icon: "wand", label: "Prompt Builder" },
-    { href: "/members/worksheets", icon: "grid", label: "Worksheets" },
+    { href: "/copilot-advantage/members/prompts", icon: "book", label: "Prompt Library" },
+    { href: "/copilot-advantage/members/library", icon: "chat", label: "Book Prompts" },
+    { href: "/copilot-advantage/members/workflows", icon: "flow", label: "Workflow Vault" },
+    { href: "/copilot-advantage/members/templates", icon: "doc", label: "Templates" },
+    { href: "/copilot-advantage/members/builder", icon: "wand", label: "Prompt Builder" },
+    { href: "/copilot-advantage/members/worksheets", icon: "grid", label: "Worksheets" },
   ] },
   { label: "Reference", links: [
-    { href: "/members/cheat-sheets", icon: "printer", label: "Cheat Sheets" },
-    { href: "/members/troubleshooting", icon: "gear", label: "Troubleshooting" },
-    { href: "/members/glossary", icon: "notebook", label: "Glossary" },
+    { href: "/copilot-advantage/members/cheat-sheets", icon: "printer", label: "Cheat Sheets" },
+    { href: "/copilot-advantage/members/troubleshooting", icon: "gear", label: "Troubleshooting" },
+    { href: "/copilot-advantage/members/glossary", icon: "notebook", label: "Glossary" },
   ] },
 ];
 

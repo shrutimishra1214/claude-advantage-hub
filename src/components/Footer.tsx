@@ -4,11 +4,11 @@ import { site } from "@/lib/site";
 import { Logo } from "./Header";
 
 const copilotLinks = [
-  { href: "/#overview", label: "Overview" },
-  { href: "/#whats-inside", label: "What's Inside" },
-  { href: "/#workflows", label: "Workflows" },
-  { href: "/#templates", label: "Templates" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/copilot-advantage#overview", label: "Overview" },
+  { href: "/copilot-advantage#whats-inside", label: "What's Inside" },
+  { href: "/copilot-advantage#workflows", label: "Workflows" },
+  { href: "/copilot-advantage#templates", label: "Templates" },
+  { href: "/copilot-advantage#faq", label: "FAQ" },
   { href: "/thank-you", label: "My library" },
 ];
 const company = [
@@ -49,7 +49,7 @@ export function Footer({ line = "copilot" }: { line?: LineId }) {
             <ul className="mt-3 grid gap-2 text-sm text-ink-muted">
               {col.links.map((l) => (
                 <li key={l.href}>
-                  {l.href.startsWith("/#") ? <a href={l.href} className="hover:text-ink">{l.label}</a> : <Link href={l.href} className="hover:text-ink">{l.label}</Link>}
+                  {l.href.startsWith("/copilot-advantage#") ? <a href={l.href} className="hover:text-ink">{l.label}</a> : <Link href={l.href} className="hover:text-ink">{l.label}</Link>}
                 </li>
               ))}
             </ul>

@@ -20,7 +20,7 @@ export default function Workflows() {
             <ul className="mt-3 grid gap-3 md:grid-cols-2">
               {g.items.map((w) => (
                 <li key={w.id}>
-                  <Link href={`/members/workflows/${w.id}`} className="flex h-full flex-col rounded-xl border border-line p-5 transition hover:border-ink/20 hover:shadow-lift">
+                  <Link href={`/copilot-advantage/members/workflows/${w.id}`} className="flex h-full flex-col rounded-xl border border-line p-5 transition hover:border-ink/20 hover:shadow-lift">
                     <span className="font-semibold">{w.title}</span>
                     <span className="mt-1 text-sm leading-relaxed text-ink-muted">{w.outcome}</span>
                     <span className="mt-4 flex items-center gap-1">

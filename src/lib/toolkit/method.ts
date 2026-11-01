@@ -248,24 +248,24 @@ export const bookPrompts: { category: string; blurb: string; prompts: BookPrompt
 // ── The 90-Day Plan (Chapter 38) ──
 export const ninetyDay = [
   { phase: "Foundations", days: "Days 1–30", weeks: [
-    { w: 1, title: "The mental model and the baseline", body: "Read Chapters 1 and 2. Run the time audit, establishing the baseline the whole plan measures against.", link: "/members/worksheets#time-audit" },
-    { w: 2, title: "The prompt anatomy", body: "Read Chapter 7. Practice the five-part brief on real tasks.", link: "/members/method#five-parts" },
-    { w: 3, title: "The morning anchor", body: "Read Chapter 3. Install the morning brief, anchored to the day's start.", link: "/members/method#anchors" },
-    { w: 4, title: "The recap and shutdown anchors", body: "Complete Chapter 3's anchors. The three anchors now run; the daily rhythm is established.", link: "/members/method#anchors" },
+    { w: 1, title: "The mental model and the baseline", body: "Read Chapters 1 and 2. Run the time audit, establishing the baseline the whole plan measures against.", link: "/copilot-advantage/members/worksheets#time-audit" },
+    { w: 2, title: "The prompt anatomy", body: "Read Chapter 7. Practice the five-part brief on real tasks.", link: "/copilot-advantage/members/method#five-parts" },
+    { w: 3, title: "The morning anchor", body: "Read Chapter 3. Install the morning brief, anchored to the day's start.", link: "/copilot-advantage/members/method#anchors" },
+    { w: 4, title: "The recap and shutdown anchors", body: "Complete Chapter 3's anchors. The three anchors now run; the daily rhythm is established.", link: "/copilot-advantage/members/method#anchors" },
   ] },
   { phase: "Applications and Habits", days: "Days 31–60", weeks: [
-    { w: 5, title: "The frameworks", body: "Read Chapter 8. Build your coverage map and your starter kit of the six chassis.", link: "/members/method#shapes" },
-    { w: 6, title: "The debugging discipline", body: "Read Chapter 9. Practice the diagnostic ladder and the steering moves. Expect the plateau this week.", link: "/members/method#fix" },
-    { w: 7, title: "The document pipeline", body: "Read Chapters 10 and 11. Run the document line on a real deliverable.", link: "/members/workflows/notes-to-brief" },
-    { w: 8, title: "The data pipeline", body: "Read Chapters 12 and 13. Run the data line on a real dataset.", link: "/members/workflows/data-to-decision" },
-    { w: 9, title: "The inbox system", body: "Read Chapter 16. Install the inbox operating system.", link: "/members/method#triage" },
-    { w: 10, title: "The knowledge loop", body: "Read Chapters 19 and 20. Install the capture habit and the weekly distill.", link: "/members/book/19" },
+    { w: 5, title: "The frameworks", body: "Read Chapter 8. Build your coverage map and your starter kit of the six chassis.", link: "/copilot-advantage/members/method#shapes" },
+    { w: 6, title: "The debugging discipline", body: "Read Chapter 9. Practice the diagnostic ladder and the steering moves. Expect the plateau this week.", link: "/copilot-advantage/members/method#fix" },
+    { w: 7, title: "The document pipeline", body: "Read Chapters 10 and 11. Run the document line on a real deliverable.", link: "/copilot-advantage/members/workflows/notes-to-brief" },
+    { w: 8, title: "The data pipeline", body: "Read Chapters 12 and 13. Run the data line on a real dataset.", link: "/copilot-advantage/members/workflows/data-to-decision" },
+    { w: 9, title: "The inbox system", body: "Read Chapter 16. Install the inbox operating system.", link: "/copilot-advantage/members/method#triage" },
+    { w: 10, title: "The knowledge loop", body: "Read Chapters 19 and 20. Install the capture habit and the weekly distill.", link: "/copilot-advantage/members/book/19" },
   ] },
   { phase: "Systems and Mastery", days: "Days 61–90", weeks: [
-    { w: 11, title: "Safe use and the five decisions", body: "Read Chapter 32. Install the everyday decisions: surface, scope, label, records, report.", link: "/members/method#safe-use" },
-    { w: 12, title: "The verification discipline", body: "Read Chapter 34. Install the formal verification practice at the rungs.", link: "/members/method#verify" },
-    { w: 13, title: "The operating-system assembly", body: "Read Chapter 37. Assemble the four layers into one coherent system.", link: "/members/book/37" },
-    { w: 14, title: "The compounding and the measurement", body: "Days 85–90. Install the compounding design and measure against your week-one baseline.", link: "/members/worksheets#time-audit" },
+    { w: 11, title: "Safe use and the five decisions", body: "Read Chapter 32. Install the everyday decisions: surface, scope, label, records, report.", link: "/copilot-advantage/members/method#safe-use" },
+    { w: 12, title: "The verification discipline", body: "Read Chapter 34. Install the formal verification practice at the rungs.", link: "/copilot-advantage/members/method#verify" },
+    { w: 13, title: "The operating-system assembly", body: "Read Chapter 37. Assemble the four layers into one coherent system.", link: "/copilot-advantage/members/book/37" },
+    { w: 14, title: "The compounding and the measurement", body: "Days 85–90. Install the compounding design and measure against your week-one baseline.", link: "/copilot-advantage/members/worksheets#time-audit" },
   ] },
 ];
 

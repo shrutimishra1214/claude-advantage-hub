@@ -25,7 +25,7 @@ function downloadCsv() {
 }
 
 /** In the public companion, links into the member area are hidden unless they point at a worksheet on the same page. */
-const publicLink = (link: string) => (link.startsWith("/members/worksheets#") ? link.replace("/members/worksheets", "") : null);
+const publicLink = (link: string) => (link.startsWith("/copilot-advantage/members/worksheets#") ? link.replace("/copilot-advantage/members/worksheets", "") : null);
 
 export function NinetyDayPlan({ isPublic = false }: { isPublic?: boolean }) {
   const { weeks, toggleWeek } = useProgress();
@@ -82,7 +82,7 @@ export function QuickWins() {
               <h3 className="font-semibold">{q.title}</h3>
               <p className="mt-1 text-sm leading-relaxed text-ink-muted">{q.body}</p>
               <p className="mt-2 text-xs">
-                {q.ch.map((c, j) => <span key={c}>{j > 0 && " · "}<Link href={`/members/book/${c}`} className="font-semibold text-accent hover:underline">Chapter {c}</Link></span>)}
+                {q.ch.map((c, j) => <span key={c}>{j > 0 && " · "}<Link href={`/copilot-advantage/members/book/${c}`} className="font-semibold text-accent hover:underline">Chapter {c}</Link></span>)}
               </p>
             </div>
           </li>

@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/download/[product]": ["./private-files/**/*"],
   },
+  // The Copilot pages moved from the site root to /copilot-advantage. Keep old
+  // links working; /members/enter stays put because purchase emails use it.
+  async redirects() {
+    return [
+      { source: "/members", destination: "/copilot-advantage/members", permanent: true },
+      { source: "/members/:path((?!enter$).*)", destination: "/copilot-advantage/members/:path", permanent: true },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

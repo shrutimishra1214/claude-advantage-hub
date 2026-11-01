@@ -20,7 +20,7 @@ export function ChapterRow({ c }: { c: Chapter }) {
   const { chapters } = useProgress();
   const done = chapters.includes(c.n);
   return (
-    <Link href={`/members/book/${c.n}`} className="group flex items-start gap-4 rounded-xl border border-line p-4 transition hover:border-ink/20 hover:shadow-lift">
+    <Link href={`/copilot-advantage/members/book/${c.n}`} className="group flex items-start gap-4 rounded-xl border border-line p-4 transition hover:border-ink/20 hover:shadow-lift">
       <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full font-mono text-sm ${done ? "bg-accent text-white" : "border border-line-strong text-ink-muted"}`}>
         {done ? <Icon.check className="h-4 w-4" strokeWidth={2.6} /> : c.n}
       </span>
