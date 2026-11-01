@@ -14,7 +14,8 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
 export default function HubLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    // Browser extensions (Grammarly and others) add attributes to <html> and <body> before React loads.
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="/hub/hub.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +25,7 @@ export default function HubLayout({ children }: { children: ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap"
         />
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

@@ -11,8 +11,8 @@ export const metadata: Metadata = { title: "Page not found | Kaelis Voss" };
 // Shown for URLs that match neither root layout.
 export default function GlobalNotFound() {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
-      <body>
+    <html lang="en" className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <main className="grid min-h-dvh place-items-center px-6 text-center">
           <div>
             <p className="font-display text-7xl font-medium accent-em">404</p>

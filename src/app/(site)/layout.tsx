@@ -38,8 +38,9 @@ export const viewport: Viewport = { themeColor: "#FFFFFF" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${serif.variable}`}>
-      <body>{children}</body>
+    // Browser extensions (Grammarly and others) add attributes to <html> and <body> before React loads.
+    <html lang="en" className={`${display.variable} ${sans.variable} ${serif.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
