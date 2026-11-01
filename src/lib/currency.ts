@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import type { Currency } from "./products";
+import { site } from "./site";
 
 /**
  * The visitor's country from the host's geo-IP header (Vercel or Cloudflare).
@@ -13,7 +14,8 @@ async function getCountry(): Promise<string | null> {
   return null;
 }
 
-/** INR for visitors in India; USD for everyone else, including when the country is unknown. */
+/** USD, or INR for visitors in India when site.inrForIndia is on. */
 export async function getCurrency(): Promise<Currency> {
+  if (!site.inrForIndia) return "USD";
   return (await getCountry()) === "IN" ? "INR" : "USD";
 }

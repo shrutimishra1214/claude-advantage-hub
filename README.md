@@ -1,8 +1,8 @@
 # Kaelis Voss — The Microsoft Copilot Advantage
 
 Sales website, checkout funnel and member area for *The Microsoft Copilot Advantage*, built with Next.js 15 and Tailwind CSS.
-Visitors in India pay in INR through **Razorpay**; everyone else pays in USD through **Paddle**, which acts as merchant of record
-(it collects sales tax and VAT and pays out to you).
+Everyone pays in USD through **Paddle**, which acts as merchant of record (it collects sales tax and VAT and pays out to you).
+Charging visitors in India in INR through **Razorpay** is built in but switched off: set `inrForIndia` in `src/lib/site.ts`.
 
 ## Product lines
 
@@ -99,7 +99,7 @@ Settings → Variables and Secrets**), using **Secret** for keys and passwords. 
 
 ## Before going live
 
-1. **Razorpay (India)**: complete KYC and put your live keys in the Cloudflare dashboard (see Deploying). Add a webhook to
+1. **Razorpay (India, only if you turn on `inrForIndia`)**: complete KYC and put your live keys in the Cloudflare dashboard (see Deploying). Add a webhook to
    `https://YOUR-DOMAIN/api/webhooks/razorpay` for the `payment.captured` event and set `RAZORPAY_WEBHOOK_SECRET`.
 2. **Paddle (everywhere else)**: apply for a Paddle account and get the website approved (Paddle reviews every seller; confirm
    your products fit its policy). Then, in sandbox first and again in production:

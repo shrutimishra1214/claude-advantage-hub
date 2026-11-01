@@ -14,8 +14,9 @@ export default function Terms() {
       <p>Your purchase gives you a personal, non-transferable licence to use the product. You may not resell, share, republish or distribute the files, in whole or in part, without written permission. Team licences are available on request.</p>
       <h2>Payments</h2>
       <p>
-        Orders from India are paid in INR and processed securely by Razorpay. Orders from everywhere else are paid in USD through our online reseller
-        Paddle.com: Paddle.com is the Merchant of Record for those orders, and also handles customer service inquiries about payment and returns for them.
+        {site.inrForIndia
+          ? "Orders from India are paid in INR and processed securely by Razorpay. Orders from everywhere else are paid in USD through our online reseller Paddle.com: Paddle.com is the Merchant of Record for those orders, and also handles customer service inquiries about payment and returns for them."
+          : "All orders are paid in USD through our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders, and also handles customer service inquiries about payment and returns."}
         We never see or store your full card details. Sales tax or VAT is calculated at checkout where it applies.
       </p>
       <h2>Refunds</h2>
