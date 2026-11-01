@@ -1,0 +1,1068 @@
+[
+ {
+  "n": 1,
+  "title": "Turn Copilot Access Into a Real Advantage",
+  "part": 1,
+  "partTitle": "Welcome to the AI-Powered Workplace",
+  "read": "8 min",
+  "level": "Beginner",
+  "apps": "Copilot Chat",
+  "able": [
+   "name the 5 habits of high-value users",
+   "run a time audit",
+   "pick your 3 target tasks"
+  ],
+  "keyIdea": "The gap between access and advantage is method, not tools.",
+  "mistakes": "Prompting like a search box. Twenty years of Google trained you to type fragments; Copilot does exactly what you specify and guesses where you leave gaps. Fragments produce guesses. Trusting fluency. Wrong answers arrive in the same polished prose as right ones. Finished-looking text slides past skepticism, so check names, numbers, and dates, always, in proportion to the stakes.",
+  "tips": "",
+  "yourTurn": [
+   {
+    "task": "Run a one-week time audit: for five workdays, note every task that takes 30 minutes or more and recurs, then circle the three most repetitive. These are what the rest of the book rebuilds first.",
+    "good": "Three named, patterned tasks that come back every week (status report, inbox triage, meeting recaps), not one-off projects."
+   },
+   {
+    "task": "For each of the three, write one sentence describing what a finished version looks like.",
+    "good": "An output concrete enough to hand to someone else: “a one-page summary with decisions and owners,” not “deal with email.”"
+   },
+   {
+    "task": "Add up the hours those three cost you in a week and write the number down; it is the opportunity you will measure against later.",
+    "good": "A realistic weekly figure, often three to five hours, that you can re-check after a month on the method."
+   }
+  ]
+ },
+ {
+  "n": 2,
+  "title": "Understand Copilot Enough to Trust It Correctly",
+  "part": 1,
+  "partTitle": "Welcome to the AI-Powered Workplace",
+  "read": "8 min",
+  "level": "Beginner",
+  "apps": "All",
+  "able": [
+   "say what the tech does in one sentence",
+   "spot where fabrication hides",
+   "use grounding"
+  ],
+  "keyIdea": "Grounding turns a general model into an assistant that knows your work.",
+  "mistakes": "",
+  "tips": "",
+  "yourTurn": [
+   {
+    "task": "Take three recent Copilot outputs and label each one: transform, retrieval, or world-fact.",
+    "good": "A rewrite or summary is transform; “find the decision in this thread” is retrieval;"
+   },
+   {
+    "task": "“what is the filing deadline” is world-fact. Pick one answer where you trusted a number, a name, or a date, and trace it to its source now. Note whether it held.",
+    "good": "You located the original and either confirmed it or caught a drift. Either outcome is the habit working."
+   },
+   {
+    "task": "Write your own one-line rule for how hard to check each tier, and post it where you work.",
+    "good": "Something like: glance at transforms, spot-check retrievals, trace every world-fact before it leaves the building."
+   }
+  ]
+ },
+ {
+  "n": 3,
+  "title": "Run a Full AI-Powered Workday",
+  "part": 1,
+  "partTitle": "Welcome to the AI-Powered Workplace",
+  "read": "8 min",
+  "level": "Beginner",
+  "apps": "Chat, Outlook, Teams",
+  "able": [
+   "anchor Copilot to 3 fixed points",
+   "chain outputs",
+   "defend your reclaimed time"
+  ],
+  "keyIdea": "Three fixed anchors turn a scattered day into a connected chain.",
+  "mistakes": "",
+  "tips": "",
+  "yourTurn": [
+   {
+    "task": "Tomorrow morning, run the brief before you open your inbox, and write down one thing it surfaced that you would have missed.",
+    "good": "A specific item you acted on earlier than usual: a change, a deadline, a message that needed a fast reply."
+   },
+   {
+    "task": "After your next meeting, run the recap loop while it is warm: summary, then action items, then a follow- up draft.",
+    "good": "Three artifacts in a few minutes, and a follow-up sent the same hour instead of the next day."
+   },
+   {
+    "task": "Run the three anchors for three days straight, then defend the time: decide in writing what your reclaimed minutes are for and block them on your calendar.",
+    "good": "A protected block with a named purpose, not vague catch-up time that fills itself."
+   }
+  ]
+ },
+ {
+  "n": 4,
+  "title": "Know Exactly Which Copilot You’re Using",
+  "part": 2,
+  "partTitle": "The Copilot Ecosystem",
+  "read": "7 min",
+  "level": "Beginner",
+  "apps": "All",
+  "able": [
+   "name the Copilot family",
+   "use the work/web toggle",
+   "avoid pasting work data into consumer AI"
+  ],
+  "keyIdea": "Copilot is a family, not a product. Four questions name any member on sight.",
+  "mistakes": "Assuming Copilot is one product with one answer sheet. The umbrella brand covers different grounding, licensing, and data handling. Every claim you hear needs a family name attached before it is actionable. Working all day in the wrong account. A personal-account tab looks nearly identical to a work- account tab and shares none of its protections. Check the portrait, especially on shared machines. Never touching the work/web toggle, then grading the product on answers it gave from the wrong side of it.",
+  "tips": "Pin by branch, not by habit. Put your work-account surfaces in muscle-memory locations and exile the consumer product somewhere less convenient. Say the full product name in team messages: “Copilot Chat in work mode,” “Copilot in Excel.” Teams that name products precisely stop having the confusion conversation. Check the toggle before judging any answer; most “Copilot was useless today” reports evaporate under it.",
+  "yourTurn": [
+   {
+    "task": "Find the Work/Web toggle on the surface you use most, and check it before every work question for a day.",
+    "good": "You catch at least one answer you would have run in the wrong mode, and the toggle becomes automatic."
+   },
+   {
+    "task": "Run the identity test on every Copilot surface you have, and write down which are grounded in your work and which are not.",
+    "good": "A short per-surface list telling you whether an answer can see your files, so you never expect grounding that is not there."
+   }
+  ]
+ },
+ {
+  "n": 5,
+  "title": "Build the Business Case for Your License",
+  "part": 2,
+  "partTitle": "The Copilot Ecosystem",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Admin",
+  "able": [
+   "compute break-even",
+   "use the free-floor strategy",
+   "design a pilot that decides"
+  ],
+  "keyIdea": "The license pays for itself at a handful of minutes a week. The real question is who needs more than the free floor.",
+  "mistakes": "Comparing the add-on to zero. The alternative is not nothing; it is the included floor plus the standing cost of the hours. Both sides need real numbers, and the audit supplies the one everyone forgets. Buying the org-wide bundle reflexively. Per-user licensing exists so spend can follow need. Uniform rollouts produce the scattered-seat usage curve; audit-led rollouts produce the Vodafone sequence. Treating the pilot as a demo. A pilot without a baseline is a demonstration with a deferred conclusion.",
+  "tips": "Memorize your break-even sentence: “It pays for itself at X minutes a month,” a number almost nobody in the room will have computed. Ask for the usage dashboard before asking for budget; reallocating dormant seats to your audited team costs nothing and approves itself. Time requests to renewal windows, and verify prices the week you present, because this family’s pricing has moved more than once.",
+  "yourTurn": [
+   {
+    "task": "For one day, route everything you can through the free Copilot Chat and note where it falls short of the licensed version.",
+    "good": "A concrete list of gaps (no file grounding, no in-app actions) that names what the paid seat actually buys."
+   },
+   {
+    "task": "Build the one-page business case for your license in hours saved times your rate, and time it to your renewal window.",
+    "good": "A number a budget owner can act on, tied to the three recurring tasks from Chapter 1."
+   }
+  ]
+ },
+ {
+  "n": 6,
+  "title": "Get IT to Say Yes to What You Need",
+  "part": 2,
+  "partTitle": "The Copilot Ecosystem",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Admin",
+  "able": [
+   "ask the ten questions",
+   "frame a scoped ask",
+   "recognize the two rollout failure modes"
+  ],
+  "keyIdea": "Behind almost every restriction is a named risk. Scope the ask to shrink it, and IT says yes.",
+  "mistakes": "Asking for everything, tenant-wide, at once. A broad ask forces the administrator to price the worst case across the whole organization, which prices at no. Scoped asks price small and earn the next scope. Framing IT as the obstacle. The administrator inherited the permission debt along with personal accountability for it. Arriving as a co-owner of the risk changes the meeting before a word of  substance is spoken. Skipping to features when hygiene is the blocker. If the honest answer to “why is this restricted?” is “because our sharing is frightening,” the fastest route to your feature is helping the sweep happen.",
+  "tips": "Learn three control names: Restricted Content Discovery, sensitivity labels with DLP for Copilot, and the Copilot Control System’s agent management. Using their real names buys more credibility than any amount of enthusiasm. Ask for the why, not just the setting: “What concern set this?” retrieves the risk your proposal actually needs to address. Volunteer your team for the sweep; owning your own sites’ cleanup is the most disarming move a champion has.",
+  "yourTurn": [
+   {
+    "task": "Send your admin the tenant-facts email and get the ten questions answered, so you know what is actually turned on for you.",
+    "good": "Written answers that end the guesswork about which surfaces, agents, and grounding your account has."
+   },
+   {
+    "task": "Take your highest-value blocked capability, turn it into one scoped, specific ask, and submit it.",
+    "good": "A request an admin can approve without a meeting, naming the capability, the reason, and the scope."
+   }
+  ]
+ },
+ {
+  "n": 7,
+  "title": "Write Prompts That Work on the First Try",
+  "part": 3,
+  "partTitle": "Prompt Engineering",
+  "read": "7 min",
+  "level": "Beginner",
+  "apps": "All",
+  "able": [
+   "build any prompt from its five parts",
+   "read failures backward",
+   "turn prompts into templates"
+  ],
+  "keyIdea": "A prompt is a briefing. Five parts turn a guess into an instruction.",
+  "mistakes": "Writing topics instead of tasks. “The Henderson proposal” is a subject line; “draft the pricing section of the Henderson proposal using the attached rate card” is a task. The model will do something with a topic; it will do the thing with a task. Supplying context about yourself instead of for the contractor. Long preambles about the project’s history that never mention the audience or the deliverable. Run the capable-stranger test and cut what a contractor would not need. Stacking three tasks in one prompt. “Summarize this, then draft a response, and also what are the risks” produces three mediocre thirds. Chain them as turns instead.",
+  "tips": "Lead with role and context, end with format and constraints, because endings sit closest to the generation and get obeyed most reliably. Label the parts in long prompts: literally write “Context:”, “Task:”, “Format:” as headers, which stops the model from blending your background  into your instructions. Give one example instead of three adjectives: “warm but professional, like this: [two sentences from a real email]” beats any list of adjectives.",
+  "yourTurn": [
+   {
+    "task": "Label the parts in your next prompt that matters: Role:, Context:, Task:, Format:, Constraints:.",
+    "good": "A prompt whose five parts are all present, which is most of what makes a first answer usable."
+   },
+   {
+    "task": "Turn your best prompt into a template with named slots and file it.",
+    "good": "A reusable template that solves the task type, not just today’s task."
+   }
+  ]
+ },
+ {
+  "n": 8,
+  "title": "Stop Writing Prompts From Scratch Forever",
+  "part": 3,
+  "partTitle": "Prompt Engineering",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "All",
+  "able": [
+   "recognize the 6 shapes",
+   "apply the two multipliers",
+   "chain shapes into workflows"
+  ],
+  "keyIdea": "You do not face a thousand tasks. You face six shapes, wearing a thousand costumes.",
+  "mistakes": "Collecting frameworks instead of instantiating them. Six shapes in a note file is reading; six instances filled with your defaults and run on real tasks is capability.  Forcing the seventh task into the sixth shape. Novel and creative work runs loose first, and the tell that nothing fits is that filling the slots feels like lying. Letting Critique flatter you. An unstructured “any feedback?” invites the model’s default courtesy. Severity-ordered, quota’d, quote-anchored critique is the only kind worth running.",
+  "tips": "Name the shape out loud before prompting. “This is an Extract” loads the right chassis and the right skepticism at once. Keep one wildcard instance per shape, slots empty, for the recurring- but-not-yet-templated middle ground. Instantiate for your manager, not just yourself: build the Brief they need, their meetings, their priorities, their reading style, and hand it over filled in.",
+  "yourTurn": [
+   {
+    "task": "Name the shape out loud before your next few prompts, so you reach for a pattern instead of a blank box.",
+    "good": "The right shape chosen on purpose, which sets up a strong first draft."
+   },
+   {
+    "task": "Build your coverage map: sort your recurring tasks into the six shapes and instantiate your top three.",
+    "good": "Your three most common tasks turned into ready prompts you never write from scratch again."
+   }
+  ]
+ },
+ {
+  "n": 9,
+  "title": "Fix Any Bad Copilot Answer in Two Turns",
+  "part": 3,
+  "partTitle": "Prompt Engineering",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "All",
+  "able": [
+   "locate a failure on the 4-layer ladder",
+   "pick the right steering move",
+   "compile a fresh brief"
+  ],
+  "keyIdea": "Fix a bad answer by diagnosis, not by rewording and hoping.",
+  "mistakes": "Rewording instead of diagnosing. The second prompt that is the first prompt with synonyms. If you cannot name what was wrong, you are guessing, and guessing costs turns that diagnosis would have saved. Correcting the output when the failure was structural. Steering turns aimed at grounding, window, or frontier failures are category errors: the phrasing was never the problem. Stacking corrections. Turn four of a spiral makes the model reconcile your original prompt plus three amendments inside a cluttered window. Two turns, then compile.",
+  "tips": "Read before you type, every time. The sixty-second read is the highest-return minute in this book, and the urge to immediately correct is the urge to skip diagnosis, strongest exactly when the output is nearly right. Fix the riskiest problem first: suspicious specifics before register, register before length.",
+  "yourTurn": [
+   {
+    "task": "On your next bad answer, read it before you retype, and name the failure layer before choosing a fix.",
+    "good": "A diagnosis that points to the right correction, instead of rewording and hoping."
+   },
+   {
+    "task": "Start a failure log, one line per bad answer, and review it after two weeks.",
+    "good": "A pattern in your own misses that tells you which habit to fix at the source."
+   }
+  ]
+ },
+ {
+  "n": 10,
+  "title": "Write Documents in Half the Time",
+  "part": 4,
+  "partTitle": "Word",
+  "read": "7 min",
+  "level": "Beginner",
+  "apps": "Word",
+  "able": [
+   "run the document pipeline",
+   "ground drafts in reference files",
+   "rewrite without losing your voice"
+  ],
+  "keyIdea": "A document is assembled in stages, not generated in one prompt.",
+  "mistakes": "Generating the whole document in one prompt. The debut mistake, and the source of most “Copilot writes generic fluff” verdicts. Whole-document generation produces filler where sources  thin out and buries it where you stop reading carefully. Section-wise drafting exists because of exactly this. Skipping the specification because the deadline is close. A free draft of the wrong document is not progress; it is momentum in the wrong direction that now must be argued with. The sentence takes ninety seconds and cannot be delegated at any price. Referencing stale sources. The draft inherits the version you pointed at, and last quarter’s numbers in this quarter’s memo is a grounding failure you built yourself. Freshness check at gather time, every time.",
+  "tips": "Keep a specification file per document type. Half of specification is remembering what this document type is actually for, and the file remembers under deadline when you will not. Reference the example before the sources, so structure and register set before facts arrive and the draft lands in the right shape. Use the draft box for structure even when you will write the prose: for judgment-heavy documents, have Copilot propose the outline and write none of the text. COPILOT IN WORD version appears in the pane to insert. Copilot in Word rewriting a proposal to be more concise, professional, and persuasive. The revised",
+  "yourTurn": [
+   {
+    "task": "On your next document, argue the outline with Copilot before drafting a single paragraph.",
+    "good": "A structure you have pressure-tested while it is still free to change, not at page nine."
+   },
+   {
+    "task": "Run the full draft pipeline on one real document and time each stage against your old way of working.",
+    "good": "A measured before-and-after that shows where the hours actually went."
+   }
+  ]
+ },
+ {
+  "n": 11,
+  "title": "Master 80-Page Documents Without Reading Them All",
+  "part": 4,
+  "partTitle": "Word",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Word",
+  "able": [
+   "interrogate long docs",
+   "reconcile versions",
+   "build living templates"
+  ],
+  "keyIdea": "Work a long document by interrogation, not by reading every page.",
+  "mistakes": "Letting the summary substitute for the zoned read. The map orients and the interrogation locates, but the reading of the pages that matter still happens. Skip it and you get a summary of a summary, with the middle-compression failure waiting exactly there. Interrogating without quote demands. Answers about an eighty-page document without citations into it are unverifiable at the moment of maximum need. The quote demand costs one line and converts every answer into a checkable claim. Comparing versions unconstrained. “What is different?” invites confident lists that mix real changes with paraphrase noise. Constrain to material changes, obligations, numbers, parties, dates, and demand both-version citations.",
+  "tips": "Interrogate before meetings about the document. Twenty minutes of map-and-interrogate means you arrive with section numbers while others arrive with impressions. Ask the document what is not there: “what would a reader expect this to address that it does not?” is the most valuable long-document question and the one nobody asks. Keep the obligation table as the contract’s companion for its whole life, updated at amendments; it answers most what-did-we-agree questions without reopening the eighty pages.",
+  "yourTurn": [
+   {
+    "task": "Build an obligation table from your next long contract or report, and file it as the document’s companion.",
+    "good": "A one-screen list of who owes what by when, each row traceable to the clause it came from."
+   },
+   {
+    "task": "Turn your heaviest recurring document into one living template: the file, the specification, the section prompts, and an example bank.",
+    "good": "A reusable kit that makes the next version a fill-in job, not a blank page."
+   }
+  ]
+ },
+ {
+  "n": 12,
+  "title": "Analyze Any Spreadsheet Without Being a Data Scientist",
+  "part": 5,
+  "partTitle": "Excel",
+  "read": "8 min",
+  "level": "Intermediate",
+  "apps": "Excel",
+  "able": [
+   "ask data questions in plain English",
+   "get auditable formulas",
+   "verify with known-answer tests"
+  ],
+  "keyIdea": "Route the calculation to Excel; keep the judgment for yourself.",
+  "mistakes": "Asking questions of unshaped data. Merged cells, embedded subtotals, text dates: the model works around some of it and silently mishandles the rest, and you cannot tell which happened.  Interview first, shape second, questions third. Accepting numbers from the chat bubble. A figure in conversation is unaudited and does not recalculate. Land every answer as a formula, pivot, or coded artifact on the sheet; if it matters enough to report, it matters enough to exist as logic. Skipping the proposal read. The pivot that aggregates the wrong column, the average that should be a median: cheapest to catch before insertion, invisible after, because inserted artifacts look authoritative.",
+  "tips": "Interview every dataset on arrival, even familiar ones. Exports change upstream without notice, and the thirty-second interview is insurance against the silent schema change that kills recurring reports. Name tables and columns as if a stranger will prompt against them, because one will: you, in three months. Keep a validation block on serious sheets: source row count versus table row count, source total versus computed total, last-refresh date. Reconciliation as furniture, visible every time the file opens.",
+  "yourTurn": [
+   {
+    "task": "Interview your next dataset on arrival: ask what each column means, what looks off, and what is missing, before you analyze.",
+    "good": "A short briefing that surfaces gaps and surprises before they become wrong conclusions."
+   },
+   {
+    "task": "Rebuild one reported number two independent ways, a pivot and a formula; if they disagree, you just caught something.",
+    "good": "Two methods that agree (confidence) or disagree (a caught error that would otherwise have shipped)."
+   }
+  ]
+ },
+ {
+  "n": 13,
+  "title": "Turn a 4-Hour Report Into 30 Minutes",
+  "part": 5,
+  "partTitle": "Excel",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Excel",
+  "able": [
+   "run reporting as a supply chain",
+   "draft commentary from verified findings",
+   "convert to exception reporting"
+  ],
+  "keyIdea": "Report by exception, rather than restating the whole table.",
+  "mistakes": "Drafting commentary from raw data instead of verified findings. The model will find patterns; the audit gate exists so that only surviving patterns get narrated. Findings first, always, or the report’s fluency outruns its truth. Restating tables in paragraph form. If the sentence adds no driver and no so-what, it is the table wearing prose. Cut it; the table is already in the appendix, and readers can read. Letting charts choose their own claims, and summarizing the summary. A chart built before its claim asserts whatever the defaults assert, and a digest compressed from a one-pager compressed from the pack inherits two rounds of loss. Every altitude generates from the findings base.",
+  "tips": "Keep a findings register across cycles. The narrated findings lists, filed sequentially, become the report’s institutional memory: what we said, when, and what happened next. Write the digest first, even though it ships last, because drafting the three-sentence altitude forces the so-what to the front and the pack assembles faster beneath a settled headline. Put the anticipated questions in the pack: a standing final section of the five questions this report usually provokes, answered with basis.",
+  "yourTurn": [
+   {
+    "task": "Agree materiality thresholds with your readers once, then report only what crosses them.",
+    "good": "A shared definition of what is worth flagging that shrinks the report to what matters."
+   },
+   {
+    "task": "Convert one recurring report to exception format, and send the “nothing material this period” line when it is true.",
+    "good": "A shorter report your readers trust more because it hides nothing and pads nothing."
+   }
+  ]
+ },
+ {
+  "n": 14,
+  "title": "Build a Boardroom Deck From a Document in Minutes",
+  "part": 6,
+  "partTitle": "PowerPoint",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "PowerPoint",
+  "able": [
+   "generate a deck from a document",
+   "make titles argue",
+   "remove the generated tell"
+  ],
+  "keyIdea": "Build the deck from a document, then make every title argue.",
+  "mistakes": "Generating the deck before doing the thinking. The prompt-to-deck demo is a scaffolding tool. A deck generated from a one-line prompt is a structure guess around generic content, and presenting it is outsourcing your argument to the statistical average of all decks. Accepting topic titles. The default failure of all generation and most human decks. The headline pass is fifteen minutes and the single largest quality delta available; skip it and you ship a table of contents pretending to be an argument. One deck for the room and the inbox. The compromise serves neither: too dense to present, too sparse to read. Two generations from one source cost one extra prompt.",
+  "tips": "Keep a deck specification file beside your document specifications; the same recurring meetings need the same decks, and the one-sentence jobs written once make every future generation start aimed. Generate the skeleton, argue it, then generate the content, which recovers most of the document-first quality for decks with no source. Give the brand kit real anchors: kits carry colors and layouts, not voice, so your phrasing anchors and banned-phrase constraints belong in the creation prompt alongside the kit.",
+  "yourTurn": [
+   {
+    "task": "Rebuild your most important slide by hand to one assertion and one chart, nothing else.",
+    "good": "A slide whose point lands in three seconds, with the supporting detail moved off it."
+   },
+   {
+    "task": "Produce two densities from one source: a sparse deck to present and a denser version to send ahead.",
+    "good": "One set of facts in two fit-for-purpose artifacts, instead of a single deck that serves neither."
+   }
+  ]
+ },
+ {
+  "n": 15,
+  "title": "Win the Room With Answer-First Storytelling",
+  "part": 6,
+  "partTitle": "PowerPoint",
+  "read": "7 min",
+  "level": "Advanced",
+  "apps": "PowerPoint",
+  "able": [
+   "structure answer-first",
+   "open with SCQA",
+   "run the question game"
+  ],
+  "keyIdea": "Lead executives with the answer, framed by SCQA.",
+  "mistakes": "Building up to the conclusion. The generation default and the junior instinct, and in senior rooms it reads as inexperience or fear. Answer on the first content slide, always, with the standing instruction doing the work at generation time. Choosing the complication you find interesting over the one the room feels. SCQA built on the wrong complication produces polite nodding and no tension. The complication is an audience fact, and it is the one line only you can write. Hedging instead of calibrating. Fog protects the author and starves the decision, and senior readers translate it instantly into evasion. Known flat, unknown flat, decision impact flat.",
+  "tips": "Write the one-sentence version first, the whole case in one sentence you would say to the CEO in an elevator. Every subsequent artifact is that sentence at increasing magnification, and if the sentence will not come, the case is not ready for any length. Steal the room’s vocabulary: pull the phrases your executives actually use, from their own memos and town halls, and hand them to Copilot as register anchors. A case argued in the decider’s vocabulary is measurably easier to approve, because approving it requires no translation.",
+  "yourTurn": [
+   {
+    "task": "Before building anything, write your case in one sentence; if it will not come, the case is not ready.",
+    "good": "A single claim clear enough that everything else either supports it or gets cut."
+   },
+   {
+    "task": "Build the one-page storyline, name your real skeptic, and pressure-test it against their hardest question before you stage it.",
+    "good": "A storyline that survives the toughest reader in the room because you met them in the draft."
+   }
+  ]
+ },
+ {
+  "n": 16,
+  "title": "Reclaim Hours a Week From Your Inbox",
+  "part": 7,
+  "partTitle": "Outlook",
+  "read": "8 min",
+  "level": "Beginner",
+  "apps": "Outlook",
+  "able": [
+   "triage by decision",
+   "batch replies",
+   "end thread archaeology"
+  ],
+  "keyIdea": "Build the rules layer first, then the judgment layer on top of it.",
+  "mistakes": "Using the tools inside the old habits. Summarizing threads you then re-read, drafting replies one at a time as mail arrives, checking between visits. The features amplify whatever system they land in, including the absence of one. Classifying more than five ways. Elaborate folder taxonomies are procrastination with structure. Five decisions cover the inbox; everything richer belongs in the task list or the project folder. Sending drafts unread. The one absolute rule of drafted mail. Generated replies are review-first artifacts, and the thirty seconds of read-before-send is where wrong names, commitments, and tone get caught. Every horror story about AI email starts with a skipped read.",
+  "tips": "Write the intent line before the draft: one sentence of what the reply must accomplish, “decline warmly, offer the alternative date, keep the door open,” makes drafts land close to final. Draft the hard email to unstick yourself: for the reply you have been avoiding, generate a deliberately rough draft just to have something to argue with. Use scheduled send as a norm: batching replies means sending in bursts, so schedule the burst for working hours, because the system’s calm should be contagious, not alarming.",
+  "yourTurn": [
+   {
+    "task": "Process email in two or three scheduled visits tomorrow, with the inbox closed between them.",
+    "good": "Fewer context switches and a day that runs on your schedule, not the inbox’s."
+   },
+   {
+    "task": "Rebuild your inbox this week: the rules layer first, then the five-way triage and batched replies.",
+    "good": "A system that sorts and drafts for you, so the inbox arrives pre-triaged."
+   }
+  ]
+ },
+ {
+  "n": 17,
+  "title": "Never Walk Into a Meeting Unprepared Again",
+  "part": 7,
+  "partTitle": "Outlook",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Outlook, Teams",
+  "able": [
+   "run the meeting lifecycle",
+   "operate the follow-up engine",
+   "rebuild a recurring series"
+  ],
+  "keyIdea": "The value sits in the before and the after, not only the meeting.",
+  "mistakes": "Prepping in the meeting. The first ten minutes of reconstruction, institutionalized. The five- minute brief exists and the two-minute re-read exists; arriving current is now a choice, and rooms notice who makes it. Letting the follow-up wait for the evening. The engine’s value halves by end of day and quarters by morning: memories diverge, ambiguities harden, and the recap becomes contestable. Warm fifteen, or a minimum-viable same-hour email with bookkeeping deferred. Running the series on improvised agendas. The agenda invented at the door reflects whoever speaks first, not what the series needs.",
+  "tips": "Batch the briefs, read them twice: generate them in one morning block, then re-read at each meeting’s door. The morning read plans the day; the door read loads the room. Put your position in the calendar entry, one private line in each accepted invitation about what you want from the hour, which converts the brief from information to intention. Make the unclear-owner items the follow-up email’s asks, because a silent misunderstanding surfaced now costs one reply to fix.",
+  "yourTurn": [
+   {
+    "task": "Run the three hygiene tests on next week’s calendar and decline, shorten, or convert at least one meeting.",
+    "good": "A calendar with one fewer low-value meeting and a defensible reason for each that stays."
+   },
+   {
+    "task": "Rebuild your weakest recurring meeting around a decision log and a self-seeding agenda.",
+    "good": "A series that produces a durable record and prepares itself, instead of restarting cold each time."
+   }
+  ]
+ },
+ {
+  "n": 18,
+  "title": "Catch Up on Any Meeting 4x Faster",
+  "part": 8,
+  "partTitle": "Teams",
+  "read": "8 min",
+  "level": "Beginner",
+  "apps": "Teams",
+  "able": [
+   "use recap, Facilitator, and live notes",
+   "chair with the machine",
+   "run meeting AI with consent"
+  ],
+  "keyIdea": "Treat the recap as a draft to verify, not as the verdict.",
+  "mistakes": "Running meetings on the machinery without telling the room. The discovered transcript is a trust incident regardless of policy compliance. The announcement costs one sentence; its absence can cost the quarter’s candor. Treating the recap as the verdict. It is a draft by a system with known failure modes, and it becomes the record only after a warm human pass. Distributing it unread is the meeting-layer version of sending the unread draft, with more witnesses. Never using the off switch. If the AI is never paused, the sensitive conversations have moved to corridors and chats, which means the record is complete and the meeting is hollow. Visible,  deliberate suspension keeps the honest conversation in the room.",
+  "tips": "Speak in extractable sentences at the moments that matter: decisions as decisions, owners aloud, dates stated. The recap’s quality is substantially your diction at ten key moments. Correct the live notes in the room: the misattribution fixed at minute forty costs nothing and saves the follow-up cycle entirely. Ask the panel the disagreement question, “where do the participants actually disagree?” mid-meeting, because the transcript sees positions the room experiences only as mood. COPILOT IN TEAMS Copilot’s meeting recap in Teams: a summary, the key points, and action items assigned by name.  MEETIN G TO A C TION into an Outlook follow-up. From conversation to action: a Teams recap becomes Loop action items that stay in sync and turn",
+  "yourTurn": [
+   {
+    "task": "In your next meeting that matters, close the laptop and let the transcript scribe while you attend to the room.",
+    "good": "A sharper presence in the meeting and a recap that still has every word."
+   },
+   {
+    "task": "Convert one meeting to a same-day recap and follow-up, and notice how the same-hour send changes what the room remembers.",
+    "good": "Decisions and owners confirmed while memories are fresh, not relitigated next week."
+   }
+  ]
+ },
+ {
+  "n": 19,
+  "title": "Find Any Decision Buried in Chat in Seconds",
+  "part": 8,
+  "partTitle": "Teams",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Teams",
+  "able": [
+   "retrieve decisions with provenance",
+   "bank stream to stock",
+   "run joiner and leaver protocols"
+  ],
+  "keyIdea": "Retrieve from the stream, then bank what mattered to stock.",
+  "mistakes": "Asking unscoped questions and blaming the tool for vague answers. “What’s happening with the migration” retrieves a mood. Scope by place, people, and time, and ask for the artifact: the decision, the owner, the conditions.  Trusting the paraphrase of a decision. The summary says decided; the thread says proposed- and-unopposed. The quote-and-link demand plus the neighborhood read are the whole defense. Using retrieval as a reason to stop writing things down. Retrieval is the safety net; the twice- retrieved rule triggers stock-making, and the decision log remains the team’s memory of record.",
+  "tips": "Adopt the DECIDED convention this week: one capitalized word at the moment of resolution, with the restated decision after it. It is self-indexing for retrieval and unambiguous for humans, and it spreads by imitation once one respected person starts. Ask for the disagreement, not just the outcome: “what were the main positions before this was settled, and who held them” retrieves the reasoning you actually need when the decision comes up for revisiting. Stock records the what; the stream holds the why.",
+  "yourTurn": [
+   {
+    "task": "Route your next “quick question” to retrieval across your chats and files before you interrupt a colleague.",
+    "good": "An answer you found yourself in seconds, and one interruption you did not have to make."
+   },
+   {
+    "task": "Run the leaver protocol on yourself: find the questions only you can answer, and bank one as a page.",
+    "good": "One less single point of failure, and a page others can use without asking you."
+   }
+  ]
+ },
+ {
+  "n": 20,
+  "title": "Turn Your Notes Graveyard Into a Searchable Brain",
+  "part": 9,
+  "partTitle": "OneNote, Loop & the Broader Toolkit",
+  "read": "8 min",
+  "level": "Intermediate",
+  "apps": "OneNote, Loop",
+  "able": [
+   "run capture-and-distill",
+   "interrogate your archive",
+   "use Loop’s one-object model"
+  ],
+  "keyIdea": "Stop filing your notes. Capture freely, ask to retrieve, and bank what proves durable.",
+  "mistakes": "Reorganizing the graveyard before starting. The migration project is procrastination wearing a system’s clothes, and semantic retrieval makes it unnecessary. Simple structure forward; legacy chaos stays reachable where it lies. Rebuilding the filing tax inside the new system. Elaborate templates, tag conventions, per-note filing decisions: the old system’s failure mode, reimported. The structure’s job is frictionless capture and a sweepable weekly surface; everything richer is the distill pass’s job. Capturing polished. Notes written for an imaginary audience are slower to write and no better to retrieve. The scratch note’s register is yours at speed; the distill pass and the bank produce the shareable versions.",
+  "tips": "Dictate more than you type. Mobile voice capture into the daily note, on the walk between meetings, is the highest-fidelity version of your thinking available, closest to the event and uncompressed by typing effort, and the distill pass cleans it up for free. Write the note to your future retriever. Names, dates, and the concrete noun: “Call with Priya re vendor cutover, she doubts the 14th” retrieves; “good call, concerns noted” is write-only forever. Ask the archive before forming the position. Before the reversal discussion or the vendor decision, ask “what did I think, when, and why” first. Your past self is the one advisor with perfect context and no agenda about your current preference.",
+  "yourTurn": [
+   {
+    "task": "Right after your next call, dictate 90 seconds of thinking while it is freshest.",
+    "good": "A high-fidelity capture that beats the tidy notes you would have written an hour later."
+   },
+   {
+    "task": "Run capture-and-distill for two weeks, then count what the Friday pass surfaced that would otherwise have been lost.",
+    "good": "A visible pile of recovered ideas and follow-ups that proves the habit pays."
+   }
+  ]
+ },
+ {
+  "n": 21,
+  "title": "Mine Your Company’s Knowledge Without Getting Lost",
+  "part": 9,
+  "partTitle": "OneNote, Loop & the Broader Toolkit",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "SharePoint, OneDrive,",
+  "able": [
+   "run prior-art hunts",
+   "check authority, not just relevance",
+   "give workshops an afterlife"
+  ],
+  "keyIdea": "The estate answers everything with equal fluency. Your job is to tell current from merely plausible.",
+  "mistakes": "Trusting relevance as authority. The estate’s core hazard: the superseded document retrieves as fluently as the current one. Currency asked, citations dated, locations read, every time the answer will be acted on. Sweeping the estate when a library would answer. Estate-wide queries dilute precision and invite the three-population problem; the governed library, scoped directly, answers with its metadata’s authority. Wide for discovery, narrow for answers. Leaving your own stale content discoverable. Every superseded version you keep findable is a wrong answer you have authored for a colleague’s future retrieval. The archive exists; use it, per the one-version rule.",
+  "tips": "Ask for the document’s pedigree, not just its content. “Quote the answer, and tell me the document’s date, location, and owner” makes the authenticity check part of the retrieval instead of a follow-up. One line, standing, in your estate-query template. Hunt the abandonment before the precedent. The failed prior initiative teaches more than the ratified policy: why it died is the risk map for your attempt. “What did this organization try and stop trying, and what do the last documents say” is the most underused query in the estate. Use metadata in your own libraries as if agents will read it. Because they will: status columns, owner fields, and honest dates are now retrieval infrastructure.",
+  "yourTurn": [
+   {
+    "task": "For your next workshop, appoint a capture owner who harvests the board and feeds it to the follow-up machinery.",
+    "good": "Nothing from the room is lost, and the follow-ups start the same day."
+   },
+   {
+    "task": "Find one initiative your organization started and stopped, and write the one-page account of why it died and what a successor should know.",
+    "good": "Institutional memory that stops the next team from repeating the same mistake."
+   }
+  ]
+ },
+ {
+  "n": 22,
+  "title": "Run Copilot Chat as Your Command Center",
+  "part": 10,
+  "partTitle": "Chat, Pages & Notebooks",
+  "read": "8 min",
+  "level": "Intermediate",
+  "apps": "Copilot Chat",
+  "able": [
+   "ground and route",
+   "curate Memory",
+   "escalate to agents",
+   "schedule prompts"
+  ],
+  "keyIdea": "The chat box is not a search bar. It is an operating surface, and the skill is running it as one.",
+  "mistakes": "Using the hub as a search box. The founding error, still the most common: one-line questions, no scope, no mode choice, no citations read. Twenty-one chapters of method apply in this window; the window does not suspend them. Never opening the agent picker. Deep questions answered shallowly because chat answered something. The half-day-of-reading threshold, written down, is the cure. Briefing Researcher like chat. The one-line ask to a half-day agent wastes the half-day. Agent briefs are delegations, and the brief’s quality is the report’s ceiling. Letting memory accumulate unaudited. The dossier that silently biases sessions with last year’s projects and abandoned preferences. Taught deliberately, audited periodically, pruned without sentiment.",
+  "tips": "Name the source type in the question. “In our meetings...”, “from the policy library...”, “in mail from the client...”: pre-aimed retrieval, the cheapest precision gain in the surface. Run the two- mode merge on anything strategic. The public landscape in web mode, the internal position in work mode, merged on a Page: the Chapter 4 maneuver, now a reflex. Give Researcher your evaluation criteria. Beyond the questions: what would make the report useful, “decision-ready means it ends with three options and their risks.” Agents inherit format instructions as faithfully as chat does.",
+  "yourTurn": [
+   {
+    "task": "Name the source type in your questions tomorrow: “in our meetings...”, “from the policy library...”.",
+    "good": "Sharper answers for free, because you pre-aimed retrieval before it searched."
+   },
+   {
+    "task": "Convert your morning brief into a scheduled prompt so it is waiting before you sit down.",
+    "good": "A brief that runs itself on a clock, turning a daily task into standing infrastructure."
+   }
+  ]
+ },
+ {
+  "n": 23,
+  "title": "Stop Losing Your Best AI Work in the Scroll",
+  "part": 10,
+  "partTitle": "Chat, Pages & Notebooks",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Copilot Pages",
+  "able": [
+   "promote chats to pages",
+   "draft-in-public",
+   "manage the page lifecycle"
+  ],
+  "keyIdea": "Successful AI work that evaporates in the scrollback is the largest uncollected dividend in the deployment.",
+  "mistakes": "Promoting nothing. The scrollback dividend, still uncollected, one surface later. The weekly sweep’s first question is what died in chat this week that should not have. Promoting everything. The graveyard, seeded. Pages are for the revisited, the shared, and the mid-flight; the router’s exhaust is supposed to be exhaust. Sharing without an ask. The page distributed as an announcement collects an audience, not editors, and the draft-in-public physics never engage. Every shared page states what it wants: edits, objections, a decision by Friday. Letting provenance blur. The page where machine draft and human verification became indistinguishable has lost the property that made it trustworthy.",
+  "tips": "Promote at the moment of the thought “someone should see this.” The instinct is the criterion, and acting on it within ten seconds is the habit; deferred promotions join the scrollback graveyard at a rate everyone underestimates. Open every shared page with the state line: one sentence at the top, maintained by the owner, what this page is, what it wants, what happens Friday. Use the machine as the page’s secretary, not just its author. The on-page turns that keep a collaborative surface coherent, merge duplicates, reconcile the two edits, restate the contested point neutrally, are the highest-value Copilot use on the canvas, and the least discovered.",
+  "yourTurn": [
+   {
+    "task": "Run one working session on a Page or canvas: seed it, diverge, argue the machine’s draft, then converge.",
+    "good": "A durable, shareable artifact instead of a good idea lost in the scroll."
+   },
+   {
+    "task": "Audit two weeks of chat history for responses that should have been promoted and were not; that count is your scrollback dividend.",
+    "good": "A number that shows how much good work is quietly dying in the scroll, and the habit to stop it."
+   }
+  ]
+ },
+ {
+  "n": 24,
+  "title": "Give Every Project Its Own AI Brain",
+  "part": 10,
+  "partTitle": "Chat, Pages & Notebooks",
+  "read": "7 min",
+  "level": "Advanced",
+  "apps": "Copilot Notebooks",
+  "able": [
+   "build a scoped notebook",
+   "run the corpus discipline",
+   "separate parallel clients"
+  ],
+  "keyIdea": "A notebook answers from exactly what you admitted, and nothing else. Bounded provenance is the payoff.",
+  "mistakes": "Admitting everything. The eighty-source notebook where curation surrendered to completeness: the estate’s three-population problem, rebuilt in miniature, by you. Twenty vetted sources answer better than eighty mixed ones. Freezing at kickoff. The notebook fed once and queried forever, answering from a project that no longer exists. The feeds are the discipline; the Friday weld is the tempo. Tolerating two truths. The old plan and the new plan, both in the corpus, both answering. Supersession is explicit or the notebook’s core promise, bounded authority, is broken at the door.",
+  "tips": "Write the scope note before the first source. The one-paragraph corpus contract, what belongs and what does not, is the cheapest curation tool that exists: every future admission decision checks against it in five seconds. Admit the recap, not just the transcript. The corrected recap is the meeting’s authoritative record; the transcript is its raw material. Both can enter, but the recap leads. Use the mind map as the thin-spot detector. Periodically, the map read for sparse regions: the workstream with three sources while its siblings have twelve is either genuinely simple or dangerously under-documented, and the map is how you find out which. C OPILOT N OTEB OOK S corpus and cited back to the source on the right. A Copilot Notebook: a curated set of project sources on the left, and answers grounded in that",
+  "yourTurn": [
+   {
+    "task": "Before your next high-stakes drafting, audit the notebook’s corpus for contradictions, staleness, and gaps.",
+    "good": "A corpus you trust, so every grounded answer inherits that trust."
+   },
+   {
+    "task": "Generate an onboarding brief from a project notebook and give it to a colleague for a cold read; their confusion maps your gaps.",
+    "good": "A reader’s honest questions that point straight at what the corpus is missing."
+   }
+  ]
+ },
+ {
+  "n": 25,
+  "title": "Decide When to Build an Agent (and When Not To)",
+  "part": 11,
+  "partTitle": "Copilot Studio & Custom Agents",
+  "read": "8 min",
+  "level": "Advanced",
+  "apps": "Copilot Studio",
+  "able": [
+   "assess agent-worthiness",
+   "pick the lightest tier",
+   "write a specification"
+  ],
+  "keyIdea": "An agent is your method, productized. The four conditions, not the arithmetic, separate the portfolio from the pile.",
+  "mistakes": "Building before assessing. The weekend agent, born of enthusiasm, grounded on whatever was handy, serving nobody in particular: the science project, and the pattern’s most common grave. The hour of assessment is the cheapest filter in Part 11. Grounding on the mess. The agent attached to the uncurated folder launders contradictions into confident answers. Curation precedes construction, and the assessment’s knowledge audit is the enforcement.  Scoping to ever yone. The universal assistant that answers everything answers nothing well, and its knowledge can never be curated because its scope was never bounded. Named audience, named questions, bounded corpus: the FAQ evidence is the scope.",
+  "tips": "Mine your own book-built evidence first. The FAQ harvests, retrieval logs, and sole-responder scans this book already has you running are the agent pipeline’s intake, and candidates surfaced by evidence skip the enthusiasm filter entirely. Write the refusals before the capabilities. The instruction set’s most valuable lines are what the agent must not do: the questions it deflects, the boundary it states, the routing it performs. Capabilities make demos; refusals make products. Curate the corpus as if the agent launches tomorrow. Even when it does not: the knowledge audit produces value regardless of the build decision, and the curated library serves humans and future agents alike. C OPILOT STU D IO An agent in Copilot Studio: its instructions, its grounded knowledge, and the tools that let it act.",
+  "yourTurn": [
+   {
+    "task": "Mine your FAQ harvests and busiest channels for agent candidates that come with real question counts.",
+    "good": "A shortlist backed by evidence, not enthusiasm, so you build the agent people actually need."
+   },
+   {
+    "task": "Write the spec for your best candidate and get the owner’s actual agreement, not assumed.",
+    "good": "A signed-off spec with an owner on the hook, the difference between a product and a science project."
+   }
+  ]
+ },
+ {
+  "n": 26,
+  "title": "Ship an Agent That Actually Works",
+  "part": 11,
+  "partTitle": "Copilot Studio & Custom Agents",
+  "read": "7 min",
+  "level": "Advanced",
+  "apps": "Copilot Studio",
+  "able": [
+   "write instructions that hold",
+   "build a regression suite",
+   "pilot and operate"
+  ],
+  "keyIdea": "The demo answers the questions its builder thought to ask. The product faces all the others.",
+  "mistakes": "Shipping the demo. The agent that answered your ten questions is untested against the population’s hundred. The suite is the difference, and the first run’s failure rate is the evidence of what shipping early would have shipped.  Patching instructions until they contradict. The accreted brief, amended weekly, where sentence twelve fights sentence three. Recompile clean from the spec; instructions are versions, not sediment. Uploading snapshots of living documents. The staleness machine, built by hand at staging. Ground live, on the governed source, and let the estate’s discipline be the agent’s. Testing only what should work. The demo-builder’s suite: all accuracy, no gaps, no boundaries, no adversarial class. The classes that catch tribunal-shaped failures are the ones enthusiasm skips.",
+  "tips": "Write the gap response first. Before any capability: the exact sentence for “I don’t know.” It is the product’s safety floor, the hardest sentence to retrofit, and the one whose absence costs most. Steal the newcomer ’s phrasings verbatim. Every pilot question that surprised you goes into the suite in the user’s exact words. Your paraphrase of their confusion tests nothing; their confusion tests everything. Publish the containment rate to the team. The share of questions answered without referral, monthly and visibly: the agent’s one-number health metric, and, rising, the quiet advertisement that grows adoption without a single announcement.",
+  "yourTurn": [
+   {
+    "task": "Pilot your agent with three people, a heavy asker, a skeptic, and a newcomer, before any wide launch.",
+    "good": "Feedback across real usage, with the newcomer phrasing things like your next hundred users will."
+   },
+   {
+    "task": "Run the owner’s maintenance tempo for one month, log the minutes, and compare to the interruption load you retired.",
+    "good": "A maintenance cost you can name, weighed against the time the agent actually gave back."
+   }
+  ]
+ },
+ {
+  "n": 27,
+  "title": "Give Your Agent Hands Without Regret",
+  "part": 11,
+  "partTitle": "Copilot Studio & Custom Agents",
+  "read": "7 min",
+  "level": "Power User",
+  "apps": "Copilot Studio",
+  "able": [
+   "apply the five levels",
+   "design confirmation gates",
+   "manage injection risk"
+  ],
+  "keyIdea": "Start every automation at Level 1 and earn each rung upward.",
+  "mistakes": "Entering at the level enthusiasm suggests. The Level 2 launch that should have been Level 1, the trigger that should have been a button for its first quarter. Promotion is cheap and demotion is a trust event. Confirmation gates that confirm nothing. The “Proceed? Y/N” that shows the user no payload: ceremony wearing safety’s clothes. The gate displays the exact action or it is not a gate. Building the feature before the failure path. The flow designed around success, with the connected system’s downtime as an afterthought discovered in production. Failure-first is the autonomous tier’s build order.",
+  "tips": "Write the mode into every interaction. The agent’s responses state what it can do and what it just did: “I’ve drafted this ticket (I don’t file directly), here it is.” Mode confusion is the user-side failure, and the agent’s own diction is the mode display. Compound the levels within one flow. Autonomous where cheap, prepared where consequential: Level 3 hands, Level 1 judgment. The best autonomous designs are mostly not autonomous at the moments that matter. Probe connectors on their bad days too. The manual probe during the receiving system’s maintenance window teaches more than a week of happy-path calls.",
+  "yourTurn": [
+   {
+    "task": "Ship your first acting agent at Level 1, prepare-only, and let two weeks of evidence justify moving to Level 2.",
+    "good": "An action you reviewed before it fired, and a promotion earned by evidence, not optimism. one. have both."
+   },
+   {
+    "task": "Inventory every automation you run and assign each its actual level of autonomy versus its appropriate",
+    "good": "A map that exposes both over-trusted and under-used automations, most portfolios"
+   }
+  ]
+ },
+ {
+  "n": 28,
+  "title": "Lead With AI Without Becoming Its Output",
+  "part": 12,
+  "partTitle": "Executive & Small Business Systems",
+  "read": "7 min",
+  "level": "Power User",
+  "apps": "All",
+  "able": [
+   "run the four layers",
+   "keep the review-not-produce posture",
+   "set the demand signals"
+  ],
+  "keyIdea": "Lead with AI without becoming its output.",
+  "mistakes": "Ratifying the staging. The fluent memo approved on its fluency: the executive as click-through, and the organization learns the gates are ceremonial. The sixty-second read and the daily spot- check are the counter-habits, visible on purpose. Delegating the voice. The all-hands message that reads generated, the condolence that reads templated: the trust asset, spent at the worst exchange rate. The hard words are the job. Optimizing the presence hours. The skip-level summarized, the floor walk replaced by the digest: the efficiency logic applied to the one asset it destroys. The calendar defends thinking time and presence time both.",
+  "tips": "Ask one provenance question per meeting. “What’s the source on that number?”, asked genuinely and occasionally: the cheapest verification culture ever installed, and the reporting lines will brief accordingly within a month. Dictate the journal in the car. The decision’s ninety seconds, in the transition the calendar already contains: the practice survives by costing nothing, and the contemporaneous record is the calibration’s whole value. Keep one unstaged hour weekly. The walk, the unscheduled call, the wandering conversation: the serendipity the operating system would optimize away, protected as policy, because the executive’s information diet needs the unindexed layer.",
+  "yourTurn": [
+   {
+    "task": "This week, write your hard news, your credit, and your apologies by hand.",
+    "good": "Words that carry your judgment where the organization can feel the difference and banks it as trust."
+   },
+   {
+    "task": "Audit one week of your approvals and pushbacks: what standard did the week actually teach the people watching you?",
+    "good": "A clear-eyed read on the norms your decisions are setting, whatever your words say."
+   }
+  ]
+ },
+ {
+  "n": 29,
+  "title": "Field a Whole Team’s Output as One Person",
+  "part": 12,
+  "partTitle": "Executive & Small Business Systems",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "All",
+  "able": [
+   "choose the lean stack",
+   "run the solo operating system",
+   "verify alone"
+  ],
+  "keyIdea": "Field a whole team’s output as one person.",
+  "mistakes": "Buying the stack and keeping the chaos. The subscription without the system: the tools amplify the practice they land on, and the owner whose files, templates, and rhythms are chaos gets faster chaos. The setup week is the prerequisite. Pricing the multiplied capacity at the old rates. The evening proposal billed like the weekend one, the capacity gain donated entirely to the client: the repricing conversation, held with yourself, because the solo’s rate card is the leverage question answered.  Sounding like ever yone’s subscription. The generic newsletter, the templated proposal, the flood-median everything: the moat abandoned exactly when it became the differentiator.",
+  "tips": "Run the audit at your billable rate. The admin hours priced in your own money: the number converts the stack decision, the setup week, and every play in this chapter from interesting to obvious, in one afternoon. Build the corpus before you need it. The past proposals, the case notes, the testimonials, the best emails, organized once into the practice’s retrievable memory: every future pursuit starts from your accumulated practice, which is the solo’s version of the firm’s compounding. Template the moments of delight. The testimonial ask, the referral request, the review nudge, drafted warm in the anchors and staged for the moment the client is happiest: the practice’s growth engine, finally systematized.",
+  "yourTurn": [
+   {
+    "task": "Run the missing-colleague pass on your next deliverable, the second pair of eyes you do not have.",
+    "good": "A caught gap or weak spot that a colleague would have flagged, before it ships."
+   },
+   {
+    "task": "Gather your scattered best work, old proposals, strong emails, case outcomes, into one corpus, then draft from precedent.",
+    "good": "A body of your own best material that makes the next proposal an adaptation, not a fresh start."
+   }
+  ]
+ },
+ {
+  "n": 30,
+  "title": "Automate Any Process the Right Way",
+  "part": 13,
+  "partTitle": "End-to-End Automation",
+  "read": "7 min",
+  "level": "Advanced",
+  "apps": "All + Studio",
+  "able": [
+   "map before automating",
+   "classify every node",
+   "checkpoint and level any workflow"
+  ],
+  "keyIdea": "Map the process first, then automate only the steps that are safe.",
+  "mistakes": "Automating before mapping. The era’s characteristic waste: the automation built on the imagined process, amplifying the real one’s mess. The map is the prerequisite, and the map comes from the runners and the trail, not the policy. Classifying a judgment node as a transformation. The most dangerous design error: the node that decides is the human’s, and the “usually” is exactly where the automated judgment fails expensively. Skipping the checkpoints. The chain designed for the happy path, the verification omitted because the nodes usually work: the error propagating to the consequence, per the compounding law.",
+  "tips": "Map the process that went wrong, not the one that went right. The failure case reveals the tacit judgment, the workarounds, and the real decision points that the smooth case hides. The map built from the exceptions is the honest one. Color the map by node type. Transport green, transformation yellow, judgment red: the design becomes self-evident, and the dangerous design, the red node someone wants to automate, is visible on the page before it is built. Census your automations regularly. For each: who owns it, is it mapped, when was it reviewed? The count failing all three is your graveyard’s population.",
+  "yourTurn": [
+   {
+    "task": "Map one broken process honestly, the failure case rather than the smooth one, and validate the map with the people who run it.",
+    "good": "A map that matches reality, including the exceptions where the process actually breaks."
+   },
+   {
+    "task": "Census your automations: for each, name who owns it, whether it is mapped, and when it was last reviewed.",
+    "good": "A register that turns invisible, unowned automation into something governable."
+   }
+  ]
+ },
+ {
+  "n": 31,
+  "title": "Grab a Proven Workflow and Adapt It",
+  "part": 13,
+  "partTitle": "End-to-End Automation",
+  "read": "7 min",
+  "level": "Advanced",
+  "apps": "All + Studio",
+  "able": [
+   "use the four patterns",
+   "adapt a blueprint",
+   "compose from patterns"
+  ],
+  "keyIdea": "A blueprint is a pattern to recognize and adapt, never a recipe to copy.",
+  "mistakes": "Copying the blueprint literally. The cargo-cult application: the blueprint’s process automated in your organization, the divergence unvalidated, the mismatch shipped. The adaptation law, run always. Skipping the validation because the blueprint matches. The close match is the trap: the blueprint that fits your process closely hides the one step where it does not, and the unvalidated divergence is the amplified mess. Reading for the steps, not the structure. The blueprint consumed as a recipe, the pattern missed: read for the classification, the checkpoints, and the judgment line, because the structure composes and the steps do not.",
+  "tips": "Learn the four patterns before the blueprints. The patterns are the transferable content: the reader who knows intake, assembly, review, and monitor can compose the workflow the blueprints did not contain, and the blueprints are best read as the patterns’ worked examples. Adapt the closest blueprint, then diff it. The blueprint taken as the starting map and diffed against your validated process: the diff is your process’s specificity, and it is where the adaptation’s real work concentrates. Name the judgment node first. Before anything else in a blueprint, find the node that stays human; a blueprint whose judgment line you cannot locate is one you do not yet understand well enough to run.",
+  "yourTurn": [
+   {
+    "task": "Take the blueprint closest to one of your live processes, adapt it, and validate it with the people who run it.",
+    "good": "A working workflow that fits your reality, not a generic template applied blind."
+   },
+   {
+    "task": "Compose a workflow for a process no single blueprint fits, then validate it; that is the pattern language on your own work.",
+    "good": "A workflow assembled from parts that holds together end to end."
+   }
+  ]
+ },
+ {
+  "n": 32,
+  "title": "Use Copilot Safely Without the Panic or the Incident",
+  "part": 14,
+  "partTitle": "Security, Governance & Responsible",
+  "read": "7 min",
+  "level": "Intermediate",
+  "apps": "Admin, All",
+  "able": [
+   "explain how Copilot handles data",
+   "address oversharing",
+   "make five daily decisions"
+  ],
+  "keyIdea": "The real enterprise risk is not the AI leaking data out. It is the AI surfacing data that was overshared inside.",
+  "mistakes": "Fearing the imagined risks. The public-model training, the Microsoft leak, the black box, feared over the enterprise commitments that retire them: the value refused for no protection, the adoption killed by the wrong fear. Ignoring the oversharing. The deployment over the un-swept permissions: the incident harvested, the AI blamed for exposing the configuration’s own exposure. Hygiene first.  Putting work content in consumer surfaces. The surface decision violated, the data boundary crossed, the protection forfeited for convenience. Work content in the work branch, always.",
+  "tips": "Learn the three facts and teach them. The permissions respected, the tenant boundary held, the interactions auditable: the three facts retire most of the misplaced fear, and the champion who teaches them enables the adoption the fear was killing. Treat the oversharing as the real project. The permissions hygiene, not the AI configuration, is the deployment’s real data-protection work: the champion who frames the deployment as a permissions project with an AI trigger gets the sequence right, and the one who frames it as an AI project skips the hygiene.",
+  "yourTurn": [
+   {
+    "task": "Install the five everyday safety decisions as a habit: surface, scope, label, records, report.",
+    "good": "Five quick checks that become automatic, so safety rides along with normal work."
+   },
+   {
+    "task": "If you help drive a rollout, advocate the oversharing sweep before the seats, and get the crown-jewel content labeled first.",
+    "good": "Permissions cleaned and sensitive content labeled before Copilot can surface any of it."
+   }
+  ]
+ },
+ {
+  "n": 33,
+  "title": "Govern AI Without Killing the Value",
+  "part": 14,
+  "partTitle": "Security, Governance & Responsible",
+  "read": "7 min",
+  "level": "Advanced",
+  "apps": "Admin",
+  "able": [
+   "draft a working AI policy",
+   "build proportionate governance",
+   "map to the regulations"
+  ],
+  "keyIdea": "Govern in proportion to the stakes: real where they are real, light where they are not.",
+  "mistakes": "Governing everything. The committee that decides every use, the policy of forty pages, the review that outlasts the value: the paralysis that kills adoption while feeling responsible. Governing nothing. The no-policy, no-owner, no-inventory organization: the negligence that harvests the shadow AI’s incidents. The lightweight structure, sufficient and real, is the answer. Writing the policy for the auditor. The exhaustive, abstract policy nobody reads: the policy unfollowed because unreadable. Write it for the 3 p.m. decision.",
+  "tips": "Draft the policy to be read aloud. The policy that survives being read aloud to the people who must follow it is the policy they will follow, and the one that induces the glazed eye governs nothing. Name the owner before the committee. The accountable owner established before the forum, because the committee without an owner diffuses the accountability the governance needs. Build the inventory first, govern from it. The governance built on the inventory governs the reality; the governance built without it governs the hope.",
+  "yourTurn": [
+   {
+    "task": "Build the inventory of what you actually run: the agents, automations, connectors, and tools.",
+    "good": "A single list that makes governance possible, because you cannot govern what you cannot see."
+   },
+   {
+    "task": "Assess your governance against both failure modes: where does it over-govern and bottleneck, and where does it under-govern into shadow AI?",
+    "good": "A balanced read that fixes chokepoints and closes gaps instead of only tightening."
+   }
+  ]
+ },
+ {
+  "n": 34,
+  "title": "Catch the Error Before It Reaches the Client",
+  "part": 14,
+  "partTitle": "Security, Governance & Responsible",
+  "read": "8 min",
+  "level": "Intermediate",
+  "apps": "All",
+  "able": [
+   "run the formal verification practice",
+   "scan for bias",
+   "design meaningful oversight"
+  ],
+  "keyIdea": "Match the depth of verification to the cost of being wrong.",
+  "mistakes": "Verifying for quality but not for truth. The review that reads the prose and misses the fabricated source: the fluent output’s quality confirmed, its accuracy unchecked. The source trace catches the truth the quality review missed. The rubber-stamp oversight. The human in the loop who glances rather than reviews: the oversight in form, absent in substance, the false assurance worse than no oversight. Verifying everything uniformly. The over-verification that treats the brainstorm like the board pack: the value drowned in the review, the practice made unsustainable.",
+  "tips": "Verify for truth, separately from quality. The quality read for the prose, the truth read for the sources, because the fluent fabrication passes the quality review and fails the truth review, and the review that conflates them catches the quality and ships the fabrication. Test your own oversight against the rubber stamp. The honest question: am I reviewing or ratifying, clicking the citations or confirming the fluency? The professional who asks it catches their own oversight’s decay before it ships the error.",
+  "yourTurn": [
+   {
+    "task": "Assign the verification rung before you start the task, not under deadline at the end.",
+    "good": "Scrutiny matched to stakes by design, so the checking never gets skipped when time is short."
+   },
+   {
+    "task": "Map Avianca, Air Canada, and Deloitte each to the discipline that would have caught it, then audit your own outputs against those three.",
+    "good": "A short list of the checks that stop the exact failures that reached a tribunal or a court."
+   }
+  ]
+ },
+ {
+  "n": 35,
+  "title": "Find the Right Prompt for Any Job Instantly",
+  "part": 15,
+  "partTitle": "The Prompt Library",
+  "read": "Reference",
+  "level": "All",
+  "apps": "All",
+  "able": [
+   "find the right prompt for any job",
+   "see the six shapes beneath every prompt",
+   "adapt rather than copy"
+  ],
+  "keyIdea": "Adapt, never copy. Nearly every prompt here is one of six shapes you can re-aim.",
+  "mistakes": "",
+  "tips": "",
+  "yourTurn": [
+   {
+    "task": "Save your first three prompt adaptations into your own library; they beat any generic collection because they are tuned to your work.",
+    "good": "The start of a personal library that gets more valuable every time you reach for it."
+   },
+   {
+    "task": "Take the prompt category you use most and build it into a template with the two multipliers already inside.",
+    "good": "A go-to template that produces strong output on the first try, every time."
+   }
+  ]
+ },
+ {
+  "n": 36,
+  "title": "Find the Right Workflow for Any Scenario",
+  "part": 16,
+  "partTitle": "The Workflow & Loop Library",
+  "read": "Reference",
+  "level": "All",
+  "apps": "All",
+  "able": [
+   "find the right workflow for any scenario",
+   "read the judgment node in every workflow",
+   "compose from four repeatable patterns"
+  ],
+  "keyIdea": "Read for the structure, not the steps. Four patterns compose every workflow here.",
+  "mistakes": "",
+  "tips": "",
+  "yourTurn": [
+   {
+    "task": "Take one scenario, grab its closest workflow, and validate the map with the people who run it before you build.",
+    "good": "A workflow confirmed against reality before you invest in building it."
+   },
+   {
+    "task": "Compose a workflow for a process no single entry fits, naming its judgment node first, then validate it.",
+    "good": "A composed workflow whose one human decision point is explicit and owned."
+   }
+  ]
+ },
+ {
+  "n": 37,
+  "title": "Assemble the Whole Book Into One Practice",
+  "part": 17,
+  "partTitle": "Mastery, Habits & the 90-Day Plan",
+  "read": "6 min",
+  "level": "Power User",
+  "apps": "All",
+  "able": [
+   "integrate the four layers",
+   "design around your judgment",
+   "build it to compound"
+  ],
+  "keyIdea": "Four layers, assembled in order, become a personal operating system.",
+  "mistakes": "Accumulating habits instead of assembling a system. The techniques adopted individually, the whole never integrated: the capture without the processing, the tools without the coherence. The assembly integrates the four layers into one practice.  Adopting the generic system unadapted. The book’s examples run without the fit: the system that serves the book’s work rather than the reader’s. Design around the audit, the role, and the judgment core. Building the system to persist rather than compound. The habits that merely continue, the library that never grows: the system that stays flat while the compounding system pulls ahead.",
+  "tips": "Assemble the layers in order. Capture before processing, processing before production, production before the judgment layer’s protection: the system built bottom-up is the one whose foundations hold. Design from your audit, not from the book. The three target tasks as the production layer’s first pipelines, the judgment core as the system’s center. Weld the tempos to what you already do. The anchors to the coffee and the laptop-close, the distill to the Friday shutdown: the tempo attached to an existing rhythm survives, and the one that demands its own new time decays.",
+  "yourTurn": [
+   {
+    "task": "Return to your time audit and use it as the design foundation for your system, built around your work, not the book’s examples.",
+    "good": "A system grounded in your real recurring tasks, so it earns its keep from day one."
+   },
+   {
+    "task": "Map every AI habit you run to the four layers; the gaps show where your collection is not yet a system.",
+    "good": "A clear picture of what is missing between scattered habits and an integrated practice."
+   }
+  ]
+ },
+ {
+  "n": 38,
+  "title": "Master Copilot in 90 Days, One Habit at a Time",
+  "part": 17,
+  "partTitle": "Mastery, Habits & the 90-Day Plan",
+  "read": "6 min",
+  "level": "All",
+  "apps": "All",
+  "able": [
+   "follow a week-by-week plan",
+   "anchor and sustain habits",
+   "recover from the plateau"
+  ],
+  "keyIdea": "Ninety days, three phases, one new habit at a time.",
+  "mistakes": "Adopting ever ything at once. The whole book attempted in a week: the practices that form none because the week had too many. One change per week. Skipping the foundations. The applications attempted before the anatomy and the anchors: the production built on sand. Phase one before phase two.  Adding without anchoring. The practice added without the existing-routine attachment: the habit dependent on memory and motivation, fading. Anchor each practice. Abandoning at the lapse. The single slip read as the failure: the plan abandoned at the lapse that the resumption would have recovered.",
+  "tips": "Anchor every practice to something you already do. The practice attached to the coffee, the meeting’s end, the Friday shutdown survives; the one that demands its own new time fades. Measure in week one and week thirteen. The baseline and the result: the progress proven, the plateau’s feeling refuted, the day-90 measurement the plan’s proof. Expect the plateau at week six. The predictable dip: the reader who expects it applies the recovery, and the one surprised by it abandons.",
+  "yourTurn": [
+   {
+    "task": "Run the audit in week one and record the baseline; the whole plan measures against it.",
+    "good": "A starting number for your time and habits that makes later progress visible."
+   },
+   {
+    "task": "Lay out your ninety days, each week’s single new practice anchored to a routine you already keep.",
+    "good": "A realistic plan where every new habit has an existing anchor to hang on."
+   }
+  ]
+ },
+ {
+  "n": 39,
+  "title": "Keep Your Skills Fresh Forever",
+  "part": 17,
+  "partTitle": "Mastery, Habits & the 90-Day Plan",
+  "read": "6 min",
+  "level": "All",
+  "apps": "All",
+  "able": [
+   "separate durable from ephemeral",
+   "run a staying-current practice",
+   "hold the disciplines that outlast every feature"
+  ],
+  "keyIdea": "Keep the principles, update the features, and the mastery lasts.",
+  "mistakes": "Learning the features instead of the principles. The button locations, the feature names, the current capabilities, learned as the mastery: the knowledge that expires with the next release. Learn the anatomy, the frameworks, the disciplines, the durable. Chasing every new capability. The novelty adopted without the evaluation: the ephemeral chased, the durable lost in the chasing. Evaluate the new against the durable, understand before adopting.  Ignoring the field’s evolution entirely. The practice frozen at the book’s writing: the mastery decaying as the field moves. Run the staying-current practice, maintain the mastery.",
+  "tips": "Learn every feature as an instance of a principle. The new capability understood as a Brief, an Extract, a Transform: the feature placed in the durable shape, so the feature’s change does not decay the mastery, because the shape lasts. Curate a small number of reliable sources. The official channels and the reliable community that report without the hype: the practice is the filter, and the small curated set is the filter that keeps you current without drowning you.",
+  "yourTurn": [
+   {
+    "task": "Weld a quarterly staying-current scan onto your operating system’s harvest, so keeping current is part of the system, not a separate chore.",
+    "good": "A recurring scan that runs on your existing cadence and never becomes a burden to remember."
+   },
+   {
+    "task": "Write your commitment to mastery as a direction: the tempo you will keep and the disciplines you will hold.",
+    "good": "A short, kept commitment, which is the advantage the field’s velocity cannot erode."
+   }
+  ]
+ }
+]

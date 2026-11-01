@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Claude Advantage – 4:5 ad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet" />
+<style>
+  /* 1080×1350 (4:5) social ad. Export with:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+       --window-size=1080,1350 --screenshot=claude-advantage-ad.png claude-advantage-ad.html */
+  :root {
+    --cream: #F4EFE6; --paper: #FBF8F2; --white: #FFFEFB;
+    --ink: #1F1D1A; --ink-2: #4A453E; --muted: #8C857A; --line: #E2DACB;
+    --accent: #C15F3C; --accent-soft: #F3E1D6; --gold: #E7B437;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: var(--cream); color: var(--ink); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; position: relative; }
+  body::before { /* a restrained warm wash, top right */
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(900px 600px at 100% 0%, rgba(193,95,60,.07), transparent 60%);
+  }
+  .wrap { position: relative; padding: 60px 72px 0; height: 100%; }
+
+  .top { display: flex; justify-content: space-between; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; letter-spacing: .14em; text-transform: uppercase; }
+  .brand i { width: 30px; height: 30px; border-radius: 7px; background: var(--accent); color: #fff; display: grid; place-items: center; font: 600 18px "Source Serif 4", serif; font-style: normal; letter-spacing: 0; }
+  .tag { font-size: 15px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+
+  h1 { margin-top: 40px; font: 900 88px/0.93 "Inter Tight", sans-serif; letter-spacing: -0.035em; text-transform: uppercase; }
+  h1 .old { color: #A39B8E; }
+  h1 .new { display: block; margin-top: 14px; }
+  h1 em { font-style: normal; color: var(--accent); }
+
+  .sub { margin-top: 26px; font: 500 27px/1.3 "Source Serif 4", serif; color: var(--ink-2); }
+  .verbs { margin-top: 16px; font-size: 17px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+
+  /* The workspace mockup */
+  .app { position: relative; margin-top: 30px; height: 420px; border: 1px solid var(--line); border-radius: 14px; background: var(--white);
+    box-shadow: 0 1px 2px rgba(31,29,26,.05), 0 30px 60px -30px rgba(31,29,26,.30); display: grid; grid-template-rows: 40px 1fr; overflow: hidden; }
+  .bar { display: flex; align-items: center; gap: 7px; padding: 0 16px; border-bottom: 1px solid var(--line); background: var(--paper); }
+  .bar b { width: 10px; height: 10px; border-radius: 50%; background: #DDD4C5; }
+  .bar span { margin-left: 12px; font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: .02em; }
+  .body { display: grid; grid-template-columns: 258px 1fr; min-height: 0; }
+  .side { border-right: 1px solid var(--line); background: var(--paper); padding: 14px 10px; display: grid; gap: 5px; align-content: start; }
+  .mod { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: center; padding: 4px 8px; border-radius: 7px; }
+  .mod.on { background: var(--accent-soft); }
+  .mod i { width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--line); background: var(--white); display: grid; place-items: center; font: 600 11px Inter; font-style: normal; color: var(--ink-2); }
+  .mod.on i { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .mod strong { display: block; font-size: 14px; line-height: 1.1; font-weight: 700; letter-spacing: .01em; }
+  .mod small { display: block; font-size: 11px; line-height: 1.15; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+
+  .main { padding: 18px 22px; display: grid; grid-template-rows: auto auto 1fr; gap: 14px; min-width: 0; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; }
+  .head h3 { font: 600 21px "Source Serif 4", serif; }
+  .head small { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+  .pill { font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 99px; }
+  .flow { display: flex; align-items: center; gap: 4px; }
+  .flow span { flex: 1; white-space: nowrap; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; padding: 9px 0; border-radius: 7px; border: 1px solid var(--line); color: var(--ink-2); background: var(--paper); }
+  .flow span.done { color: var(--ink); background: var(--white); }
+  .flow span.done::before { content: "✓ "; color: var(--accent); }
+  .flow span.now { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .flow em { font-style: normal; color: #BDB4A5; font-size: 11px; }
+
+  .outs { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 10px; min-height: 0; }
+  .out { border: 1px solid var(--line); border-radius: 8px; padding: 10px 11px; display: flex; flex-direction: column; gap: 6px; min-height: 0; overflow: hidden; background: var(--white); }
+  .out p { font-size: 12px; font-weight: 700; letter-spacing: .02em; display: flex; justify-content: space-between; }
+  .out p small { font-weight: 600; color: var(--muted); font-size: 10.5px; }
+  .ln { height: 5px; border-radius: 3px; background: #ECE5D8; }
+  .ln.a { background: var(--accent); opacity: .55; width: 40%; }
+  .bars { flex: 1; display: flex; align-items: flex-end; gap: 5px; }
+  .bars i { flex: 1; background: #E3DACB; border-radius: 2px 2px 0 0; }
+  .bars i.hi { background: var(--accent); }
+  .code { flex: 1; background: #22201D; border-radius: 5px; padding: 6px 8px; font: 500 9.5px/1.55 "JetBrains Mono", monospace; color: #CFC6B6; white-space: pre; overflow: hidden; }
+  .code b { color: #E7A98F; font-weight: 500; }
+  .slide { flex: 1; border-radius: 5px; background: var(--paper); border: 1px solid var(--line); padding: 7px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .slide div:first-child { display: grid; gap: 4px; align-content: start; }
+
+  .book { position: absolute; right: 64px; top: 150px; width: 150px; height: 225px; transform: perspective(1100px) rotateY(-16deg); transform-origin: left;
+    background: #111; border-radius: 2px 6px 6px 2px; box-shadow: 18px 26px 44px -18px rgba(31,29,26,.55), 0 0 0 1px rgba(0,0,0,.2);
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 22px 12px 16px; text-align: center; text-transform: uppercase; font-family: "Inter Tight", sans-serif; z-index: 2; }
+  .book::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 8px; background: linear-gradient(90deg, rgba(0,0,0,.6), transparent); }
+  .book .k { font-size: 7.5px; letter-spacing: .3em; color: rgba(255,255,255,.7); }
+  .book .t { line-height: .86; font-weight: 900; letter-spacing: -.02em; }
+  .book .t span { display: block; }
+  .book .g { color: var(--gold); font-size: 21px; }
+  .book .w { color: #fff; font-size: 33px; }
+  .book hr { border: 0; height: 1px; width: 40%; background: rgba(231,180,55,.7); }
+  .book .s { font-size: 7.5px; font-weight: 600; letter-spacing: .08em; line-height: 1.4; color: rgba(255,255,255,.8); }
+  .book .a { font-size: 7.5px; font-weight: 600; letter-spacing: .4em; color: rgba(255,255,255,.8); }
+
+  /* Basic user vs Advantage user */
+  .vs { margin-top: 24px; display: grid; gap: 10px; }
+  .row { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 14px; }
+  .row b { font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); line-height: 1.25; }
+  .row.adv b { color: var(--accent); }
+  .steps { display: flex; flex-wrap: nowrap; align-items: center; gap: 4px; font-size: 13px; white-space: nowrap; font-weight: 600; }
+  .row.basic .steps { color: #A39B8E; }
+  .row.adv .steps span { padding: 4px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); color: var(--ink); }
+  .row.adv .steps span.c { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .steps em { font-style: normal; color: #BDB4A5; }
+
+  .foot { position: absolute; left: 72px; right: 72px; bottom: 48px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .name { font: 600 40px/1 "Source Serif 4", serif; letter-spacing: -.01em; white-space: nowrap; }
+  .name sup { font-size: 18px; vertical-align: 20px; }
+  .subtitle { margin-top: 8px; font-size: 18px; font-weight: 600; color: var(--ink-2); }
+  .stats { margin-top: 8px; white-space: nowrap; font-size: 15px; font-weight: 500; color: var(--muted); }
+  .cta { text-align: right; flex-shrink: 0; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; background: var(--accent); color: #fff; font-weight: 800; font-size: 17px; letter-spacing: .07em; text-transform: uppercase; padding: 20px 24px; border-radius: 10px; box-shadow: 0 14px 30px -14px rgba(193,95,60,.7); }
+  .price { margin-top: 10px; font-size: 14.5px; color: var(--muted); font-weight: 500; }
+  .legal { position: absolute; left: 72px; bottom: 18px; font-size: 11.5px; color: #A39B8E; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><i>C</i>The Claude Advantage™</div>
+    <div class="tag">For serious Claude users</div>
+  </div>
+
+  <h1>
+    <span class="old">Stop chatting<br />with Claude.</span>
+    <span class="new">Start <em>working</em><br />with Claude.</span>
+  </h1>
+
+  <p class="sub">The complete system for turning Claude into a serious AI work partner.</p>
+  <p class="verbs">Research · Create · Analyze · Code · Design · Work</p>
+
+  <div class="app">
+    <div class="bar"><b></b><b></b><b></b><span>The Claude Advantage — Workspace</span></div>
+    <div class="body">
+      <div class="side">
+        <div class="mod on"><i>W</i><div><strong>Workflow Vault</strong><small>Advanced AI workflows</small></div></div>
+        <div class="mod"><i>P</i><div><strong>Prompt System</strong><small>Advanced prompt recipes</small></div></div>
+        <div class="mod"><i>R</i><div><strong>Research System</strong><small>Research → Analyze → Synthesize</small></div></div>
+        <div class="mod"><i>□</i><div><strong>Project System</strong><small>Conversations into ongoing work</small></div></div>
+        <div class="mod"><i>&lt;/&gt;</i><div><strong>Claude Code</strong><small>Build with Claude</small></div></div>
+        <div class="mod"><i>↗</i><div><strong>Claude Cowork</strong><small>Delegate real work</small></div></div>
+        <div class="mod"><i>◇</i><div><strong>Claude Design</strong><small>Create &amp; iterate</small></div></div>
+        <div class="mod"><i>30</i><div><strong>AI Work System</strong><small>30-Day Transformation</small></div></div>
+      </div>
+      <div class="main">
+        <div class="head">
+          <div><small>Workflow · Business</small><h3>Market-entry decision brief</h3></div>
+          <span class="pill">Step 4 of 6</span>
+        </div>
+        <div class="flow">
+          <span class="done">Research</span><em>→</em><span class="done">Analyze</span><em>→</em><span class="done">Synthesize</span><em>→</em><span class="now">Create</span><em>→</em><span>Refine</span><em>→</em><span>Deliver</span>
+        </div>
+        <div class="outs">
+          <div class="out"><p>Research brief <small>12 sources</small></p><div class="ln a"></div><div class="ln"></div><div class="ln" style="width:85%"></div><div class="ln" style="width:70%"></div><div class="ln" style="width:90%"></div></div>
+          <div class="out"><p>Data analysis <small>.xlsx</small></p><div class="bars"><i style="height:35%"></i><i style="height:55%"></i><i style="height:45%"></i><i class="hi" style="height:88%"></i><i style="height:62%"></i><i style="height:70%"></i></div></div>
+          <div class="out"><p>Board presentation <small>9 slides</small></p><div class="slide"><div><div class="ln a" style="width:70%"></div><div class="ln"></div><div class="ln" style="width:80%"></div></div><div class="bars" style="gap:3px"><i style="height:40%"></i><i class="hi" style="height:80%"></i><i style="height:60%"></i></div></div></div>
+          <div class="out"><p>Executive report <small>Draft 2</small></p><div class="ln" style="width:55%;background:#D9CFBF"></div><div class="ln"></div><div class="ln" style="width:92%"></div><div class="ln" style="width:76%"></div><div class="ln" style="width:84%"></div></div>
+          <div class="out"><p>Code workspace <small>model.py</small></p><div class="code"><b>def</b> size_market(segments):
+    total = <b>sum</b>(s.tam <b>for</b> s
+        <b>in</b> segments)
+    <b>return</b> round(total, -3)</div></div>
+          <div class="out"><p>Strategy document <small>Review</small></p><div class="ln a" style="width:30%"></div><div class="ln" style="width:88%"></div><div class="ln" style="width:72%"></div><div class="ln" style="width:94%"></div><div class="ln" style="width:60%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="book" aria-label="The Claude Advantage book">
+    <span class="k">Work smarter. Think clearer.</span>
+    <span class="t"><span class="g">The</span><span class="w">Claude</span><span class="g">Advantage</span></span>
+    <hr />
+    <span class="s">Master advanced<br />Claude AI workflows</span>
+    <span class="a">Kaelis Voss</span>
+  </div>
+
+  <div class="vs">
+    <div class="row basic"><b>Basic<br />Claude user</b><div class="steps">Ask <em>·</em> Get answer <em>·</em> Copy <em>·</em> Paste <em>·</em> Repeat</div></div>
+    <div class="row adv"><b>Claude Advantage<br />user</b><div class="steps"><span>Goal</span><em>→</em><span>Context</span><em>→</em><span class="c">Claude</span><em>→</em><span>Research</span><em>→</em><span>Reason</span><em>→</em><span>Create</span><em>→</em><span>Refine</span><em>→</em><span>Workflow</span><em>→</em><span>Result</span></div></div>
+  </div>
+
+  <div class="foot">
+    <div>
+      <p class="name">The Claude Advantage<sup>™</sup></p>
+      <p class="subtitle">The Complete Claude AI Workflow System</p>
+      <!-- Swap in counts ("250+ prompts • 100+ workflows") only once the library really has them. -->
+      <p class="stats">Prompts • Workflows • Advanced AI systems • 30-day transformation</p>
+    </div>
+    <div class="cta">
+      <span class="btn">Get the Claude Advantage →</span>
+      <p class="price">Complete Digital System — $79</p>
+    </div>
+  </div>
+  <p class="legal">An independent educational product. Not affiliated with, sponsored or endorsed by Anthropic. Claude is a trademark of Anthropic, PBC.</p>
+</div>
+</body>
+</html>

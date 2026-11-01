@@ -1,0 +1,178 @@
+[
+ {
+  "category": "Professional Communications",
+  "prompts": [
+   {
+    "title": "Executive Summary Email",
+    "prompt": "Act as a senior communications professional. I need to communicate the following situation to [executive name / board /senior leadership team]: [describe situation]. The key message is [core message]. Context they need: [essential background]. Write an email that is direct, no longer than 300 words, and ends with a clear ask or decision point."
+   },
+   {
+    "title": "Executive Decision Brief",
+    "prompt": "Act as a Chief of Staff preparing a briefing for a senior executive. I need a concise decision brief about [topic]. Background: [context]. The decision to be made is [decision]. Include: (1) the situation in two sentences, (2) key facts and supporting evidence, (3) three options with advantages and risks, (4) your recommended course of action with justification, and (5) the immediate next steps."
+   },
+   {
+    "title": "Difficult Message Draft",
+    "prompt": "You are an experienced professional helping draft a challenging communication. The situation: [describe the situation]. The recipient: [describe recipient: seniority, relationship, likely reaction]. The message I need to convey: [core content]. Constraints: [any constraints e.g., cannot reveal X, must maintain Y relationship, organisation policy requires Z]. Draft this message in a tone that is direct but constructive. Then list any phrases or framings that could land badly and suggest alternatives."
+   },
+   {
+    "title": "Meeting Request With Compelling Context",
+    "prompt": "Write a concise meeting request email. Recipient: [name and role]. Purpose: [what I want to achieve in the meeting]. What they will get from the meeting: [benefit to them not to me]. Relevant context: [any background that makes the meeting valuable or urgent]. Proposed format: [30 minutes, call, in- person, etc.]. Make the ask in the first two sentences. Do not exceed 150 words."
+   },
+   {
+    "title": "Stakeholder Update",
+    "prompt": "You are a project manager writing a stakeholder update. Project: [project name and one-sentence description]. Audience: [describe stakeholders: technical/non-technical, invested/neutral, senior/peer]. Period covered: [date range]. Progress this period: [what was accomplished]. Issues: [any problems, delays, or risks]. Decisions needed: [any decisions stakeholders need to make]. Next period: [what happens next]. Write a structured update in no more than 400 words. Use clear section headings. Do not use jargon."
+   },
+   {
+    "title": "Difficult Stakeholder Alignment",
+    "prompt": "Act as a senior communications strategist. I need to align multiple stakeholders who have different priorities around the following initiative: [describe initiative]. The stakeholders are [list stakeholders and their concerns]. My desired outcome is [decision or agreement]. Draft a communication that acknowledges competing perspectives, addresses likely objections proactively, and builds alignment without appearing defensive. End with a clear recommendation and the specific action I want each stakeholder to take."
+   }
+  ]
+ },
+ {
+  "category": "Research and Analysis",
+  "prompts": [
+   {
+    "title": "Research Brief Generator",
+    "prompt": "Act as a senior research analyst. Topic: [topic]. Purpose of the research: [why I need this decision to make, report to write, strategy to develop]. Audience for findings: [who will use the research]. Time horizon: [current / 12-month/5-year outlook]. Produce a structured research brief covering: the five most important questions this research needs to answer, the three to five frameworks most useful for thinking about this topic, the main schools of thought or perspectives on the topic, the key data types and sources I should look for, and the two or three areas where evidence is likely to be weakest or most contested."
+   },
+   {
+    "title": "Source Synthesis",
+    "prompt": "You are an analytical consultant synthesising research findings. Below are excerpts from [number] sources on [topic]: [paste sources or summaries]. Synthesise these into: a summary of the main themes (three to five bullet points), where the sources agree, where they disagree and why, which claims are well-supported by multiple sources versus dependent on single sources, and the two or three most important implications for [my decision / my audience / my work]. Flag any claims that appear potentially outdated or that you are uncertain about."
+   },
+   {
+    "title": "Competitive Analysis",
+    "prompt": "Act as a strategy analyst. I need a competitive analysis of [company / product / service] compared to [my company / product/offering]. Dimensions to assess: positioning and messaging, target customer and use case, pricing model and tier structure (where public), key strengths relative to competitors, key weaknesses relative to competitors, recent strategic moves or signals. Where you do not have specific information, indicate what I should research directly. Structure the output as a comparison that can inform a positioning decision, not a general profile."
+   },
+   {
+    "title": "Assumption Stress Test",
+    "prompt": "You are a critical thinking partner. Below is my analysis / argument / recommendation: [paste analysis]. Your task: identify the three to five assumptions this analysis depends on most heavily. For each assumption: state the assumption clearly, assess how confident I should be that it is correct, describe what happens to the analysis if it is wrong, and suggest what evidence would confirm or refute it. Be direct. Do not soften the critique. I need to understand where this analysis is most vulnerable before I commit to it."
+   },
+   {
+    "title": "Strategic Research & Executive Insight Brief",
+    "prompt": "Act as a senior strategy consultant conducting research for an executive decision. I need to understand [topic, market, competitor, technology, or business issue]. Research the subject and produce an executive briefing with the following sections: Executive Summary (5 key takeaways), Current State, Emerging Trends, Opportunities, Risks, Competitive Landscape, Strategic Implications for [my company/industry], and Recommended Actions. Where information is uncertain or evolving, clearly distinguish between verified facts, informed analysis, and assumptions. Finish with the three most important questions leadership should answer before making a decision."
+   }
+  ]
+ },
+ {
+  "category": "Document Production and Writing",
+  "prompts": [
+   {
+    "title": "Executive Report Structure",
+    "prompt": "Act as a senior management consultant. I need to produce a report on [topic] for [audience e.g., board, leadership team, client]. The report's purpose: [decision to inform, situation to explain, recommendation to make]. Key findings I need to communicate: [list three to five key findings]. Produce: a recommended report structure with section headings and one-sentence descriptions, the executive summary in full(no more than 300 words), and the opening paragraph of each major section. I will complete the sections from these openings."
+   },
+   {
+    "title": "Proposal Framework",
+    "prompt": "You are a proposal specialist. I am writing a proposal to [prospect name] for [service or project]. What they want to achieve: [their stated objective]. Their key concerns or constraints: [what they have told me or what I know about their situation]. My proposed approach: [brief description]. Why we are the right choice: [key differentiators]. Produce: a proposal structure with section headings, the executive summary, and the problem framing section that demonstrates we understand their situation before we talk about our solution. Tone: [professional / consultative / confident-but-not-pushy]."
+   },
+   {
+    "title": "Document Edit and Strengthen",
+    "prompt": "You are an experienced editor working on professional documents. Below is a draft of [document type]: [paste document]. Edit it for: clarity (remove anything that could be said more simply), directness (cut winding sentences, eliminate hedges that weaken the argument), structure (flag any sections that are in the wrong order or missing), and professional tone (flag any language that is too casual, too defensive, or too verbose). Return the edited document and a brief summary of the main changes you made and why."
+   },
+   {
+    "title": "Professional Document Draft",
+    "prompt": "Act as a senior business writer. Create a [report / proposal / SOP / policy / strategy document] on [topic] for [target audience]. The objective is [purpose]. Use the following context: [background information]. Organise the document with a logical structure, clear headings, concise language, and actionable recommendations. Where appropriate, include executive summaries, tables, checklists, or diagrams to improve clarity. Ensure the final document is polished, persuasive, and ready for professional review."
+   },
+   {
+    "title": "Presentation Narrative",
+    "prompt": "Act as a presentation coach and communications specialist. I need to build a presentation on [topic] for [audience]. Key message: [the one thing they should leave believing or deciding]. Evidence and content I have: [list the main points, data, or arguments]. Time available: [length of presentation]. Produce: a narrative arc for the presentation (not slide-by-slide, but the flow of the argument), the opening hook: the first 30 seconds that earns the audience's attention, the three to five key points in the order that builds most effectively, and the closing call to action. Then suggest the five most important slides."
+   }
+  ]
+ },
+ {
+  "category": "Strategic Thinking and Planning",
+  "prompts": [
+   {
+    "title": "Strategic Options Analysis",
+    "prompt": "You are a strategic adviser. I am facing the following decision: [describe the decision]. The context: [describe relevant background: market conditions, organisational constraints, resources available]. Options I am considering: [list options]. For each option, assess: what has to be true for this option to succeed, what are the key risks, what resources and capabilities does it require, and what does it foreclose or constrain. Then give me your assessment of which option represents the best risk-adjusted path, with your reasoning. Be direct. Do not present all options as equally viable if they are not."
+   },
+   {
+    "title": "Pre-Mortem Analysis",
+    "prompt": "Act as a strategic risk analyst. I am planning to [describe initiative, project, or decision]. Assume it is 18 months from now and the initiative has failed, badly. Your task: describe the three most likely failure modes in specific, concrete detail. For each failure mode: explain the sequence of events that led to it, identify the early warning signs I should have noticed, and recommend the specific preventive actions I should take now. Do not be diplomatic. The value of this exercise depends on identifying real risks, not theoretical ones."
+   },
+   {
+    "title": "Quarterly Planning Prompt",
+    "prompt": "You are an executive coach helping me plan the next quarter. My role: [describe role]. The organisation's top priorities for this period: [list two to three]. My personal top priorities for this period: [list two to three]. Key constraints: [time, resources, dependencies on others]. Projects in flight: [list with brief status]. Produce: a recommended weekly time allocation across my priority areas, the three to five decisions I should make in the first two weeks of the quarter to unlock progress, and the three things I am most at risk of under-investing in given my current priorities."
+   }
+  ]
+ },
+ {
+  "category": "Meetings and Facilitation",
+  "prompts": [
+   {
+    "title": "Meeting Agenda Builder",
+    "prompt": "You are a meeting facilitator. I am running a [meeting type: planning / decision / update / problem- solving] meeting with [number] participants at [level: senior / mixed / peer]. Time available: [length]. Objective: by the end of this meeting we need [specific outcome]. Key issues or decisions to address: [list]. Draft a structured agenda with: a clear opening that sets context and objective (two minutes), timed agenda items in the recommended order, a decision-capture section, and a five-minute close with next steps. For each agenda item, write the specific question we need to answer, not a topic heading."
+   },
+   {
+    "title": "Meeting Notes to Actions",
+    "prompt": "You are a chief of staff processing meeting notes. Below are the raw notes from a [meeting type] meeting attended by [attendees and roles]: [paste notes]. Produce: a one-paragraph meeting summary, a list of decisions made,with owner and any conditions, a list of actions, each with a clear owner, specific deliverable, anddue date, and any open questions that need to be resolved before the next meeting. Where the notesare ambiguous about ownership or deadline, flag it rather than inventing an answer."
+   },
+   {
+    "title": "Meeting Outcomes and Action Tracker",
+    "prompt": "Act as an operations manager. Here are my meeting notes: [paste notes]. Organise them into five sections: (1) Key Decisions Made, (2) Action Items with owners and deadlines, (3) Risks or Issues Raised, (4) Questions That Remain Open, and (5) Follow-Up Communication required. Where actions are unclear, infer the most logical owner and flag them for confirmation. Finally, draft a concise follow-up email summarising the meeting, confirming responsibilities, and highlighting the next milestones."
+   },
+   {
+    "title": "Meeting Preparation Brief",
+    "prompt": "Act as my executive meeting advisor. I have a meeting with [person/team] about [topic]. Background: [context]. My objectives are [desired outcomes]. The attendees are [roles and interests]. Identify likely priorities, concerns, and objections for each participant. Recommend the three most important messages I should communicate, five strategic questions I should ask, potential risks to the discussion, and a meeting agenda that maximises the likelihood of achieving my objectives."
+   },
+   {
+    "title": "Difficult Conversation Preparation",
+    "prompt": "Act as an executive coach helping me prepare for a difficult conversation. The situation: [describe what happened or needs to be addressed]. Who I am speaking with: [their role, our relationship, relevant history]. What I want to achieve in the conversation: [specific outcome]. What I am concerned about: [likely reactions, potential derailment, things that could go wrong]. Produce: an opening statement (how I will start the conversation), the three or four points I need to make, in the most effective order, how I will handle the two or three most likely reactions, and a closing that moves us toward the outcome I want regardless of how the conversation goes."
+   }
+  ]
+ },
+ {
+  "category": "Sales and Business Development",
+  "prompts": [
+   {
+    "title": "Prospect Research Brief",
+    "prompt": "Act as a senior sales strategist. I am preparing for a meeting with [prospect name] at [company]. What I know about them: [paste any LinkedIn, company, or news research]. What I know about their situation: [describe what you know about their business context, recent news, likely challenges]. My offering: [describe what you sell]. Produce: a one-page prospect brief covering their likely top three business priorities, where my offering is most relevant to their situation, the questions most likely to open a productive conversation, the objections most likely to arise and how to address them, and the specific outcome I should aim for in this first meeting."
+   },
+   {
+    "title": "Proposal Executive Summary",
+    "prompt": "You are a persuasive business writer. I am writing a proposal to [prospect] for [engagement]. Their situation as I understand it: [describe their problem or opportunity]. My proposed solution: [describe approach]. Why this approach: [key rationale]. Investment: [if appropriate to include]. Timelines: [key milestones]. Write a compelling executive summary of no more than 250 words. Lead with their situation, not ours. The first paragraph should make them feel understood. The second should make them believe the solution is right. The third should make them want to move forward."
+   },
+   {
+    "title": "Executive Account Planning Brief",
+    "prompt": "Act as a senior enterprise account strategist. Help me prepare for an upcoming meeting with [company]. Company background: [company information]. Current relationship: [existing relationship]. Known stakeholders: [stakeholders]. Business challenges: [known challenges]. My objective for this meeting is [objective]."
+   },
+   {
+    "title": "Objection Response Preparation",
+    "prompt": "Act as a sales coach. I am preparing for a sales conversation with [prospect type] for [product/service]. The three objections most likely to arise: [list them]. For each objection, give me: the response that acknowledges the concern before addressing it, the data or evidence that most directly addresses it, the question I can ask to understand whether it is a real objection or a negotiating position, and the language to use if the objection is genuinely blocking progress."
+   }
+  ]
+ },
+ {
+  "category": "HR and People Management",
+  "prompts": [
+   {
+    "title": "Job Description Writer",
+    "prompt": "You are an HR professional and talent specialist. I need a job description for [role title] at [company type and size]. The role reports to: [manager role]. Primary responsibilities: [list three to five]. Key outcomes in the first 12 months: [what success looks like]. Essential skills and experience: [list]. Preferred but not required: [list]. What makes this role attractive to the right candidate: [genuine differentiators]. Write a job description that: leads with impact and opportunity rather than a list of requirements, uses inclusive language, is specific enough to self-select the right candidates, and is no longer than 500 words."
+   },
+   {
+    "title": "Performance Feedback Draft",
+    "prompt": "Act as an experienced people manager. I need to write performance feedback for [name, role, seniority]. The review period: [date range]. Strengths I have observed: [describe specific examples]. Areas for development: [describe specific situations where performance did not meet expectations]. My overall assessment: [meets expectations / exceeds / below]. Tone required: [e.g., encouraging, frank, balanced]. Write feedback that: is specific and example-based rather than general, leads with genuine strengths before addressing development areas, frames development feedback constructively with clear expectations, and is appropriate for a formal review document."
+   },
+   {
+    "title": "Team Communication — Difficult Announcement",
+    "prompt": "You are a communications specialist helping a manager communicate a difficult message to their team. The announcement: [describe what needs to be communicated: restructure, policy change, difficult news]. What the team is likely to be feeling: [describe anticipated reaction]. What I can say: [what information can be shared]. What I cannot say yet: [what is restricted]. What I want the team to feel at the end of the communication: [e.g., informed, supported, clear on next steps]. Write the announcement and a list of the five questions most likely to be asked, with suggested responses to each."
+   },
+   {
+    "title": "Employee Retention Risk Assessment",
+    "prompt": "Assess the retention risk for the following employee or team. Context: [role, tenure, performance, engagement signals, recent events]. Identify the strongest indicators of potential disengagement or attrition, the likely root causes, and the business impact if the employee leaves. Recommend immediate actions, medium-term development opportunities, and manager conversation points to improve retention. Present the output as a practical action plan prioritised by impact and urgency."
+   }
+  ]
+ },
+ {
+  "category": "Finance and Analysis",
+  "prompts": [
+   {
+    "title": "Financial Narrative Generator",
+    "prompt": "Act as a CFO communications specialist. I have the following financial results for [period]: [paste key metrics: revenue, costs, EBITDA, cash, whatever is relevant]. Performance vs budget / prior period: [describe variances]. Key drivers of the variances: [explain the main reasons]. What leadership needs to understand: [the most important message]. Audience: [board / executive team / all-staff- indicate technical level]. Write a financial narrative of no more than 300 words that explains the results clearly, addresses the variances honestly, and ends with a clear forward-looking statement."
+   },
+   {
+    "title": "Business Case Structure",
+    "prompt": "You are a finance business partner helping build a business case. The initiative: [describe what is being proposed]. What itcosts: [investment required: upfront and ongoing]. What it achieves: [expected benefits quantified where possible]. Who it affects: [stakeholders, dependencies]. Timeline: [when investment is made, when benefits are expected]. Risk factors: [what could prevent the benefits from materialising]. Produce: a recommended business case structure, the one-page executive summary in full, and the key financial assumptions I need to validate before finalising the case."
+   }
+  ]
+ }
+]

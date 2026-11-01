@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* The Microsoft Copilot Advantage: cool neutrals and one deep blue. */
+  :root {
+    --ink: 14 23 38; --ink-soft: 52 64 84; --ink-muted: 91 101 119;
+    --paper: 246 247 249; --paper-tint: 238 241 245; --canvas: 255 255 255;
+    --line: 227 231 237; --line-strong: 205 211 220;
+    --accent: 34 81 204; --accent-soft: 234 240 253; --accent-deep: 23 59 153;
+    --font-heading: var(--font-display);
+  }
+  /* The Claude Advantage: warm cream, charcoal and a restrained terracotta, with serif headlines. */
+  .line-claude {
+    --ink: 31 29 26; --ink-soft: 69 64 58; --ink-muted: 111 104 95;
+    --paper: 241 236 227; --paper-tint: 233 226 214; --canvas: 250 248 244;
+    --line: 226 218 205; --line-strong: 207 197 181;
+    --accent: 193 95 60; --accent-soft: 247 230 221; --accent-deep: 154 69 39;
+    --font-heading: var(--font-serif);
+  }
+  .line-claude h1, .line-claude h2, .line-claude h3, .line-claude h4 { font-weight: 500; letter-spacing: -0.02em; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-canvas text-ink font-sans antialiased; text-rendering: optimizeLegibility; }
+  h1, h2, h3, h4 { @apply font-display text-balance font-semibold; letter-spacing: -0.025em; }
+  h3, h4 { letter-spacing: -0.015em; }
+  p { text-wrap: pretty; }
+  ::selection { background: rgb(var(--accent)); color: white; }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 6px; }
+}
+
+@layer components {
+  .accent-em { @apply text-accent; }
+
+  /* Section label: small caps in the accent colour. */
+  .eyebrow { @apply text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-accent; }
+
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3.5 text-[15px] font-semibold text-white shadow-soft transition
+           duration-200 hover:bg-accent-deep active:translate-y-px disabled:pointer-events-none disabled:opacity-60;
+  }
+  /* Kept for pages that still ask for it. */
+  .btn-accent { @apply btn-primary; }
+  .btn-dark {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-lg bg-ink px-6 py-3.5 text-[15px] font-semibold text-white shadow-soft transition
+           duration-200 hover:bg-ink-soft active:translate-y-px disabled:pointer-events-none disabled:opacity-60;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line-strong bg-white px-6 py-3.5 text-[15px] font-semibold text-ink transition
+           duration-200 hover:border-ink/40 hover:bg-paper disabled:pointer-events-none disabled:opacity-60;
+  }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-ink-soft transition hover:bg-paper hover:text-ink; }
+  .btn-arrow { @apply transition-transform duration-200; }
+  .btn-primary:hover .btn-arrow, .btn-dark:hover .btn-arrow, .btn-secondary:hover .btn-arrow, .link-arrow:hover .btn-arrow { transform: translateX(3px); }
+  .link-arrow { @apply inline-flex items-center gap-1.5 text-[15px] font-semibold text-accent hover:text-accent-deep; }
+
+  .card { @apply rounded-xl border border-line bg-white; }
+  .section { @apply py-20 md:py-28; }
+  .section-title { @apply text-[2rem] leading-[1.1] md:text-5xl; }
+  .section-lead { @apply mt-4 text-lg leading-relaxed text-ink-muted; }
+  .input {
+    @apply w-full rounded-lg border border-line-strong bg-white px-4 py-3 text-base text-ink placeholder:text-ink-muted/70
+           transition focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15;
+  }
+  .icon-tile { @apply grid place-items-center rounded-lg border border-line bg-white text-ink; }
+
+  /* Selectable chips used by the Prompt Builder and tabs. */
+  .chip {
+    @apply inline-flex items-center rounded-md border border-line bg-white px-3 py-1.5 text-sm font-medium text-ink-soft transition hover:border-ink/30 hover:text-ink;
+  }
+  .chip[aria-pressed="true"], .chip[aria-selected="true"] { @apply border-accent bg-accent-soft text-accent-deep; }
+
+  /* Window chrome around product previews. */
+  .window { @apply overflow-hidden rounded-xl border border-line bg-white shadow-window; }
+  .window-bar { @apply flex items-center gap-1.5 border-b border-line bg-paper px-4 py-2.5; }
+  .window-bar > i { @apply block h-2.5 w-2.5 rounded-full bg-line-strong; }
+
+  /* Placeholder text lines inside document previews. */
+  .skel { @apply block h-1.5 rounded-full bg-ink/10; }
+}
+
+/* ── Motion ─────────────────────────────────────────────── */
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@keyframes hero-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.hero-in { animation: hero-in .8s cubic-bezier(.2,.7,.2,1) both; }
+
+/* Steps in a flow light up one after another once the flow is visible. */
+@keyframes step-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.reveal .flow-step { opacity: 0; }
+.reveal.is-visible .flow-step { animation: step-in .5s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 110ms + 150ms); }
+
+/* Connectors between flow steps fill in. */
+.grow-x { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(.65,0,.35,1) .2s; }
+.is-visible .grow-x { transform: scaleX(1); }
+.grow-y { transform: scaleY(0); transform-origin: top; transition: transform 1.4s cubic-bezier(.65,0,.35,1) .2s; }
+.is-visible .grow-y { transform: scaleY(1); }
+
+@keyframes fade-down { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+details[open] > .answer { animation: fade-down .3s ease both; }
+.fade-swap { animation: fade-down .3s ease both; }
+
+/* Faint grid behind the hero. */
+.grid-bg {
+  background-image: linear-gradient(rgba(14,23,38,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(14,23,38,.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal .flow-step { opacity: 1; transform: none; transition: none; animation: none; }
+  .hero-in, .fade-swap { animation: none; }
+  .grow-x, .grow-y { transform: none; transition: none; }
+  details[open] > .answer { animation: none; }
+}
+
+@media print {
+  header, footer, nav, .no-print { display: none !important; }
+  main { padding: 0 !important; }
+  .pt-16 { padding-top: 0 !important; }
+  .print-sheet { border: 0 !important; box-shadow: none !important; padding: 0 !important; max-width: none !important; }
+  @page { margin: 14mm; }
+}
