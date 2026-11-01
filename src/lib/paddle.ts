@@ -1,7 +1,6 @@
-import { createHmac } from "node:crypto";
+import { Environment, Paddle } from "@paddle/paddle-node-sdk";
 import type { StepId } from "./funnel";
 import type { TierId } from "./products";
-import { safeEqualHex } from "./signing";
 
 // Paddle takes every payment except INR (USD, and GBP in the UK). It is the merchant of record:
 // it charges the buyer, handles sales tax and VAT, and pays out to you.
@@ -62,15 +61,11 @@ export const fetchCustomer = (id: string) => call<{ id: string; email: string; n
 export const isPaid = (t: PaddleTransaction) => t.status === "paid" || t.status === "completed";
 
 /**
- * Checks the Paddle-Signature header ("ts=…;h1=…"): an HMAC-SHA256 of
- * "ts:body" with the webhook's secret, sent within the last five minutes.
+ * The Paddle Node SDK, for webhook verification and customer portal sessions.
+ * Throws when PADDLE_ENVIRONMENT isn't set, rather than guessing an account.
  */
-export function verifyPaddleWebhook(rawBody: string, header: string) {
-  const secret = process.env.PADDLE_WEBHOOK_SECRET;
-  if (!secret || !header) return false;
-  const parts = Object.fromEntries(header.split(";").map((p) => p.split("=") as [string, string]));
-  const ts = Number(parts.ts);
-  if (!parts.h1 || !ts || Math.abs(Date.now() / 1000 - ts) > 300) return false;
-  const expected = createHmac("sha256", secret).update(`${parts.ts}:${rawBody}`).digest("hex");
-  return safeEqualHex(expected, parts.h1);
+export function paddleSdk() {
+  const env = paddleEnvironment();
+  if (!env) throw new Error('PADDLE_ENVIRONMENT must be "sandbox" or "production"');
+  return new Paddle(process.env.PADDLE_API_KEY ?? "", { environment: env === "production" ? Environment.production : Environment.sandbox });
 }

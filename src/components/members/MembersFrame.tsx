@@ -19,6 +19,7 @@ export function MembersFrame({ line, groups, member, children }: { line: LineId;
             {member?.preview && <span className="rounded bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-900">Preview mode</span>}
             {member?.email && <span className="hidden text-ink-muted sm:inline">{member.email}</span>}
             <Link href={L.base || "/"} className="btn-ghost">Website</Link>
+            {member && !member.preview && <a href="/account" className="btn-ghost">Receipts</a>}
             {member && !member.preview && <a href={`/logout?line=${line}`} className="btn-ghost">Sign out</a>}
           </div>
         </div>

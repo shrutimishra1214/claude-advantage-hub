@@ -47,6 +47,17 @@ anyone else; they're sent to `/login`. Buyers get in three ways:
 
 Until live payment keys are set, the member areas stay open to everyone in "Preview mode" for testing.
 
+### Paddle webhooks and the customer portal
+
+`/api/webhooks/paddle` verifies every delivery with the Paddle SDK and the destination's signing secret, then handles
+`transaction.completed` (records the purchase and sends the access email) and `customer.created` / `customer.updated`.
+Paddle state is mirrored in Upstash (`src/lib/paddle-store.ts`): customers by Paddle ID, completed transactions, and each
+buyer's Paddle customer ID by email. Deliveries can repeat or arrive out of order, so every write is an upsert. A handler
+that fails answers 500 so Paddle retries. These records are live data: don't delete them.
+
+Members open Paddle's customer portal (receipts, invoices, payment details) from **Receipts** in the member area, which
+goes to `/account`: their Paddle customer ID is looked up on the server from their signed-in email.
+
 ## Tiers and prices
 
 Each product has three tiers: **Book** (learn), **Complete** (learn + implement: the Book plus the implementation system)

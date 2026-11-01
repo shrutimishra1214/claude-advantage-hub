@@ -55,6 +55,14 @@ export async function getMember(line: LineId = "copilot"): Promise<Member | null
 
 export const memberHome = (line: LineId) => lines[line].members;
 
+/** The buyer signed in on this device, from their signed cookies only. Never a preview member, never anything the browser claims. */
+export async function getSignedInBuyer(): Promise<{ email: string } | null> {
+  const saved = verify<{ email: string }>((await cookies()).get(COOKIE)?.value);
+  if (saved?.email) return { email: saved.email };
+  const session = await getSession();
+  return session?.customer.email ? { email: session.customer.email } : null;
+}
+
 /** Where a member goes after signing in: `next` when it's inside an area they own, else the first area they own. */
 export function memberLanding(owned: ProductId[], next?: string | null): string {
   const open = (Object.keys(linesUnlockedBy) as LineId[]).filter((line) => owned.some((p) => linesUnlockedBy[line].includes(p)));
