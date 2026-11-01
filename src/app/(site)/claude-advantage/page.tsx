@@ -63,7 +63,7 @@ const ecosystem = [
   ["Design Workflows", "Three directions, the real thing, then a critique."],
   ["Research Systems", "Frame, research, synthesize, deliver: with sources."],
   ["30-Day Transformation", "One task a day, from user to power user."],
-  ["Advanced AI Playbooks", "In Pro: The Claude Operator, with skills, workflows and your AI Chief of Staff."],
+  ["The Claude Operator", "The advanced companion book, included with the Book: Claude Code, design, Excel, PowerPoint and more."],
 ];
 
 const audience = ["Professionals", "Executives", "Consultants", "Entrepreneurs", "Creators", "Researchers", "Analysts", "Developers", "Knowledge workers"];
@@ -73,7 +73,7 @@ const faqs = [
   ...sharedFaqs,
   { q: "I already use Claude. Is this for me?", a: "Yes. It's built for people who use Claude but sense they're getting a fraction of its value. The system moves you from asking questions to running repeatable workflows." },
   { q: "Which Claude plan do I need?", a: "Most of the system works on any Claude plan. Some features, such as Projects, research tools, Claude Code, design and agentic features, depend on your plan and region, and change over time. Each workflow says what it needs." },
-  { q: "Where does The Claude Operator fit?", a: "The Claude Operator is the advanced companion book. It's part of Pro, alongside the advanced research, project and agentic workflow systems." },
+  { q: "Where does The Claude Operator fit?", a: "Every tier includes it. The Book tier gives you both books, The Claude Advantage and The Claude Operator, for one price. Pro adds the Operator track in the member area: skills, workflows and your AI Chief of Staff." },
   { q: "What happens when Claude changes?", a: "The system teaches durable methods rather than button locations. Claude's features and their names change over time, so interface-specific details are updated in the member area as Claude evolves." },
 ];
 

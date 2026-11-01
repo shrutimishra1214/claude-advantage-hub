@@ -23,7 +23,7 @@ const blurb: Record<TierId, string> = {
   book: "Learn · the complete guide (PDF)",
   complete: "Learn + Implement · the Book and the full implementation system",
   pro: "Build + Systemize · Complete, plus the advanced work systems",
-  "claude-book": "Learn · the complete guide (PDF)",
+  "claude-book": "Learn · The Claude Advantage and The Claude Operator (PDF)",
   "claude-complete": "Learn + Implement · the Book and the full implementation system",
   "claude-pro": "Build + Systemize · Complete, plus the advanced work systems",
   "both-complete": "Both Complete systems: Copilot and Claude",

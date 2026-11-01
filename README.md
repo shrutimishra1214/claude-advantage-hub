@@ -56,7 +56,7 @@ products together. US visitors pay in USD and UK visitors in GBP:
 | | Book | Complete | Pro |
 |---|---|---|---|
 | The Microsoft Copilot Advantage | $24.99 / £19.99 | $99 / £79 | $149 / £119 |
-| The Claude Advantage | $24.99 / £19.99 | $119 / £89 | $179 / £139 |
+| The Claude Advantage (Book = The Claude Advantage + The Claude Operator) | $24.99 / £19.99 | $119 / £89 | $179 / £139 |
 | Both systems | | $169 / £129 | $249 / £199 |
 
 Tiers, prices and which products are ready live in `src/lib/products.ts`; the words on every pricing card come from

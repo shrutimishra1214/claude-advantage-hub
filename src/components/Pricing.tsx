@@ -68,7 +68,15 @@ export async function PricingTiers({ line }: { line: LineId }) {
             <p className={`text-xs font-bold uppercase tracking-[0.16em] ${recommended ? "text-accent" : "text-ink-muted"}`}>{t.label}</p>
             <p className="mt-1 text-sm font-semibold text-ink-soft">{copy.formula}</p>
           </div>
-          {id === bookId && <Ebook book={line === "claude" ? "claude" : "copilot"} className="w-[52px] shrink-0" sizes="52px" />}
+          {id === bookId &&
+            (line === "claude" ? (
+              <span className="flex shrink-0 items-end">
+                <Ebook book="claude" className="w-[52px]" sizes="52px" />
+                <Ebook book="operator" className="-ml-3 w-[44px]" sizes="44px" />
+              </span>
+            ) : (
+              <Ebook book="copilot" className="w-[52px] shrink-0" sizes="52px" />
+            ))}
         </div>
         <h3 className="mt-4 text-xl">{copy.tagline}</h3>
         <p className="mt-5 font-display text-5xl font-semibold tracking-tight">{formatPrice(t.price[currency], currency)}</p>

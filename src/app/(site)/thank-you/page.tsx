@@ -12,6 +12,12 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Your library", robots: { index: false } };
 
+const covers: Partial<Record<string, string>> = {
+  book: "/images/cover.jpg",
+  "claude-book": "/images/claude-cover.jpg",
+  "claude-operator-book": "/claude-operator-cover.jpg",
+};
+
 export default async function ThankYou({ searchParams }: { searchParams: Promise<{ t?: string }> }) {
   const { t } = await searchParams;
   const grant = readLibraryToken(t);
@@ -51,8 +57,8 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
                 const p = products[id];
                 return (
                   <li key={id} className="card flex flex-col gap-5 p-6 sm:flex-row sm:items-center">
-                    {id === "book" || id === "claude-book" ? (
-                      <Image src={id === "book" ? "/images/cover.jpg" : "/images/claude-cover.jpg"} alt="" width={64} height={84} className="rounded-md shadow-soft" />
+                    {covers[id] ? (
+                      <Image src={covers[id]} alt="" width={64} height={84} className="rounded-md object-cover shadow-soft" />
                     ) : (
                       <span className="icon-tile h-16 w-16 shrink-0">
                         {p.delivery.kind === "file" ? <Icon.doc className="h-7 w-7" /> : <Icon.video className="h-7 w-7" />}
@@ -66,11 +72,6 @@ export default async function ThankYou({ searchParams }: { searchParams: Promise
                       <a href={grant && t ? `/members/enter?t=${encodeURIComponent(t)}` : lines[lineOfProduct(id)].members} className="btn-primary !py-3">
                         Open {lines[lineOfProduct(id)].name.replace(/^The /, "the ")} <Icon.arrow className="h-4 w-4" />
                       </a>
-                    ) : id === "claude-operator" ? (
-                      <span className="flex flex-col gap-2 sm:items-end">
-                        <a href={`/api/download/${id}${query}`} className="btn-primary !py-3"><Icon.download className="h-5 w-5" /> Download</a>
-                        <a href={grant && t ? `/members/enter?t=${encodeURIComponent(t)}` : "/claude-advantage/members/operator"} className="text-sm font-semibold text-accent">Open the Operator track →</a>
-                      </span>
                     ) : p.delivery.kind === "file" ? (
                       <a href={`/api/download/${id}${query}`} className="btn-primary !py-3">
                         <Icon.download className="h-5 w-5" /> Download

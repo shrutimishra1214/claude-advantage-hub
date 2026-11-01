@@ -70,10 +70,12 @@ export const tierCopy: Record<Exclude<TierId, "both-complete" | "both-pro">, Tie
   },
   "claude-book": {
     ...book,
+    cta: "Get Both Books",
+    intro: "Two books, one price:",
     bullets: [
-      "The complete guide to working with Claude",
+      "The Claude Advantage: the complete guide to working with Claude",
+      "The Claude Operator: advanced workflows with Claude Code, design, Excel and PowerPoint",
       "Prompting, research, writing and analysis",
-      "Projects, documents, Claude Code and design",
       "Practical, worked examples",
     ],
   },
@@ -111,7 +113,7 @@ export const tierCopy: Record<Exclude<TierId, "both-complete" | "both-pro">, Tie
       "Professional role systems",
       "Advanced prompt architecture",
       "Advanced workflow builder",
-      "The Claude Operator, the advanced companion book",
+      "The Operator track: skills, workflows and your AI Chief of Staff",
       "Major future updates",
       "Advanced Research System",
       "Advanced project workflows",

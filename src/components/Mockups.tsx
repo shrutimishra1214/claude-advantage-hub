@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
-import { OperatorCoverArt } from "./claude/BookCover";
 import type { LineId } from "@/lib/lines";
 
 // Product mockups for digital products: the ebooks on a tablet, the member
@@ -9,22 +8,16 @@ import type { LineId } from "@/lib/lines";
 
 export type EbookId = "copilot" | "claude" | "operator";
 
-const covers: Record<Exclude<EbookId, "operator">, { src: string; w: number; h: number; alt: string }> = {
-  copilot: { src: "/images/cover.jpg", w: 1100, h: 1392, alt: "The Microsoft Copilot Advantage ebook cover" },
-  claude: { src: "/images/claude-cover.jpg", w: 972, h: 1269, alt: "The Claude Advantage ebook cover" },
+const covers: Record<EbookId, { src: string; alt: string }> = {
+  copilot: { src: "/images/cover.jpg", alt: "The Microsoft Copilot Advantage ebook cover" },
+  claude: { src: "/images/claude-cover.jpg", alt: "The Claude Advantage ebook cover" },
+  operator: { src: "/claude-operator-cover.jpg", alt: "The Claude Operator ebook cover" },
 };
 
 const cq: CSSProperties = { containerType: "inline-size" };
 
 /** A cover, filling its box. */
 export function Cover({ book, sizes = "300px", priority = false }: { book: EbookId; sizes?: string; priority?: boolean }) {
-  if (book === "operator") {
-    return (
-      <div role="img" aria-label="The Claude Operator ebook cover" className="h-full w-full" style={cq}>
-        <div className="h-full text-[6cqw]"><OperatorCoverArt /></div>
-      </div>
-    );
-  }
   const c = covers[book];
   return <Image src={c.src} alt={c.alt} fill sizes={sizes} priority={priority} className="object-cover object-top" />;
 }

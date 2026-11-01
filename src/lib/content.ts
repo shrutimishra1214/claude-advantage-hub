@@ -46,7 +46,7 @@ export const offerCopy: Record<StepId, OfferCopy> = {
   "claude-pro-upgrade": {
     eyebrow: "Upgrade to Pro",
     headline: "Build your personal AI operating system.",
-    lead: "Pro adds advanced research and project systems, the Claude Code workflow library, agentic workflow architecture and professional role systems, with The Claude Operator. You pay only the difference.",
+    lead: "Pro adds advanced research and project systems, the Claude Code workflow library, agentic workflow architecture, professional role systems and the Operator track in your member area. You pay only the difference.",
     cta: "Yes, upgrade to Pro",
     decline: "No thanks, Complete is enough",
   },

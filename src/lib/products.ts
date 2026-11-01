@@ -4,7 +4,7 @@ export type Currency = "INR" | "USD" | "GBP";
 // What a buyer can own. Customers never buy these one by one: they buy a tier
 // (below), and each tier is a set of these. "toolkit" and "claude-system" are
 // the implementation systems inside Complete; there is no standalone Toolkit.
-export type ProductId = "book" | "toolkit" | "copilot-pro" | "claude-book" | "claude-system" | "claude-operator";
+export type ProductId = "book" | "toolkit" | "copilot-pro" | "claude-book" | "claude-operator-book" | "claude-system" | "claude-operator";
 
 export type Delivery =
   | { kind: "file"; file: string; filename: string }
@@ -61,6 +61,16 @@ export const products: Record<ProductId, Product> = {
     // Put claude-advantage.pdf in private-files/ before selling it.
     ready: true,
   },
+  // Sold only inside the Claude Book tier, together with The Claude Advantage.
+  "claude-operator-book": {
+    id: "claude-operator-book",
+    name: "The Claude Operator (Book)",
+    short: "The advanced companion guide (PDF)",
+    price: { USD: 0, GBP: 0, INR: 0 },
+    // Put claude-operator.pdf in private-files/ before selling it.
+    delivery: { kind: "file", file: "claude-operator.pdf", filename: "The-Claude-Operator.pdf" },
+    ready: true,
+  },
   "claude-system": {
     id: "claude-system",
     name: "The Claude Advantage™ implementation system",
@@ -74,11 +84,11 @@ export const products: Record<ProductId, Product> = {
   },
   "claude-operator": {
     id: "claude-operator",
-    name: "The Claude Advantage™ Pro systems, with The Claude Operator",
+    name: "The Claude Advantage™ Pro systems",
     short: "Included in Pro",
     price: { USD: 6000, GBP: 5000, INR: 499900 },
-    // The Claude Operator PDF, plus the Pro track in the member area. Put claude-operator.pdf in private-files/.
-    delivery: { kind: "file", file: "claude-operator.pdf", filename: "The-Claude-Operator.pdf" },
+    // The Operator track and the Pro systems in the member area at /claude-advantage/members.
+    delivery: { kind: "access", note: "Open the member area: the Operator track and your Pro systems." },
     ready: true,
   },
 };
@@ -89,13 +99,15 @@ export type TierId = "book" | "complete" | "pro" | "claude-book" | "claude-compl
 export type Tier = { id: TierId; name: string; label: string; items: ProductId[]; price: Record<Currency, number> };
 
 const COPILOT_COMPLETE: ProductId[] = ["book", "toolkit"];
-const CLAUDE_COMPLETE: ProductId[] = ["claude-book", "claude-system"];
+// The Claude Book tier is both books: The Claude Advantage and The Claude Operator.
+const CLAUDE_BOOKS: ProductId[] = ["claude-book", "claude-operator-book"];
+const CLAUDE_COMPLETE: ProductId[] = [...CLAUDE_BOOKS, "claude-system"];
 
 export const tiers: Record<TierId, Tier> = {
   book: { id: "book", name: "The Microsoft Copilot Advantage™ Book", label: "Book", items: ["book"], price: products.book.price },
   complete: { id: "complete", name: "The Microsoft Copilot Advantage™ Complete", label: "Complete", items: COPILOT_COMPLETE, price: { USD: 9900, GBP: 7900, INR: 699900 } },
   pro: { id: "pro", name: "The Microsoft Copilot Advantage™ Pro", label: "Pro", items: [...COPILOT_COMPLETE, "copilot-pro"], price: { USD: 14900, GBP: 11900, INR: 1099900 } },
-  "claude-book": { id: "claude-book", name: "The Claude Advantage™ Book", label: "Book", items: ["claude-book"], price: products["claude-book"].price },
+  "claude-book": { id: "claude-book", name: "The Claude Advantage™ Book, with The Claude Operator", label: "Book", items: CLAUDE_BOOKS, price: products["claude-book"].price },
   "claude-complete": { id: "claude-complete", name: "The Claude Advantage™ Complete", label: "Complete", items: CLAUDE_COMPLETE, price: { USD: 11900, GBP: 8900, INR: 899900 } },
   "claude-pro": { id: "claude-pro", name: "The Claude Advantage™ Pro", label: "Pro", items: [...CLAUDE_COMPLETE, "claude-operator"], price: { USD: 17900, GBP: 13900, INR: 1399900 } },
   "both-complete": { id: "both-complete", name: "Both Systems: Complete", label: "Both Complete", items: [...COPILOT_COMPLETE, ...CLAUDE_COMPLETE], price: { USD: 16900, GBP: 12900, INR: 1299900 } },
