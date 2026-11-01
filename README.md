@@ -55,6 +55,8 @@ Paddle state is mirrored in Upstash (`src/lib/paddle-store.ts`): customers by Pa
 buyer's Paddle customer ID by email. Deliveries can repeat or arrive out of order, so every write is an upsert. A handler
 that fails answers 500 so Paddle retries. These records are live data: don't delete them.
 
+Discount codes made in Paddle are applied from the page address, e.g. `/claude-advantage?discount=CODE`: the checkout's own code field stays hidden.
+
 Members open Paddle's customer portal (receipts, invoices, payment details) from **Receipts** in the member area, which
 goes to `/account`: their Paddle customer ID is looked up on the server from their signed-in email.
 

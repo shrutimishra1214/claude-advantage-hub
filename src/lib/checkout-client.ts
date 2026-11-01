@@ -64,11 +64,15 @@ async function payWithPaddle(order: PaddleOrder): Promise<string> {
         reject(new Error("The payment window couldn't load. Please try again in a moment."));
       }
     });
+    // A discount code can come from the page address (…?discount=CODE), for promotions and
+    // zero-cost live tests. Paddle checks the code; the checkout's own code field stays hidden.
+    const discountCode = new URLSearchParams(window.location.search).get("discount")?.trim();
     // The exact price the buyer chose, with the email they entered prefilled.
     P.Checkout.open({
       items: [{ priceId: order.priceId, quantity: 1 }],
       customer: { email: order.customer.email },
       customData: { kv: order.intent },
+      ...(discountCode ? { discountCode } : {}),
       settings: { displayMode: "overlay", variant: "one-page", theme: "light", showAddDiscounts: false },
     });
   });
