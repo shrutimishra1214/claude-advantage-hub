@@ -28,7 +28,8 @@ export async function POST(req: Request) {
     const email = txn.customer_id ? (await fetchCustomer(txn.customer_id)).email.toLowerCase() : intent.email;
     const next = await completePurchase({
       customer: { name: intent.name, email, contact: intent.contact },
-      currency: "USD",
+      // The currency Paddle charged, so the upgrade offers show the same one.
+      currency: txn.currency_code === "GBP" ? "GBP" : "USD",
       items: intent.items,
       step: intent.step,
     });

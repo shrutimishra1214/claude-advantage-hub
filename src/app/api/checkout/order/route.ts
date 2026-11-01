@@ -62,8 +62,9 @@ export async function POST(req: Request) {
     priceId = paddlePriceId({ tier: tierId });
   }
 
-  // Outside India, Paddle takes the payment at the price set in its dashboard.
-  if (currency === "USD") {
+  // Paddle takes every payment except INR, at the price set in its dashboard
+  // (with a GBP override for the UK).
+  if (currency !== "INR") {
     if (!isPaddleConfigured() || !priceId) {
       console.error(`Paddle is not configured for ${step || "this tier"}: set PADDLE_API_KEY, PADDLE_CLIENT_TOKEN and the price ID`);
       return NextResponse.json({ error: "Card payments aren't available right now. Please try again later." }, { status: 503 });

@@ -3,7 +3,7 @@ import type { StepId } from "./funnel";
 import type { TierId } from "./products";
 import { safeEqualHex } from "./signing";
 
-// Paddle takes payments outside India (USD). It is the merchant of record:
+// Paddle takes every payment except INR (USD, and GBP in the UK). It is the merchant of record:
 // it charges the buyer, handles sales tax and VAT, and pays out to you.
 // Prices live in the Paddle dashboard; their IDs come from the environment.
 
@@ -31,6 +31,7 @@ export type PaddleTransaction = {
   id: string;
   status: "draft" | "ready" | "billed" | "paid" | "completed" | "canceled" | "past_due";
   customer_id: string | null;
+  currency_code: string;
   custom_data: Record<string, string> | null;
   items: { price: { id: string } }[];
 };
