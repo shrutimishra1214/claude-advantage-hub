@@ -2,16 +2,21 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
-// Paid files: the PRODUCT_FILES R2 bucket on Cloudflare, or private-files/ on disk
-// in development. Callers check ownership first; nothing here does.
+// Paid files: the PRODUCT_FILES_KV namespace on Cloudflare (or an R2 bucket bound
+// as PRODUCT_FILES, if one is added later), or private-files/ on disk in
+// development. Callers check ownership first; nothing here does.
 
 type R2Object = { body: ReadableStream; size: number };
 type ProductBucket = { get(key: string): Promise<R2Object | null> };
+type KvStore = {
+  getWithMetadata(key: string, opts: { type: "stream" }): Promise<{ value: ReadableStream | null; metadata: { size?: number } | null }>;
+};
+type Env = { PRODUCT_FILES?: ProductBucket; PRODUCT_FILES_KV?: KvStore };
 
-async function bucket(): Promise<ProductBucket | undefined> {
+async function env(): Promise<Env> {
   return getCloudflareContext({ async: true })
-    .then(({ env }) => (env as { PRODUCT_FILES?: ProductBucket }).PRODUCT_FILES)
-    .catch(() => undefined);
+    .then(({ env }) => env as Env)
+    .catch(() => ({}));
 }
 
 const types: Record<string, string> = { pdf: "application/pdf", zip: "application/zip" };
@@ -25,13 +30,18 @@ export async function fileResponse(key: string, filename: string): Promise<Respo
     "X-Robots-Tag": "noindex",
   };
   try {
-    const b = await bucket();
-    if (b) {
-      const object = await b.get(key);
+    const { PRODUCT_FILES: r2, PRODUCT_FILES_KV: kv } = await env();
+    if (r2) {
+      const object = await r2.get(key);
       if (!object) throw new Error(`${key} is not in the bucket`);
       return new Response(object.body, { headers: { ...headers, "Content-Length": String(object.size) } });
     }
-    if (process.env.NODE_ENV === "production") throw new Error("PRODUCT_FILES (R2) is not bound");
+    if (kv) {
+      const { value, metadata } = await kv.getWithMetadata(key, { type: "stream" });
+      if (!value) throw new Error(`${key} is not in the KV namespace`);
+      return new Response(value, { headers: metadata?.size ? { ...headers, "Content-Length": String(metadata.size) } : headers });
+    }
+    if (process.env.NODE_ENV === "production") throw new Error("No file store bound: PRODUCT_FILES_KV (or PRODUCT_FILES) is missing");
     const data = await readFile(path.join(process.cwd(), "private-files", key));
     return new Response(new Uint8Array(data), { headers });
   } catch (err) {

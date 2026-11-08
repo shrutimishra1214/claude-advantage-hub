@@ -29,10 +29,9 @@
     "PADDLE_PRICE_UPGRADE_COPILOT_TO_PRO": "pri_01m6cdwyndjjrd8b1ztj619q0q",
     "PADDLE_PRICE_UPGRADE_CLAUDE_TO_COMPLETE": "pri_01m6cdyarkksx8xpa9jf2gbhq6",
     "PADDLE_PRICE_UPGRADE_CLAUDE_TO_PRO": "pri_01m6cdzfxsseefkz6ja0rstc64"
-  }
-  // Paid book files. Create the bucket, upload the PDFs from private-files/
-  // with the same names, then uncomment:
-  //   npx wrangler r2 bucket create kaelis-voss-files
-  //   npx wrangler r2 object put kaelis-voss-files/copilot-advantage.pdf --file private-files/copilot-advantage.pdf --remote
-  // , "r2_buckets": [{ "binding": "PRODUCT_FILES", "bucket_name": "kaelis-voss-files" }]
+  },
+  // Paid files (books and bonuses), read by src/lib/stored-files.ts after an
+  // ownership check. Workers KV, so no R2 plan is needed; each file must stay
+  // under KV's 25 MiB value limit. Upload with node scripts/upload-files.mjs.
+  "kv_namespaces": [{ "binding": "PRODUCT_FILES_KV", "id": "5a08ab957e784b5bb033f7ffe3fc8d57" }]
 }

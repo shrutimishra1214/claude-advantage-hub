@@ -4,8 +4,9 @@ The paid files. **Never committed to git** (see `.gitignore`), and only served t
 `/api/download/[product]` (the books) and `/api/files/[id]` (everything else) after the
 site checks the buyer owns them.
 
-In production the same files are read from the `kaelis-voss-files` R2 bucket under the
-same paths. Upload them all with `scripts/upload-files.sh` (after `npx wrangler login`).
+In production the same files are read from the `kaelis-voss-files` Workers KV namespace
+(binding `PRODUCT_FILES_KV`) under the same paths. Upload them all with
+`node scripts/upload-files.mjs` (after `npx wrangler login`). KV holds up to 25 MiB per file.
 
 | Path | What | Unlocked by |
 |---|---|---|
