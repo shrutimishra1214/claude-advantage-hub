@@ -43,7 +43,7 @@ anyone else; they're sent to `/login`. Buyers get in three ways:
 - **At checkout**: paying signs them in on that device for a year.
 - **From the purchase email**: its member-area link works for a year, on any device.
 - **From `/login`**: they enter the email they paid with and get a sign-in link valid for 15 minutes. Every confirmed
-  purchase is saved to the buyer list in Upstash (`src/lib/buyers.ts`), so this needs `KV_REST_API_*` and `RESEND_API_KEY`.
+  purchase is saved to the buyer list in Upstash (`src/lib/buyers.ts`), so this needs `KV_REST_API_*` and `BREVO_API_KEY`.
 
 Until live payment keys are set, the member areas stay open to everyone in "Preview mode" for testing.
 
@@ -126,7 +126,7 @@ Settings → Variables and Secrets**), using **Secret** for keys and passwords. 
    - **Checkout → Checkout settings**: set the default payment link to `https://YOUR-DOMAIN/checkout` and approve your domain.
    - Set `PADDLE_ENVIRONMENT=production` when you switch to live keys.
    Paddle requires your terms to name it as reseller; `src/app/terms/page.tsx` already does.
-3. **Email**: create a Resend account, verify your domain, and set `RESEND_API_KEY` and `EMAIL_FROM`.
+3. **Email**: emails go through Brevo (the same `BREVO_API_KEY` as the reader sign-ups). In Brevo, verify `kaelisvoss.com` under Senders, Domains & Dedicated IPs, then set `EMAIL_FROM` to an address on it.
 4. **Files**: put the book PDFs in `private-files/` (see `private-files/README.md`); they are never committed. For the live
    site, upload the same files to the `kaelis-voss-files` R2 bucket and turn on the `PRODUCT_FILES` binding in `wrangler.jsonc`.
 5. **Content**: replace the TODOs in `src/lib/site.ts` (contact email, refund window) and the author bio in `src/app/page.tsx`. Have the policy pages reviewed.

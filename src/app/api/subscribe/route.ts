@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { brevoApiKey } from "@/lib/brevo";
 
 // Reader-list signups from the book companion pages (ported from the
 // claude-advantage-hub server function). Brevo lists: 6 The Claude Advantage,
@@ -15,15 +16,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, status: 400, reason: "invalid_input" }, { status: 400 });
   }
 
-  const apiKey = process.env.BREVO_API_KEY?.trim().replace(/^['"]|['"]$/g, "");
-  if (!apiKey) {
-    console.error("[Brevo] BREVO_API_KEY is not configured");
-    return NextResponse.json({ ok: false, status: 500, reason: "missing_api_key" });
-  }
-  if (!apiKey.startsWith("xkeysib-")) {
-    console.error("[Brevo] BREVO_API_KEY does not look like a Brevo v3 API key");
-    return NextResponse.json({ ok: false, status: 401, reason: "invalid_api_key" });
-  }
+  const apiKey = brevoApiKey();
+  if (!apiKey) return NextResponse.json({ ok: false, status: 500, reason: "missing_api_key" });
 
   const res = await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",

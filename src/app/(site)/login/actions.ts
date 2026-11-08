@@ -30,7 +30,7 @@ export async function requestSignIn(_: LoginState, form: FormData): Promise<Logi
     const product = landing.startsWith(lines.claude.members) ? lines.claude.name : lines.copilot.name;
     await sendLoginEmail({ to: email, name: buyer.name, link, product });
     // Without an email service in development, show the link instead.
-    const devLink = process.env.NODE_ENV !== "production" && !process.env.RESEND_API_KEY ? link : undefined;
+    const devLink = process.env.NODE_ENV !== "production" && !process.env.BREVO_API_KEY ? link : undefined;
     return { sent: true, email, devLink };
   } catch (error) {
     console.error("[login] Couldn't send a sign-in link", error);

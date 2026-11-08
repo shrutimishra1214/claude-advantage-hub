@@ -1,8 +1,9 @@
+import { sendBrevoEmail } from "./brevo";
 import { products, type ProductId } from "./products";
 import { libraryToken } from "./session";
 import { site } from "./site";
 
-/** Emails the buyer a link to their library. Skipped (logged) when Resend isn't configured. */
+/** Emails the buyer a link to their library. Logged instead when Brevo isn't configured. */
 export async function sendPurchaseEmail(opts: { to: string; name: string; items: ProductId[]; paymentId: string }) {
   const token = libraryToken({ email: opts.to, owned: opts.items });
   const link = `${site.url}/thank-you?t=${token}`;
@@ -21,36 +22,18 @@ export async function sendPurchaseEmail(opts: { to: string; name: string; items:
     <p style="color:#5B6083;font-size:13px">Payment ID: ${opts.paymentId}. Keep this email: the link above lets you download your files again.</p>
   </div>`;
 
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    console.info(`[email] RESEND_API_KEY not set; would email ${opts.to}: ${link}`);
-    return;
-  }
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-      // Payment providers may deliver the same webhook more than once.
-      "Idempotency-Key": `purchase-${opts.paymentId}`,
-    },
-    body: JSON.stringify({
-      from: process.env.EMAIL_FROM ?? `${site.name} <${site.contactEmail}>`,
-      to: [opts.to],
-      subject: `Your purchase from ${site.name}`,
-      html,
-    }),
+  const sent = await sendBrevoEmail({
+    to: opts.to,
+    subject: `Your purchase from ${site.name}`,
+    html,
+    // Payment providers may deliver the same webhook more than once.
+    onceKey: `purchase-${opts.paymentId}`,
   });
-  if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
+  if (!sent) console.info(`[email] Brevo not configured; would email ${opts.to}: ${link}`);
 }
 
-/** Emails a member a short-lived sign-in link from /login. Logged instead when Resend isn't configured. */
+/** Emails a member a short-lived sign-in link from /login. Logged instead when Brevo isn't configured. */
 export async function sendLoginEmail(opts: { to: string; name: string; link: string; product: string }) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    console.info(`[email] RESEND_API_KEY not set; sign-in link for ${opts.to}: ${opts.link}`);
-    return;
-  }
   const html = `
   <div style="font-family:Inter,Arial,sans-serif;max-width:520px;margin:auto;color:#0B1030">
     <h1 style="font-size:22px">Sign in, ${escapeHtml(opts.name.split(" ")[0] || "there")}</h1>
@@ -58,35 +41,15 @@ export async function sendLoginEmail(opts: { to: string; name: string; link: str
     <p><a href="${opts.link}" style="display:inline-block;background:#1F1D1A;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">Open my member area</a></p>
     <p style="color:#5B6083;font-size:13px">Didn't ask for this? You can ignore this email; nobody can sign in without the link.</p>
   </div>`;
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: process.env.EMAIL_FROM ?? `${site.name} <${site.contactEmail}>`,
-      to: [opts.to],
-      subject: `Your sign-in link for ${opts.product}`,
-      html,
-    }),
-  });
-  if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
+  const sent = await sendBrevoEmail({ to: opts.to, subject: `Your sign-in link for ${opts.product}`, html });
+  if (!sent) console.info(`[email] Brevo not configured; sign-in link for ${opts.to}: ${opts.link}`);
 }
 
-/** Tells the applicant their spot is reserved and notifies the owner. Skipped when Resend isn't configured. */
+/** Tells the applicant their spot is reserved and notifies the owner. Logged instead when Brevo isn't configured. */
 export async function sendEarlyReaderEmails(a: { name: string; email: string; role: string; usage: string; linkedin: string; spot: number }) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    console.info(`[email] RESEND_API_KEY not set; early reader spot ${a.spot} claimed by ${a.email}`);
-    return;
-  }
-  const from = process.env.EMAIL_FROM ?? `${site.name} <${site.contactEmail}>`;
-  const send = (to: string, subject: string, html: string, id: string) =>
-    fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "Idempotency-Key": id },
-      body: JSON.stringify({ from, to: [to], subject, html }),
-    }).then(async (res) => {
-      if (!res.ok) throw new Error(`Resend failed: ${res.status} ${await res.text()}`);
-    });
+  const send = async (to: string, subject: string, html: string, onceKey: string) => {
+    if (!(await sendBrevoEmail({ to, subject, html, onceKey }))) console.info(`[email] Brevo not configured; would email ${to}: ${subject}`);
+  };
 
   await send(
     a.email,

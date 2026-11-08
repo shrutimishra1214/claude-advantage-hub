@@ -14,7 +14,7 @@ const expected = [
   "PADDLE_PRICE_CLAUDE_BOOK",
   "KV_REST_API_URL",
   "KV_REST_API_TOKEN",
-  "RESEND_API_KEY",
+  "BREVO_API_KEY",
   "EMAIL_FROM",
   "ADMIN_PASSWORD",
 ];
