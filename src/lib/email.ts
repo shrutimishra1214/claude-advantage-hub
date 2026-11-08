@@ -6,7 +6,8 @@ import { site } from "./site";
 /** Emails the buyer a link to their library. Logged instead when Brevo isn't configured. */
 export async function sendPurchaseEmail(opts: { to: string; name: string; items: ProductId[]; paymentId: string }) {
   const token = libraryToken({ email: opts.to, owned: opts.items });
-  const link = `${site.url}/thank-you?t=${token}`;
+  // Through /members/enter, so the buyer's device stays signed in to their library.
+  const link = `${site.url}/members/enter?t=${token}&next=%2Flibrary`;
   const memberLine = opts.items.some((i) => i.startsWith("claude-")) ? "Open the Claude Advantage" : "Open the Copilot Advantage";
   const member = opts.items.some((i) => ["toolkit", "copilot-pro", "claude-system", "claude-operator"].includes(i))
     ? `<p><a href="${site.url}/members/enter?t=${token}" style="display:inline-block;background:#1F1D1A;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">${memberLine}</a></p>`
@@ -19,7 +20,7 @@ export async function sendPurchaseEmail(opts: { to: string; name: string; items:
     <ul>${list}</ul>
     ${member}
     <p><a href="${link}" style="display:inline-block;background:#0B1030;color:#fff;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:600">Open your library</a></p>
-    <p style="color:#5B6083;font-size:13px">Payment ID: ${opts.paymentId}. Keep this email: the link above lets you download your files again.</p>
+    <p style="color:#5B6083;font-size:13px">Payment ID: ${opts.paymentId}. Keep this email: the link above opens your library for a year. After that, sign in at ${site.url}/login.</p>
   </div>`;
 
   const sent = await sendBrevoEmail({
@@ -38,7 +39,7 @@ export async function sendLoginEmail(opts: { to: string; name: string; link: str
   <div style="font-family:Inter,Arial,sans-serif;max-width:520px;margin:auto;color:#0B1030">
     <h1 style="font-size:22px">Sign in, ${escapeHtml(opts.name.split(" ")[0] || "there")}</h1>
     <p>Here's your link to ${escapeHtml(opts.product)}. It works for the next 15 minutes and keeps you signed in on that device for a year.</p>
-    <p><a href="${opts.link}" style="display:inline-block;background:#1F1D1A;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">Open my member area</a></p>
+    <p><a href="${opts.link}" style="display:inline-block;background:#1F1D1A;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600">Sign me in</a></p>
     <p style="color:#5B6083;font-size:13px">Didn't ask for this? You can ignore this email; nobody can sign in without the link.</p>
   </div>`;
   const sent = await sendBrevoEmail({ to: opts.to, subject: `Your sign-in link for ${opts.product}`, html });

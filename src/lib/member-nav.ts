@@ -24,6 +24,7 @@ export const copilotGroups: NavGroup[] = [
   ] },
   { label: "Reference", links: [
     { href: "/copilot-advantage/members/cheat-sheets", icon: "printer", label: "Cheat Sheets" },
+    { href: "/library", icon: "printer", label: "Downloads" },
     { href: "/copilot-advantage/members/troubleshooting", icon: "gear", label: "Troubleshooting" },
     { href: "/copilot-advantage/members/glossary", icon: "notebook", label: "Glossary" },
   ] },
@@ -54,5 +55,6 @@ export const claudeGroups: NavGroup[] = [
   ] },
   { label: "Reference", links: [
     { href: `${C}/glossary`, icon: "notebook", label: "Glossary" },
+    { href: "/library", icon: "printer", label: "Downloads" },
   ] },
 ];

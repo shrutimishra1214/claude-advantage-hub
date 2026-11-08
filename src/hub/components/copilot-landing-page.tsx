@@ -10,19 +10,15 @@ import { downloadBonus } from "@/hub/lib/download";
 import { subscribeToBrevo } from "@/hub/lib/brevo";
 import { Button } from "@/hub/components/ui/button";
 
-export const AMAZON_URL = "https://www.amazon.com/dp/B0HJM9VP3G";
+// The book is sold on this site now: the former Amazon buttons go to its sales page.
+const BOOK_URL = "/copilot-advantage#pricing";
 
-function AmazonLink({ className }: { className: string }) {
+function BookLink({ className }: { className: string }) {
   return (
-    <a
-      href={AMAZON_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-    >
+    <Link href={BOOK_URL} className={className}>
       <Star className="h-4 w-4" />
-      Review on Amazon
-    </a>
+      Get the book
+    </Link>
   );
 }
 
@@ -58,7 +54,7 @@ export default function CopilotLandingPage() {
     }
     setDone(true);
     setLoading(false);
-    toast.success("You're in! Your resources are on the way.");
+    toast.success("You're in! Your playbook is ready to download.");
   };
 
   return (
@@ -74,12 +70,12 @@ export default function CopilotLandingPage() {
             </Link>
           </Button>
           <div className="flex items-center gap-2 md:gap-3">
-            <AmazonLink className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-sm transition hover:opacity-90" />
+            <BookLink className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-sm transition hover:opacity-90" />
             <a
               href="#claim"
               className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold shadow-sm transition hover:shadow-md"
             >
-              Claim Bonuses
+              Free Playbook
             </a>
           </div>
         </header>
@@ -89,15 +85,15 @@ export default function CopilotLandingPage() {
           <div>
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--brand-purple)" }} />
-              Free companion toolkit for readers
+              Free download
             </div>
             <h1 className="font-display text-4xl font-bold leading-[1.05] md:text-6xl">
-              Your <span className="text-gradient-brand">Copilot bonus vault</span> is ready.
+              Your free <span className="text-gradient-brand">Outlook Inbox-Zero Playbook</span>.
             </h1>
             <p className="mt-5 max-w-lg text-lg text-muted-foreground">
-              Thanks for grabbing <em>The Microsoft Copilot Advantage</em>. Drop your email
-              to instantly unlock every checklist, prompt library, and template that
-              pairs with the book.
+              60+ Copilot prompts for triage, replies and follow-through, with a daily
+              rhythm that keeps the inbox from refilling. From the makers of{" "}
+              <em>The Microsoft Copilot Advantage</em>. Drop your email and download it now.
             </p>
 
             <div id="claim" className="mt-8 scroll-mt-24">
@@ -106,8 +102,17 @@ export default function CopilotLandingPage() {
                   <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0" style={{ color: "var(--brand-green)" }} />
                   <div>
                     <p className="font-display font-semibold">You're on the list.</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Check your inbox in the next few minutes. Your six PDF resources are on the way. If you don't see them, check spam or promotions.
+                    <a
+                      href="/free/Outlook-Inbox-Zero-Playbook.pdf"
+                      download
+                      className="mt-3 inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white"
+                      style={{ backgroundImage: "var(--gradient-hero)" }}
+                    >
+                      <Download className="h-4 w-4" /> Download the playbook
+                    </a>
+                    <p className="mt-3 text-sm text-muted-foreground">
+                      PDF · 8 pages. The other five Copilot packs come with the{" "}
+                      <Link href={BOOK_URL} className="font-semibold text-foreground underline underline-offset-4">Complete system</Link>.
                     </p>
                   </div>
                 </div>
@@ -139,20 +144,20 @@ export default function CopilotLandingPage() {
                 className="mt-3 w-full rounded-xl px-6 py-3.5 text-sm font-semibold text-white shadow-glow transition hover:brightness-110 disabled:opacity-70"
                 style={{ backgroundImage: "var(--gradient-hero)" }}
               >
-                {loading ? "Sending..." : "Send me the free bonuses →"}
+                {loading ? "Sending..." : "Get the free playbook →"}
               </button>
               <p className="mt-3 text-xs text-muted-foreground">
-                No spam. Unsubscribe anytime. We'll email you when new Copilot resources drop.{" "}
-                <a href="#bonuses" className="underline underline-offset-4 transition hover:text-foreground">
-                  Or skip ahead to the files.
-                </a>
+                No spam. Unsubscribe anytime. Already bought?{" "}
+                <Link href="/library" className="underline underline-offset-4 transition hover:text-foreground">
+                  Open your library
+                </Link>
               </p>
               </form>
               )}
             </div>
 
             <div className="mt-6 flex flex-wrap gap-4 text-xs text-muted-foreground">
-              {["Instant access", "Lifetime updates", "PDF + editable templates"].map((t) => (
+              {["Instant download", "Printable PDF", "Free"].map((t) => (
                 <span key={t} className="inline-flex items-center gap-1.5">
                   <CheckCircle2 className="h-3.5 w-3.5" style={{ color: "var(--brand-green)" }} />
                   {t}
@@ -173,7 +178,7 @@ export default function CopilotLandingPage() {
                 className="w-full max-w-sm rotate-1 rounded-2xl shadow-glow ring-1 ring-black/5"
               />
             </div>
-            <AmazonLink className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold shadow-sm transition hover:shadow-md" />
+            <BookLink className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold shadow-sm transition hover:shadow-md" />
           </div>
         </section>
 
@@ -181,11 +186,11 @@ export default function CopilotLandingPage() {
         <section id="bonuses" className="mx-auto max-w-6xl px-6 pb-20">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-3xl font-bold md:text-4xl">
-              What's inside your <span className="text-gradient-brand">bonus vault</span>
+              The six <span className="text-gradient-brand">Copilot packs</span>
             </h2>
             <p className="mt-3 text-muted-foreground">
-              Six free companion resources that turn every chapter of the book into
-              real, applied results.
+              The Outlook playbook is free. All six come with the Complete system,
+              alongside the book.
             </p>
           </div>
 
@@ -205,13 +210,19 @@ export default function CopilotLandingPage() {
                 </div>
                 <h3 className="font-display text-lg font-semibold">{title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-                <button
-                  onClick={() => downloadBonus(bonus)}
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition hover:opacity-70"
-                >
-                  <Download className="h-4 w-4" />
-                  Download
-                </button>
+                {bonus.free ? (
+                  <button
+                    onClick={() => downloadBonus(bonus)}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition hover:opacity-70"
+                  >
+                    <Download className="h-4 w-4" />
+                    Download free
+                  </button>
+                ) : (
+                  <Link href={BOOK_URL} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition hover:text-foreground">
+                    Included in Complete →
+                  </Link>
+                )}
               </div>
               );
             })}
@@ -230,7 +241,7 @@ export default function CopilotLandingPage() {
             <p>© {new Date().getFullYear()} Kaelis Voss. AI that works. Results that matter.</p>
             <div className="flex items-center gap-4">
               <span>Companion resources for The Microsoft Copilot Advantage.</span>
-              <AmazonLink className="inline-flex items-center gap-1.5 font-semibold text-foreground transition hover:opacity-70" />
+              <BookLink className="inline-flex items-center gap-1.5 font-semibold text-foreground transition hover:opacity-70" />
             </div>
           </div>
         </footer>

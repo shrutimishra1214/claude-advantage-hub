@@ -13,6 +13,8 @@ export type Bonus = {
   desc: string;
   file: string;
   url: string;
+  /** Free on the companion pages. The rest come with the Complete system. */
+  free?: boolean;
 };
 
 export const bonuses: Bonus[] = [
@@ -22,7 +24,7 @@ export const bonuses: Bonus[] = [
     title: "50+ Copilot Prompts for Word",
     desc: "Ready-to-paste prompts to draft, summarize, and polish documents in seconds.",
     file: "50-Copilot-Prompts-for-Word.pdf",
-    url: "/copilot-bonuses/50-Copilot-Prompts-for-Word.pdf",
+    url: "/copilot-advantage#pricing", // in Complete
   },
   {
     icon: FileSpreadsheet,
@@ -30,7 +32,7 @@ export const bonuses: Bonus[] = [
     title: "Excel Formula & Analysis Cheatsheet",
     desc: "Turn raw data into forecasts, charts, and insights with one-line Copilot prompts.",
     file: "Excel-Formula-and-Analysis-Cheatsheet.pdf",
-    url: "/copilot-bonuses/Excel-Formula-and-Analysis-Cheatsheet.pdf",
+    url: "/copilot-advantage#pricing", // in Complete
   },
   {
     icon: Mail,
@@ -38,7 +40,8 @@ export const bonuses: Bonus[] = [
     title: "Outlook Inbox-Zero Playbook",
     desc: "Templates to tame email, draft replies, and stay ahead of your inbox every day.",
     file: "Outlook-Inbox-Zero-Playbook.pdf",
-    url: "/copilot-bonuses/Outlook-Inbox-Zero-Playbook.pdf",
+    url: "/free/Outlook-Inbox-Zero-Playbook.pdf",
+    free: true,
   },
   {
     icon: Presentation,
@@ -46,7 +49,7 @@ export const bonuses: Bonus[] = [
     title: "PowerPoint Storytelling Kit",
     desc: "Frameworks and prompt starters for stunning decks that actually land.",
     file: "PowerPoint-Storytelling-Kit.pdf",
-    url: "/copilot-bonuses/PowerPoint-Storytelling-Kit.pdf",
+    url: "/copilot-advantage#pricing", // in Complete
   },
   {
     icon: Users,
@@ -54,7 +57,7 @@ export const bonuses: Bonus[] = [
     title: "Teams Meeting Productivity Pack",
     desc: "Prompts for recaps, action items, and better collaboration, automatically.",
     file: "Teams-Meeting-Productivity-Pack.pdf",
-    url: "/copilot-bonuses/Teams-Meeting-Productivity-Pack.pdf",
+    url: "/copilot-advantage#pricing", // in Complete
   },
   {
     icon: Zap,
@@ -62,6 +65,6 @@ export const bonuses: Bonus[] = [
     title: "Automation Checklist",
     desc: "Step-by-step system to turn repetitive tasks into Copilot-powered workflows.",
     file: "The-Automation-Checklist.pdf",
-    url: "/copilot-bonuses/The-Automation-Checklist.pdf",
+    url: "/copilot-advantage#pricing", // in Complete
   },
 ];

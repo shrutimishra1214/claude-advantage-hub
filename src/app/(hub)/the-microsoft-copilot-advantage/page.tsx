@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import CopilotLandingPage from "@/hub/components/copilot-landing-page";
 
-const title = "The Microsoft Copilot Advantage | Free Reader Bonus Pack";
-const description = "Bought The Microsoft Copilot Advantage? Claim the free bonus pack: prompt vault, 90-day roadmap, workbooks, playbooks and framework cards.";
+const title = "The Microsoft Copilot Advantage | Free Outlook Playbook";
+const description = "Download the free Outlook Inbox-Zero Playbook: 60+ Microsoft Copilot prompts for triage, replies and follow-through, from The Microsoft Copilot Advantage.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

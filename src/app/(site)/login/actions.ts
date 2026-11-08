@@ -3,7 +3,7 @@
 import { allowLoginEmail, getBuyer } from "@/lib/buyers";
 import { sendLoginEmail } from "@/lib/email";
 import { lines, type LineId } from "@/lib/lines";
-import { memberLanding, ownsMemberProduct } from "@/lib/member";
+import { memberLanding } from "@/lib/member";
 import { loginToken } from "@/lib/session";
 import { site } from "@/lib/site";
 
@@ -11,7 +11,7 @@ export type LoginState = { sent: boolean; email?: string; error?: string; devLin
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Emails a sign-in link to buyers of a member product. The reply is the same
+// Emails a sign-in link to any buyer. The reply is the same
 // whether or not the email has bought anything, so the form can't be used to
 // find out who the customers are.
 export async function requestSignIn(_: LoginState, form: FormData): Promise<LoginState> {
@@ -23,11 +23,17 @@ export async function requestSignIn(_: LoginState, form: FormData): Promise<Logi
   try {
     if (!(await allowLoginEmail(email))) return { sent: true, email };
     const buyer = await getBuyer(email);
-    if (!buyer || !ownsMemberProduct(buyer.owned)) return { sent: true, email };
+    if (!buyer || buyer.owned.length === 0) return { sent: true, email };
 
     const landing = memberLanding(buyer.owned, next || lines[line].members);
     const link = `${site.url}/members/enter?t=${loginToken({ email, owned: buyer.owned })}&next=${encodeURIComponent(landing)}`;
-    const product = landing.startsWith(lines.claude.members) ? lines.claude.name : lines.copilot.name;
+    const product = landing.startsWith(lines.claude.members)
+      ? lines.claude.name
+      : landing.startsWith(lines.copilot.members)
+        ? lines.copilot.name
+        : landing.startsWith("/claude-advantage/operator-toolkit")
+          ? "The Claude Operator Toolkit"
+          : "your Kaelis Voss library";
     await sendLoginEmail({ to: email, name: buyer.name, link, product });
     // Without an email service in development, show the link instead.
     const devLink = process.env.NODE_ENV !== "production" && !process.env.BREVO_API_KEY ? link : undefined;

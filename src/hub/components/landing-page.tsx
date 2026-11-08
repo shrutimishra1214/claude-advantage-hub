@@ -6,10 +6,13 @@ import { subscribeToBrevo } from "@/hub/lib/brevo";
 import { Button } from "@/hub/components/ui/button";
 import { Input } from "@/hub/components/ui/input";
 import { toast, Toaster } from "sonner";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ExternalLink, ClipboardList, Compass, Layers } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Sparkles, Zap, Target, Mail, Star, Lock, Quote, ClipboardList, Compass, Layers } from "lucide-react";
 import bookCover from "@/hub/assets/book-cover.jpeg";
+import { freeSamples } from "@/lib/files";
 
-const AMAZON_LISTING_URL = "https://www.amazon.com/dp/B0GZ5Z49D1";
+// The book is sold on this site now: every former Amazon link goes to its sales page.
+const BOOK_URL = "/claude-advantage#pricing";
+const FREE = freeSamples.claude;
 
 const BOOK = {
   title: "The Claude Advantage",
@@ -20,12 +23,12 @@ const BOOK = {
 };
 
 const bonuses = [
-  { icon: ClipboardList, title: "AI Policy and Governance Starter Toolkit", desc: "Templates & risk checklists to build safe, compliant AI usage policies for teams and clients." },
-  { icon: Target, title: "90-Day Roadmap", desc: "Week-by-week actions to go from beginner to fluent Claude power user." },
-  { icon: BookOpen, title: "Phase Wise Workbook", desc: "Structured exercises and worksheets for each phase of your AI journey." },
-  { icon: Compass, title: "7-Day Discovery Playbook", desc: "A fast-track guide to uncover your highest-leverage AI use cases in one week." },
-  { icon: Zap, title: "Master Prompt Vault", desc: "Copy-paste prompts for emails, reports, proposals, research and strategic thinking." },
-  { icon: Layers, title: "Chapter Framework Cards", desc: "Quick-reference cards that distill every chapter into actionable frameworks." },
+  { icon: Zap, title: "Master Prompt Vault", desc: "500 copy-paste prompts across 14 business functions." },
+  { icon: Target, title: "90-Day Roadmap", desc: "Three phase workbooks: Foundation, Integration and Mastery, week by week." },
+  { icon: Compass, title: "7-Day Discovery Playbook", desc: "One idea a day, with prompts and A/B tests, from first chat to confident user." },
+  { icon: BookOpen, title: "Workflow Template & Implementation Guide", desc: "Turn a recurring task into a documented, repeatable Claude workflow." },
+  { icon: ClipboardList, title: "AI Governance Starter Kit", desc: "Usage policy, RACI, vendor scorecard, risk map and incident response, one page each." },
+  { icon: Layers, title: "Framework Flashcards", desc: "The book's ten frameworks, one printable card each. Free above." },
 ];
 
 const testimonials = [
@@ -83,7 +86,7 @@ export default function LandingPage() {
     }
     setLoading(false);
     setDone(true);
-    toast.success("You're in! Resources are on the way.");
+    toast.success("You're in! Your flashcards are ready to download.");
   }
 
   return (
@@ -104,19 +107,17 @@ export default function LandingPage() {
             </Link>
           </Button>
           <div className="hidden items-center gap-3 sm:flex">
-            <a
-              href={AMAZON_LISTING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={BOOK_URL}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-foreground/80 backdrop-blur transition-colors hover:border-gold/50 hover:text-foreground"
             >
-              View on Amazon <ExternalLink className="h-3 w-3" />
-            </a>
+              Get the book <ArrowRight className="h-3 w-3" />
+            </Link>
             <a
               href="#claim"
               className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-card/60 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-gold backdrop-blur transition-colors hover:border-gold/50"
             >
-              Claim bonus pack <ArrowRight className="h-3 w-3" />
+              Free flashcards <ArrowRight className="h-3 w-3" />
             </a>
           </div>
         </header>
@@ -125,15 +126,15 @@ export default function LandingPage() {
         <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-gold backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5" /> For readers of the book
+              <Sparkles className="h-3.5 w-3.5" /> Free download
             </div>
 
             <h1 className="font-display text-5xl uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
-              Your free
+              Ten frameworks.
               <br />
-              <span className="text-gradient-gold">Claude Advantage</span>
+              <span className="text-gradient-gold">Ten flashcards.</span>
               <br />
-              bonus pack
+              Free.
             </h1>
 
             <p className="mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
@@ -141,9 +142,8 @@ export default function LandingPage() {
             </p>
 
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              {BOOK.hook} Bought the book? Drop your email below and I'll send the
-              full resource library straight to your inbox. 500+ prompts,
-              the 90-day roadmap, role-specific playbooks, and the companion glossary.
+              {BOOK.hook} Start with the ten frameworks from <em>The Claude Advantage</em>,
+              one printable card each. Drop your email and download them now.
             </p>
 
             {/* Form / success */}
@@ -153,9 +153,12 @@ export default function LandingPage() {
                   <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-gold" />
                   <div>
                     <p className="font-semibold text-foreground">You're on the list.</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Check your inbox in the next few minutes. Your resources are
-                      on the way. If you don't see anything, peek in spam or promotions.
+                    <a href={FREE.href} download className="mt-3 inline-flex items-center gap-2 rounded-xl bg-gradient-gold px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-gold">
+                      Download the Framework Flashcards <ArrowRight className="h-4 w-4" />
+                    </a>
+                    <p className="mt-3 text-sm text-muted-foreground">
+                      {FREE.meta}. The full bonus pack comes with the book.{" "}
+                      <Link href={BOOK_URL} className="font-semibold text-gold underline underline-offset-4">See what's included</Link>
                     </p>
                   </div>
                 </div>
@@ -185,13 +188,14 @@ export default function LandingPage() {
                   >
                     {loading ? "Sending…" : (
                       <>
-                        Send me the free resources
+                        Get the free flashcards
                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </>
                     )}
                   </Button>
                   <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                    <Lock className="h-3 w-3" /> No spam. One email with your full bonus pack.
+                    <Lock className="h-3 w-3" /> No spam. Unsubscribe anytime. Bought the book?{" "}
+                    <Link href="/library" className="underline underline-offset-4 hover:text-foreground">Open your library</Link>
                   </div>
                 </form>
               )}
@@ -230,27 +234,20 @@ export default function LandingPage() {
           <div className="relative flex justify-center lg:justify-end">
             <div className="absolute inset-0 -z-10 bg-gradient-gold opacity-20 blur-3xl" />
             <div className="relative">
-              <a
-                href={AMAZON_LISTING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block transition-transform hover:scale-[1.01]"
-              >
+              <Link href={BOOK_URL} className="block transition-transform hover:scale-[1.01]">
                 <img
                   src={bookCover.src}
                   alt={`${BOOK.title} by ${BOOK.author} - book cover`}
                   className="animate-float w-full max-w-md rounded-md shadow-cover"
                   loading="eager"
                 />
-              </a>
-              <a
-                href={AMAZON_LISTING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              </Link>
+              <Link
+                href={BOOK_URL}
                 className="absolute -bottom-4 -right-4 hidden rotate-3 items-center gap-1.5 rounded-lg border border-gold/40 bg-card/90 px-3 py-2 text-xs uppercase tracking-[0.2em] text-gold shadow-gold backdrop-blur transition-colors hover:border-gold sm:inline-flex"
               >
-                On Amazon <ExternalLink className="h-3 w-3" />
-              </a>
+                Get the book <ArrowRight className="h-3 w-3" />
+              </Link>
             </div>
           </div>
         </section>
@@ -259,12 +256,12 @@ export default function LandingPage() {
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="mb-10 max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-              What's inside the bonus pack
+              Comes with the book
             </p>
             <h2 className="mt-3 font-display text-4xl uppercase sm:text-5xl">
-              Everything you need
+              The full
               <br />
-              to <span className="text-gradient-gold">10x your output</span>.
+              <span className="text-gradient-gold">reader bonus pack</span>.
             </h2>
           </div>
 
@@ -281,6 +278,12 @@ export default function LandingPage() {
                 <p className="mt-2 text-sm text-muted-foreground">{b.desc}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Link href={BOOK_URL} className="inline-flex items-center gap-2 rounded-full bg-gradient-gold px-6 py-3 text-sm font-semibold text-primary-foreground shadow-gold">
+              Get the book and the bonus pack <ArrowRight className="h-4 w-4" />
+            </Link>
+            <span className="text-sm text-muted-foreground">With <em>The Claude Operator</em> and its Operator Toolkit, in one purchase.</span>
           </div>
         </section>
 
@@ -315,11 +318,11 @@ export default function LandingPage() {
         <section className="mx-auto max-w-4xl px-6 py-20 text-center">
           <Mail className="mx-auto h-10 w-10 text-gold" />
           <h2 className="mt-4 font-display text-4xl uppercase sm:text-5xl">
-            Ready to claim your <span className="text-gradient-gold">edge</span>?
+            Start with the <span className="text-gradient-gold">frameworks</span>.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Scroll up, drop your email, and the entire library lands in your inbox, free
-            for every reader of The Claude Advantage.
+            Scroll up, drop your email, and download the ten Framework Flashcards free.
+            The full bonus pack comes with the book.
           </p>
           <a
             href="#claim"
@@ -333,14 +336,12 @@ export default function LandingPage() {
           <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
             © {new Date().getFullYear()} {BOOK.author} · {BOOK.title}
           </p>
-          <a
-            href={AMAZON_LISTING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={BOOK_URL}
             className="mt-3 inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.2em] text-gold/80 transition-colors hover:text-gold"
           >
-            Amazon listing · B0GZ5Z49D1 <ExternalLink className="h-3 w-3" />
-          </a>
+            Get the book <ArrowRight className="h-3 w-3" />
+          </Link>
         </footer>
       </div>
     </div>

@@ -35,6 +35,7 @@ export const tierCopy: Record<Exclude<TierId, "both-complete" | "both-pro">, Tie
     intro: "The Book, plus the full implementation system:",
     bullets: [
       "Complete Microsoft Copilot guide",
+      "Six Copilot packs for Word, Excel, Outlook, PowerPoint, Teams and automation",
       "250+ professional prompt recipes",
       "100 repeatable Copilot workflows",
       "Microsoft 365 template vault",
@@ -75,8 +76,9 @@ export const tierCopy: Record<Exclude<TierId, "both-complete" | "both-pro">, Tie
     bullets: [
       "The Claude Advantage: the complete guide to working with Claude",
       "The Claude Operator: advanced workflows with Claude Code, design, Excel and PowerPoint",
-      "Prompting, research, writing and analysis",
-      "Practical, worked examples",
+      "The Operator Toolkit: 32 ready-to-upload skills, role packs, templates and workbooks",
+      "Reader bonus pack: a 500-prompt vault, the 90-day roadmap workbooks and the 7-day playbook",
+      "AI governance starter kit and framework flashcards",
     ],
   },
   "claude-complete": {
@@ -85,6 +87,7 @@ export const tierCopy: Record<Exclude<TierId, "both-complete" | "both-pro">, Tie
     shown: 10,
     bullets: [
       "Complete Claude AI guide",
+      "The Complete Claude Features Handbook and Claude Command Cards",
       "250+ advanced prompt recipes",
       "100+ advanced workflows",
       "Research System",

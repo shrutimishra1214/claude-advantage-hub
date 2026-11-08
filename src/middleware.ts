@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-// Keeps the member areas closed to anyone who hasn't bought a member product.
+// Keeps the member areas and the Operator Toolkit closed to anyone who hasn't bought them.
 // It runs before any member page is rendered, so nothing from those pages is
 // sent to visitors without access; they go to /login instead. It checks the
 // same signed cookies as src/lib/member.ts, with Web Crypto so it also runs on
@@ -9,6 +9,8 @@ import { NextResponse, type NextRequest } from "next/server";
 const areas = [
   { line: "copilot", prefix: "/copilot-advantage/members", unlocks: ["toolkit", "copilot-pro"] },
   { line: "claude", prefix: "/claude-advantage/members", unlocks: ["claude-system", "claude-operator"] },
+  // The Operator Toolkit comes with The Claude Operator, inside every Claude tier.
+  { line: "claude", prefix: "/claude-advantage/operator-toolkit", unlocks: ["claude-operator-book", "claude-operator"] },
 ] as const;
 
 type Signed = { owned?: string[]; exp?: number };
@@ -57,4 +59,4 @@ export async function middleware(req: NextRequest) {
   return NextResponse.redirect(login);
 }
 
-export const config = { matcher: ["/copilot-advantage/members/:path*", "/claude-advantage/members/:path*"] };
+export const config = { matcher: ["/copilot-advantage/members/:path*", "/claude-advantage/members/:path*", "/claude-advantage/operator-toolkit/:path*"] };

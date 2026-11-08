@@ -49,4 +49,9 @@ export const operatorBonuses = [
     desc: "Everything in one ZIP, including the README and all original folders.",
     file: "Operator-Toolkit.zip",
   },
-].map((bonus) => ({ ...bonus, url: `/operator-toolkit/${bonus.file}` }));
+].map((bonus) => {
+  // The posters are a free sample. Everything else comes with The Claude Operator,
+  // inside every Claude tier, and is downloaded from the buyer's library.
+  const free = bonus.file === "posters.zip";
+  return { ...bonus, free, url: free ? "/free/Operator-Posters.zip" : "/claude-advantage#pricing" };
+});

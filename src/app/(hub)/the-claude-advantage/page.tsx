@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import LandingPage from "@/hub/components/landing-page";
 
-const title = "The Claude Advantage | Free Reader Bonus Pack";
-const description = "Claim the free companion resources for The Claude Advantage by Kaelis Voss.";
+const title = "The Claude Advantage | Free Framework Flashcards";
+const description = "Download the ten frameworks from The Claude Advantage by Kaelis Voss as free printable flashcards. The full reader bonus pack comes with the book.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

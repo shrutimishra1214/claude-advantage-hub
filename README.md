@@ -19,7 +19,7 @@ their own design and live in `src/app/(hub)`, with their components in `src/hub`
 | Page | Brevo list |
 |---|---|
 | `/the-claude-advantage` | 6 |
-| `/the-microsoft-copilot-advantage` (+ `/resources`, the six bonus PDFs in `public/copilot-bonuses`) | 7 |
+| `/the-microsoft-copilot-advantage` (+ `/resources`; the free Outlook playbook in `public/free`, the other packs in Complete) | 7 |
 | `/mastering-Claude-AI` (+ `/resources`, the Operator toolkit in `public/operator-toolkit`) | 8 |
 
 Sign-ups go through `/api/subscribe` and need `BREVO_API_KEY`. These pages use Tailwind v4, built separately from the main

@@ -21,11 +21,11 @@ export default function CopilotResources() {
         <section className="mx-auto max-w-6xl px-6 pb-20 pt-4">
           <div className="mx-auto max-w-2xl text-center">
             <h1 className="font-display text-3xl font-bold md:text-5xl">
-              The full <span className="text-gradient-brand">bonus library</span>
+              The <span className="text-gradient-brand">Copilot packs</span>
             </h1>
             <p className="mt-4 text-muted-foreground">
-              Every companion resource for <em>The Microsoft Copilot Advantage</em>,
-              free to download. No sign-up needed.
+              Six practical packs for <em>The Microsoft Copilot Advantage</em>. The Outlook
+              playbook is free. All six come with the Complete system.
             </p>
           </div>
 
@@ -45,22 +45,28 @@ export default function CopilotResources() {
                   </div>
                   <h2 className="font-display text-lg font-semibold">{bonus.title}</h2>
                   <p className="mt-2 text-sm text-muted-foreground">{bonus.desc}</p>
-                  <button
-                    onClick={() => downloadBonus(bonus)}
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition hover:opacity-70"
-                  >
-                    <Download className="h-4 w-4" />
-                    Download
-                  </button>
+                  {bonus.free ? (
+                    <button
+                      onClick={() => downloadBonus(bonus)}
+                      className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition hover:opacity-70"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download free
+                    </button>
+                  ) : (
+                    <Link href="/copilot-advantage#pricing" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition hover:text-foreground">
+                      Included in Complete →
+                    </Link>
+                  )}
                 </div>
               );
             })}
           </div>
 
           <p className="mx-auto mt-12 max-w-xl text-center text-sm text-muted-foreground">
-            Want new Copilot resources as they're released?{" "}
-            <Link href="/the-microsoft-copilot-advantage#claim" className="font-semibold text-foreground underline underline-offset-4">
-              Join the reader list
+            Already bought?{" "}
+            <Link href="/library" className="font-semibold text-foreground underline underline-offset-4">
+              Open your library
             </Link>
             .
           </p>

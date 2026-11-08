@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import CopilotResources from "@/hub/components/copilot-resources";
 
-const title = "Bonus Resources | The Microsoft Copilot Advantage";
-const description = "Download every free companion resource for The Microsoft Copilot Advantage: prompt libraries, cheatsheets, playbooks and checklists.";
+const title = "Copilot Packs | The Microsoft Copilot Advantage";
+const description = "Six Microsoft Copilot packs for Word, Excel, Outlook, PowerPoint, Teams and automation. The Outlook playbook is free; all six come with the Complete system.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

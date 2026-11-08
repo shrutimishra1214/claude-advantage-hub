@@ -9,7 +9,8 @@ import { Toaster } from "@/hub/components/ui/sonner";
 import { subscribeToBrevo } from "@/hub/lib/brevo";
 import { operatorBonuses } from "@/hub/lib/operator-bonuses";
 
-const amazonUrl = "https://www.amazon.com/dp/B0HLTJ9LZC";
+// The book is sold on this site now: the former Amazon links go to its sales page.
+const bookUrl = "/claude-advantage#pricing";
 const topics = [
   { icon: Users, title: "Cowork", description: "Think, plan, and execute together." },
   { icon: Code2, title: "Claude Code", description: "Build and iterate faster." },
@@ -66,14 +67,14 @@ export default function ClaudeOperatorPage() {
             <p className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">A practical, step-by-step guide to working with Claude across Claude Code, design, Cowork, Excel, PowerPoint, and more.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild className="h-11 bg-accent px-5 text-accent-foreground hover:bg-accent/90">
-                <a href="#claim">Get the free toolkit <ArrowRight /></a>
+                <a href="#claim">Get the free posters <ArrowRight /></a>
               </Button>
               <Button asChild variant="outline" className="h-11 border-border">
-                <a href={amazonUrl} target="_blank" rel="noopener noreferrer"><Star /> View on Amazon</a>
+                <Link href={bookUrl}><Star /> Get the book</Link>
               </Button>
             </div>
           </div>
-          <a href={amazonUrl} target="_blank" rel="noopener noreferrer" aria-label="View The Claude Operator on Amazon" className="mx-auto block w-full max-w-[390px] md:mr-0">
+          <a href={bookUrl} aria-label="Get The Claude Operator" className="mx-auto block w-full max-w-[390px] md:mr-0">
             <img src="/claude-operator-cover.jpg" alt="The Claude Operator book cover by Kaelis Voss" className="block h-auto w-full shadow-cover" loading="eager" />
           </a>
         </section>
@@ -104,37 +105,41 @@ export default function ClaudeOperatorPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="flex items-center gap-2 text-accent"><BookOpen className="h-5 w-5" /><span className="text-xs font-semibold uppercase tracking-widest">Companion resources</span></div>
             <h2 className="mt-4 font-serif text-4xl sm:text-5xl">The Operator toolkit.</h2>
-            <p className="mt-4 max-w-2xl text-pretty text-muted-foreground">Practical resources to help you put the book to work. Join the reader list below to get started.</p>
+            <p className="mt-4 max-w-2xl text-pretty text-muted-foreground">Everything the book refers to: 32 skills, role packs, 50 workflows, templates, workbooks and practice files. The posters are free. The full toolkit comes with the book.</p>
 
             <div id="claim" className="mt-12 max-w-xl scroll-mt-24 border-t-2 border-accent pt-6">
               {done ? (
                 <div role="status" className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-accent" />
-                  <div><h3 className="font-serif text-2xl">You're on the list.</h3><p className="mt-2 text-sm text-muted-foreground">Your toolkit is ready to download below. Watch your inbox for future Claude Operator resources.</p></div>
+                  <div><h3 className="font-serif text-2xl">You're on the list.</h3><p className="mt-2 text-sm text-muted-foreground">Your posters are ready.</p><Button asChild className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90"><a href="/free/Operator-Posters.zip" download><Download /> Download the posters</a></Button></div>
                 </div>
               ) : (
                 <form onSubmit={onSubmit}>
-                  <h3 className="font-serif text-2xl">Get the free bonuses</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">Enter your email to join the reader list and explore the companion resources.</p>
+                  <h3 className="font-serif text-2xl">Get the free posters</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">The Operator Loop and the Three Questions, one printable page each. Enter your email to download them.</p>
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <label className="text-sm font-medium">First name <span className="font-normal text-muted-foreground">(optional)</span><input type="text" autoComplete="given-name" maxLength={100} value={name} onChange={(event) => setName(event.target.value)} className="mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
                     <label className="text-sm font-medium">Email address<input type="email" autoComplete="email" required maxLength={254} value={email} onChange={(event) => setEmail(event.target.value)} className="mt-2 h-11 w-full rounded-md border border-input bg-background px-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
                   </div>
-                  <Button type="submit" disabled={loading} className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90">{loading ? "Sending..." : "Send me the free bonuses"} <ArrowRight /></Button>
-                  <p className="mt-3 text-xs text-muted-foreground">No spam. Unsubscribe anytime. <a href="#downloads" className="underline underline-offset-4 hover:text-foreground">Or skip ahead to the files.</a></p>
+                  <Button type="submit" disabled={loading} className="mt-4 bg-accent text-accent-foreground hover:bg-accent/90">{loading ? "Sending..." : "Get the free posters"} <ArrowRight /></Button>
+                  <p className="mt-3 text-xs text-muted-foreground">No spam. Unsubscribe anytime. Bought the book? <Link href="/claude-advantage/operator-toolkit" className="underline underline-offset-4 hover:text-foreground">Open your toolkit</Link></p>
                 </form>
               )}
             </div>
 
             <div id="downloads" className="mt-14 scroll-mt-8 grid gap-x-10 sm:grid-cols-2">
-              {operatorBonuses.filter((bonus) => bonus.file !== "Operator-Toolkit.zip").map(({ icon: Icon, title, desc, url, file }, index) => (
+              {operatorBonuses.filter((bonus) => bonus.file !== "Operator-Toolkit.zip").map(({ icon: Icon, title, desc, url, file, free }, index) => (
                 <div key={title} className="flex gap-5 border-t border-border py-6">
                   <span className="min-w-7 pt-1 text-xs font-semibold text-accent">{String(index + 1).padStart(2, "0")}</span>
                   <div className="min-w-0">
                     <Icon className="mb-3 h-5 w-5 text-accent" strokeWidth={1.6} />
                     <h3 className="font-serif text-xl">{title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
-                    <Button asChild variant="link" className="mt-3 h-auto justify-start px-0 text-accent"><a href={url} download={file}><Download /> Download</a></Button>
+                    {free ? (
+                      <Button asChild variant="link" className="mt-3 h-auto justify-start px-0 text-accent"><a href={url} download={file}><Download /> Download free</a></Button>
+                    ) : (
+                      <Button asChild variant="link" className="mt-3 h-auto justify-start px-0 text-muted-foreground hover:text-foreground"><Link href={url}>Included with the book <ArrowRight /></Link></Button>
+                    )}
                   </div>
                 </div>
               ))}

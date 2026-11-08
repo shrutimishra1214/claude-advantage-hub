@@ -4,8 +4,9 @@ import { isTestMode, type ProductId } from "./products";
 import { getSession } from "./session";
 import { sign, verify } from "./signing";
 
-// Buyers of a member product get a year-long cookie for the member area, set
-// when they pay or when they open the link in their purchase email.
+// Every buyer gets a year-long cookie listing what they own, set when they pay,
+// open the link in their purchase email or sign in. It opens their library, the
+// Operator Toolkit for Claude Book buyers and, for member products, the member areas.
 export type Member = { email: string; name: string; owned: ProductId[]; preview: boolean };
 
 const COOKIE = "kv_member";
@@ -26,7 +27,7 @@ export async function setMember(m: { email: string; name: string; owned: Product
   const jar = await cookies();
   const prev = verify<{ email: string; owned?: ProductId[] }>(jar.get(COOKIE)?.value);
   const carried = prev && prev.email === m.email ? prev.owned ?? ["toolkit"] : [];
-  const owned = Array.from(new Set([...carried, ...m.owned])).filter((p) => memberProducts.includes(p));
+  const owned = Array.from(new Set([...carried, ...m.owned]));
   jar.set(COOKIE, sign({ email: m.email, name: m.name, owned }, TTL), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -63,9 +64,24 @@ export async function getSignedInBuyer(): Promise<{ email: string } | null> {
   return session?.customer.email ? { email: session.customer.email } : null;
 }
 
-/** Where a member goes after signing in: `next` when it's inside an area they own, else the first area they own. */
+/** Pages that open for owners of one of these products (besides the member areas). */
+export const readerAreas = [{ prefix: "/claude-advantage/operator-toolkit", unlocks: ["claude-operator-book", "claude-operator"] as ProductId[] }];
+
+/** Where a buyer goes after signing in: `next` when they own it, else their first member area, else their library. */
 export function memberLanding(owned: ProductId[], next?: string | null): string {
+  const inside = (prefix: string) => !!next && (next === prefix || next.startsWith(`${prefix}/`) || next.startsWith(`${prefix}#`));
   const open = (Object.keys(linesUnlockedBy) as LineId[]).filter((line) => owned.some((p) => linesUnlockedBy[line].includes(p)));
-  const target = next && open.find((line) => next === lines[line].members || next.startsWith(`${lines[line].members}/`));
-  return target ? next! : lines[open[0] ?? "copilot"].members;
+  if (open.some((line) => inside(lines[line].members))) return next!;
+  if (readerAreas.some((a) => inside(a.prefix) && owned.some((p) => a.unlocks.includes(p)))) return next!;
+  if (next === "/library") return next;
+  return open[0] ? lines[open[0]].members : "/library";
+}
+
+/** Everything this device's buyer owns: from the year-long cookie and the checkout session. */
+export async function ownedOnThisDevice(): Promise<{ email: string; owned: ProductId[] } | null> {
+  const saved = verify<{ email: string; owned?: ProductId[] }>((await cookies()).get(COOKIE)?.value);
+  const session = await getSession();
+  const owned = Array.from(new Set([...(saved ? saved.owned ?? ["toolkit"] : []), ...(session?.owned ?? [])]));
+  const email = saved?.email || session?.customer.email || "";
+  return owned.length ? { email, owned } : null;
 }

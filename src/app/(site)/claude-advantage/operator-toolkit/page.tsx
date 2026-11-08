@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BuyButton } from "@/components/BuyButton";
+import { Icon } from "@/components/icons";
 import { Ebook } from "@/components/Mockups";
 import { Checklist, OperatorScaleQuiz, SkillActions } from "@/components/members/ClaudeMembers";
 import { MemberLineProvider } from "@/components/members/MemberLine";
+import { filesFor } from "@/lib/files";
 import { Shell } from "@/components/Shell";
 import { nextMove, operatorCheck, operatorLoop, operatorPlan, operatorScale, opSkills, opWorkflows, riskTiers } from "@/lib/claude/operator";
 
-// The address printed in The Claude Operator. Readers get the Operator Toolkit, free.
+// The address printed in The Claude Operator. It comes with the book (every Claude tier):
+// src/middleware.ts keeps it closed to anyone else, who is sent to sign in.
 export const metadata: Metadata = {
   title: { absolute: "The Claude Operator Toolkit | Kaelis Voss" },
   description: "The companion toolkit for The Claude Operator: the Skills Library, 25 ready-to-run workflows, the Operator Scale and the 30-Day Operator Plan.",
   alternates: { canonical: "/claude-advantage/operator-toolkit" },
+  robots: { index: false, follow: false },
 };
 
 const sections = [
+  ["downloads", "Downloads"],
   ["skills", "Skills Library"],
   ["workflows", "25 Workflows"],
   ["loop", "Operator Loop & Check"],
@@ -45,7 +50,30 @@ export default function OperatorToolkit() {
         </section>
 
         <div className="container max-w-5xl py-14">
-          <section id="skills" className="scroll-mt-20">
+          <section id="downloads" className="scroll-mt-20">
+            <h2 className="section-title !text-3xl md:!text-4xl">Downloads</h2>
+            <p className="section-lead">Every file the book refers to. Start with the complete toolkit, or take just the part you need.</p>
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+              {filesFor("claude-operator-book").map((f, i) => (
+                <li key={f.id} className={`flex items-start gap-4 rounded-xl border bg-white p-5 ${i === 0 ? "border-2 border-accent sm:col-span-2" : "border-line"}`}>
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-line bg-paper text-[10px] font-bold uppercase tracking-wide text-ink-muted">
+                    {f.key.endsWith(".zip") ? "ZIP" : "PDF"}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-lg leading-snug">{f.title}</h3>
+                    <p className="mt-1 text-sm leading-snug text-ink-muted">{f.desc}</p>
+                    <p className="mt-1 text-xs font-semibold text-ink-muted">{f.meta}</p>
+                  </div>
+                  <a href={`/api/files/${f.id}`} aria-label={`Download ${f.title}`} className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${i === 0 ? "bg-ink text-white" : "border border-line hover:border-ink/30"}`}>
+                    <Icon.download className="h-4 w-4" /> <span className="hidden sm:inline">Download</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm text-ink-muted">All your other books and files are in <Link href="/library" className="font-semibold text-accent">your library</Link>.</p>
+          </section>
+
+          <section id="skills" className="mt-20 scroll-mt-20">
             <h2 className="section-title !text-3xl md:!text-4xl">The Skills Library</h2>
             <p className="section-lead">Download a SKILL.md, put it in its own folder, zip the folder and upload it in Claude&apos;s Skills settings. Test every skill on real inputs before you rely on it.</p>
             <ul className="mt-8 grid gap-3">

@@ -1,6 +1,6 @@
 import { recordPurchase } from "./buyers";
 import { firstStepFor, isStepId, resolveStep, stepUrl, steps } from "./funnel";
-import { ownsMemberProduct, setMember } from "./member";
+import { setMember } from "./member";
 import type { Currency, ProductId } from "./products";
 import { getSession, setSession, type Customer } from "./session";
 
@@ -15,7 +15,7 @@ export async function completePurchase(p: { customer: Customer; currency: Curren
   await setSession({ customer: p.customer, currency: p.currency, owned });
   // The webhook records it too; this covers the buyer who's already back on the site.
   await recordPurchase({ email: p.customer.email, name: p.customer.name, items: p.items });
-  if (ownsMemberProduct(owned)) await setMember({ email: p.customer.email, name: p.customer.name, owned });
+  await setMember({ email: p.customer.email, name: p.customer.name, owned });
   const next = isStepId(p.step) ? resolveStep(steps[p.step].onAccept, owned) : resolveStep(firstStepFor(p.items), owned);
   return stepUrl(next);
 }
