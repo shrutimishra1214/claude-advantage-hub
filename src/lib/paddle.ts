@@ -29,10 +29,30 @@ export function paddleClientConfig(): { token: string; environment: "sandbox" | 
   return environment && token ? { token, environment } : null;
 }
 
+/** The setting that holds each tier's Paddle price ID (named as in the Paddle catalog). */
+export const tierPriceSetting: Record<TierId, string> = {
+  book: "PADDLE_PRICE_COPILOT_BOOK",
+  complete: "PADDLE_PRICE_COPILOT_BOOK_COMPLETE",
+  pro: "PADDLE_PRICE_COPILOT_BOOK_PRO",
+  "claude-book": "PADDLE_PRICE_CLAUDE_BOOK",
+  "claude-complete": "PADDLE_PRICE_CLAUDE_BOOK_COMPLETE",
+  "claude-pro": "PADDLE_PRICE_CLAUDE_BOOK_PRO",
+  "both-complete": "PADDLE_PRICE_BOTH_SYSTEMS_COMPLETE",
+  "both-pro": "PADDLE_PRICE_BOTH_SYSTEMS_PRO",
+};
+
+/** The setting for each one-time upgrade offered after a purchase. */
+export const stepPriceSetting: Record<StepId, string> = {
+  "complete-upgrade": "PADDLE_PRICE_UPGRADE_COPILOT_TO_COMPLETE",
+  "pro-upgrade": "PADDLE_PRICE_UPGRADE_COPILOT_TO_PRO",
+  "claude-complete-upgrade": "PADDLE_PRICE_UPGRADE_CLAUDE_TO_COMPLETE",
+  "claude-pro-upgrade": "PADDLE_PRICE_UPGRADE_CLAUDE_TO_PRO",
+};
+
 /** The Paddle price for a tier, or for a one-time offer after checkout. */
 export function paddlePriceId(what: { tier: TierId } | { step: StepId }): string | null {
-  const key = "tier" in what ? `PADDLE_PRICE_${what.tier}` : `PADDLE_PRICE_STEP_${what.step}`;
-  return process.env[key.toUpperCase().replace(/-/g, "_")] || null;
+  const key = "tier" in what ? tierPriceSetting[what.tier] : stepPriceSetting[what.step];
+  return process.env[key] || null;
 }
 
 async function call<T>(path: string): Promise<T> {
