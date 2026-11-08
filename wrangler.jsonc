@@ -7,9 +7,29 @@
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
   "observability": { "enabled": true },
-  // Variables and secrets set in the Cloudflare dashboard (Razorpay, Paddle,
+  // Secrets set in the Cloudflare dashboard (Paddle keys,
   // APP_SECRET, KV_REST_API_*, ADMIN_PASSWORD, ...) survive each deploy.
-  "keep_vars": true
+  "keep_vars": true,
+  // Paddle price IDs (pri_...). Not secret: the browser sees them at checkout anyway.
+  // Keys, tokens and secrets never go here; they stay in the dashboard as Secrets.
+  "vars": {
+    // The Microsoft Copilot Advantage
+    "PADDLE_PRICE_BOOK": "pri_01m6cd4317f2at1ajwrj013zyb",
+    "PADDLE_PRICE_COMPLETE": "pri_01m6cdkx61vykw742nbgvcvwf0",
+    "PADDLE_PRICE_PRO": "pri_01m6cdn4yc01vs63qfehc9djnf",
+    // The Claude Advantage (Book = The Claude Advantage + The Claude Operator)
+    "PADDLE_PRICE_CLAUDE_BOOK": "pri_01m6cdhts5f380jwzxmrjr66t4",
+    "PADDLE_PRICE_CLAUDE_COMPLETE": "pri_01m6cdpmrs228fkhnjbwcjed8g",
+    "PADDLE_PRICE_CLAUDE_PRO": "pri_01m6cdr67t8r9m92h0hqaxhc3j",
+    // Both systems
+    "PADDLE_PRICE_BOTH_COMPLETE": "pri_01m6cds3f7pd9zv705xqqjpk9x",
+    "PADDLE_PRICE_BOTH_PRO": "pri_01m6cdthps08t0sawnrzp62q20",
+    // One-time upgrades after a purchase, priced at the difference between tiers
+    "PADDLE_PRICE_STEP_COMPLETE_UPGRADE": "pri_01m6cdvmn0556va7b6b1c95re0",
+    "PADDLE_PRICE_STEP_PRO_UPGRADE": "pri_01m6cdwyndjjrd8b1ztj619q0q",
+    "PADDLE_PRICE_STEP_CLAUDE_COMPLETE_UPGRADE": "pri_01m6cdyarkksx8xpa9jf2gbhq6",
+    "PADDLE_PRICE_STEP_CLAUDE_PRO_UPGRADE": "pri_01m6cdzfxsseefkz6ja0rstc64"
+  }
   // Paid book files. Create the bucket, upload the PDFs from private-files/
   // with the same names, then uncomment:
   //   npx wrangler r2 bucket create kaelis-voss-files

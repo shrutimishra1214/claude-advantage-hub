@@ -119,7 +119,7 @@ Settings → Variables and Secrets**), using **Secret** for keys and passwords. 
 2. **Paddle (everywhere else)**: apply for a Paddle account and get the website approved (Paddle reviews every seller; confirm
    your products fit its policy). Then, in sandbox first and again in production:
    - **Catalog → Products**: create a one-time price for every tier, bundle and upgrade listed in `.env.example`, with a GBP
-     override for the United Kingdom, and put each price ID in its `PADDLE_PRICE_*` setting.
+     override for the United Kingdom, and put each price ID in its `PADDLE_PRICE_*` entry under `"vars"` in `wrangler.jsonc` (price IDs aren't secret; they deploy with the code).
    - **Developer tools → Authentication**: create an API key and a client-side token (`PADDLE_API_KEY`, `PADDLE_CLIENT_TOKEN`).
    - **Developer tools → Notifications**: add a destination for `https://YOUR-DOMAIN/api/webhooks/paddle` with the
      `transaction.completed` event, and set `PADDLE_WEBHOOK_SECRET`.
